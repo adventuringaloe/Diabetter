@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diabetter</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eeeef3;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Arial;color:#17171b}
+.app{max-width:430px;margin:auto;min-height:100vh;background:white;padding-bottom:90px}
+header{padding:18px 20px;border-bottom:1px solid #eee;position:sticky;top:0;background:#fffffff2;backdrop-filter:blur(15px);z-index:5}
+.brand{display:flex;align-items:center;gap:12px}
+.orb{width:46px;height:46px;border-radius:50%;background:conic-gradient(#ff7181,#ffb34b,#ffe66d,#68dfb0,#42d8e8,#62a5fa,#886cff,#ed6bdf,#ff7181);position:relative;box-shadow:0 8px 25px #7563ef33}
+.orb:after{content:"♥";position:absolute;inset:0;display:grid;place-items:center;color:#6856df}
+.brand b{letter-spacing:.1em}.brand small{display:block;color:#777;margin-top:3px}
+main{padding:20px}.screen{display:none}.screen.active{display:block}
+h1{font-size:31px;letter-spacing:-.05em;margin:5px 0}h2{font-size:20px;margin:0 0 6px}
+.muted{color:#777;font-size:14px;line-height:1.45}
+.line{height:2px;margin:18px 0;background:linear-gradient(90deg,#ff7181,#ffb34b,#ffe66d,#68dfb0,#42d8e8,#62a5fa,#886cff,#ed6bdf)}
+.card{border:1px solid #e5e5ea;border-radius:20px;padding:16px;margin:12px 0}
+.soft{background:#f7f7f9;border:0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.metric{background:#f6f6f8;border-radius:17px;padding:14px}.metric b{display:block;font-size:22px;margin-top:5px}
+.metric span{font-size:12px;color:#777}
+.btn,.chip{border:0;border-radius:14px;background:#f4f4f6;padding:12px 14px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.primary{background:#f0edff;color:#5d4bd5;width:100%;margin-top:10px}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.quick .btn{padding:14px 4px;font-size:12px}
+input,textarea,select{width:100%;padding:13px;border:1px solid #dddde3;border-radius:13px;font:inherit;margin-top:8px}
+.event{padding:13px 0;border-bottom:1px solid #eee}.event:last-child{border:0}
+.time{font-size:12px;color:#888;margin-bottom:3px}
+.new{background:#faf9ff;border:1px solid #ddd7ff;border-radius:15px;padding:12px;margin:8px 0}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fffffff7;border-top:1px solid #ddd;z-index:10}
+.navin{max-width:430px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);padding:7px 4px}
+.nav button{border:0;background:none;color:#777;font-size:10px;padding:6px 1px}
+.nav button.active{color:#5d4bd5;background:#f0edff;border-radius:12px}
+.ico{display:block;font-size:19px;margin-bottom:3px}
+.form{display:none}.form.show{display:block}
+.notice{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#17171b;color:#fff;padding:11px 17px;border-radius:30px;font-size:13px;z-index:20}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header>
+<div class="brand">
+<div class="orb"></div>
+<div><b>DIABETTER</b><small>Your health, understood.</small></div>
+</div>
+</header>
+
+<main>
+
+<section id="today" class="screen active">
+<h1>Good morning 👋</h1>
+<p class="muted">Betty has your day at a glance.</p>
+<div class="line"></div>
+
+<div class="grid">
+<div class="metric">🩸<b id="latestGlucose">124</b><span>Latest glucose</span></div>
+<div class="metric">😴<b>7h 24m</b><span>Sleep</span></div>
+<div class="metric">❤️<b>67</b><span>Resting HR</span></div>
+<div class="metric">👟<b>6,421</b><span>Steps</span></div>
+</div>
+
+<div id="latestCard" class="card soft" style="display:none"></div>
+
+<div class="card">
+<div style="font-size:11px;color:#7563ef;font-weight:800">✨ BETTY NOTICED</div>
+<h2>Your morning looks pretty steady.</h2>
+<p class="muted">Your glucose is close to your recent morning range.</p>
+<button class="btn" onclick="go('insights')">Explore insight →</button>
+</div>
+
+<div class="card">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<div><h2>Today's timeline</h2><p class="muted">Events + context</p></div>
+<button class="btn" onclick="go('health')">Health</button>
+</div>
+<div id="timeline"></div>
+</div>
+
+<div class="card soft">
+<h2>How are you feeling?</h2>
+<div class="quick">
+<button class="btn" onclick="saveMood('Great')">😊 Great</button>
+<button class="btn" onclick="saveMood('Good')">🙂 Good</button>
+<button class="btn" onclick="saveMood('Okay')">😐 Okay</button>
+</div>
+</div>
+</section>
+
+
+<section id="log" class="screen">
+<h1>Log</h1>
+<p class="muted">Tell Betty what happened.</p>
+<div class="line"></div>
+
+<div class="card">
+<h2>What happened?</h2>
+<div class="quick">
+<button class="btn" onclick="showForm('glucose')">🩸 Glucose</button>
+<button class="btn" onclick="showForm('food')">🍽️ Food</button>
+<button class="btn" onclick="showForm('water')">💧 Water</button>
+<button class="btn" onclick="showForm('bp')">❤️ Blood pressure</button>
+<button class="btn" onclick="showForm('mood')">😊 Mood</button>
+<button class="btn" onclick="showForm('other')">📝 Other</button>
+</div>
+</div>
+
+<div id="glucose" class="card form">
+<h2>🩸 Glucose</h2>
+<input id="glucoseValue" type="number" placeholder="e.g. 132">
+<select id="glucoseContext">
+<option>Fasting</option>
+<option>Before meal</option>
+<option>1 hour after meal</option>
+<option>2 hours after meal</option>
+<option>Bedtime</option>
+</select>
+<button class="btn primary" onclick="saveGlucose()">Save glucose</button>
+</div>
+
+<div id="food" class="card form">
+<h2>🍽️ Food</h2>
+<textarea id="foodValue" rows="3" placeholder="What did you eat?"></textarea>
+<button class="btn primary" onclick="saveFood()">Save food</button>
+</div>
+
+<div id="water" class="card form">
+<h2>💧 Water</h2>
+<input id="waterValue" type="number" placeholder="Amount">
+<select id="waterUnit"><option>oz</option><option>cups</option><option>mL</option></select>
+<button class="btn primary" onclick="saveWater()">Save water</button>
+</div>
+
+<div id="bp" class="card form">
+<h2>❤️ Blood pressure</h2>
+<input id="sys" type="number" placeholder="Systolic">
+<input id="dia" type="number" placeholder="Diastolic">
+<button class="btn primary" onclick="saveBP()">Save blood pressure</button>
+</div>
+
+<div id="mood" class="card form">
+<h2>😊 Mood</h2>
+<div class="quick">
+<button class="btn" onclick="saveMood('Great')">😊 Great</button>
+<button class="btn" onclick="saveMood('Good')">🙂 Good</button>
+<button class="btn" onclick="saveMood('Okay')">😐 Okay</button>
+</div>
+</div>
+
+<div id="other" class="card form">
+<h2>📝 Other</h2>
+<textarea id="otherValue" rows="3" placeholder="Describe what happened"></textarea>
+<button class="btn primary" onclick="saveOther()">Save event</button>
+</div>
+
+<div class="card soft">
+<h2>Saved events</h2>
+<p class="muted" id="eventCount">0 events</p>
+</div>
+</section>
+
+
+<section id="trends" class="screen">
+<h1>Trends</h1>
+<p class="muted">See the evidence behind the story.</p>
+<div class="line"></div>
+
+<div class="card">
+<h2>Glucose</h2>
+<p class="muted">Sample 7-day view</p>
+<div style="height:130px;display:flex;align-items:end;gap:7px">
+<div style="height:48%;background:#8b6cff;flex:1;border-radius:7px"></div>
+<div style="height:64%;background:#60a5fa;flex:1;border-radius:7px"></div>
+<div style="height:43%;background:#8b6cff;flex:1;border-radius:7px"></div>
+<div style="height:73%;background:#60a5fa;flex:1;border-radius:7px"></div>
+<div style="height:58%;background:#8b6cff;flex:1;border-radius:7px"></div>
+<div style="height:84%;background:#60a5fa;flex:1;border-radius:7px"></div>
+<div style="height:61%;background:#8b6cff;flex:1;border-radius:7px"></div>
+</div>
+</div>
+
+<div class="grid">
+<div class="metric"><span>30-day average</span><b>148</b></div>
+<div class="metric"><span>Previous period</span><b>162</b></div>
+</div>
+
+<div class="card">
+<h2>Compare</h2>
+<p class="muted">Glucose alongside another part of your day.</p>
+<div class="quick">
+<button class="btn" onclick="alert('Activity comparison selected')">🏃 Activity</button>
+<button class="btn" onclick="alert('Sleep comparison selected')">😴 Sleep</button>
+<button class="btn" onclick="alert('Food comparison selected')">🍽️ Food</button>
+<button class="btn" onclick="alert('Mood comparison selected')">🧠 Mood</button>
+</div>
+</div>
+</section>
+
+
+<section id="insights" class="screen">
+<h1>Insights</h1>
+<p class="muted">What Betty is learning from repeated patterns.</p>
+<div class="line"></div>
+
+<div class="card">
+<div style="font-size:11px;color:#7563ef;font-weight:800">🦋 EMERGING PATTERN</div>
+<h2>Post-dinner movement may be helping.</h2>
+<p class="muted">Across comparable dinners, later glucose readings were generally lower on evenings with activity.</p>
+<button class="btn primary" onclick="go('trends')">See the evidence</button>
+</div>
+
+<div class="card">
+<div style="font-size:11px;color:#7563ef;font-weight:800">✨ BETTY NOTICED</div>
+<h2>Your sleep has improved.</h2>
+<p class="muted">Your recent sleep duration is higher than your previous period.</p>
+<button class="btn" onclick="go('ask')">Ask Betty about this</button>
+</div>
+</section>
+
+
+<section id="ask" class="screen">
+<h1>Ask Betty</h1>
+<p class="muted">Your questions. Your data. One conversation.</p>
+<div class="line"></div>
+
+<div class="card">
+<div style="display:flex;gap:12px;align-items:center">
+<div class="orb"></div>
+<div><h2>Hi, I'm Betty. 💜</h2><p class="muted">What are we looking at?</p></div>
+</div>
+
+<div class="card soft">
+I can help connect your glucose, food, activity, sleep and mood.
+</div>
+
+<div class="quick">
+<button class="btn" onclick="ask('How am I doing?')">How am I doing?</button>
+<button class="btn" onclick="ask('Why was my glucose higher?')">Why was my glucose higher?</button>
+<button class="btn" onclick="ask('What changed this week?')">What changed?</button>
+</div>
+
+<div id="chat"></div>
+</div>
+</section>
+
+
+<section id="health" class="screen">
+<h1>Apple Health</h1>
+<p class="muted">Choose only the categories you authorize.</p>
+<div class="line"></div>
+
+<div class="card">
+<p>☑️ ❤️ Heart rate</p>
+<p>☑️ 🏃 Workouts</p>
+<p>☑️ 😴 Sleep</p>
+<p>☑️ 👟 Steps</p>
+<p>☐ 🫁 Blood oxygen</p>
+<p>☐ 🧠 State of Mind</p>
+<p>☐ 🩸 Blood glucose</p>
+<button class="btn primary" onclick="go('today')">Save permissions</button>
+</div>
+</section>
+
+</main>
+
+
+<nav class="nav">
+<div class="navin">
+<button onclick="go('today')"><span class="ico">⌂</span>Today</button>
+<button onclick="go('log')"><span class="ico">＋</span>Log</button>
+<button onclick="go('trends')"><span class="ico">⌁</span>Trends</button>
+<button onclick="go('insights')"><span class="ico">✦</span>Insights</button>
+<button onclick="go('ask')"><span class="ico">🦋</span>Ask Betty</button>
+</div>
+</nav>
+
+<div id="notice" class="notice" style="display:none"></div>
+
+<script>
+let events=JSON.parse(localStorage.getItem("diabetterEvents")||"[]");
+
+function go(id){
+ document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
+ window.scrollTo(0,0);
+ render();
+}
+
+function showForm(id){
+ document.querySelectorAll(".form").forEach(x=>x.classList.remove("show"));
+ document.getElementById(id).classList.add("show");
+ document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+function saveEvent(title,sub){
+ events.push({title:title,sub:sub,time:new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})});
+ localStorage.setItem("diabetterEvents",JSON.stringify(events));
+ render();
+ notice(title+" saved ✓");
+ go("today");
+}
+
+function saveGlucose(){
+ let v=document.getElementById("glucoseValue").value;
+ if(!v){notice("Enter a glucose value first");return}
+ let c=document.getElementById("glucoseContext").value;
+ document.getElementById("glucoseValue").value="";
+ document.getElementById("glucoseContext").selectedIndex=0;
+ saveEvent("🩸 Glucose · "+v+" mg/dL",c);
+}
+
+function saveFood(){
+ let v=document.getElementById("foodValue").value.trim();
+ if(!v){notice("Enter your food first");return}
+ document.getElementById("foodValue").value="";
+ saveEvent("🍽️ Food · "+v,"Manually logged");
+}
+
+function saveWater(){
+ let v=document.getElementById("waterValue").value;
+ if(!v){notice("Enter an amount first");return}
+ let u=document.getElementById("waterUnit").value;
+ document.getElementById("waterValue").value="";
+ saveEvent("💧 Water · "+v+" "+u,"Quick log");
+}
+
+function saveBP(){
+ let s=document.getElementById("sys").value;
+ let d=document.getElementById("dia").value;
+ if(!s||!d){notice("Enter both numbers");return}
+ document.getElementById("sys").value="";
+ document.getElementById("dia").value="";
+ saveEvent("❤️ Blood pressure · "+s+"/"+d,"Manual entry");
+}
+
+function saveMood(m){
+ saveEvent("😊 Mood · "+m,"Manual entry");
+}
+
+function saveOther(){
+ let v=document.getElementById("otherValue").value.trim();
+ if(!v){notice("Describe the event first");return}
+ document.getElementById("otherValue").value="";
+ saveEvent("📝 Other · "+v,"Manual entry");
+}
+
+function render(){
+ let t=document.getElementById("timeline");
+ if(t){
+  t.innerHTML="";
+  events.slice().reverse().forEach(e=>{
+   t.innerHTML+=`<div class="event new"><div class="time">${e.time} · NEW</div><b>${e.title}</b><div class="muted">${e.sub}</div></div>`;
+  });
+  t.innerHTML+=`<div class="event"><div class="time">7:12 AM</div><b>🩸 Glucose · 124 mg/dL</b><div class="muted">Fasting</div></div>`;
+ }
+ let c=document.getElementById("eventCount");
+ if(c)c.textContent=events.length+" saved event"+(events.length==1?"":"s");
+}
+
+function notice(text){
+ let n=document.getElementById("notice");
+ n.textContent=text;n.style.display="block";
+ setTimeout(()=>n.style.display="none",1600);
+}
+
+function ask(q){
+ let c=document.getElementById("chat");
+ c.innerHTML+=`<div class="card soft"><b>You:</b><br>${q}</div>`;
+ setTimeout(()=>{
+  c.innerHTML+=`<div class="card"><b>Betty 💜</b><p class="muted">In the full Diabetter app, I'll compare your authorized health data and logged events before identifying patterns. For now, this prototype confirms the conversation flow works.</p></div>`;
+ },300);
+}
+
+render();
+</script>
+
+</div>
+</body>
+</html>
