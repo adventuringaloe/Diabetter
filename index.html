@@ -1,36 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#f6f6fa">
-<title>Diabetter V2.1</title>
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta
+  name="theme-color"
+  content="#f6f6fa"
+  id="themeColorMeta">
+
+<title>Diabetter V3.1</title>
+
 
 <style>
+
+/* =========================================================
+   DIABETTER V3.1
+   GLOBAL THEME SYSTEM
+========================================================= */
+
 :root {
-  --bg: #f6f6fa;
-  --card: #ffffff;
+
+  --bg: #f5f5fa;
+  --surface: #ffffff;
+  --surface-secondary: #f1f1f6;
+
   --text: #17171b;
-  --muted: #777983;
-  --line: #e5e5ea;
-  --blue: #007aff;
+  --text-secondary: #73747c;
+
+  --border: rgba(0,0,0,.07);
+
+  --accent: #007aff;
+  --accent-soft: rgba(0,122,255,.10);
+
   --purple: #7c5cff;
   --green: #34c759;
   --red: #ff3b30;
+  --orange: #ff9500;
+
+  --betty-glow: rgba(124,92,255,.18);
+
+  --nav-bg: rgba(250,250,252,.92);
+
+  --shadow:
+    0 8px 28px rgba(0,0,0,.06);
+
+  --radius-large: 24px;
+  --radius-medium: 18px;
+  --radius-small: 14px;
+
+  --transition:
+    background .3s ease,
+    color .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+
 }
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+html[data-theme="dark"] {
+
+  --bg: #000000;
+  --surface: #171719;
+  --surface-secondary: #242426;
+
+  --text: #ffffff;
+  --text-secondary: #a1a1a6;
+
+  --border: rgba(255,255,255,.09);
+
+  --accent: #0a84ff;
+  --accent-soft: rgba(10,132,255,.16);
+
+  --betty-glow:
+    rgba(170,120,255,.32);
+
+  --nav-bg:
+    rgba(20,20,22,.94);
+
+  --shadow:
+    0 10px 35px rgba(0,0,0,.45);
+
+}
+
+
+/* =========================================================
+   BETTY MODE
+========================================================= */
+
+html[data-theme="betty"] {
+
+  --bg: #fff4ff;
+
+  --surface: rgba(255,255,255,.88);
+
+  --surface-secondary:
+    rgba(255,255,255,.70);
+
+  --text: #24132f;
+
+  --text-secondary: #735b7d;
+
+  --border:
+    rgba(255,80,190,.16);
+
+  --accent: #9b4dff;
+
+  --accent-soft:
+    rgba(155,77,255,.12);
+
+  --purple: #9b4dff;
+
+  --betty-glow:
+    rgba(255,72,205,.35);
+
+  --nav-bg:
+    rgba(255,247,255,.90);
+
+  --shadow:
+    0 12px 35px rgba(210,70,220,.12);
+
+}
+
+
+/* =========================================================
+   BETTY MODE BACKGROUND EFFECT
+========================================================= */
+
+html[data-theme="betty"] body {
+
+  background:
+
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(255,59,48,.16),
+      transparent 27%
+    ),
+
+    radial-gradient(
+      circle at 90% 15%,
+      rgba(175,82,222,.18),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 20% 90%,
+      rgba(0,199,190,.15),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 85% 85%,
+      rgba(255,149,0,.16),
+      transparent 30%
+    ),
+
+    var(--bg);
+
+}
+
+
+/* =========================================================
+   BETTY MODE DECORATIVE RAINBOW LINE
+========================================================= */
+
+html[data-theme="betty"] .app::before {
+
+  content: "";
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 4px;
+
+  z-index: 100;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #ff3b30,
+      #ff9500,
+      #ffd60a,
+      #34c759,
+      #00c7be,
+      #007aff,
+      #5856d6,
+      #af52de,
+      #ff2d55
+    );
+
+}
+
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
 
 * {
   box-sizing: border-box;
 }
 
 html {
+
   -webkit-text-size-adjust: 100%;
+
+  transition:
+    background .3s ease;
 }
 
 body {
+
   margin: 0;
+
   background: var(--bg);
+
   color: var(--text);
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -38,721 +235,1926 @@ body {
     "SF Pro Text",
     Arial,
     sans-serif;
+
+  transition: var(--transition);
+
 }
 
 button,
 input,
 textarea,
 select {
+
   font: inherit;
+
 }
 
 button {
-  -webkit-tap-highlight-color: transparent;
+
+  -webkit-tap-highlight-color:
+    transparent;
+
 }
+
+
+/* =========================================================
+   APP CONTAINER
+========================================================= */
 
 .app {
+
   width: 100%;
+
   max-width: 520px;
+
   min-height: 100vh;
+
   margin: 0 auto;
-  padding-bottom: 95px;
+
+  padding-bottom: 105px;
+
+  position: relative;
+
 }
 
+
+/* =========================================================
+   HEADER
+========================================================= */
+
 header {
+
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
-  padding: 22px 18px 8px;
+
+  padding:
+    22px
+    18px
+    8px;
+
 }
 
 .brand {
+
   font-size: 27px;
+
   font-weight: 800;
+
   letter-spacing: -1px;
+
 }
 
 .brand span {
-  background: linear-gradient(
-    90deg,
-    #ff3b30,
-    #ff9500,
-    #34c759,
-    #00c7be,
-    #007aff,
-    #af52de
-  );
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #ff3b30,
+      #ff9500,
+      #34c759,
+      #00c7be,
+      #007aff,
+      #af52de
+    );
+
   -webkit-background-clip: text;
+
   background-clip: text;
+
   color: transparent;
+
 }
+
+
+/* =========================================================
+   HEADER SETTINGS BUTTON
+========================================================= */
 
 .icon-button {
+
   width: 42px;
+
   height: 42px;
-  border: 0;
+
+  border: 1px solid var(--border);
+
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 5px 20px rgba(0,0,0,.08);
+
+  background: var(--surface);
+
+  color: var(--text);
+
+  box-shadow: var(--shadow);
+
+  cursor: pointer;
+
+  transition: var(--transition);
+
 }
 
+.icon-button:active {
+
+  transform: scale(.94);
+
+}
+
+
+/* =========================================================
+   SCREENS
+========================================================= */
+
 .screen {
+
   display: none;
-  padding: 12px 18px;
+
+  padding:
+    12px
+    18px;
+
 }
 
 .screen.active {
+
   display: block;
+
 }
 
+
+/* =========================================================
+   CARDS
+========================================================= */
+
 .card {
+
   margin: 12px 0;
+
   padding: 18px;
-  border: 1px solid rgba(0,0,0,.04);
-  border-radius: 22px;
-  background: rgba(255,255,255,.94);
-  box-shadow: 0 8px 28px rgba(0,0,0,.06);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    var(--radius-large);
+
+  background:
+    var(--surface);
+
+  box-shadow:
+    var(--shadow);
+
+  transition:
+    var(--transition);
+
 }
 
 .hero {
+
   padding: 22px;
+
 }
 
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
 h1 {
-  margin: 4px 0 8px;
+
+  margin:
+    4px
+    0
+    8px;
+
   font-size: 31px;
+
   line-height: 1.05;
+
   letter-spacing: -1.1px;
+
 }
 
 h2 {
-  margin: 0 0 9px;
+
+  margin:
+    0
+    0
+    9px;
+
   font-size: 21px;
+
   letter-spacing: -.4px;
+
 }
 
 p {
-  margin: 6px 0;
-  color: var(--muted);
-  line-height: 1.45;
+
+  margin:
+    6px
+    0;
+
+  color:
+    var(--text-secondary);
+
+  line-height:
+    1.45;
+
 }
 
 .kicker {
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+
+  color:
+    var(--text-secondary);
+
+  font-size:
+    12px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    .08em;
+
+  text-transform:
+    uppercase;
+
 }
+
+
+/* =========================================================
+   BETTY CHARACTER
+========================================================= */
 
 .betty {
+
   display: flex;
+
   align-items: center;
+
   gap: 16px;
+
 }
+
+
+/*
+   This orb is intentionally larger and more luminous
+   in V3.1. The actual butterfly/infinity artwork will
+   be placed inside this character container in the
+   next design pass.
+*/
 
 .orb {
+
   position: relative;
-  width: 64px;
-  height: 64px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: conic-gradient(
-    #ff3b30,
-    #ff9500,
-    #ffd60a,
-    #34c759,
-    #00c7be,
-    #007aff,
-    #5856d6,
-    #af52de,
-    #ff2d55,
-    #ff3b30
-  );
+
+  width: 70px;
+
+  height: 70px;
+
+  flex:
+    0 0 auto;
+
+  border-radius:
+    50%;
+
+  background:
+
+    conic-gradient(
+      #ff3b30,
+      #ff9500,
+      #ffd60a,
+      #34c759,
+      #00c7be,
+      #007aff,
+      #5856d6,
+      #af52de,
+      #ff2d55,
+      #ff3b30
+    );
+
   box-shadow:
-    0 0 0 7px #ffffff,
-    0 7px 25px rgba(98,86,199,.25);
+
+    0 0 0 6px
+      var(--surface),
+
+    0 0 28px
+      var(--betty-glow);
+
+  transition:
+    box-shadow .4s ease,
+    transform .4s ease;
+
 }
 
+
+/* Dark mode makes Betty more luminous */
+
+html[data-theme="dark"] .orb {
+
+  box-shadow:
+
+    0 0 0 5px
+      var(--surface),
+
+    0 0 34px
+      rgba(150,100,255,.48),
+
+    0 0 65px
+      rgba(0,180,255,.16);
+
+}
+
+
+/* Betty Mode makes her intentionally excessive */
+
+html[data-theme="betty"] .orb {
+
+  transform:
+    scale(1.06);
+
+  box-shadow:
+
+    0 0 0 6px
+      var(--surface),
+
+    0 0 35px
+      rgba(255,70,210,.45),
+
+    0 0 70px
+      rgba(120,70,255,.28),
+
+    0 0 100px
+      rgba(0,200,255,.16);
+
+}
+
+
+/* =========================================================
+   GRIDS & STATS
+========================================================= */
+
 .grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:
+    10px;
+
 }
 
 .stat {
-  padding: 15px;
-  border-radius: 17px;
-  background: #f2f2f7;
+
+  padding:
+    15px;
+
+  border-radius:
+    var(--radius-medium);
+
+  background:
+    var(--surface-secondary);
+
+  transition:
+    var(--transition);
+
 }
 
 .stat small {
-  color: var(--muted);
+
+  color:
+    var(--text-secondary);
+
 }
 
 .num {
-  margin: 2px 0;
-  font-size: 26px;
-  font-weight: 800;
+
+  margin:
+    2px
+    0;
+
+  font-size:
+    26px;
+
+  font-weight:
+    800;
+
 }
 
+
+/* =========================================================
+   ROWS
+========================================================= */
+
 .row {
-  display: flex;
-  align-items: center;
-  gap: 9px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    9px;
+
 }
 
 .between {
-  justify-content: space-between;
+
+  justify-content:
+    space-between;
+
 }
 
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
 .event {
-  display: flex;
-  gap: 12px;
-  padding: 13px 3px;
-  border-bottom: 1px solid var(--line);
-  cursor: pointer;
+
+  display:
+    flex;
+
+  gap:
+    12px;
+
+  padding:
+    13px
+    3px;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  cursor:
+    pointer;
+
+  transition:
+    background .2s ease;
+
 }
 
 .event:last-child {
-  border-bottom: 0;
+
+  border-bottom:
+    0;
+
+}
+
+.event:active {
+
+  opacity:
+    .65;
+
 }
 
 .event-icon {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  flex: 0 0 auto;
-  border-radius: 12px;
-  background: #f1f1f6;
-  font-style: normal;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  width:
+    38px;
+
+  height:
+    38px;
+
+  flex:
+    0 0 auto;
+
+  border-radius:
+    12px;
+
+  background:
+    var(--surface-secondary);
+
+  font-style:
+    normal;
+
 }
 
 .event-main {
-  flex: 1;
-  min-width: 0;
+
+  flex:
+    1;
+
+  min-width:
+    0;
+
 }
 
 .event-title {
-  font-weight: 750;
-  word-break: break-word;
+
+  font-weight:
+    750;
+
+  word-break:
+    break-word;
+
 }
 
 .event-meta {
-  margin-top: 3px;
-  color: var(--muted);
-  font-size: 12px;
+
+  margin-top:
+    3px;
+
+  color:
+    var(--text-secondary);
+
+  font-size:
+    12px;
+
 }
 
 .empty {
-  padding: 28px;
-  color: var(--muted);
-  text-align: center;
+
+  padding:
+    28px;
+
+  color:
+    var(--text-secondary);
+
+  text-align:
+    center;
+
 }
 
+
+/* =========================================================
+   LOG OPTIONS
+========================================================= */
+
 .options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:
+    10px;
+
 }
 
 .option {
-  border: 0;
-  border-radius: 18px;
-  padding: 18px;
-  background: #ffffff;
-  text-align: left;
-  font-weight: 750;
-  box-shadow: 0 6px 22px rgba(0,0,0,.06);
-  cursor: pointer;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    var(--radius-medium);
+
+  padding:
+    18px;
+
+  background:
+    var(--surface);
+
+  color:
+    var(--text);
+
+  text-align:
+    left;
+
+  font-weight:
+    750;
+
+  box-shadow:
+    var(--shadow);
+
+  cursor:
+    pointer;
+
+  transition:
+    transform .15s ease,
+    var(--transition);
+
+}
+
+.option:active {
+
+  transform:
+    scale(.97);
+
 }
 
 .option span {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 25px;
+
+  display:
+    block;
+
+  margin-bottom:
+    6px;
+
+  font-size:
+    25px;
+
 }
 
+
+/* Betty Mode option flare */
+
+html[data-theme="betty"] .option {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.94),
+      rgba(255,225,250,.86)
+    );
+
+  border-color:
+    rgba(255,80,200,.18);
+
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
 .form {
-  display: none;
+
+  display:
+    none;
+
 }
 
 .form.show {
-  display: block;
+
+  display:
+    block;
+
 }
 
 .field {
-  margin: 12px 0;
+
+  margin:
+    12px
+    0;
+
 }
 
 .field label {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 800;
+
+  display:
+    block;
+
+  margin-bottom:
+    6px;
+
+  color:
+    var(--text-secondary);
+
+  font-size:
+    12px;
+
+  font-weight:
+    800;
+
 }
 
 .field input,
 .field textarea,
 .field select {
-  width: 100%;
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 15px;
-  background: #ffffff;
-  outline: none;
+
+  width:
+    100%;
+
+  padding:
+    14px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    15px;
+
+  background:
+    var(--surface);
+
+  color:
+    var(--text);
+
+  outline:
+    none;
+
+  transition:
+    var(--transition);
+
 }
 
 .field input:focus,
 .field textarea:focus,
 .field select:focus {
-  border-color: var(--blue);
+
+  border-color:
+    var(--accent);
+
+  box-shadow:
+    0 0 0 3px
+    var(--accent-soft);
+
 }
 
 .field textarea {
-  min-height: 85px;
-  resize: vertical;
+
+  min-height:
+    85px;
+
+  resize:
+    vertical;
+
 }
 
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
 .btn {
-  border: 0;
-  border-radius: 15px;
-  padding: 13px 16px;
-  background: #eeeef2;
-  font-weight: 750;
-  cursor: pointer;
+
+  border:
+    0;
+
+  border-radius:
+    15px;
+
+  padding:
+    13px
+    16px;
+
+  background:
+    var(--surface-secondary);
+
+  color:
+    var(--text);
+
+  font-weight:
+    750;
+
+  cursor:
+    pointer;
+
+  transition:
+    transform .15s ease,
+    var(--transition);
+
+}
+
+.btn:active {
+
+  transform:
+    scale(.97);
+
 }
 
 .btn-primary {
-  width: 100%;
-  background: #17171b;
-  color: #ffffff;
+
+  width:
+    100%;
+
+  background:
+    var(--text);
+
+  color:
+    var(--bg);
+
 }
 
+
+/* =========================================================
+   CHIPS
+========================================================= */
+
 .chips {
-  display: flex;
-  gap: 7px;
-  overflow-x: auto;
-  padding-bottom: 3px;
+
+  display:
+    flex;
+
+  gap:
+    7px;
+
+  overflow-x:
+    auto;
+
+  padding-bottom:
+    3px;
+
 }
 
 .chip {
-  border: 0;
-  border-radius: 14px;
-  padding: 9px 12px;
-  background: #eeeef2;
-  white-space: nowrap;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
+
+  border:
+    0;
+
+  border-radius:
+    14px;
+
+  padding:
+    9px
+    12px;
+
+  background:
+    var(--surface-secondary);
+
+  color:
+    var(--text);
+
+  white-space:
+    nowrap;
+
+  font-size:
+    13px;
+
+  font-weight:
+    700;
+
+  cursor:
+    pointer;
+
 }
 
 .chip.selected {
-  background: #17171b;
-  color: #ffffff;
+
+  background:
+    var(--text);
+
+  color:
+    var(--bg);
+
 }
 
+
+/* =========================================================
+   BOTTOM NAVIGATION
+========================================================= */
+
 nav {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 20;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  width: 100%;
-  max-width: 520px;
-  margin: auto;
+
+  position:
+    fixed;
+
+  right:
+    0;
+
+  bottom:
+    0;
+
+  left:
+    0;
+
+  z-index:
+    20;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(5, 1fr);
+
+  width:
+    100%;
+
+  max-width:
+    520px;
+
+  margin:
+    auto;
+
   padding:
     7px
     5px
-    calc(7px + env(safe-area-inset-bottom));
-  border-top: 1px solid var(--line);
-  background: rgba(250,250,252,.95);
-  backdrop-filter: blur(18px);
+    calc(
+      7px +
+      env(safe-area-inset-bottom)
+    );
+
+  border-top:
+    1px solid
+    var(--border);
+
+  background:
+    var(--nav-bg);
+
+  backdrop-filter:
+    blur(18px);
+
+  transition:
+    var(--transition);
+
 }
 
 nav button {
-  border: 0;
-  background: transparent;
-  color: #777;
-  font-size: 11px;
-  font-weight: 700;
-  cursor: pointer;
+
+  border:
+    0;
+
+  background:
+    transparent;
+
+  color:
+    var(--text-secondary);
+
+  font-size:
+    11px;
+
+  font-weight:
+    700;
+
+  cursor:
+    pointer;
+
 }
 
 nav button.active {
-  color: var(--blue);
+
+  color:
+    var(--accent);
+
 }
 
 nav b {
-  display: block;
-  margin-bottom: 2px;
-  font-size: 20px;
+
+  display:
+    block;
+
+  margin-bottom:
+    2px;
+
+  font-size:
+    20px;
+
 }
 
+
+/* =========================================================
+   FLOATING ACTION BUTTON
+========================================================= */
+
 .fab {
-  position: fixed;
-  right: max(20px, calc((100vw - 520px) / 2 + 20px));
-  bottom: 88px;
-  z-index: 10;
-  width: 58px;
-  height: 58px;
-  border: 0;
-  border-radius: 50%;
-  background: #17171b;
-  color: #ffffff;
-  font-size: 28px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.22);
-  cursor: pointer;
+
+  position:
+    fixed;
+
+  right:
+    max(
+      20px,
+      calc(
+        (100vw - 520px) / 2 +
+        20px
+      )
+    );
+
+  bottom:
+    88px;
+
+  z-index:
+    10;
+
+  width:
+    58px;
+
+  height:
+    58px;
+
+  border:
+    0;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--text);
+
+  color:
+    var(--bg);
+
+  font-size:
+    28px;
+
+  box-shadow:
+    0 10px 25px
+    rgba(0,0,0,.22);
+
+  cursor:
+    pointer;
+
 }
+
+
+/* Betty Mode FAB */
+
+html[data-theme="betty"] .fab {
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #ff3b30,
+      #ff9500,
+      #34c759,
+      #007aff,
+      #af52de,
+      #ff2d55
+    );
+
+  color:
+    #ffffff;
+
+  box-shadow:
+
+    0 8px 30px
+    rgba(170,60,220,.30);
+
+}
+
+
+/* =========================================================
+   SHEET / MODAL
+========================================================= */
 
 .sheet,
 .modal {
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  display: none;
-  align-items: flex-end;
-  background: rgba(0,0,0,.35);
+
+  position:
+    fixed;
+
+  inset:
+    0;
+
+  z-index:
+    30;
+
+  display:
+    none;
+
+  align-items:
+    flex-end;
+
+  background:
+    rgba(0,0,0,.42);
+
 }
 
 .sheet.show,
 .modal.show {
-  display: flex;
+
+  display:
+    flex;
+
 }
 
 .sheet-box,
 .modal-box {
-  width: 100%;
-  max-width: 520px;
-  margin: auto;
-  padding: 20px 18px 30px;
-  border-radius: 28px 28px 0 0;
-  background: #f8f8fb;
+
+  width:
+    100%;
+
+  max-width:
+    520px;
+
+  margin:
+    auto;
+
+  padding:
+    20px
+    18px
+    30px;
+
+  border-radius:
+    28px
+    28px
+    0
+    0;
+
+  background:
+    var(--surface);
+
+  color:
+    var(--text);
+
+  transition:
+    var(--transition);
+
 }
 
 .modal {
-  align-items: center;
-  padding: 20px;
+
+  align-items:
+    center;
+
+  padding:
+    20px;
+
 }
 
 .modal-box {
-  max-height: 85vh;
-  overflow-y: auto;
-  border-radius: 25px;
+
+  max-height:
+    85vh;
+
+  overflow-y:
+    auto;
+
+  border-radius:
+    25px;
+
 }
 
+
+/* =========================================================
+   TOAST
+========================================================= */
+
 .toast {
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  z-index: 50;
-  transform: translate(-50%, -15px);
-  opacity: 0;
-  padding: 12px 16px;
-  border-radius: 15px;
-  background: #17171b;
-  color: #ffffff;
-  font-weight: 750;
-  transition: .2s;
-  pointer-events: none;
+
+  position:
+    fixed;
+
+  top:
+    16px;
+
+  left:
+    50%;
+
+  z-index:
+    50;
+
+  transform:
+    translate(
+      -50%,
+      -15px
+    );
+
+  opacity:
+    0;
+
+  padding:
+    12px
+    16px;
+
+  border-radius:
+    15px;
+
+  background:
+    var(--text);
+
+  color:
+    var(--bg);
+
+  font-weight:
+    750;
+
+  transition:
+    .2s;
+
+  pointer-events:
+    none;
+
 }
 
 .toast.show {
-  transform: translate(-50%, 0);
-  opacity: 1;
+
+  transform:
+    translate(
+      -50%,
+      0
+    );
+
+  opacity:
+    1;
+
 }
 
+
+/* =========================================================
+   CHART
+========================================================= */
+
 .chart {
-  position: relative;
-  height: 210px;
-  margin: 15px 0;
-  overflow: hidden;
-  border-radius: 18px;
+
+  position:
+    relative;
+
+  height:
+    210px;
+
+  margin:
+    15px
+    0;
+
+  overflow:
+    hidden;
+
+  border-radius:
+    18px;
+
   background:
+
     repeating-linear-gradient(
       to bottom,
       transparent 0,
       transparent 24%,
-      #eeeef2 25%,
+      var(--border) 25%,
       transparent 26%
     );
+
 }
 
 .target-band {
-  position: absolute;
-  top: 34%;
-  right: 0;
-  left: 0;
-  height: 30%;
-  background: rgba(52,199,89,.10);
+
+  position:
+    absolute;
+
+  top:
+    34%;
+
+  right:
+    0;
+
+  left:
+    0;
+
+  height:
+    30%;
+
+  background:
+    rgba(52,199,89,.10);
+
 }
 
 .chart svg {
-  width: 100%;
-  height: 100%;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
 }
 
+
+/* =========================================================
+   INSIGHTS
+========================================================= */
+
 .insight {
-  padding-left: 14px;
-  border-left: 4px solid var(--purple);
+
+  padding-left:
+    14px;
+
+  border-left:
+    4px solid
+    var(--purple);
+
 }
 
 .badge {
-  color: #6c52c8;
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
+
+  color:
+    var(--purple);
+
+  font-size:
+    11px;
+
+  font-weight:
+    800;
+
+  text-transform:
+    uppercase;
+
 }
+
+
+/* =========================================================
+   SETTINGS — V3 FOUNDATION
+========================================================= */
+
+.settings-header {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    14px;
+
+  margin-bottom:
+    22px;
+
+}
+
+.settings-betty {
+
+  width:
+    58px;
+
+  height:
+    58px;
+
+  flex:
+    0 0 auto;
+
+  border-radius:
+    50%;
+
+  background:
+
+    conic-gradient(
+      #ff3b30,
+      #ff9500,
+      #ffd60a,
+      #34c759,
+      #00c7be,
+      #007aff,
+      #5856d6,
+      #af52de,
+      #ff2d55,
+      #ff3b30
+    );
+
+  box-shadow:
+    0 0 28px
+    var(--betty-glow);
+
+}
+
+.settings-section-title {
+
+  margin:
+    25px
+    4px
+    8px;
+
+  color:
+    var(--text-secondary);
+
+  font-size:
+    12px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    .08em;
+
+  text-transform:
+    uppercase;
+
+}
+
+.settings-card {
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    20px;
+
+  background:
+    var(--surface);
+
+  box-shadow:
+    var(--shadow);
+
+}
+
+.settings-row {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    13px;
+
+  min-height:
+    64px;
+
+  padding:
+    12px
+    16px;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  color:
+    var(--text);
+
+  cursor:
+    pointer;
+
+  transition:
+    background .2s ease;
+
+}
+
+.settings-row:last-child {
+
+  border-bottom:
+    0;
+
+}
+
+.settings-row:active {
+
+  background:
+    var(--surface-secondary);
+
+}
+
+.settings-icon {
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  width:
+    36px;
+
+  height:
+    36px;
+
+  flex:
+    0 0 auto;
+
+  border-radius:
+    11px;
+
+  background:
+    var(--surface-secondary);
+
+  font-size:
+    18px;
+
+}
+
+.settings-content {
+
+  flex:
+    1;
+
+  min-width:
+    0;
+
+}
+
+.settings-title {
+
+  font-size:
+    15px;
+
+  font-weight:
+    700;
+
+}
+
+.settings-subtitle {
+
+  margin-top:
+    3px;
+
+  color:
+    var(--text-secondary);
+
+  font-size:
+    12px;
+
+}
+
+.settings-chevron {
+
+  color:
+    var(--text-secondary);
+
+  font-size:
+    20px;
+
+}
+
+
+/* =========================================================
+   THEME SELECTOR
+========================================================= */
+
+.theme-options {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap:
+    8px;
+
+  margin-top:
+    12px;
+
+}
+
+.theme-option {
+
+  position:
+    relative;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    16px;
+
+  padding:
+    12px
+    7px;
+
+  background:
+    var(--surface-secondary);
+
+  color:
+    var(--text);
+
+  text-align:
+    center;
+
+  cursor:
+    pointer;
+
+  transition:
+    .2s ease;
+
+}
+
+.theme-option:active {
+
+  transform:
+    scale(.96);
+
+}
+
+.theme-option.selected {
+
+  border:
+    2px solid
+    var(--accent);
+
+}
+
+.theme-option-icon {
+
+  display:
+    block;
+
+  margin-bottom:
+    5px;
+
+  font-size:
+    22px;
+
+}
+
+.theme-option-label {
+
+  display:
+    block;
+
+  font-size:
+    11px;
+
+  font-weight:
+    800;
+
+}
+
+
+/* Betty Mode theme selector gets rainbow border */
+
+html[data-theme="betty"] .theme-option.selected {
+
+  border:
+    2px solid transparent;
+
+  background:
+
+    linear-gradient(
+      var(--surface),
+      var(--surface)
+    ) padding-box,
+
+    linear-gradient(
+      90deg,
+      #ff3b30,
+      #ff9500,
+      #34c759,
+      #007aff,
+      #af52de,
+      #ff2d55
+    ) border-box;
+
+}
+
+
+/* =========================================================
+   SETTINGS TOGGLE
+========================================================= */
+
+.toggle {
+
+  position:
+    relative;
+
+  width:
+    48px;
+
+  height:
+    28px;
+
+  flex:
+    0 0 auto;
+
+  border:
+    0;
+
+  border-radius:
+    20px;
+
+  background:
+    var(--surface-secondary);
+
+}
+
+.toggle::after {
+
+  content:
+    "";
+
+  position:
+    absolute;
+
+  top:
+    3px;
+
+  left:
+    3px;
+
+  width:
+    22px;
+
+  height:
+    22px;
+
+  border-radius:
+    50%;
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 2px 5px
+    rgba(0,0,0,.20);
+
+  transition:
+    .2s ease;
+
+}
+
+.toggle.on {
+
+  background:
+    var(--green);
+
+}
+
+.toggle.on::after {
+
+  transform:
+    translateX(20px);
+
+}
+
+
+/* =========================================================
+   BETTY MODE EXTRA SPARKLES
+========================================================= */
+
+html[data-theme="betty"] .card.hero {
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+}
+
+html[data-theme="betty"] .card.hero::after {
+
+  content:
+    "✦  ✧  ✦";
+
+  position:
+    absolute;
+
+  top:
+    10px;
+
+  right:
+    14px;
+
+  color:
+    #af52de;
+
+  font-size:
+    14px;
+
+  letter-spacing:
+    5px;
+
+  opacity:
+    .7;
+
+}
+
+
+/* =========================================================
+   DARK MODE FORM FIXES
+========================================================= */
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+
+  color:
+    #77777d;
+
+}
+
+html[data-theme="dark"] select {
+
+  color-scheme:
+    dark;
+
+}
+
+
+/* =========================================================
+   SMALL SCREENS
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .screen {
+
+    padding-left:
+      14px;
+
+    padding-right:
+      14px;
+
+  }
+
+  .options {
+
+    gap:
+      8px;
+
+  }
+
+  .option {
+
+    padding:
+      15px;
+
+  }
+
+  .theme-options {
+
+    gap:
+      5px;
+
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+
+    animation-duration:
+      .01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      .01ms !important;
+
+    scroll-behavior:
+      auto !important;
+
+  }
+
+}
+
 </style>
-</head>
-<body>
 
-<div class="app">
+</head><body>
 
-<header>
-  <div class="brand">
-    <span>Diabetter</span>
-  </div>
-
-  <button
-    class="icon-button"
-    onclick="openSettings()"
-    aria-label="Settings">
-    ⚙️
-  </button>
-</header>
+<div class="app" id="app">
 
 
-<!-- TODAY -->
-<section id="today" class="screen active">
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
 
-  <div class="card hero">
+  <header>
 
-    <div class="betty">
+    <div class="brand">
+      <span>Diabetter</span>
+    </div>
 
-      <div class="orb"></div>
+    <button
+      class="icon-button"
+      onclick="openSettings()"
+      aria-label="Open Settings">
 
-      <div>
-        <div class="kicker">
-          Betty · Today
+      ⚙️
+
+    </button>
+
+  </header>
+
+
+
+  <!-- =====================================================
+       TODAY
+  ====================================================== -->
+
+  <section
+    id="today"
+    class="screen active">
+
+    <div class="card hero">
+
+      <div class="betty">
+
+        <div
+          class="orb"
+          aria-label="Betty">
         </div>
 
-        <h1 id="greeting">
-          Good evening
-        </h1>
+        <div>
 
-        <p id="bettyMessage">
-          Your timeline will build as you log things.
-        </p>
+          <div class="kicker">
+            Betty · Today
+          </div>
+
+          <h1 id="greeting">
+            Good morning
+          </h1>
+
+          <p id="bettyMessage">
+            Your timeline will build as you log things.
+          </p>
+
+        </div>
+
       </div>
 
     </div>
 
-  </div>
-
-
-  <div class="grid">
-
-    <div class="stat">
-      <small>Latest glucose</small>
-      <div class="num" id="latestGlucose">—</div>
-      <small>mg/dL</small>
-    </div>
-
-    <div class="stat">
-      <small>Today's events</small>
-      <div class="num" id="todayCount">0</div>
-      <small>saved locally</small>
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="row between">
-
-      <h2>
-        Today's timeline
-      </h2>
-
-      <span
-        class="kicker"
-        id="todayDate">
-      </span>
-
-    </div>
-
-    <div id="timeline"></div>
-
-  </div>
-
-</section>
-
-
-
-<!-- LOG -->
-<section id="log" class="screen">
-
-  <div class="card">
-
-    <div class="kicker">
-      Log
-    </div>
-
-    <h1>
-      Add something
-    </h1>
-
-    <p>
-      Quickly capture what happened.
-      Every saved entry persists in this browser.
-    </p>
-
-  </div>
-
-
-  <div class="options">
-
-    <button
-      class="option"
-      onclick="showLogForm('glucose')">
-
-      <span>🩸</span>
-      Glucose
-
-    </button>
-
-
-    <button
-      class="option"
-      onclick="showLogForm('food')">
-
-      <span>🍽️</span>
-      Food
-
-    </button>
-
-
-    <button
-      class="option"
-      onclick="showLogForm('exercise')">
-
-      <span>🏃</span>
-      Exercise
-
-    </button>
-
-
-    <button
-      class="option"
-      onclick="showLogForm('water')">
-
-      <span>💧</span>
-      Water
-
-    </button>
-
-
-    <button
-      class="option"
-      onclick="showLogForm('bp')">
-
-      <span>❤️</span>
-      Blood pressure
-
-    </button>
-
-
-    <button
-      class="option"
-      onclick="showLogForm('mood')">
-
-      <span>😊</span>
-      Mood
-
-    </button>
-
-
-    <button
-      class="option"
-      onclick="showLogForm('note')">
-
-      <span>📝</span>
-      Health note
-
-    </button>
-
-  </div>
-
-
-  <div
-    id="logForm"
-    class="card form">
-  </div>
-
-</section>
-
-
-
-<!-- TRENDS -->
-<section id="trends" class="screen">
-
-  <div class="card">
-
-    <div class="kicker">
-      Trends
-    </div>
-
-    <h1>
-      7-day view
-    </h1>
-
-
-    <div class="chips">
-
-      <button
-        class="chip selected"
-        onclick="setTrend('glucose', this)">
-        Glucose
-      </button>
-
-      <button
-        class="chip"
-        onclick="setTrend('food', this)">
-        Food
-      </button>
-
-      <button
-        class="chip"
-        onclick="setTrend('exercise', this)">
-        Exercise
-      </button>
-
-      <button
-        class="chip"
-        onclick="setTrend('mood', this)">
-        Mood
-      </button>
-
-    </div>
-
-
-    <div class="chart">
-
-      <div class="target-band"></div>
-
-      <svg
-        id="glucoseChart"
-        viewBox="0 0 500 210"
-        preserveAspectRatio="none">
-      </svg>
-
-    </div>
 
 
     <div class="grid">
@@ -760,12 +2162,12 @@ nav b {
       <div class="stat">
 
         <small>
-          Average
+          Latest glucose
         </small>
 
         <div
           class="num"
-          id="trendAverage">
+          id="latestGlucose">
           —
         </div>
 
@@ -779,1503 +2181,2315 @@ nav b {
       <div class="stat">
 
         <small>
-          Readings
+          Today's events
         </small>
 
         <div
           class="num"
-          id="trendReadings">
+          id="todayCount">
           0
         </div>
 
         <small>
-          last 7 days
+          saved locally
         </small>
 
       </div>
 
     </div>
 
-  </div>
 
 
-  <div class="card">
+    <div class="card">
 
-    <h2>
-      Compare with
-    </h2>
+      <div class="row between">
 
-    <div class="chips">
+        <h2>
+          Today's timeline
+        </h2>
 
-      <button
-        class="chip"
-        onclick="compareContext('food')">
-        🍽️ Food
-      </button>
+        <span
+          class="kicker"
+          id="todayDate">
+        </span>
 
-      <button
-        class="chip"
-        onclick="compareContext('exercise')">
-        🏃 Exercise
-      </button>
-
-      <button
-        class="chip"
-        onclick="compareContext('sleep')">
-        😴 Sleep
-      </button>
-
-      <button
-        class="chip"
-        onclick="compareContext('mood')">
-        😊 Mood
-      </button>
-
-    </div>
-
-    <p id="comparisonMessage">
-      Choose a context to explore alongside glucose.
-    </p>
-
-  </div>
-
-</section>
+      </div>
 
 
+      <div id="timeline">
 
-<!-- INSIGHTS -->
-<section id="insights" class="screen">
-
-  <div class="card">
-
-    <div class="betty">
-
-      <div class="orb"></div>
-
-      <div>
-
-        <div class="kicker">
-          Betty's intelligence
+        <div class="empty">
+          Nothing logged yet today.
+          <br>
+          Tap ＋ to add your first event.
         </div>
-
-        <h1>
-          Insights
-        </h1>
-
-        <p>
-          Patterns are graded by evidence.
-        </p>
 
       </div>
 
     </div>
 
-  </div>
-
-
-  <div id="insightsList"></div>
-
-</section>
+  </section>
 
 
 
-<!-- ASK BETTY -->
-<section id="ask" class="screen">
+  <!-- =====================================================
+       LOG
+  ====================================================== -->
 
-  <div class="card">
+  <section
+    id="log"
+    class="screen">
 
-    <div class="betty">
+    <div class="card">
 
-      <div class="orb"></div>
-
-      <div>
-
-        <div class="kicker">
-          Ask Betty
-        </div>
-
-        <h1>
-          Hi, I'm Betty.
-        </h1>
-
-        <p>
-          Ask me about your logged data,
-          trends, meals, exercise, goals,
-          or routines.
-        </p>
-
+      <div class="kicker">
+        Log
       </div>
 
-    </div>
+      <h1>
+        Add something
+      </h1>
 
-  </div>
-
-
-  <div
-    id="chat"
-    class="card">
-
-    <b>🦋 Betty:</b>
-
-    <p>
-      Try asking:
-      “What is my average glucose?”
-    </p>
-
-  </div>
-
-
-  <div class="row">
-
-    <div
-      class="field"
-      style="margin:0;flex:1">
-
-      <input
-        id="bettyQuestion"
-        type="text"
-        placeholder="Ask Betty..."
-        autocomplete="off"
-        onkeydown="handleBettyKey(event)">
+      <p>
+        Quickly capture what happened.
+        Every saved entry persists in this browser.
+      </p>
 
     </div>
 
 
-    <button
-      class="btn"
-      onclick="askBetty()">
-
-      Send
-
-    </button>
-
-  </div>
-
-</section>
-
-
-
-<!-- FLOATING LOG BUTTON -->
-<button
-  class="fab"
-  onclick="openQuickLog()"
-  aria-label="Quick log">
-
-  ＋
-
-</button>
-
-
-
-<!-- BOTTOM NAVIGATION -->
-<nav>
-
-  <button
-    class="active"
-    onclick="navigate('today', this)">
-
-    <b>☀️</b>
-    Today
-
-  </button>
-
-
-  <button
-    onclick="navigate('log', this)">
-
-    <b>＋</b>
-    Log
-
-  </button>
-
-
-  <button
-    onclick="navigate('trends', this)">
-
-    <b>⌁</b>
-    Trends
-
-  </button>
-
-
-  <button
-    onclick="navigate('insights', this)">
-
-    <b>✦</b>
-    Insights
-
-  </button>
-
-
-  <button
-    onclick="navigate('ask', this)">
-
-    <b>🦋</b>
-    Ask Betty
-
-  </button>
-
-</nav>
-
-</div>
-
-
-
-<!-- QUICK LOG SHEET -->
-<div
-  id="quickLogSheet"
-  class="sheet"
-  onclick="closeQuickLogIfBackground(event)">
-
-  <div class="sheet-box">
-
-    <h2>
-      Quick Log
-    </h2>
 
     <div class="options">
 
       <button
         class="option"
-        onclick="quickLog('glucose')">
+        onclick="showLogForm('glucose')">
+
         <span>🩸</span>
+
         Glucose
+
       </button>
+
 
       <button
         class="option"
-        onclick="quickLog('food')">
+        onclick="showLogForm('food')">
+
         <span>🍽️</span>
+
         Food
+
       </button>
+
 
       <button
         class="option"
-        onclick="quickLog('exercise')">
+        onclick="showLogForm('exercise')">
+
         <span>🏃</span>
+
         Exercise
+
       </button>
+
 
       <button
         class="option"
-        onclick="quickLog('water')">
+        onclick="showLogForm('water')">
+
         <span>💧</span>
+
         Water
+
       </button>
+
 
       <button
         class="option"
-        onclick="quickLog('bp')">
+        onclick="showLogForm('bp')">
+
         <span>❤️</span>
+
         Blood pressure
+
       </button>
+
 
       <button
         class="option"
-        onclick="quickLog('mood')">
+        onclick="showLogForm('mood')">
+
         <span>😊</span>
+
         Mood
+
       </button>
+
+
+      <button
+        class="option"
+        onclick="showLogForm('note')">
+
+        <span>📝</span>
+
+        Health note
+
+      </button>
+
+    </div>
+
+
+
+    <div
+      id="logForm"
+      class="card form">
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       TRENDS
+  ====================================================== -->
+
+  <section
+    id="trends"
+    class="screen">
+
+    <div class="card">
+
+      <div class="kicker">
+        Trends
+      </div>
+
+      <h1>
+        7-day view
+      </h1>
+
+
+      <div class="chips">
+
+        <button
+          class="chip selected"
+          onclick="setTrend('glucose', this)">
+
+          Glucose
+
+        </button>
+
+
+        <button
+          class="chip"
+          onclick="setTrend('food', this)">
+
+          Food
+
+        </button>
+
+
+        <button
+          class="chip"
+          onclick="setTrend('exercise', this)">
+
+          Exercise
+
+        </button>
+
+
+        <button
+          class="chip"
+          onclick="setTrend('mood', this)">
+
+          Mood
+
+        </button>
+
+      </div>
+
+
+      <div class="chart">
+
+        <div class="target-band"></div>
+
+        <svg
+          id="glucoseChart"
+          viewBox="0 0 500 210"
+          preserveAspectRatio="none">
+        </svg>
+
+      </div>
+
+
+      <div class="grid">
+
+        <div class="stat">
+
+          <small>
+            Average
+          </small>
+
+          <div
+            class="num"
+            id="trendAverage">
+            —
+          </div>
+
+          <small>
+            mg/dL
+          </small>
+
+        </div>
+
+
+        <div class="stat">
+
+          <small>
+            Readings
+          </small>
+
+          <div
+            class="num"
+            id="trendReadings">
+            0
+          </div>
+
+          <small>
+            last 7 days
+          </small>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="card">
+
+      <h2>
+        Compare with
+      </h2>
+
+      <div class="chips">
+
+        <button
+          class="chip"
+          onclick="compareContext('food')">
+
+          🍽️ Food
+
+        </button>
+
+
+        <button
+          class="chip"
+          onclick="compareContext('exercise')">
+
+          🏃 Exercise
+
+        </button>
+
+
+        <button
+          class="chip"
+          onclick="compareContext('sleep')">
+
+          😴 Sleep
+
+        </button>
+
+
+        <button
+          class="chip"
+          onclick="compareContext('mood')">
+
+          😊 Mood
+
+        </button>
+
+      </div>
+
+
+      <p id="comparisonMessage">
+
+        Choose a context to explore
+        alongside glucose.
+
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       INSIGHTS
+  ====================================================== -->
+
+  <section
+    id="insights"
+    class="screen">
+
+    <div class="card">
+
+      <div class="betty">
+
+        <div
+          class="orb"
+          aria-label="Betty">
+        </div>
+
+        <div>
+
+          <div class="kicker">
+            Betty's intelligence
+          </div>
+
+          <h1>
+            Insights
+          </h1>
+
+          <p>
+            Patterns are graded by evidence.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div id="insightsList"></div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       ASK BETTY
+  ====================================================== -->
+
+  <section
+    id="ask"
+    class="screen">
+
+    <div class="card">
+
+      <div class="betty">
+
+        <div
+          class="orb"
+          aria-label="Betty">
+        </div>
+
+        <div>
+
+          <div class="kicker">
+            Ask Betty
+          </div>
+
+          <h1>
+            Hi, I'm Betty.
+          </h1>
+
+          <p>
+            Ask me about your logged data,
+            trends, meals, exercise,
+            goals, or routines.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div
+      id="chat"
+      class="card">
+
+      <b>
+        🦋 Betty:
+      </b>
+
+      <p>
+        Try asking:
+        “What is my average glucose?”
+      </p>
+
+    </div>
+
+
+
+    <div class="row">
+
+      <div
+        class="field"
+        style="margin:0;flex:1">
+
+        <input
+          id="bettyQuestion"
+          type="text"
+          placeholder="Ask Betty..."
+          autocomplete="off"
+          onkeydown="handleBettyKey(event)">
+
+      </div>
+
+
+      <button
+        class="btn"
+        onclick="askBetty()">
+
+        Send
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       FLOATING QUICK LOG BUTTON
+  ====================================================== -->
+
+  <button
+    class="fab"
+    onclick="openQuickLog()"
+    aria-label="Quick Log">
+
+    ＋
+
+  </button>
+
+
+
+  <!-- =====================================================
+       BOTTOM NAVIGATION
+  ====================================================== -->
+
+  <nav>
+
+    <button
+      class="active"
+      onclick="navigate('today', this)">
+
+      <b>☀️</b>
+
+      Today
+
+    </button>
+
+
+    <button
+      onclick="navigate('log', this)">
+
+      <b>＋</b>
+
+      Log
+
+    </button>
+
+
+    <button
+      onclick="navigate('trends', this)">
+
+      <b>⌁</b>
+
+      Trends
+
+    </button>
+
+
+    <button
+      onclick="navigate('insights', this)">
+
+      <b>✦</b>
+
+      Insights
+
+    </button>
+
+
+    <button
+      onclick="navigate('ask', this)">
+
+      <b>🦋</b>
+
+      Ask Betty
+
+    </button>
+
+  </nav>
+
+
+
+  <!-- =====================================================
+       QUICK LOG SHEET
+  ====================================================== -->
+
+  <div
+    id="quickLogSheet"
+    class="sheet"
+    onclick="closeQuickLogIfBackground(event)">
+
+    <div class="sheet-box">
+
+      <h2>
+        Quick Log
+      </h2>
+
+
+      <div class="options">
+
+        <button
+          class="option"
+          onclick="quickLog('glucose')">
+
+          <span>🩸</span>
+
+          Glucose
+
+        </button>
+
+
+        <button
+          class="option"
+          onclick="quickLog('food')">
+
+          <span>🍽️</span>
+
+          Food
+
+        </button>
+
+
+        <button
+          class="option"
+          onclick="quickLog('exercise')">
+
+          <span>🏃</span>
+
+          Exercise
+
+        </button>
+
+
+        <button
+          class="option"
+          onclick="quickLog('water')">
+
+          <span>💧</span>
+
+          Water
+
+        </button>
+
+
+        <button
+          class="option"
+          onclick="quickLog('bp')">
+
+          <span>❤️</span>
+
+          Blood pressure
+
+        </button>
+
+
+        <button
+          class="option"
+          onclick="quickLog('mood')">
+
+          <span>😊</span>
+
+          Mood
+
+        </button>
+
+      </div>
 
     </div>
 
   </div>
 
-</div>
 
 
-
-<!-- MODAL -->
-<div
-  id="modal"
-  class="modal"
-  onclick="closeModalIfBackground(event)">
+  <!-- =====================================================
+       SETTINGS MODAL
+  ====================================================== -->
 
   <div
-    id="modalBox"
-    class="modal-box">
+    id="settingsModal"
+    class="modal"
+    onclick="closeSettingsIfBackground(event)">
+
+    <div
+      class="modal-box settings-modal-box">
+
+
+      <!-- SETTINGS HEADER -->
+
+      <div class="settings-header">
+
+        <div
+          class="settings-betty"
+          aria-hidden="true">
+        </div>
+
+        <div>
+
+          <div class="kicker">
+            Diabetter
+          </div>
+
+          <h1>
+            Settings
+          </h1>
+
+          <p>
+            Make Diabetter feel like yours.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           APPEARANCE
+      ================================================== -->
+
+      <div class="settings-section-title">
+        Appearance
+      </div>
+
+
+      <div class="settings-card">
+
+        <div class="settings-row theme-row">
+
+          <div class="settings-icon">
+            🎨
+          </div>
+
+          <div class="settings-content">
+
+            <div class="settings-title">
+              App Theme
+            </div>
+
+            <div
+              class="settings-subtitle"
+              id="themeDescription">
+
+              Light Mode
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="theme-options"
+          style="padding:0 12px 14px">
+
+          <button
+            class="theme-option selected"
+            id="themeLight"
+            onclick="setTheme('light')">
+
+            <span class="theme-option-icon">
+              ☀️
+            </span>
+
+            <span class="theme-option-label">
+              Light
+            </span>
+
+          </button>
+
+
+          <button
+            class="theme-option"
+            id="themeDark"
+            onclick="setTheme('dark')">
+
+            <span class="theme-option-icon">
+              🌙
+            </span>
+
+            <span class="theme-option-label">
+              Dark
+            </span>
+
+          </button>
+
+
+          <button
+            class="theme-option"
+            id="themeBetty"
+            onclick="setTheme('betty')">
+
+            <span class="theme-option-icon">
+              🌈
+            </span>
+
+            <span class="theme-option-label">
+              Betty Mode
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           BETTY & AI
+      ================================================== -->
+
+      <div class="settings-section-title">
+        Betty & AI
+      </div>
+
+
+      <div class="settings-card">
+
+
+        <div
+          class="settings-row"
+          onclick="openBettyMemory()">
+
+          <div class="settings-icon">
+            🧠
+          </div>
+
+          <div class="settings-content">
+
+            <div class="settings-title">
+              Betty's Memory
+            </div>
+
+            <div class="settings-subtitle">
+              What Betty remembers about you
+            </div>
+
+          </div>
+
+          <div class="settings-chevron">
+            ›
+          </div>
+
+        </div>
+
+
+
+        <div
+          class="settings-row"
+          onclick="openBettyPreferences()">
+
+          <div class="settings-icon">
+            💬
+          </div>
+
+          <div class="settings-content">
+
+            <div class="settings-title">
+              Ask Betty Preferences
+            </div>
+
+            <div class="settings-subtitle">
+              Personality and response style
+            </div>
+
+          </div>
+
+          <div class="settings-chevron">
+            ›
+          </div>
+
+        </div>
+
+
+
+        <div
+          class="settings-row"
+          onclick="openInsightPreferences()">
+
+          <div class="settings-icon">
+            💡
+          </div>
+
+          <div class="settings-content">
+
+            <div class="settings-title">
+              Insights Preferences
+            </div>
+
+            <div class="settings-subtitle">
+              Choose what Betty highlights
+            </div>
+
+          </div>
+
+          <div class="settings-chevron">
+            ›
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           HEALTH & DATA
+      ================================================== -->
+
+      <div class="settings-section-title">
+        Health & Data
+      </div>
+
+
+      <div class="settings-card">
+
+
+        <div
+          class="settings-row"
+          onclick="openHealthPermissions()">
+
+          <div class="settings-icon">
+            ❤️
+          </div>
+
+          <div class="settings-content">
+
+            <div class="settings-title">
+              Health Data Permissions
+            </div>
+
+            <div class="settings-subtitle">
+              Manage health information access
+            </div>
+
+          </div>
+
+          <div class="settings-chevron">
+            ›
+          </div>
+
+        </div>
+
+
+
+        <div
+          class="settings-row"
+          onclick="openDataSources()">
+
+          <div class="settings-icon">
+            🔗
+          </div>
+
+          <div class="settings-content">
+
+            <div class="settings-title">
+              Data Sources
+            </div>
+
+            <div class="settings-subtitle">
+              Devices and connected services
+            </div>
+
+          </div>
+
+          <div class="settings-chevron">
+            ›
+          </div>
+
+        </div>
+
+
+
+        <div
+          class="settings-row"
+          onclick="openPrivacy()">
+
+          <div class="settings-icon">
+            🔒
+          </div>
+
+          <div class="settings-content">
+
+            <div class="settings-title">
+              Data Privacy
+            </div>
+
+            <div class="settings-subtitle">
+              Control how your information is used
+            </div>
+
+          </div>
+
+          <div class="settings-chevron">
+            ›
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           REMINDERS
+      ================================================== -->
+
+      <div class="settings-section-title">
+        Reminders & Notifications
+      </div>
+
+
+      <div class="settings-card">
+
+
+        <div
+          class="settings-row"
+          onclick="openReminders()">
+
+          <div class="settings-icon">
+            🔔
+          </div>
+
+          <div class="settings-content">
+
+            <div class="settings-title">
+              Reminders
+            </div>
+
+            <div
+              class="settings-subtitle"
+              id="reminderStatus">
+
+              Adaptive
+
+            </div>
+
+          </div>
+
+          <div class="settings-chevron">
+            ›
+          </div>
+
+        </div>
+
+
+
+        <div
+          class="settings-row"
+          onclick="toggleNotifications()">
+
+          <div class="settings-icon">
+            💬
+          </div>
+
+          <div class="settings-content">
+
+            <div class="settings-title">
+              Notifications
+            </div>
+
+            <div class="settings-subtitle">
+              Betty updates and reminders
+            </div>
+
+          </div>
+
+          <button
+            id="notificationToggle"
+            class="toggle on"
+            onclick="event.stopPropagation(); toggleNotifications()"
+            aria-label="Toggle notifications">
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           ACCOUNT & MORE
+      ================================================== -->
+
+      <div class="settings-section-title">
+        Account & More
+      </div>
+
+
+      <div class="settings-card">
+
+
+        <div
+          class="settings-row"
+          onclick="openAccount()">
+
+          <div class="settings-icon">
+            👤
+          </div>
+
+          <div class="settings-content">
+
+            <div class="settings-title">
+              Account
+            </div>
+
+            <div class="settings-subtitle">
+              Profile and account settings
+            </div>
+
+          </div>
+
+          <div class="settings-chevron">
+            ›
+          </div>
+
+        </div>
+
+
+
+        <div
+          class="settings-row"
+          onclick="exportReport()">
+
+          <div class="settings-icon">
+            📄
+          </div>
+
+          <div class="settings-content">
+
+            <div class="settings-title">
+              Export Reports
+            </div>
+
+            <div class="settings-subtitle">
+              Create a report from your data
+            </div>
+
+          </div>
+
+          <div class="settings-chevron">
+            ›
+          </div>
+
+        </div>
+
+
+
+        <div
+          class="settings-row"
+          onclick="openAbout()">
+
+          <div class="settings-icon">
+            ℹ️
+          </div>
+
+          <div class="settings-content">
+
+            <div class="settings-title">
+              About Diabetter
+            </div>
+
+            <div class="settings-subtitle">
+              Version 3.1
+            </div>
+
+          </div>
+
+          <div class="settings-chevron">
+            ›
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- LOG OUT -->
+
+      <button
+        class="btn"
+        style="
+          width:100%;
+          margin-top:20px;
+          color:var(--red);
+        "
+        onclick="logout()">
+
+        Log Out
+
+      </button>
+
+
+
+      <!-- CLOSE -->
+
+      <button
+        class="btn btn-primary"
+        style="
+          width:100%;
+          margin-top:10px;
+        "
+        onclick="closeSettings()">
+
+        Done
+
+      </button>
+
+
+    </div>
+
   </div>
 
-</div>
+
+
+  <!-- =====================================================
+       GENERAL MODAL
+  ====================================================== -->
+
+  <div
+    id="modal"
+    class="modal"
+    onclick="closeModalIfBackground(event)">
+
+    <div
+      id="modalBox"
+      class="modal-box">
+    </div>
+
+  </div>
 
 
 
-<!-- TOAST -->
-<div
-  id="toast"
-  class="toast">
-</div>
+  <!-- =====================================================
+       TOAST
+  ====================================================== -->
+
+  <div
+    id="toast"
+    class="toast">
+  </div>
 
 
 
-<script>
-  const STORAGE_KEY = "diabetter_v21_events";
+  <!-- =====================================================
+       JAVASCRIPT STARTS IN PART 3
+  ====================================================== -->
 
-let events = [];
+  <script>/* =========================================================
+   DIABETTER V3.1 — PART 3
+   FUNCTIONAL JAVASCRIPT
+========================================================= */
 
-const TYPES = {
-  glucose: {
-    icon: "🩸",
-    name: "Glucose"
-  },
-  food: {
-    icon: "🍽️",
-    name: "Food"
-  },
-  exercise: {
-    icon: "🏃",
-    name: "Exercise"
-  },
-  water: {
-    icon: "💧",
-    name: "Water"
-  },
-  bp: {
-    icon: "❤️",
-    name: "Blood pressure"
-  },
-  mood: {
-    icon: "😊",
-    name: "Mood"
-  },
-  note: {
-    icon: "📝",
-    name: "Health note"
+
+/* =========================================================
+   APP DATA
+========================================================= */
+
+const STORAGE_KEY = "diabetter_v21_data";
+const THEME_KEY = "diabetter_theme";
+const NOTIFICATION_KEY = "diabetter_notifications";
+
+let data = JSON.parse(
+  localStorage.getItem(STORAGE_KEY) || "[]"
+);
+
+let currentTrend = "glucose";
+
+
+/* =========================================================
+   THEME SYSTEM
+========================================================= */
+
+function applyTheme(theme) {
+
+  const validThemes = [
+    "light",
+    "dark",
+    "betty"
+  ];
+
+  if (!validThemes.includes(theme)) {
+    theme = "light";
   }
-};
 
+  document.documentElement.dataset.theme = theme;
 
-/* =========================
-   STORAGE
-========================= */
+  localStorage.setItem(
+    THEME_KEY,
+    theme
+  );
 
-function loadEvents() {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
+  updateThemeUI(theme);
 
-    if (saved) {
-      events = JSON.parse(saved);
-    } else {
-      events = [];
-    }
+  const meta =
+    document.getElementById("themeColorMeta");
 
-  } catch (error) {
-    console.error("Could not load events:", error);
-    events = [];
-  }
-}
+  if (meta) {
 
+    if (theme === "dark") {
 
-function saveEvents() {
-  try {
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(events)
-    );
-
-  } catch (error) {
-    console.error("Could not save events:", error);
-    showToast("Could not save data");
-  }
-}
-
-
-/* =========================
-   UTILITIES
-========================= */
-
-function createId() {
-  return Date.now().toString(36) +
-    Math.random().toString(36).substring(2);
-}
-
-
-function escapeHTML(value) {
-
-  return String(value || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
-
-function getTodayEvents() {
-
-  const today = new Date().toDateString();
-
-  return events
-    .filter(function(event) {
-      return new Date(event.time).toDateString() === today;
-    })
-    .sort(function(a, b) {
-      return new Date(b.time) - new Date(a.time);
-    });
-}
-
-
-function getGlucoseEvents(days) {
-
-  const cutoff =
-    Date.now() -
-    days * 24 * 60 * 60 * 1000;
-
-  return events
-    .filter(function(event) {
-
-      return (
-        event.type === "glucose" &&
-        event.value !== null &&
-        event.value !== undefined &&
-        new Date(event.time).getTime() >= cutoff
+      meta.setAttribute(
+        "content",
+        "#000000"
       );
 
-    })
-    .sort(function(a, b) {
-      return new Date(a.time) - new Date(b.time);
-    });
+    } else if (theme === "betty") {
+
+      meta.setAttribute(
+        "content",
+        "#fff4ff"
+      );
+
+    } else {
+
+      meta.setAttribute(
+        "content",
+        "#f5f5fa"
+      );
+
+    }
+
+  }
 }
 
 
-function showToast(message) {
+function setTheme(theme) {
 
-  const toast =
-    document.getElementById("toast");
+  applyTheme(theme);
 
-  if (!toast) return;
+  const names = {
+    light: "Light Mode",
+    dark: "Dark Mode",
+    betty: "Betty Mode"
+  };
 
-  toast.textContent = message;
+  showToast(
+    `${names[theme]} selected`
+  );
 
-  toast.classList.add("show");
-
-  setTimeout(function() {
-    toast.classList.remove("show");
-  }, 1800);
+  updateAllScreens();
 }
 
 
-/* =========================
+function updateThemeUI(theme) {
+
+  const buttons = {
+    light:
+      document.getElementById("themeLight"),
+
+    dark:
+      document.getElementById("themeDark"),
+
+    betty:
+      document.getElementById("themeBetty")
+  };
+
+  Object.values(buttons).forEach(
+    button => {
+
+      if (button) {
+        button.classList.remove(
+          "selected"
+        );
+      }
+
+    }
+  );
+
+  if (buttons[theme]) {
+
+    buttons[theme].classList.add(
+      "selected"
+    );
+
+  }
+
+  const descriptions = {
+    light:
+      "Light Mode",
+
+    dark:
+      "Dark Mode",
+
+    betty:
+      "Betty Mode · Maximum color"
+  };
+
+  const description =
+    document.getElementById(
+      "themeDescription"
+    );
+
+  if (description) {
+
+    description.textContent =
+      descriptions[theme];
+
+  }
+}
+
+
+function initializeTheme() {
+
+  const saved =
+    localStorage.getItem(
+      THEME_KEY
+    ) || "light";
+
+  applyTheme(saved);
+
+}
+
+
+/* =========================================================
    NAVIGATION
-========================= */
+========================================================= */
 
 function navigate(screenId, button) {
 
-  const screens =
-    document.querySelectorAll(".screen");
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen => {
 
-  screens.forEach(function(screen) {
-    screen.classList.remove("active");
-  });
+      screen.classList.remove(
+        "active"
+      );
+
+    });
 
 
-  const target =
+  const screen =
     document.getElementById(screenId);
 
-  if (target) {
-    target.classList.add("active");
+  if (screen) {
+
+    screen.classList.add(
+      "active"
+    );
+
   }
 
 
-  const navButtons =
-    document.querySelectorAll("nav button");
+  document
+    .querySelectorAll("nav button")
+    .forEach(btn => {
 
-  navButtons.forEach(function(navButton) {
-    navButton.classList.remove("active");
-  });
+      btn.classList.remove(
+        "active"
+      );
+
+    });
 
 
   if (button) {
-    button.classList.add("active");
+
+    button.classList.add(
+      "active"
+    );
+
   }
 
 
-  if (screenId === "today") {
-    renderToday();
-  }
-
-  if (screenId === "trends") {
-    renderTrends();
-  }
-
-  if (screenId === "insights") {
-    renderInsights();
-  }
-
+  updateAllScreens();
 
   window.scrollTo({
     top: 0,
     behavior: "smooth"
   });
+
 }
 
 
-/* =========================
-   TODAY
-========================= */
+/* =========================================================
+   SETTINGS
+========================================================= */
 
-function renderToday() {
+function openSettings() {
 
-  const todayEvents =
-    getTodayEvents();
+  const modal =
+    document.getElementById(
+      "settingsModal"
+    );
 
+  if (modal) {
 
-  const latestGlucose =
-    todayEvents.find(function(event) {
-      return event.type === "glucose";
-    });
+    modal.classList.add(
+      "show"
+    );
 
-
-  const countElement =
-    document.getElementById("todayCount");
-
-  const latestElement =
-    document.getElementById("latestGlucose");
-
-  const dateElement =
-    document.getElementById("todayDate");
-
-  const timelineElement =
-    document.getElementById("timeline");
-
-  const messageElement =
-    document.getElementById("bettyMessage");
-
-
-  if (countElement) {
-    countElement.textContent =
-      todayEvents.length;
   }
 
+  updateThemeUI(
+    localStorage.getItem(
+      THEME_KEY
+    ) || "light"
+  );
 
-  if (latestElement) {
+  updateNotificationUI();
 
-    latestElement.textContent =
-      latestGlucose
-        ? latestGlucose.value
-        : "—";
+}
+
+
+function closeSettings() {
+
+  const modal =
+    document.getElementById(
+      "settingsModal"
+    );
+
+  if (modal) {
+
+    modal.classList.remove(
+      "show"
+    );
+
   }
 
+}
 
-  if (dateElement) {
 
-    dateElement.textContent =
-      new Date().toLocaleDateString(
-        [],
-        {
-          month: "short",
-          day: "numeric"
-        }
-      );
+function closeSettingsIfBackground(event) {
+
+  if (
+    event.target.id ===
+    "settingsModal"
+  ) {
+
+    closeSettings();
+
   }
 
-
-  if (!timelineElement) {
-    return;
-  }
+}
 
 
-  if (todayEvents.length === 0) {
+/* =========================================================
+   SETTINGS — BETTY MEMORY
+========================================================= */
 
-    timelineElement.innerHTML = `
-      <div class="empty">
-        Nothing logged yet today.
-        <br>
-        Tap ＋ to add your first event.
-      </div>
-    `;
+function openBettyMemory() {
 
-  } else {
+  openModal(`
+    
+    <div class="kicker">
+      Betty & AI
+    </div>
 
-    timelineElement.innerHTML =
-      todayEvents.map(function(event) {
+    <h2>Betty's Memory</h2>
 
-        const type =
-          TYPES[event.type] || TYPES.note;
+    <p>
+      Betty's memory will eventually allow
+      her to remember information that you
+      intentionally choose to share with her.
+    </p>
 
+    <div class="card">
 
-        const time =
-          new Date(event.time)
-            .toLocaleTimeString(
-              [],
-              {
-                hour: "numeric",
-                minute: "2-digit"
-              }
-            );
+      <b>Current prototype</b>
 
+      <p>
+        Your health entries are currently
+        stored locally on this device.
+      </p>
 
-        let title =
-          event.title || type.name;
+    </div>
 
+    <button
+      class="btn btn-primary"
+      onclick="closeModal()">
 
-        if (
-          event.value !== null &&
-          event.value !== undefined
-        ) {
+      Done
 
-          title +=
-            " · " +
-            escapeHTML(event.value) +
-            " " +
-            escapeHTML(event.unit || "");
-        }
+    </button>
+
+  `);
+
+}
 
 
-        return `
-          <div
-            class="event"
-            onclick="openEventDetails('${event.id}')">
+/* =========================================================
+   BETTY PREFERENCES
+========================================================= */
 
-            <i class="event-icon">
-              ${type.icon}
-            </i>
+function openBettyPreferences() {
 
-            <div class="event-main">
+  openModal(`
 
-              <div class="event-title">
-                ${escapeHTML(title)}
-              </div>
+    <div class="kicker">
+      Betty & AI
+    </div>
 
-              <div class="event-meta">
-                ${time}
-                ·
-                ${escapeHTML(
-                  event.context || "Manual"
-                )}
-              </div>
+    <h2>Ask Betty Preferences</h2>
 
-            </div>
+    <p>
+      Choose how Betty should communicate
+      with you.
+    </p>
 
+
+    <div class="options">
+
+      <button
+        class="option"
+        onclick="selectBettyStyle('friendly')">
+
+        <span>💗</span>
+
+        Friendly
+
+      </button>
+
+
+      <button
+        class="option"
+        onclick="selectBettyStyle('direct')">
+
+        <span>🎯</span>
+
+        Straightforward
+
+      </button>
+
+
+      <button
+        class="option"
+        onclick="selectBettyStyle('playful')">
+
+        <span>🌈</span>
+
+        Playful
+
+      </button>
+
+
+      <button
+        class="option"
+        onclick="selectBettyStyle('detailed')">
+
+        <span>🧠</span>
+
+        Detailed
+
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+function selectBettyStyle(style) {
+
+  localStorage.setItem(
+    "diabetter_betty_style",
+    style
+  );
+
+  showToast(
+    "Betty preference saved"
+  );
+
+  closeModal();
+
+}
+
+
+/* =========================================================
+   INSIGHT PREFERENCES
+========================================================= */
+
+function openInsightPreferences() {
+
+  openModal(`
+
+    <div class="kicker">
+      Betty & AI
+    </div>
+
+    <h2>Insights Preferences</h2>
+
+    <p>
+      Choose the areas you want Betty to
+      pay attention to.
+    </p>
+
+
+    <div class="settings-card">
+
+
+      <div class="settings-row">
+
+        <div class="settings-icon">
+          🩸
+        </div>
+
+        <div class="settings-content">
+
+          <div class="settings-title">
+            Glucose patterns
           </div>
-        `;
 
-      }).join("");
-  }
-
-
-  if (messageElement) {
-
-    if (latestGlucose) {
-
-      messageElement.textContent =
-        "Your latest glucose is " +
-        latestGlucose.value +
-        " mg/dL. I’ll keep the bigger picture in view.";
-
-    } else {
-
-      messageElement.textContent =
-        "Your timeline will build as you log things.";
-    }
-  }
-}
-
-
-/* =========================
-   LOGGING
-========================= */
-
-function showLogForm(type) {
-
-  const form =
-    document.getElementById("logForm");
-
-  if (!form) return;
-
-
-  let html = "";
-
-
-  if (type === "glucose") {
-
-    html = `
-      <div class="row between">
-        <h2>🩸 Glucose</h2>
-
-        <button
-          class="btn"
-          onclick="hideLogForm()">
-          Cancel
-        </button>
-      </div>
-
-      <div class="field">
-
-        <label>
-          GLUCOSE · mg/dL
-        </label>
-
-        <input
-          id="glucoseValue"
-          type="number"
-          inputmode="numeric"
-          placeholder="132">
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          CONTEXT
-        </label>
-
-        <div
-          class="chips"
-          id="glucoseContext">
-
-          <button
-            class="chip selected"
-            onclick="selectChip(this)">
-            Fasting
-          </button>
-
-          <button
-            class="chip"
-            onclick="selectChip(this)">
-            Before meal
-          </button>
-
-          <button
-            class="chip"
-            onclick="selectChip(this)">
-            After meal
-          </button>
-
-          <button
-            class="chip"
-            onclick="selectChip(this)">
-            Bedtime
-          </button>
+          <div class="settings-subtitle">
+            Changes and trends
+          </div>
 
         </div>
 
-      </div>
-
-
-      <button
-        class="btn btn-primary"
-        onclick="saveGlucose()">
-
-        Save glucose
-
-      </button>
-    `;
-  }
-
-
-  if (type === "food") {
-
-    html = `
-      <div class="row between">
-        <h2>🍽️ Food</h2>
-
         <button
-          class="btn"
-          onclick="hideLogForm()">
-          Cancel
+          class="toggle on"
+          onclick="this.classList.toggle('on')">
         </button>
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          MEAL
-        </label>
-
-        <input
-          id="foodName"
-          type="text"
-          placeholder="Chicken, rice & broccoli">
 
       </div>
 
 
-      <div class="field">
+      <div class="settings-row">
 
-        <label>
-          CONTEXT
-        </label>
+        <div class="settings-icon">
+          🍽️
+        </div>
 
-        <select id="foodContext">
+        <div class="settings-content">
 
-          <option>Breakfast</option>
-          <option>Lunch</option>
-          <option>Dinner</option>
-          <option>Snack</option>
+          <div class="settings-title">
+            Food patterns
+          </div>
 
-        </select>
-
-      </div>
-
-
-      <button
-        class="btn btn-primary"
-        onclick="saveFood()">
-
-        Save food
-
-      </button>
-    `;
-  }
-
-
-  if (type === "exercise") {
-
-    html = `
-      <div class="row between">
-        <h2>🏃 Exercise</h2>
-
-        <button
-          class="btn"
-          onclick="hideLogForm()">
-          Cancel
-        </button>
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          ACTIVITY
-        </label>
-
-        <input
-          id="exerciseName"
-          type="text"
-          placeholder="Walking">
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          MINUTES
-        </label>
-
-        <input
-          id="exerciseMinutes"
-          type="number"
-          inputmode="numeric"
-          placeholder="20">
-
-      </div>
-
-
-      <button
-        class="btn btn-primary"
-        onclick="saveExercise()">
-
-        Save exercise
-
-      </button>
-    `;
-  }
-
-
-  if (type === "water") {
-
-    html = `
-      <div class="row between">
-        <h2>💧 Water</h2>
-
-        <button
-          class="btn"
-          onclick="hideLogForm()">
-          Cancel
-        </button>
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          WATER · OUNCES
-        </label>
-
-        <input
-          id="waterAmount"
-          type="number"
-          inputmode="decimal"
-          placeholder="16">
-
-      </div>
-
-
-      <button
-        class="btn btn-primary"
-        onclick="saveWater()">
-
-        Save water
-
-      </button>
-    `;
-  }
-
-
-  if (type === "bp") {
-
-    html = `
-      <div class="row between">
-        <h2>❤️ Blood pressure</h2>
-
-        <button
-          class="btn"
-          onclick="hideLogForm()">
-          Cancel
-        </button>
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          BLOOD PRESSURE
-        </label>
-
-        <input
-          id="bloodPressure"
-          type="text"
-          inputmode="numeric"
-          placeholder="120/80">
-
-      </div>
-
-
-      <button
-        class="btn btn-primary"
-        onclick="saveBloodPressure()">
-
-        Save blood pressure
-
-      </button>
-    `;
-  }
-
-
-  if (type === "mood") {
-
-    html = `
-      <div class="row between">
-        <h2>😊 Mood</h2>
-
-        <button
-          class="btn"
-          onclick="hideLogForm()">
-          Cancel
-        </button>
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          MOOD
-        </label>
-
-        <div
-          class="chips"
-          id="moodContext">
-
-          <button
-            class="chip selected"
-            onclick="selectChip(this)">
-            Great
-          </button>
-
-          <button
-            class="chip"
-            onclick="selectChip(this)">
-            Good
-          </button>
-
-          <button
-            class="chip"
-            onclick="selectChip(this)">
-            Okay
-          </button>
-
-          <button
-            class="chip"
-            onclick="selectChip(this)">
-            Not great
-          </button>
-
-          <button
-            class="chip"
-            onclick="selectChip(this)">
-            Rough
-          </button>
+          <div class="settings-subtitle">
+            Meals and glucose relationships
+          </div>
 
         </div>
 
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          OPTIONAL REFLECTION
-        </label>
-
-        <textarea
-          id="moodNote"
-          placeholder="How are you feeling?">
-        </textarea>
+        <button
+          class="toggle on"
+          onclick="this.classList.toggle('on')">
+        </button>
 
       </div>
 
 
-      <button
-        class="btn btn-primary"
-        onclick="saveMood()">
+      <div class="settings-row">
 
-        Save mood
+        <div class="settings-icon">
+          🏃
+        </div>
 
-      </button>
-    `;
-  }
+        <div class="settings-content">
 
+          <div class="settings-title">
+            Activity
+          </div>
 
-  if (type === "note") {
+          <div class="settings-subtitle">
+            Exercise and movement
+          </div>
 
-    html = `
-      <div class="row between">
-        <h2>📝 Health note</h2>
+        </div>
 
         <button
-          class="btn"
-          onclick="hideLogForm()">
-          Cancel
+          class="toggle on"
+          onclick="this.classList.toggle('on')">
         </button>
+
+      </div>
+
+
+    </div>
+
+
+    <button
+      class="btn btn-primary"
+      style="margin-top:15px"
+      onclick="closeModal()">
+
+      Done
+
+    </button>
+
+  `);
+
+}
+
+
+/* =========================================================
+   HEALTH DATA
+========================================================= */
+
+function openHealthPermissions() {
+
+  openModal(`
+
+    <div class="kicker">
+      Health & Data
+    </div>
+
+    <h2>Health Data Permissions</h2>
+
+    <p>
+      HealthKit and connected-device
+      permissions will be configured here
+      when Diabetter moves to its native
+      iPhone application.
+    </p>
+
+    <div class="card">
+
+      <b>Prototype status</b>
+
+      <p>
+        Manual logging is currently active.
+      </p>
+
+    </div>
+
+    <button
+      class="btn btn-primary"
+      onclick="closeModal()">
+
+      Done
+
+    </button>
+
+  `);
+
+}
+
+
+function openDataSources() {
+
+  openModal(`
+
+    <div class="kicker">
+      Health & Data
+    </div>
+
+    <h2>Data Sources</h2>
+
+    <div class="settings-card">
+
+      <div class="settings-row">
+
+        <div class="settings-icon">
+          📱
+        </div>
+
+        <div class="settings-content">
+
+          <div class="settings-title">
+            This Device
+          </div>
+
+          <div class="settings-subtitle">
+            Manual Diabetter entries
+          </div>
+
+        </div>
+
+        <span>✓</span>
+
       </div>
 
 
-      <div class="field">
+      <div class="settings-row">
 
-        <label>
-          NOTE
-        </label>
+        <div class="settings-icon">
+          ❤️
+        </div>
 
-        <textarea
-          id="healthNote"
-          placeholder="Anything Betty should know?">
-        </textarea>
+        <div class="settings-content">
+
+          <div class="settings-title">
+            Apple Health
+          </div>
+
+          <div class="settings-subtitle">
+            Available in native app
+          </div>
+
+        </div>
+
+        <span>›</span>
 
       </div>
+
+    </div>
+
+
+    <button
+      class="btn btn-primary"
+      style="margin-top:15px"
+      onclick="closeModal()">
+
+      Done
+
+    </button>
+
+  `);
+
+}
+
+
+function openPrivacy() {
+
+  openModal(`
+
+    <div class="kicker">
+      Health & Data
+    </div>
+
+    <h2>Data Privacy</h2>
+
+    <p>
+      Your current prototype stores
+      entries locally in your browser.
+    </p>
+
+    <div class="card">
+
+      <b>Important</b>
+
+      <p>
+        This prototype does not yet provide
+        the secure cloud infrastructure that
+        a production health application would
+        require.
+      </p>
+
+    </div>
+
+    <button
+      class="btn btn-primary"
+      onclick="closeModal()">
+
+      Done
+
+    </button>
+
+  `);
+
+}
+
+
+/* =========================================================
+   REMINDERS
+========================================================= */
+
+function openReminders() {
+
+  openModal(`
+
+    <div class="kicker">
+      Reminders
+    </div>
+
+    <h2>Betty Reminders</h2>
+
+    <p>
+      Choose how Betty should remind you
+      to keep your health timeline complete.
+    </p>
+
+
+    <div class="options">
+
+      <button
+        class="option"
+        onclick="setReminderMode('adaptive')">
+
+        <span>✨</span>
+
+        Adaptive
+
+      </button>
 
 
       <button
-        class="btn btn-primary"
-        onclick="saveHealthNote()">
+        class="option"
+        onclick="setReminderMode('custom')">
 
-        Save note
+        <span>🕐</span>
+
+        Custom
 
       </button>
-    `;
+
+
+      <button
+        class="option"
+        onclick="setReminderMode('off')">
+
+        <span>🔕</span>
+
+        Off
+
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+function setReminderMode(mode) {
+
+  localStorage.setItem(
+    "diabetter_reminders",
+    mode
+  );
+
+  const labels = {
+    adaptive: "Adaptive",
+    custom: "Custom",
+    off: "Off"
+  };
+
+  const status =
+    document.getElementById(
+      "reminderStatus"
+    );
+
+  if (status) {
+
+    status.textContent =
+      labels[mode];
+
+  }
+
+  showToast(
+    `Reminders: ${labels[mode]}`
+  );
+
+  closeModal();
+
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+function toggleNotifications() {
+
+  const current =
+    localStorage.getItem(
+      NOTIFICATION_KEY
+    ) !== "false";
+
+  const next = !current;
+
+  localStorage.setItem(
+    NOTIFICATION_KEY,
+    next
+  );
+
+  updateNotificationUI();
+
+  showToast(
+    next
+      ? "Notifications enabled"
+      : "Notifications disabled"
+  );
+
+}
+
+
+function updateNotificationUI() {
+
+  const enabled =
+    localStorage.getItem(
+      NOTIFICATION_KEY
+    ) !== "false";
+
+  const toggle =
+    document.getElementById(
+      "notificationToggle"
+    );
+
+  if (toggle) {
+
+    toggle.classList.toggle(
+      "on",
+      enabled
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   ACCOUNT
+========================================================= */
+
+function openAccount() {
+
+  openModal(`
+
+    <div class="kicker">
+      Account
+    </div>
+
+    <h2>Your Diabetter Account</h2>
+
+    <p>
+      Account creation and secure cloud
+      synchronization will be added when
+      we move from the prototype to the
+      production architecture.
+    </p>
+
+    <div class="card">
+
+      <b>Prototype</b>
+
+      <p>
+        No account is required for the
+        current version.
+      </p>
+
+    </div>
+
+    <button
+      class="btn btn-primary"
+      onclick="closeModal()">
+
+      Done
+
+    </button>
+
+  `);
+
+}
+
+
+/* =========================================================
+   EXPORT REPORT
+========================================================= */
+
+function exportReport() {
+
+  if (!data.length) {
+
+    showToast(
+      "There is no data to export yet"
+    );
+
+    return;
+
   }
 
 
-  form.innerHTML = html;
+  let report =
+    "DIABETTER HEALTH REPORT\n";
 
-  form.classList.add("show");
-
-
-  form.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
+  report +=
+    "========================\n\n";
 
 
-  setTimeout(function() {
+  data
+    .slice()
+    .reverse()
+    .forEach(item => {
 
-    const firstInput =
-      form.querySelector("input");
+      report +=
+        `${formatDateTime(item.date)}\n`;
 
-    if (firstInput) {
-      firstInput.focus();
-    }
+      report +=
+        `${item.type.toUpperCase()}: `;
 
-  }, 100);
-}
+      report +=
+        `${item.value || item.note || ""}\n\n`;
 
-
-function hideLogForm() {
-
-  const form =
-    document.getElementById("logForm");
-
-  if (!form) return;
-
-  form.classList.remove("show");
-
-  form.innerHTML = "";
-}
-
-
-function selectChip(button) {
-
-  const parent =
-    button.parentElement;
-
-  if (!parent) return;
-
-  parent
-    .querySelectorAll(".chip")
-    .forEach(function(chip) {
-      chip.classList.remove("selected");
     });
 
-  button.classList.add("selected");
+
+  const blob =
+    new Blob(
+      [report],
+      {
+        type: "text/plain"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const link =
+    document.createElement("a");
+
+  link.href = url;
+
+  link.download =
+    "diabetter-health-report.txt";
+
+  link.click();
+
+  URL.revokeObjectURL(url);
+
+  showToast(
+    "Report created"
+  );
+
 }
 
 
-function getSelectedChip(containerId) {
+/* =========================================================
+   ABOUT
+========================================================= */
 
-  const container =
-    document.getElementById(containerId);
+function openAbout() {
 
-  if (!container) return "";
+  openModal(`
 
-  const selected =
-    container.querySelector(".chip.selected");
+    <div class="kicker">
+      Diabetter
+    </div>
 
-  return selected
-    ? selected.textContent.trim()
-    : "";
+    <h2>About Diabetter</h2>
+
+    <p>
+      Diabetter is designed to turn
+      everyday health information into
+      something easier to understand,
+      explore, and act on.
+    </p>
+
+    <div class="card">
+
+      <b>Version</b>
+
+      <p>
+        V3.1 Prototype
+      </p>
+
+    </div>
+
+    <button
+      class="btn btn-primary"
+      onclick="closeModal()">
+
+      Done
+
+    </button>
+
+  `);
+
 }
 
 
-/* =========================
-   SAVE FUNCTIONS
-========================= */
+/* =========================================================
+   LOG OUT
+========================================================= */
 
-function saveGlucose() {
+function logout() {
 
-  const input =
-    document.getElementById("glucoseValue");
+  if (
+    confirm(
+      "The current prototype does not use accounts. Close Settings instead?"
+    )
+  ) {
 
-  if (!input || !input.value) {
+    closeSettings();
 
-    showToast("Enter a glucose value");
+  }
+
+}
+
+
+/* =========================================================
+   MODAL HELPERS
+========================================================= */
+
+function openModal(html) {
+
+  const modal =
+    document.getElementById(
+      "modal"
+    );
+
+  const box =
+    document.getElementById(
+      "modalBox"
+    );
+
+  if (!modal || !box) {
     return;
   }
 
+  box.innerHTML = html;
 
-  const value =
-    Number(input.value);
+  modal.classList.add(
+    "show"
+  );
+
+}
 
 
-  if (!Number.isFinite(value)) {
+function closeModal() {
 
-    showToast("Enter a valid glucose value");
-    return;
+  const modal =
+    document.getElementById(
+      "modal"
+    );
+
+  if (modal) {
+
+    modal.classList.remove(
+      "show"
+    );
+
   }
 
-
-  events.push({
-
-    id: createId(),
-
-    type: "glucose",
-
-    value: value,
-
-    unit: "mg/dL",
-
-    context:
-      getSelectedChip("glucoseContext") ||
-      "Fasting",
-
-    time:
-      new Date().toISOString(),
-
-    source: "Manual"
-
-  });
-
-
-  saveEvents();
-
-  hideLogForm();
-
-  showToast("Glucose saved");
-
-  renderToday();
-  renderTrends();
-  renderInsights();
 }
 
 
-function saveFood() {
+function closeModalIfBackground(event) {
 
-  const input =
-    document.getElementById("foodName");
+  if (
+    event.target.id ===
+    "modal"
+  ) {
 
-  const context =
-    document.getElementById("foodContext");
+    closeModal();
 
-
-  if (!input || !input.value.trim()) {
-
-    showToast("Enter a meal");
-    return;
   }
 
-
-  events.push({
-
-    id: createId(),
-
-    type: "food",
-
-    title:
-      input.value.trim(),
-
-    context:
-      context
-        ? context.value
-        : "Meal",
-
-    time:
-      new Date().toISOString(),
-
-    source: "Manual"
-
-  });
-
-
-  saveEvents();
-
-  hideLogForm();
-
-  showToast("Food saved");
-
-  renderToday();
 }
 
 
-function saveExercise() {
-
-  const name =
-    document.getElementById("exerciseName");
-
-  const minutes =
-    document.getElementById("exerciseMinutes");
-
-
-  if (!name || !name.value.trim()) {
-
-    showToast("Enter an activity");
-    return;
-  }
-
-
-  events.push({
-
-    id: createId(),
-
-    type: "exercise",
-
-    title:
-      name.value.trim(),
-
-    value:
-      Number(minutes.value || 0),
-
-    unit: "min",
-
-    time:
-      new Date().toISOString(),
-
-    source: "Manual"
-
-  });
-
-
-  saveEvents();
-
-  hideLogForm();
-
-  showToast("Exercise saved");
-
-  renderToday();
-}
-
-
-function saveWater() {
-
-  const input =
-    document.getElementById("waterAmount");
-
-
-  if (!input || !input.value) {
-
-    showToast("Enter water amount");
-    return;
-  }
-
-
-  events.push({
-
-    id: createId(),
-
-    type: "water",
-
-    title: "Water",
-
-    value:
-      Number(input.value),
-
-    unit: "oz",
-
-    time:
-      new Date().toISOString(),
-
-    source: "Manual"
-
-  });
-
-
-  saveEvents();
-
-  hideLogForm();
-
-  showToast("Water saved");
-
-  renderToday();
-}
-
-
-function saveBloodPressure() {
-
-  const input =
-    document.getElementById("bloodPressure");
-
-
-  if (!input || !input.value.trim()) {
-
-    showToast("Enter blood pressure");
-    return;
-  }
-
-
-  events.push({
-
-    id: createId(),
-
-    type: "bp",
-
-    title:
-      input.value.trim(),
-
-    time:
-      new Date().toISOString(),
-
-    source: "Manual"
-
-  });
-
-
-  saveEvents();
-
-  hideLogForm();
-
-  showToast("Blood pressure saved");
-
-  renderToday();
-}
-
-
-function saveMood() {
-
-  const note =
-    document.getElementById("moodNote");
-
-
-  events.push({
-
-    id: createId(),
-
-    type: "mood",
-
-    title:
-      getSelectedChip("moodContext") ||
-      "Good",
-
-    note:
-      note
-        ? note.value.trim()
-        : "",
-
-    context: "Mood",
-
-    time:
-      new Date().toISOString(),
-
-    source: "Manual"
-
-  });
-
-
-  saveEvents();
-
-  hideLogForm();
-
-  showToast("Mood saved");
-
-  renderToday();
-}
-
-
-function saveHealthNote() {
-
-  const note =
-    document.getElementById("healthNote");
-
-
-  if (!note || !note.value.trim()) {
-
-    showToast("Enter a note");
-    return;
-  }
-
-
-  events.push({
-
-    id: createId(),
-
-    type: "note",
-
-    title: "Health note",
-
-    note:
-      note.value.trim(),
-
-    time:
-      new Date().toISOString(),
-
-    source: "Manual"
-
-  });
-
-
-  saveEvents();
-
-  hideLogForm();
-
-  showToast("Note saved");
-
-  renderToday();
-}
-
-
-/* =========================
+/* =========================================================
    QUICK LOG
-========================= */
+========================================================= */
 
 function openQuickLog() {
 
@@ -2284,9 +4498,14 @@ function openQuickLog() {
       "quickLogSheet"
     );
 
-  if (!sheet) return;
+  if (sheet) {
 
-  sheet.classList.add("show");
+    sheet.classList.add(
+      "show"
+    );
+
+  }
+
 }
 
 
@@ -2297,20 +4516,28 @@ function closeQuickLog() {
       "quickLogSheet"
     );
 
-  if (!sheet) return;
+  if (sheet) {
 
-  sheet.classList.remove("show");
+    sheet.classList.remove(
+      "show"
+    );
+
+  }
+
 }
 
 
 function closeQuickLogIfBackground(event) {
 
   if (
-    event.target &&
-    event.target.id === "quickLogSheet"
+    event.target.id ===
+    "quickLogSheet"
   ) {
+
     closeQuickLog();
+
   }
+
 }
 
 
@@ -2320,380 +4547,1130 @@ function quickLog(type) {
 
   navigate(
     "log",
-    document.querySelectorAll("nav button")[1]
+    document.querySelector(
+      'nav button:nth-child(2)'
+    )
   );
 
   showLogForm(type);
+
 }
 
 
-/* =========================
-   EVENT DETAILS
-========================= */
+/* =========================================================
+   LOG FORMS
+========================================================= */
 
-function openEventDetails(id) {
+function showLogForm(type) {
 
-  const event =
-    events.find(function(item) {
-      return item.id === id;
+  const container =
+    document.getElementById(
+      "logForm"
+    );
+
+  if (!container) {
+    return;
+  }
+
+
+  const forms = {
+
+    glucose: `
+
+      <div class="kicker">
+        Glucose
+      </div>
+
+      <h2>Log glucose</h2>
+
+      <div class="field">
+
+        <label>
+          Blood glucose · mg/dL
+        </label>
+
+        <input
+          id="logValue"
+          type="number"
+          inputmode="numeric"
+          placeholder="e.g. 125">
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          Context
+        </label>
+
+        <select id="logContext">
+
+          <option>
+            Fasting
+          </option>
+
+          <option>
+            Before meal
+          </option>
+
+          <option>
+            After meal
+          </option>
+
+          <option>
+            Bedtime
+          </option>
+
+          <option>
+            Other
+          </option>
+
+        </select>
+
+      </div>
+
+      <button
+        class="btn btn-primary"
+        onclick="saveLog('glucose')">
+
+        Save glucose
+
+      </button>
+
+    `,
+
+
+    food: `
+
+      <div class="kicker">
+        Food
+      </div>
+
+      <h2>Log food</h2>
+
+      <div class="field">
+
+        <label>
+          Meal
+        </label>
+
+        <input
+          id="logValue"
+          type="text"
+          placeholder="e.g. Chicken, rice & vegetables">
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          Carbs · grams · optional
+        </label>
+
+        <input
+          id="logCarbs"
+          type="number"
+          inputmode="numeric"
+          placeholder="e.g. 45">
+
+      </div>
+
+      <button
+        class="btn btn-primary"
+        onclick="saveLog('food')">
+
+        Save meal
+
+      </button>
+
+    `,
+
+
+    exercise: `
+
+      <div class="kicker">
+        Exercise
+      </div>
+
+      <h2>Log exercise</h2>
+
+      <div class="field">
+
+        <label>
+          Activity
+        </label>
+
+        <input
+          id="logValue"
+          type="text"
+          placeholder="e.g. Walking">
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          Duration · minutes
+        </label>
+
+        <input
+          id="logDuration"
+          type="number"
+          inputmode="numeric"
+          placeholder="30">
+
+      </div>
+
+      <button
+        class="btn btn-primary"
+        onclick="saveLog('exercise')">
+
+        Save exercise
+
+      </button>
+
+    `,
+
+
+    water: `
+
+      <div class="kicker">
+        Water
+      </div>
+
+      <h2>Log water</h2>
+
+      <div class="field">
+
+        <label>
+          Amount · oz
+        </label>
+
+        <input
+          id="logValue"
+          type="number"
+          inputmode="numeric"
+          placeholder="20">
+
+      </div>
+
+      <button
+        class="btn btn-primary"
+        onclick="saveLog('water')">
+
+        Save water
+
+      </button>
+
+    `,
+
+
+    bp: `
+
+      <div class="kicker">
+        Blood pressure
+      </div>
+
+      <h2>Log blood pressure</h2>
+
+      <div class="field">
+
+        <label>
+          Systolic
+        </label>
+
+        <input
+          id="logSystolic"
+          type="number"
+          inputmode="numeric"
+          placeholder="120">
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          Diastolic
+        </label>
+
+        <input
+          id="logDiastolic"
+          type="number"
+          inputmode="numeric"
+          placeholder="80">
+
+      </div>
+
+      <button
+        class="btn btn-primary"
+        onclick="saveLog('bp')">
+
+        Save blood pressure
+
+      </button>
+
+    `,
+
+
+    mood: `
+
+      <div class="kicker">
+        Mood
+      </div>
+
+      <h2>How are you feeling?</h2>
+
+      <div class="chips">
+
+        <button
+          class="chip"
+          onclick="selectMood(this,'Great')">
+          😄 Great
+        </button>
+
+        <button
+          class="chip"
+          onclick="selectMood(this,'Good')">
+          🙂 Good
+        </button>
+
+        <button
+          class="chip"
+          onclick="selectMood(this,'Okay')">
+          😐 Okay
+        </button>
+
+        <button
+          class="chip"
+          onclick="selectMood(this,'Low')">
+          😔 Low
+        </button>
+
+        <button
+          class="chip"
+          onclick="selectMood(this,'Stressed')">
+          😣 Stressed
+        </button>
+
+      </div>
+
+      <input
+        type="hidden"
+        id="logMood">
+
+      <button
+        class="btn btn-primary"
+        style="margin-top:15px"
+        onclick="saveLog('mood')">
+
+        Save mood
+
+      </button>
+
+    `,
+
+
+    note: `
+
+      <div class="kicker">
+        Health note
+      </div>
+
+      <h2>Add a note</h2>
+
+      <div class="field">
+
+        <label>
+          What happened?
+        </label>
+
+        <textarea
+          id="logNote"
+          placeholder="Anything you want Betty to know...">
+        </textarea>
+
+      </div>
+
+      <button
+        class="btn btn-primary"
+        onclick="saveLog('note')">
+
+        Save note
+
+      </button>
+
+    `
+
+  };
+
+
+  container.innerHTML =
+    forms[type] || "";
+
+  container.classList.add(
+    "show"
+  );
+
+
+  container.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
+
+}
+
+
+/* =========================================================
+   MOOD
+========================================================= */
+
+function selectMood(button, mood) {
+
+  document
+    .querySelectorAll(
+      "#logForm .chip"
+    )
+    .forEach(chip => {
+
+      chip.classList.remove(
+        "selected"
+      );
+
     });
 
 
-  if (!event) return;
+  button.classList.add(
+    "selected"
+  );
 
 
-  const type =
-    TYPES[event.type] || TYPES.note;
+  const input =
+    document.getElementById(
+      "logMood"
+    );
+
+  if (input) {
+
+    input.value = mood;
+
+  }
+
+}
 
 
-  const modal =
-    document.getElementById("modal");
+/* =========================================================
+   SAVE LOG
+========================================================= */
 
-  const box =
-    document.getElementById("modalBox");
+function saveLog(type) {
 
-
-  if (!modal || !box) return;
-
-
-  let details = "";
+  const now =
+    new Date().toISOString();
 
 
-  if (event.value !== undefined) {
+  let entry = {
 
-    details += `
-      <div class="stat">
-        <small>Value</small>
+    id:
+      Date.now(),
 
-        <div class="num">
-          ${escapeHTML(event.value)}
+    type,
+
+    date:
+      now
+
+  };
+
+
+  if (type === "glucose") {
+
+    const value =
+      document.getElementById(
+        "logValue"
+      )?.value;
+
+    if (!value) {
+
+      showToast(
+        "Enter a glucose value"
+      );
+
+      return;
+
+    }
+
+    entry.value =
+      Number(value);
+
+    entry.context =
+      document.getElementById(
+        "logContext"
+      )?.value || "";
+
+  }
+
+
+  else if (type === "food") {
+
+    const value =
+      document.getElementById(
+        "logValue"
+      )?.value;
+
+    if (!value) {
+
+      showToast(
+        "Enter a meal"
+      );
+
+      return;
+
+    }
+
+    entry.value =
+      value;
+
+    entry.carbs =
+      document.getElementById(
+        "logCarbs"
+      )?.value || "";
+
+  }
+
+
+  else if (type === "exercise") {
+
+    const value =
+      document.getElementById(
+        "logValue"
+      )?.value;
+
+    if (!value) {
+
+      showToast(
+        "Enter an activity"
+      );
+
+      return;
+
+    }
+
+    entry.value =
+      value;
+
+    entry.duration =
+      document.getElementById(
+        "logDuration"
+      )?.value || "";
+
+  }
+
+
+  else if (type === "water") {
+
+    const value =
+      document.getElementById(
+        "logValue"
+      )?.value;
+
+    if (!value) {
+
+      showToast(
+        "Enter an amount"
+      );
+
+      return;
+
+    }
+
+    entry.value =
+      Number(value);
+
+  }
+
+
+  else if (type === "bp") {
+
+    const systolic =
+      document.getElementById(
+        "logSystolic"
+      )?.value;
+
+    const diastolic =
+      document.getElementById(
+        "logDiastolic"
+      )?.value;
+
+    if (!systolic || !diastolic) {
+
+      showToast(
+        "Enter both blood pressure values"
+      );
+
+      return;
+
+    }
+
+    entry.systolic =
+      Number(systolic);
+
+    entry.diastolic =
+      Number(diastolic);
+
+    entry.value =
+      `${systolic}/${diastolic}`;
+
+  }
+
+
+  else if (type === "mood") {
+
+    const mood =
+      document.getElementById(
+        "logMood"
+      )?.value;
+
+    if (!mood) {
+
+      showToast(
+        "Choose a mood"
+      );
+
+      return;
+
+    }
+
+    entry.value =
+      mood;
+
+  }
+
+
+  else if (type === "note") {
+
+    const note =
+      document.getElementById(
+        "logNote"
+      )?.value
+      .trim();
+
+    if (!note) {
+
+      showToast(
+        "Enter a note"
+      );
+
+      return;
+
+    }
+
+    entry.note =
+      note;
+
+  }
+
+
+  data.push(entry);
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(data)
+  );
+
+
+  showToast(
+    "Saved to your timeline"
+  );
+
+
+  document.getElementById(
+    "logForm"
+  ).classList.remove(
+    "show"
+  );
+
+
+  document.getElementById(
+    "logForm"
+  ).innerHTML = "";
+
+
+  updateAllScreens();
+
+  navigate(
+    "today",
+    document.querySelector(
+      "nav button"
+    )
+  );
+
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+function renderTimeline() {
+
+  const container =
+    document.getElementById(
+      "timeline"
+    );
+
+  if (!container) {
+    return;
+  }
+
+
+  const today =
+    new Date()
+      .toDateString();
+
+
+  const todayEvents =
+    data
+      .filter(item =>
+        new Date(item.date)
+          .toDateString() === today
+      )
+      .sort(
+        (a,b) =>
+          new Date(b.date) -
+          new Date(a.date)
+      );
+
+
+  if (!todayEvents.length) {
+
+    container.innerHTML = `
+
+      <div class="empty">
+
+        Nothing logged yet today.
+
+        <br>
+
+        Tap ＋ to add your first event.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    todayEvents
+      .map(renderEvent)
+      .join("");
+
+}
+
+
+function renderEvent(item) {
+
+  const icons = {
+
+    glucose: "🩸",
+
+    food: "🍽️",
+
+    exercise: "🏃",
+
+    water: "💧",
+
+    bp: "❤️",
+
+    mood: "😊",
+
+    note: "📝"
+
+  };
+
+
+  const titles = {
+
+    glucose: "Glucose",
+
+    food: "Food",
+
+    exercise: "Exercise",
+
+    water: "Water",
+
+    bp: "Blood pressure",
+
+    mood: "Mood",
+
+    note: "Health note"
+
+  };
+
+
+  let detail =
+    item.value ||
+    item.note ||
+    "";
+
+
+  if (
+    item.type === "glucose" &&
+    item.context
+  ) {
+
+    detail +=
+      ` · ${item.context}`;
+
+  }
+
+
+  if (
+    item.type === "food" &&
+    item.carbs
+  ) {
+
+    detail +=
+      ` · ${item.carbs}g carbs`;
+
+  }
+
+
+  if (
+    item.type === "exercise" &&
+    item.duration
+  ) {
+
+    detail +=
+      ` · ${item.duration} min`;
+
+  }
+
+
+  return `
+
+    <div
+      class="event"
+      onclick="deleteEntry(${item.id})">
+
+      <div class="event-icon">
+        ${icons[item.type]}
+      </div>
+
+      <div class="event-main">
+
+        <div class="event-title">
+          ${titles[item.type]}
         </div>
 
-        <small>
-          ${escapeHTML(event.unit || "")}
-        </small>
+        <div class="event-meta">
+
+          ${escapeHTML(detail)}
+          ·
+          ${formatTime(item.date)}
+
+        </div>
+
       </div>
-    `;
-  }
-
-
-  if (event.context) {
-
-    details += `
-      <div class="card">
-        <b>Context</b>
-        <p>
-          ${escapeHTML(event.context)}
-        </p>
-      </div>
-    `;
-  }
-
-
-  if (event.note) {
-
-    details += `
-      <div class="card">
-        <b>Note</b>
-        <p>
-          ${escapeHTML(event.note)}
-        </p>
-      </div>
-    `;
-  }
-
-
-  box.innerHTML = `
-
-    <div class="kicker">
-      ${escapeHTML(type.name)}
-    </div>
-
-    <h2>
-      ${type.icon}
-      ${escapeHTML(event.title || type.name)}
-    </h2>
-
-    <p>
-      ${new Date(event.time).toLocaleString()}
-    </p>
-
-    ${details}
-
-    <div class="row">
-
-      <button
-        class="btn"
-        onclick="deleteEvent('${event.id}')">
-
-        Delete
-
-      </button>
-
-      <button
-        class="btn"
-        onclick="closeModal()">
-
-        Close
-
-      </button>
 
     </div>
 
   `;
 
-
-  modal.classList.add("show");
 }
 
 
-function closeModal() {
+/* =========================================================
+   DELETE
+========================================================= */
 
-  const modal =
-    document.getElementById("modal");
-
-  if (!modal) return;
-
-  modal.classList.remove("show");
-}
-
-
-function closeModalIfBackground(event) {
+function deleteEntry(id) {
 
   if (
-    event.target &&
-    event.target.id === "modal"
-  ) {
-    closeModal();
-  }
-}
-
-
-function deleteEvent(id) {
-
-  const confirmed =
-    window.confirm(
+    !confirm(
       "Delete this entry?"
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  data =
+    data.filter(
+      item =>
+        item.id !== id
     );
 
 
-  if (!confirmed) return;
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(data)
+  );
 
 
-  events =
-    events.filter(function(event) {
-      return event.id !== id;
-    });
+  showToast(
+    "Entry deleted"
+  );
 
 
-  saveEvents();
+  updateAllScreens();
 
-  closeModal();
-
-  renderToday();
-  renderTrends();
-  renderInsights();
-
-  showToast("Entry deleted");
 }
 
 
-/* =========================
+/* =========================================================
    TRENDS
-========================= */
+========================================================= */
 
-function renderTrends() {
+function setTrend(type, button) {
 
-  const glucose =
-    getGlucoseEvents(7);
+  currentTrend =
+    type;
 
 
-  const values =
-    glucose.map(function(event) {
-      return Number(event.value);
+  document
+    .querySelectorAll(
+      "#trends .chip"
+    )
+    .forEach(chip => {
+
+      chip.classList.remove(
+        "selected"
+      );
+
     });
 
 
-  const average =
-    values.length
-      ? Math.round(
-          values.reduce(
-            function(total, value) {
-              return total + value;
-            },
-            0
-          ) / values.length
-        )
-      : null;
+  if (button) {
 
-
-  const averageElement =
-    document.getElementById(
-      "trendAverage"
+    button.classList.add(
+      "selected"
     );
 
-  const readingsElement =
-    document.getElementById(
-      "trendReadings"
-    );
-
-
-  if (averageElement) {
-    averageElement.textContent =
-      average === null
-        ? "—"
-        : average;
   }
 
 
-  if (readingsElement) {
-    readingsElement.textContent =
-      values.length;
-  }
+  renderTrend();
 
-
-  drawGlucoseChart(glucose);
 }
 
 
-function drawGlucoseChart(readings) {
+function renderTrend() {
 
-  const svg =
+  const chart =
     document.getElementById(
       "glucoseChart"
     );
 
-
-  if (!svg) return;
-
-
-  svg.innerHTML = "";
-
-
-  if (readings.length < 2) {
+  if (!chart) {
     return;
   }
 
 
-  const values =
-    readings.map(function(event) {
-      return Number(event.value);
-    });
+  const cutoff =
+    Date.now() -
+    7 * 24 * 60 * 60 * 1000;
 
 
-  let min =
-    Math.min.apply(null, values);
+  let values =
+    data
+      .filter(item =>
+        new Date(item.date)
+          .getTime() >= cutoff
+      );
 
-  let max =
-    Math.max.apply(null, values);
 
+  if (
+    currentTrend ===
+    "glucose"
+  ) {
 
-  if (min === max) {
-    min -= 10;
-    max += 10;
+    values =
+      values
+        .filter(
+          item =>
+            item.type ===
+            "glucose"
+        )
+        .map(
+          item =>
+            Number(item.value)
+        );
+
+  }
+
+  else {
+
+    values =
+      values
+        .filter(
+          item =>
+            item.type ===
+            currentTrend
+        )
+        .map(
+          item => 1
+        );
+
   }
 
 
-  const points =
-    readings.map(function(event, index) {
-
-      const x =
-        20 +
-        (
-          index /
-          (readings.length - 1)
-        ) * 460;
+  chart.innerHTML = "";
 
 
-      const normalized =
-        (
-          Number(event.value) - min
-        ) /
-        (max - min);
+  if (
+    currentTrend ===
+    "glucose" &&
+    values.length
+  ) {
+
+    const min =
+      Math.min(...values) - 10;
+
+    const max =
+      Math.max(...values) + 10;
 
 
-      const y =
-        190 -
-        normalized * 160;
+    const width =
+      500;
+
+    const height =
+      210;
 
 
-      return x + "," + y;
+    const points =
+      values.map(
+        (value, index) => {
 
-    });
+          const x =
+            values.length === 1
+              ? 250
+              : (
+                index /
+                (values.length - 1)
+              ) *
+              width;
 
+          const y =
+            height -
+            (
+              (value - min) /
+              (max - min)
+            ) *
+            height;
 
-  const polyline =
-    document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "polyline"
-    );
+          return `${x},${y}`;
 
-
-  polyline.setAttribute(
-    "points",
-    points.join(" ")
-  );
-
-
-  polyline.setAttribute(
-    "fill",
-    "none"
-  );
-
-
-  polyline.setAttribute(
-    "stroke",
-    "#007aff"
-  );
+        }
+      )
+      .join(" ");
 
 
-  polyline.setAttribute(
-    "stroke-width",
-    "4"
-  );
+    chart.innerHTML = `
+
+      <polyline
+        points="${points}"
+        fill="none"
+        stroke="var(--accent)"
+        stroke-width="5"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+      </polyline>
+
+    `;
 
 
-  polyline.setAttribute(
-    "stroke-linecap",
-    "round"
-  );
+    const average =
+      values.reduce(
+        (sum, value) =>
+          sum + value,
+        0
+      ) /
+      values.length;
 
 
-  polyline.setAttribute(
-    "stroke-linejoin",
-    "round"
-  );
+    document.getElementById(
+      "trendAverage"
+    ).textContent =
+      Math.round(
+        average
+      );
 
 
-  svg.appendChild(polyline);
+    document.getElementById(
+      "trendReadings"
+    ).textContent =
+      values.length;
+
+  }
+
+  else {
+
+    document.getElementById(
+      "trendAverage"
+    ).textContent =
+      "—";
+
+
+    document.getElementById(
+      "trendReadings"
+    ).textContent =
+      values.length;
+
+
+    chart.innerHTML = `
+
+      <text
+        x="250"
+        y="110"
+        text-anchor="middle"
+        fill="var(--text-secondary)"
+        font-size="14">
+
+        Not enough data yet
+
+      </text>
+
+    `;
+
+  }
+
 }
 
 
-function setTrend(type, button) {
-
-  const buttons =
-    button
-      ? button.parentElement.querySelectorAll(".chip")
-      : [];
-
-
-  buttons.forEach(function(item) {
-    item.classList.remove("selected");
-  });
-
-
-  if (button) {
-    button.classList.add("selected");
-  }
-
-
-  if (type === "glucose") {
-    renderTrends();
-  }
-}
-
+/* =========================================================
+   TREND COMPARISONS
+========================================================= */
 
 function compareContext(context) {
+
+  const labels = {
+
+    food:
+      "food",
+
+    exercise:
+      "exercise",
+
+    sleep:
+      "sleep",
+
+    mood:
+      "mood"
+
+  };
+
+
+  const available =
+    data.some(
+      item =>
+        item.type ===
+        context
+    );
+
 
   const message =
     document.getElementById(
@@ -2701,137 +5678,232 @@ function compareContext(context) {
     );
 
 
-  if (!message) return;
+  if (!message) {
+    return;
+  }
 
 
-  message.textContent =
-    "Betty will compare your " +
-    context +
-    " entries with glucose readings as enough matching data accumulates.";
+  if (available) {
+
+    message.textContent =
+      `You have ${context} data available. Betty will be able to compare these patterns more intelligently as the data grows.`;
+
+  }
+
+  else {
+
+    message.textContent =
+      `Start logging ${labels[context]} and Betty will have more information to compare with your glucose.`;
+
+  }
+
 }
 
 
-/* =========================
+/* =========================================================
    INSIGHTS
-========================= */
+========================================================= */
 
 function renderInsights() {
 
-  const list =
+  const container =
     document.getElementById(
       "insightsList"
     );
 
-
-  if (!list) return;
+  if (!container) {
+    return;
+  }
 
 
   const glucose =
-    getGlucoseEvents(30);
+    data.filter(
+      item =>
+        item.type ===
+        "glucose"
+    );
 
 
-  if (glucose.length < 3) {
+  const food =
+    data.filter(
+      item =>
+        item.type ===
+        "food"
+    );
 
-    list.innerHTML = `
+
+  const exercise =
+    data.filter(
+      item =>
+        item.type ===
+        "exercise"
+    );
+
+
+  let html = "";
+
+
+  if (!data.length) {
+
+    html = `
 
       <div class="card insight">
 
-        <span class="badge">
-          Early signal
-        </span>
+        <div class="badge">
+          Betty noticed
+        </div>
 
         <h2>
-          Build your data set
+          Your timeline is waiting.
         </h2>
 
         <p>
-          I need more comparable readings
-          before calling a personal pattern.
-          I’ll avoid overstating what the data says.
+          Start logging your glucose,
+          meals, movement, water, mood,
+          or notes. As your timeline grows,
+          Betty will have more context to
+          identify useful patterns.
         </p>
 
       </div>
 
     `;
 
-    return;
   }
 
 
-  const values =
-    glucose.map(function(event) {
-      return Number(event.value);
-    });
+  else {
+
+    if (glucose.length >= 2) {
+
+      const numbers =
+        glucose.map(
+          item =>
+            Number(item.value)
+        );
 
 
-  const average =
-    Math.round(
-      values.reduce(
-        function(total, value) {
-          return total + value;
-        },
-        0
-      ) / values.length
-    );
+      const average =
+        numbers.reduce(
+          (a,b) =>
+            a + b,
+          0
+        ) /
+        numbers.length;
 
 
-  list.innerHTML = `
+      html += `
 
-    <div class="card insight">
+        <div class="card insight">
 
-      <span class="badge">
-        Personal data
-      </span>
+          <div class="badge">
+            Betty noticed
+          </div>
 
-      <h2>
-        Your glucose picture
-      </h2>
+          <h2>
+            Your average glucose is
+            ${Math.round(average)} mg/dL.
+          </h2>
 
-      <p>
-        You have
-        <b>${glucose.length}</b>
-        glucose readings recorded.
-        Your current average across those
-        readings is
-        <b>${average} mg/dL</b>.
-      </p>
+          <p>
+            That's based on
+            ${numbers.length}
+            logged readings.
+            Keep logging so Betty can
+            identify more meaningful
+            patterns over time.
+          </p>
 
-    </div>
+        </div>
+
+      `;
+
+    }
 
 
-    <div class="card insight">
+    if (food.length) {
 
-      <span class="badge">
-        Betty
-      </span>
+      html += `
 
-      <h2>
-        Evidence first
-      </h2>
+        <div class="card insight">
 
-      <p>
-        As you log meals, activity,
-        glucose and other context,
-        Betty can look for repeated
-        relationships instead of assuming
-        that one event caused another.
-      </p>
+          <div class="badge">
+            Emerging pattern
+          </div>
 
-    </div>
+          <h2>
+            You're building a food timeline.
+          </h2>
 
-  `;
+          <p>
+            You've logged
+            ${food.length}
+            meal${food.length === 1 ? "" : "s"}.
+            More comparable meals and
+            glucose readings will help Betty
+            look for relationships.
+          </p>
+
+        </div>
+
+      `;
+
+    }
+
+
+    if (exercise.length) {
+
+      html += `
+
+        <div class="card insight">
+
+          <div class="badge">
+            Positive signal
+          </div>
+
+          <h2>
+            Movement is part of your story.
+          </h2>
+
+          <p>
+            You've logged
+            ${exercise.length}
+            exercise event${exercise.length === 1 ? "" : "s"}.
+            Keep recording it so Betty can
+            eventually compare activity with
+            other health information.
+          </p>
+
+        </div>
+
+      `;
+
+    }
+
+  }
+
+
+  container.innerHTML =
+    html;
+
 }
 
 
-/* =========================
+/* =========================================================
    ASK BETTY
-========================= */
+========================================================= */
 
 function handleBettyKey(event) {
 
-  if (event.key === "Enter") {
+  if (
+    event.key ===
+    "Enter"
+  ) {
+
     askBetty();
+
   }
+
 }
 
 
@@ -2843,266 +5915,538 @@ function askBetty() {
     );
 
 
-  if (!input) return;
+  if (!input) {
+    return;
+  }
 
 
   const question =
     input.value.trim();
 
 
-  if (!question) return;
+  if (!question) {
 
+    showToast(
+      "Ask Betty something first"
+    );
 
-  const chat =
-    document.getElementById("chat");
+    return;
 
-
-  if (!chat) return;
-
-
-  const glucose =
-    getGlucoseEvents(3650);
-
-
-  const lowerQuestion =
-    question.toLowerCase();
-
-
-  let answer = "";
-
-
-  if (
-    lowerQuestion.includes("average") &&
-    lowerQuestion.includes("glucose")
-  ) {
-
-    if (glucose.length === 0) {
-
-      answer =
-        "I don't have any glucose readings yet. Log a few readings and I can calculate your average.";
-
-    } else {
-
-      const values =
-        glucose.map(function(event) {
-          return Number(event.value);
-        });
-
-
-      const average =
-        Math.round(
-          values.reduce(
-            function(total, value) {
-              return total + value;
-            },
-            0
-          ) / values.length
-        );
-
-
-      answer =
-        "I found " +
-        glucose.length +
-        " glucose readings. Your average is " +
-        average +
-        " mg/dL.";
-    }
-
-  } else if (
-    lowerQuestion.includes("how many") &&
-    lowerQuestion.includes("glucose")
-  ) {
-
-    answer =
-      "You currently have " +
-      glucose.length +
-      " glucose readings recorded.";
-
-  } else {
-
-    answer =
-      "I can analyze the information you’ve logged. Try asking me about your average glucose, your readings, meals, exercise, or a specific trend.";
   }
 
 
-  chat.innerHTML += `
+  const chat =
+    document.getElementById(
+      "chat"
+    );
 
-    <p>
-      <b>You:</b>
-      ${escapeHTML(question)}
-    </p>
 
-    <p>
-      <b>🦋 Betty:</b>
-      ${answer}
-    </p>
+  const response =
+    generateBettyResponse(
+      question
+    );
+
+
+  chat.innerHTML = `
+
+    <div>
+
+      <b>
+        You:
+      </b>
+
+      <p>
+        ${escapeHTML(question)}
+      </p>
+
+    </div>
+
+
+    <div
+      style="
+        margin-top:15px;
+        padding-top:15px;
+        border-top:1px solid var(--border);
+      ">
+
+      <b>
+        🦋 Betty:
+      </b>
+
+      <p>
+        ${response}
+      </p>
+
+    </div>
 
   `;
 
 
   input.value = "";
 
-
-  chat.scrollTop =
-    chat.scrollHeight;
 }
 
 
-/* =========================
-   SETTINGS
-========================= */
+function generateBettyResponse(question) {
 
-function openSettings() {
-
-  const modal =
-    document.getElementById("modal");
-
-  const box =
-    document.getElementById("modalBox");
+  const q =
+    question.toLowerCase();
 
 
-  if (!modal || !box) return;
-
-
-  box.innerHTML = `
-
-    <div class="kicker">
-      Settings
-    </div>
-
-    <h2>
-      Diabetter
-    </h2>
-
-
-    <div class="card">
-
-      <b>
-        ❤️ Health Data Permissions
-      </b>
-
-      <p>
-        HealthKit integration will be
-        handled by the native iPhone
-        version of Diabetter.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <b>
-        🦋 Betty's Memory
-      </b>
-
-      <p>
-        Approved personal memories and
-        preferences will appear here.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <b>
-        🔔 Reminders
-      </b>
-
-      <p>
-        Adaptive · Custom · Off
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <b>
-        📄 Health Reports
-      </b>
-
-      <p>
-        PDF health reports will be
-        available in a future version.
-      </p>
-
-    </div>
-
-
-    <button
-      class="btn"
-      onclick="closeModal()">
-
-      Done
-
-    </button>
-
-  `;
-
-
-  modal.classList.add("show");
-}
-
-
-/* =========================
-   INITIALIZATION
-========================= */
-
-function setGreeting() {
-
-  const greeting =
-    document.getElementById(
-      "greeting"
+  const glucose =
+    data.filter(
+      item =>
+        item.type ===
+        "glucose"
     );
 
 
-  if (!greeting) return;
+  if (
+    q.includes("average") &&
+    (
+      q.includes("glucose") ||
+      q.includes("sugar")
+    )
+  ) {
+
+    if (!glucose.length) {
+
+      return `
+        I don't have any glucose readings
+        yet. Log a few readings and I'll
+        calculate your average.
+      `;
+
+    }
+
+
+    const average =
+      glucose.reduce(
+        (sum, item) =>
+          sum +
+          Number(item.value),
+        0
+      ) /
+      glucose.length;
+
+
+    return `
+      Your current logged average is
+      <b>${Math.round(average)} mg/dL</b>,
+      based on ${glucose.length}
+      reading${glucose.length === 1 ? "" : "s"}.
+      As you add more readings, I can
+      help you understand the pattern
+      across different times and contexts.
+    `;
+
+  }
+
+
+  if (
+    q.includes("how am i doing") ||
+    q.includes("how am i")
+  ) {
+
+    if (!data.length) {
+
+      return `
+        We're just getting started.
+        Add some health entries and I'll
+        have more context to work with.
+      `;
+
+    }
+
+
+    return `
+      You've logged <b>${data.length}</b>
+      health event${data.length === 1 ? "" : "s"}.
+      That's a good start. The more
+      consistent your timeline becomes,
+      the more useful my observations can be.
+    `;
+
+  }
+
+
+  if (
+    q.includes("hello") ||
+    q.includes("hi") ||
+    q.includes("hey")
+  ) {
+
+    return `
+      Hi! 🦋 I'm Betty.
+      I'm here and ready to explore your
+      Diabetter timeline with you.
+    `;
+
+  }
+
+
+  if (
+    q.includes("food") ||
+    q.includes("meal") ||
+    q.includes("eat")
+  ) {
+
+    const food =
+      data.filter(
+        item =>
+          item.type ===
+          "food"
+      );
+
+
+    return `
+      You've logged
+      <b>${food.length}</b>
+      meal${food.length === 1 ? "" : "s"} so far.
+      Keep recording meals alongside
+      glucose readings and we'll have more
+      context to explore.
+    `;
+
+  }
+
+
+  return `
+    I'm still learning how to answer that
+    question in this prototype. 🦋
+    Right now I can summarize your logged
+    glucose, meals, exercise, and timeline.
+    The full AI Betty comes in a later phase.
+  `;
+
+}
+
+
+/* =========================================================
+   TODAY SCREEN
+========================================================= */
+
+function updateToday() {
+
+  const latest =
+    data
+      .filter(
+        item =>
+          item.type ===
+          "glucose"
+      )
+      .sort(
+        (a,b) =>
+          new Date(b.date) -
+          new Date(a.date)
+      )[0];
+
+
+  const glucoseElement =
+    document.getElementById(
+      "latestGlucose"
+    );
+
+
+  if (glucoseElement) {
+
+    glucoseElement.textContent =
+      latest
+        ? latest.value
+        : "—";
+
+  }
+
+
+  const today =
+    new Date()
+      .toDateString();
+
+
+  const count =
+    data.filter(
+      item =>
+        new Date(item.date)
+          .toDateString() ===
+        today
+    ).length;
+
+
+  const countElement =
+    document.getElementById(
+      "todayCount"
+    );
+
+
+  if (countElement) {
+
+    countElement.textContent =
+      count;
+
+  }
+
+
+  const dateElement =
+    document.getElementById(
+      "todayDate"
+    );
+
+
+  if (dateElement) {
+
+    dateElement.textContent =
+      new Date()
+        .toLocaleDateString(
+          undefined,
+          {
+            month: "short",
+            day: "numeric"
+          }
+        );
+
+  }
 
 
   const hour =
-    new Date().getHours();
+    new Date()
+      .getHours();
 
 
-  if (hour < 12) {
+  let greeting =
+    "Good morning";
 
-    greeting.textContent =
-      "Good morning";
 
-  } else if (hour < 18) {
+  if (hour >= 12 && hour < 18) {
 
-    greeting.textContent =
+    greeting =
       "Good afternoon";
 
-  } else {
-
-    greeting.textContent =
-      "Good evening";
   }
+
+
+  else if (hour >= 18) {
+
+    greeting =
+      "Good evening";
+
+  }
+
+
+  document.getElementById(
+    "greeting"
+  ).textContent =
+    greeting;
+
+
+  const message =
+    document.getElementById(
+      "bettyMessage"
+    );
+
+
+  if (message) {
+
+    if (latest) {
+
+      message.innerHTML =
+        `Your latest glucose is <b>${latest.value} mg/dL</b>. Keep logging so I can help you spot patterns.`;
+
+    }
+
+    else {
+
+      message.textContent =
+        "Your timeline will build as you log things.";
+
+    }
+
+  }
+
 }
 
 
-function initializeApp() {
+/* =========================================================
+   GLOBAL UPDATE
+========================================================= */
 
-  loadEvents();
+function updateAllScreens() {
 
-  setGreeting();
+  updateToday();
 
-  renderToday();
+  renderTimeline();
 
-  renderTrends();
+  renderTrend();
 
   renderInsights();
+
+  updateNotificationUI();
+
 }
 
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+function formatTime(date) {
+
+  return new Date(date)
+    .toLocaleTimeString(
+      undefined,
+      {
+        hour:
+          "numeric",
+
+        minute:
+          "2-digit"
+      }
+    );
+
+}
+
+
+function formatDateTime(date) {
+
+  return new Date(date)
+    .toLocaleString(
+      undefined,
+      {
+        dateStyle:
+          "medium",
+
+        timeStyle:
+          "short"
+      }
+    );
+
+}
+
+
+function escapeHTML(value) {
+
+  return String(value)
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+
+function showToast(message) {
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  if (!toast) {
+    return;
+  }
+
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(
+      () => {
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2200
+    );
+
+}
+
+
+/* =========================================================
+   STARTUP
+========================================================= */
 
 document.addEventListener(
   "DOMContentLoaded",
-  initializeApp
+  () => {
+
+    initializeTheme();
+
+    updateAllScreens();
+
+    updateNotificationUI();
+
+  }
 );
 
-</script>
+
+/* =========================================================
+   CLOSE MODALS WITH ESCAPE
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key ===
+      "Escape"
+    ) {
+
+      closeModal();
+
+      closeSettings();
+
+      closeQuickLog();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   END DIABETTER JAVASCRIPT
+========================================================= */
+
+  </script>
 
 </body>
+
 </html>
