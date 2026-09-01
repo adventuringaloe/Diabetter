@@ -1,383 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Diabetter</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f7fb">
+<title>Diabetter V2</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#eeeef3;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Arial;color:#17171b}
-.app{max-width:430px;margin:auto;min-height:100vh;background:white;padding-bottom:90px}
-header{padding:18px 20px;border-bottom:1px solid #eee;position:sticky;top:0;background:#fffffff2;backdrop-filter:blur(15px);z-index:5}
-.brand{display:flex;align-items:center;gap:12px}
-.orb{width:46px;height:46px;border-radius:50%;background:conic-gradient(#ff7181,#ffb34b,#ffe66d,#68dfb0,#42d8e8,#62a5fa,#886cff,#ed6bdf,#ff7181);position:relative;box-shadow:0 8px 25px #7563ef33}
-.orb:after{content:"♥";position:absolute;inset:0;display:grid;place-items:center;color:#6856df}
-.brand b{letter-spacing:.1em}.brand small{display:block;color:#777;margin-top:3px}
-main{padding:20px}.screen{display:none}.screen.active{display:block}
-h1{font-size:31px;letter-spacing:-.05em;margin:5px 0}h2{font-size:20px;margin:0 0 6px}
-.muted{color:#777;font-size:14px;line-height:1.45}
-.line{height:2px;margin:18px 0;background:linear-gradient(90deg,#ff7181,#ffb34b,#ffe66d,#68dfb0,#42d8e8,#62a5fa,#886cff,#ed6bdf)}
-.card{border:1px solid #e5e5ea;border-radius:20px;padding:16px;margin:12px 0}
-.soft{background:#f7f7f9;border:0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.metric{background:#f6f6f8;border-radius:17px;padding:14px}.metric b{display:block;font-size:22px;margin-top:5px}
-.metric span{font-size:12px;color:#777}
-.btn,.chip{border:0;border-radius:14px;background:#f4f4f6;padding:12px 14px;font-weight:700;font-size:14px;cursor:pointer}
-.btn.primary{background:#f0edff;color:#5d4bd5;width:100%;margin-top:10px}
-.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.quick .btn{padding:14px 4px;font-size:12px}
-input,textarea,select{width:100%;padding:13px;border:1px solid #dddde3;border-radius:13px;font:inherit;margin-top:8px}
-.event{padding:13px 0;border-bottom:1px solid #eee}.event:last-child{border:0}
-.time{font-size:12px;color:#888;margin-bottom:3px}
-.new{background:#faf9ff;border:1px solid #ddd7ff;border-radius:15px;padding:12px;margin:8px 0}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fffffff7;border-top:1px solid #ddd;z-index:10}
-.navin{max-width:430px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);padding:7px 4px}
-.nav button{border:0;background:none;color:#777;font-size:10px;padding:6px 1px}
-.nav button.active{color:#5d4bd5;background:#f0edff;border-radius:12px}
-.ico{display:block;font-size:19px;margin-bottom:3px}
-.form{display:none}.form.show{display:block}
-.notice{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#17171b;color:#fff;padding:11px 17px;border-radius:30px;font-size:13px;z-index:20}
+:root{--bg:#f6f6fa;--card:#fff;--text:#17171b;--muted:#777983;--line:#e5e5ea;--blue:#007aff;--purple:#7c5cff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Arial,sans-serif}
+.app{max-width:520px;margin:auto;min-height:100vh;padding-bottom:90px}header{padding:22px 18px 8px;display:flex;justify-content:space-between;align-items:center}.brand{font-size:27px;font-weight:800;letter-spacing:-1px}.brand span{background:linear-gradient(90deg,#ff3b30,#ff9500,#34c759,#00c7be,#007aff,#af52de);-webkit-background-clip:text;color:transparent}
+.icon{border:0;background:#fff;border-radius:50%;width:42px;height:42px;box-shadow:0 5px 20px #00000010}.screen{display:none;padding:12px 18px}.screen.active{display:block}.card{background:#ffffffea;border:1px solid #00000008;border-radius:22px;padding:18px;margin:12px 0;box-shadow:0 8px 28px #0000000a}
+h1{font-size:31px;letter-spacing:-1.1px;margin:4px 0 8px}h2{font-size:21px;margin:0 0 9px}.muted,p{color:var(--muted);line-height:1.45}.kicker{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.orb{width:64px;height:64px;border-radius:50%;background:conic-gradient(#ff3b30,#ff9500,#ffd60a,#34c759,#00c7be,#007aff,#5856d6,#af52de,#ff2d55,#ff3b30);box-shadow:0 0 0 7px #fff,0 7px 25px #6256c733}.betty{display:flex;gap:16px;align-items:center}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:#f2f2f7;border-radius:17px;padding:15px}.num{font-size:26px;font-weight:800}.event{display:flex;gap:12px;padding:13px 3px;border-bottom:1px solid var(--line)}.event:last-child{border:0}.event i{font-style:normal;background:#f1f1f6;border-radius:12px;width:38px;height:38px;display:grid;place-items:center}.eventmain{flex:1}.eventtitle{font-weight:750}.eventmeta{font-size:12px;color:var(--muted);margin-top:3px}
+nav{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);background:#fafafcf2;backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:7px 5px calc(7px + env(safe-area-inset-bottom));z-index:20}nav button{border:0;background:none;color:#777;font-size:11px;font-weight:700}nav button.active{color:var(--blue)}nav b{display:block;font-size:20px;margin-bottom:2px}
+.fab{position:fixed;right:max(20px,calc((100vw - 520px)/2 + 20px));bottom:88px;width:58px;height:58px;border:0;border-radius:50%;background:#17171b;color:white;font-size:28px;z-index:10;box-shadow:0 10px 25px #0003}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}.option{border:0;background:#fff;border-radius:18px;padding:18px;text-align:left;font-weight:750;box-shadow:0 6px 22px #0000000b}.option span{display:block;font-size:25px;margin-bottom:6px}
+.form{display:none}.form.show{display:block}.field{margin:12px 0}.field label{display:block;font-size:12px;color:var(--muted);font-weight:800;margin-bottom:6px}.field input,.field textarea,.field select{width:100%;padding:14px;border:1px solid var(--line);border-radius:15px;background:#fff;font:inherit}.field textarea{min-height:85px}.btn{border:0;border-radius:15px;padding:13px 16px;background:#eeeef2;font-weight:750}.primary{background:#17171b;color:#fff;width:100%}.row{display:flex;gap:9px;align-items:center}.between{justify-content:space-between}.chips{display:flex;gap:7px;overflow:auto}.chip{border:0;white-space:nowrap;padding:9px 12px;border-radius:14px;background:#eeeef2;font-size:13px;font-weight:700}.chip.sel{background:#17171b;color:#fff}
+.sheet,.modal{position:fixed;inset:0;background:#0005;display:none;z-index:30;align-items:flex-end}.sheet.show,.modal.show{display:flex}.sheetbox,.modalbox{background:#f8f8fb;width:100%;max-width:520px;margin:auto;border-radius:28px 28px 0 0;padding:18px 18px 30px}.modal{align-items:center;padding:20px}.modalbox{border-radius:25px;max-height:85vh;overflow:auto}.toast{position:fixed;top:16px;left:50%;transform:translate(-50%,-15px);opacity:0;background:#17171b;color:#fff;padding:12px 16px;border-radius:15px;font-weight:750;z-index:50;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+.chart{height:210px;background:repeating-linear-gradient(to bottom,transparent 0,transparent 24%,#eeeef2 25%,transparent 26%);border-radius:18px;position:relative;overflow:hidden}.target{position:absolute;left:0;right:0;top:34%;height:30%;background:#34c75918}.chart svg{width:100%;height:100%}.insight{border-left:4px solid var(--purple);padding-left:14px}.badge{font-size:11px;font-weight:800;text-transform:uppercase;color:#6c52c8}
+.empty{text-align:center;padding:28px;color:var(--muted)}
 </style>
 </head>
-
 <body>
 <div class="app">
-
-<header>
-<div class="brand">
-<div class="orb"></div>
-<div><b>DIABETTER</b><small>Your health, understood.</small></div>
-</div>
-</header>
-
-<main>
+<header><div class="brand"><span>Diabetter</span></div><button class="icon" onclick="settings()">⚙️</button></header>
 
 <section id="today" class="screen active">
-<h1>Good morning 👋</h1>
-<p class="muted">Betty has your day at a glance.</p>
-<div class="line"></div>
-
-<div class="grid">
-<div class="metric">🩸<b id="latestGlucose">124</b><span>Latest glucose</span></div>
-<div class="metric">😴<b>7h 24m</b><span>Sleep</span></div>
-<div class="metric">❤️<b>67</b><span>Resting HR</span></div>
-<div class="metric">👟<b>6,421</b><span>Steps</span></div>
-</div>
-
-<div id="latestCard" class="card soft" style="display:none"></div>
-
-<div class="card">
-<div style="font-size:11px;color:#7563ef;font-weight:800">✨ BETTY NOTICED</div>
-<h2>Your morning looks pretty steady.</h2>
-<p class="muted">Your glucose is close to your recent morning range.</p>
-<button class="btn" onclick="go('insights')">Explore insight →</button>
-</div>
-
-<div class="card">
-<div style="display:flex;justify-content:space-between;align-items:center">
-<div><h2>Today's timeline</h2><p class="muted">Events + context</p></div>
-<button class="btn" onclick="go('health')">Health</button>
-</div>
-<div id="timeline"></div>
-</div>
-
-<div class="card soft">
-<h2>How are you feeling?</h2>
-<div class="quick">
-<button class="btn" onclick="saveMood('Great')">😊 Great</button>
-<button class="btn" onclick="saveMood('Good')">🙂 Good</button>
-<button class="btn" onclick="saveMood('Okay')">😐 Okay</button>
-</div>
-</div>
+<div class="card"><div class="betty"><div class="orb"></div><div><div class="kicker">Betty · Today</div><h1 id="greet">Good evening</h1><p id="betty">Your timeline will build as you log things.</p></div></div></div>
+<div class="grid"><div class="stat"><small>Latest glucose</small><div class="num" id="latest">—</div><small>mg/dL</small></div><div class="stat"><small>Today's events</small><div class="num" id="count">0</div><small>saved locally</small></div></div>
+<div class="card"><div class="row between"><h2>Today's timeline</h2><span class="kicker" id="date"></span></div><div id="timeline"></div></div>
 </section>
-
 
 <section id="log" class="screen">
-<h1>Log</h1>
-<p class="muted">Tell Betty what happened.</p>
-<div class="line"></div>
-
-<div class="card">
-<h2>What happened?</h2>
-<div class="quick">
-<button class="btn" onclick="showForm('glucose')">🩸 Glucose</button>
-<button class="btn" onclick="showForm('food')">🍽️ Food</button>
-<button class="btn" onclick="showForm('water')">💧 Water</button>
-<button class="btn" onclick="showForm('bp')">❤️ Blood pressure</button>
-<button class="btn" onclick="showForm('mood')">😊 Mood</button>
-<button class="btn" onclick="showForm('other')">📝 Other</button>
-</div>
-</div>
-
-<div id="glucose" class="card form">
-<h2>🩸 Glucose</h2>
-<input id="glucoseValue" type="number" placeholder="e.g. 132">
-<select id="glucoseContext">
-<option>Fasting</option>
-<option>Before meal</option>
-<option>1 hour after meal</option>
-<option>2 hours after meal</option>
-<option>Bedtime</option>
-</select>
-<button class="btn primary" onclick="saveGlucose()">Save glucose</button>
-</div>
-
-<div id="food" class="card form">
-<h2>🍽️ Food</h2>
-<textarea id="foodValue" rows="3" placeholder="What did you eat?"></textarea>
-<button class="btn primary" onclick="saveFood()">Save food</button>
-</div>
-
-<div id="water" class="card form">
-<h2>💧 Water</h2>
-<input id="waterValue" type="number" placeholder="Amount">
-<select id="waterUnit"><option>oz</option><option>cups</option><option>mL</option></select>
-<button class="btn primary" onclick="saveWater()">Save water</button>
-</div>
-
-<div id="bp" class="card form">
-<h2>❤️ Blood pressure</h2>
-<input id="sys" type="number" placeholder="Systolic">
-<input id="dia" type="number" placeholder="Diastolic">
-<button class="btn primary" onclick="saveBP()">Save blood pressure</button>
-</div>
-
-<div id="mood" class="card form">
-<h2>😊 Mood</h2>
-<div class="quick">
-<button class="btn" onclick="saveMood('Great')">😊 Great</button>
-<button class="btn" onclick="saveMood('Good')">🙂 Good</button>
-<button class="btn" onclick="saveMood('Okay')">😐 Okay</button>
-</div>
-</div>
-
-<div id="other" class="card form">
-<h2>📝 Other</h2>
-<textarea id="otherValue" rows="3" placeholder="Describe what happened"></textarea>
-<button class="btn primary" onclick="saveOther()">Save event</button>
-</div>
-
-<div class="card soft">
-<h2>Saved events</h2>
-<p class="muted" id="eventCount">0 events</p>
-</div>
+<div class="card"><div class="kicker">Log</div><h1>Add something</h1><p>Every saved entry persists in this browser.</p></div>
+<div class="options">
+<button class="option" onclick="form('glucose')"><span>🩸</span>Glucose</button>
+<button class="option" onclick="form('food')"><span>🍽️</span>Food</button>
+<button class="option" onclick="form('exercise')"><span>🏃</span>Exercise</button>
+<button class="option" onclick="form('water')"><span>💧</span>Water</button>
+<button class="option" onclick="form('bp')"><span>❤️</span>Blood pressure</button>
+<button class="option" onclick="form('mood')"><span>😊</span>Mood</button>
+<button class="option" onclick="form('note')"><span>📝</span>Health note</button>
+</div><div id="form" class="card form"></div>
 </section>
-
 
 <section id="trends" class="screen">
-<h1>Trends</h1>
-<p class="muted">See the evidence behind the story.</p>
-<div class="line"></div>
-
-<div class="card">
-<h2>Glucose</h2>
-<p class="muted">Sample 7-day view</p>
-<div style="height:130px;display:flex;align-items:end;gap:7px">
-<div style="height:48%;background:#8b6cff;flex:1;border-radius:7px"></div>
-<div style="height:64%;background:#60a5fa;flex:1;border-radius:7px"></div>
-<div style="height:43%;background:#8b6cff;flex:1;border-radius:7px"></div>
-<div style="height:73%;background:#60a5fa;flex:1;border-radius:7px"></div>
-<div style="height:58%;background:#8b6cff;flex:1;border-radius:7px"></div>
-<div style="height:84%;background:#60a5fa;flex:1;border-radius:7px"></div>
-<div style="height:61%;background:#8b6cff;flex:1;border-radius:7px"></div>
-</div>
-</div>
-
-<div class="grid">
-<div class="metric"><span>30-day average</span><b>148</b></div>
-<div class="metric"><span>Previous period</span><b>162</b></div>
-</div>
-
-<div class="card">
-<h2>Compare</h2>
-<p class="muted">Glucose alongside another part of your day.</p>
-<div class="quick">
-<button class="btn" onclick="alert('Activity comparison selected')">🏃 Activity</button>
-<button class="btn" onclick="alert('Sleep comparison selected')">😴 Sleep</button>
-<button class="btn" onclick="alert('Food comparison selected')">🍽️ Food</button>
-<button class="btn" onclick="alert('Mood comparison selected')">🧠 Mood</button>
-</div>
-</div>
+<div class="card"><div class="kicker">Trends</div><h1>7-day view</h1><div class="chips"><button class="chip sel">Glucose</button><button class="chip">Food</button><button class="chip">Exercise</button><button class="chip">Mood</button></div>
+<div class="chart"><div class="target"></div><svg id="svg" viewBox="0 0 500 210" preserveAspectRatio="none"></svg></div>
+<div class="grid"><div class="stat"><small>Average</small><div class="num" id="avg">—</div><small>mg/dL</small></div><div class="stat"><small>Readings</small><div class="num" id="reads">0</div><small>last 7 days</small></div></div></div>
+<div class="card"><h2>Compare with</h2><div class="chips"><button class="chip" onclick="compare('food')">🍽️ Food</button><button class="chip" onclick="compare('exercise')">🏃 Exercise</button><button class="chip" onclick="compare('sleep')">😴 Sleep</button><button class="chip" onclick="compare('mood')">😊 Mood</button></div><p id="compare">Choose a context to explore alongside glucose.</p></div>
 </section>
 
+<section id="insights" class="screen"><div class="card"><div class="betty"><div class="orb"></div><div><div class="kicker">Betty's intelligence</div><h1>Insights</h1><p>Evidence strength matters.</p></div></div></div><div id="insightsList"></div></section>
 
-<section id="insights" class="screen">
-<h1>Insights</h1>
-<p class="muted">What Betty is learning from repeated patterns.</p>
-<div class="line"></div>
+<section id="ask" class="screen"><div class="card"><div class="betty"><div class="orb"></div><div><div class="kicker">Ask Betty</div><h1>Hi, I'm Betty.</h1><p>Ask about your logged data.</p></div></div></div><div id="chat" class="card"><b>🦋 Betty:</b> Try “What is my average glucose?”</div><div class="row"><input id="question" class="field" style="margin:0;flex:1" placeholder="Ask Betty…" onkeydown="if(event.key==='Enter')ask()"><button class="btn" onclick="ask()">Send</button></div></section>
 
-<div class="card">
-<div style="font-size:11px;color:#7563ef;font-weight:800">🦋 EMERGING PATTERN</div>
-<h2>Post-dinner movement may be helping.</h2>
-<p class="muted">Across comparable dinners, later glucose readings were generally lower on evenings with activity.</p>
-<button class="btn primary" onclick="go('trends')">See the evidence</button>
+<button class="fab" onclick="quick()">＋</button>
+<nav><button class="active" onclick="go('today',this)"><b>☀️</b>Today</button><button onclick="go('log',this)"><b>＋</b>Log</button><button onclick="go('trends',this)"><b>⌁</b>Trends</button><button onclick="go('insights',this)"><b>✦</b>Insights</button><button onclick="go('ask',this)"><b>🦋</b>Ask Betty</button></nav>
 </div>
 
-<div class="card">
-<div style="font-size:11px;color:#7563ef;font-weight:800">✨ BETTY NOTICED</div>
-<h2>Your sleep has improved.</h2>
-<p class="muted">Your recent sleep duration is higher than your previous period.</p>
-<button class="btn" onclick="go('ask')">Ask Betty about this</button>
-</div>
-</section>
+<div id="sheet" class="sheet" onclick="if(event.target===this)closeSheet()"><div class="sheetbox"><h2>Quick Log</h2><div class="options"><button class="option" onclick="closeSheet();form('glucose')"><span>🩸</span>Glucose</button><button class="option" onclick="closeSheet();form('food')"><span>🍽️</span>Food</button><button class="option" onclick="closeSheet();form('exercise')"><span>🏃</span>Exercise</button><button class="option" onclick="closeSheet();form('water')"><span>💧</span>Water</button><button class="option" onclick="closeSheet();form('bp')"><span>❤️</span>Blood pressure</button><button class="option" onclick="closeSheet();form('mood')"><span>😊</span>Mood</button></div></div></div>
 
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()"><div id="modalbox" class="modalbox"></div></div>
 
-<section id="ask" class="screen">
-<h1>Ask Betty</h1>
-<p class="muted">Your questions. Your data. One conversation.</p>
-<div class="line"></div>
-
-<div class="card">
-<div style="display:flex;gap:12px;align-items:center">
-<div class="orb"></div>
-<div><h2>Hi, I'm Betty. 💜</h2><p class="muted">What are we looking at?</p></div>
-</div>
-
-<div class="card soft">
-I can help connect your glucose, food, activity, sleep and mood.
-</div>
-
-<div class="quick">
-<button class="btn" onclick="ask('How am I doing?')">How am I doing?</button>
-<button class="btn" onclick="ask('Why was my glucose higher?')">Why was my glucose higher?</button>
-<button class="btn" onclick="ask('What changed this week?')">What changed?</button>
-</div>
-
-<div id="chat"></div>
-</div>
-</section>
-
-
-<section id="health" class="screen">
-<h1>Apple Health</h1>
-<p class="muted">Choose only the categories you authorize.</p>
-<div class="line"></div>
-
-<div class="card">
-<p>☑️ ❤️ Heart rate</p>
-<p>☑️ 🏃 Workouts</p>
-<p>☑️ 😴 Sleep</p>
-<p>☑️ 👟 Steps</p>
-<p>☐ 🫁 Blood oxygen</p>
-<p>☐ 🧠 State of Mind</p>
-<p>☐ 🩸 Blood glucose</p>
-<button class="btn primary" onclick="go('today')">Save permissions</button>
-</div>
-</section>
-
-</main>
-
-
-<nav class="nav">
-<div class="navin">
-<button onclick="go('today')"><span class="ico">⌂</span>Today</button>
-<button onclick="go('log')"><span class="ico">＋</span>Log</button>
-<button onclick="go('trends')"><span class="ico">⌁</span>Trends</button>
-<button onclick="go('insights')"><span class="ico">✦</span>Insights</button>
-<button onclick="go('ask')"><span class="ico">🦋</span>Ask Betty</button>
-</div>
-</nav>
-
-<div id="notice" class="notice" style="display:none"></div>
+<div id="toast" class="toast"></div>
 
 <script>
-let events=JSON.parse(localStorage.getItem("diabetterEvents")||"[]");
-
-function go(id){
- document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
- window.scrollTo(0,0);
- render();
-}
-
-function showForm(id){
- document.querySelectorAll(".form").forEach(x=>x.classList.remove("show"));
- document.getElementById(id).classList.add("show");
- document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-
-function saveEvent(title,sub){
- events.push({title:title,sub:sub,time:new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})});
- localStorage.setItem("diabetterEvents",JSON.stringify(events));
- render();
- notice(title+" saved ✓");
- go("today");
-}
-
-function saveGlucose(){
- let v=document.getElementById("glucoseValue").value;
- if(!v){notice("Enter a glucose value first");return}
- let c=document.getElementById("glucoseContext").value;
- document.getElementById("glucoseValue").value="";
- document.getElementById("glucoseContext").selectedIndex=0;
- saveEvent("🩸 Glucose · "+v+" mg/dL",c);
-}
-
-function saveFood(){
- let v=document.getElementById("foodValue").value.trim();
- if(!v){notice("Enter your food first");return}
- document.getElementById("foodValue").value="";
- saveEvent("🍽️ Food · "+v,"Manually logged");
-}
-
-function saveWater(){
- let v=document.getElementById("waterValue").value;
- if(!v){notice("Enter an amount first");return}
- let u=document.getElementById("waterUnit").value;
- document.getElementById("waterValue").value="";
- saveEvent("💧 Water · "+v+" "+u,"Quick log");
-}
-
-function saveBP(){
- let s=document.getElementById("sys").value;
- let d=document.getElementById("dia").value;
- if(!s||!d){notice("Enter both numbers");return}
- document.getElementById("sys").value="";
- document.getElementById("dia").value="";
- saveEvent("❤️ Blood pressure · "+s+"/"+d,"Manual entry");
-}
-
-function saveMood(m){
- saveEvent("😊 Mood · "+m,"Manual entry");
-}
-
-function saveOther(){
- let v=document.getElementById("otherValue").value.trim();
- if(!v){notice("Describe the event first");return}
- document.getElementById("otherValue").value="";
- saveEvent("📝 Other · "+v,"Manual entry");
-}
-
-function render(){
- let t=document.getElementById("timeline");
- if(t){
-  t.innerHTML="";
-  events.slice().reverse().forEach(e=>{
-   t.innerHTML+=`<div class="event new"><div class="time">${e.time} · NEW</div><b>${e.title}</b><div class="muted">${e.sub}</div></div>`;
-  });
-  t.innerHTML+=`<div class="event"><div class="time">7:12 AM</div><b>🩸 Glucose · 124 mg/dL</b><div class="muted">Fasting</div></div>`;
- }
- let c=document.getElementById("eventCount");
- if(c)c.textContent=events.length+" saved event"+(events.length==1?"":"s");
-}
-
-function notice(text){
- let n=document.getElementById("notice");
- n.textContent=text;n.style.display="block";
- setTimeout(()=>n.style.display="none",1600);
-}
-
-function ask(q){
- let c=document.getElementById("chat");
- c.innerHTML+=`<div class="card soft"><b>You:</b><br>${q}</div>`;
- setTimeout(()=>{
-  c.innerHTML+=`<div class="card"><b>Betty 💜</b><p class="muted">In the full Diabetter app, I'll compare your authorized health data and logged events before identifying patterns. For now, this prototype confirms the conversation flow works.</p></div>`;
- },300);
-}
-
-render();
-</script>
-
-</div>
+ </script>
 </body>
 </html>
