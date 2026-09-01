@@ -1,719 +1,3108 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f7f7fb">
-<title>Diabetter V2</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f6f6fa">
+<title>Diabetter V2.1</title>
+
 <style>
-:root{--bg:#f6f6fa;--card:#fff;--text:#17171b;--muted:#777983;--line:#e5e5ea;--blue:#007aff;--purple:#7c5cff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Arial,sans-serif}
-.app{max-width:520px;margin:auto;min-height:100vh;padding-bottom:90px}header{padding:22px 18px 8px;display:flex;justify-content:space-between;align-items:center}.brand{font-size:27px;font-weight:800;letter-spacing:-1px}.brand span{background:linear-gradient(90deg,#ff3b30,#ff9500,#34c759,#00c7be,#007aff,#af52de);-webkit-background-clip:text;color:transparent}
-.icon{border:0;background:#fff;border-radius:50%;width:42px;height:42px;box-shadow:0 5px 20px #00000010}.screen{display:none;padding:12px 18px}.screen.active{display:block}.card{background:#ffffffea;border:1px solid #00000008;border-radius:22px;padding:18px;margin:12px 0;box-shadow:0 8px 28px #0000000a}
-h1{font-size:31px;letter-spacing:-1.1px;margin:4px 0 8px}h2{font-size:21px;margin:0 0 9px}.muted,p{color:var(--muted);line-height:1.45}.kicker{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
-.orb{width:64px;height:64px;border-radius:50%;background:conic-gradient(#ff3b30,#ff9500,#ffd60a,#34c759,#00c7be,#007aff,#5856d6,#af52de,#ff2d55,#ff3b30);box-shadow:0 0 0 7px #fff,0 7px 25px #6256c733}.betty{display:flex;gap:16px;align-items:center}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:#f2f2f7;border-radius:17px;padding:15px}.num{font-size:26px;font-weight:800}.event{display:flex;gap:12px;padding:13px 3px;border-bottom:1px solid var(--line)}.event:last-child{border:0}.event i{font-style:normal;background:#f1f1f6;border-radius:12px;width:38px;height:38px;display:grid;place-items:center}.eventmain{flex:1}.eventtitle{font-weight:750}.eventmeta{font-size:12px;color:var(--muted);margin-top:3px}
-nav{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);background:#fafafcf2;backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:7px 5px calc(7px + env(safe-area-inset-bottom));z-index:20}nav button{border:0;background:none;color:#777;font-size:11px;font-weight:700}nav button.active{color:var(--blue)}nav b{display:block;font-size:20px;margin-bottom:2px}
-.fab{position:fixed;right:max(20px,calc((100vw - 520px)/2 + 20px));bottom:88px;width:58px;height:58px;border:0;border-radius:50%;background:#17171b;color:white;font-size:28px;z-index:10;box-shadow:0 10px 25px #0003}
-.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}.option{border:0;background:#fff;border-radius:18px;padding:18px;text-align:left;font-weight:750;box-shadow:0 6px 22px #0000000b}.option span{display:block;font-size:25px;margin-bottom:6px}
-.form{display:none}.form.show{display:block}.field{margin:12px 0}.field label{display:block;font-size:12px;color:var(--muted);font-weight:800;margin-bottom:6px}.field input,.field textarea,.field select{width:100%;padding:14px;border:1px solid var(--line);border-radius:15px;background:#fff;font:inherit}.field textarea{min-height:85px}.btn{border:0;border-radius:15px;padding:13px 16px;background:#eeeef2;font-weight:750}.primary{background:#17171b;color:#fff;width:100%}.row{display:flex;gap:9px;align-items:center}.between{justify-content:space-between}.chips{display:flex;gap:7px;overflow:auto}.chip{border:0;white-space:nowrap;padding:9px 12px;border-radius:14px;background:#eeeef2;font-size:13px;font-weight:700}.chip.sel{background:#17171b;color:#fff}
-.sheet,.modal{position:fixed;inset:0;background:#0005;display:none;z-index:30;align-items:flex-end}.sheet.show,.modal.show{display:flex}.sheetbox,.modalbox{background:#f8f8fb;width:100%;max-width:520px;margin:auto;border-radius:28px 28px 0 0;padding:18px 18px 30px}.modal{align-items:center;padding:20px}.modalbox{border-radius:25px;max-height:85vh;overflow:auto}.toast{position:fixed;top:16px;left:50%;transform:translate(-50%,-15px);opacity:0;background:#17171b;color:#fff;padding:12px 16px;border-radius:15px;font-weight:750;z-index:50;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
-.chart{height:210px;background:repeating-linear-gradient(to bottom,transparent 0,transparent 24%,#eeeef2 25%,transparent 26%);border-radius:18px;position:relative;overflow:hidden}.target{position:absolute;left:0;right:0;top:34%;height:30%;background:#34c75918}.chart svg{width:100%;height:100%}.insight{border-left:4px solid var(--purple);padding-left:14px}.badge{font-size:11px;font-weight:800;text-transform:uppercase;color:#6c52c8}
-.empty{text-align:center;padding:28px;color:var(--muted)}
+:root {
+  --bg: #f6f6fa;
+  --card: #ffffff;
+  --text: #17171b;
+  --muted: #777983;
+  --line: #e5e5ea;
+  --blue: #007aff;
+  --purple: #7c5cff;
+  --green: #34c759;
+  --red: #ff3b30;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    Arial,
+    sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  width: 100%;
+  max-width: 520px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding-bottom: 95px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 18px 8px;
+}
+
+.brand {
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.brand span {
+  background: linear-gradient(
+    90deg,
+    #ff3b30,
+    #ff9500,
+    #34c759,
+    #00c7be,
+    #007aff,
+    #af52de
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.icon-button {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+
+.screen {
+  display: none;
+  padding: 12px 18px;
+}
+
+.screen.active {
+  display: block;
+}
+
+.card {
+  margin: 12px 0;
+  padding: 18px;
+  border: 1px solid rgba(0,0,0,.04);
+  border-radius: 22px;
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 8px 28px rgba(0,0,0,.06);
+}
+
+.hero {
+  padding: 22px;
+}
+
+h1 {
+  margin: 4px 0 8px;
+  font-size: 31px;
+  line-height: 1.05;
+  letter-spacing: -1.1px;
+}
+
+h2 {
+  margin: 0 0 9px;
+  font-size: 21px;
+  letter-spacing: -.4px;
+}
+
+p {
+  margin: 6px 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.kicker {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.betty {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.orb {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: conic-gradient(
+    #ff3b30,
+    #ff9500,
+    #ffd60a,
+    #34c759,
+    #00c7be,
+    #007aff,
+    #5856d6,
+    #af52de,
+    #ff2d55,
+    #ff3b30
+  );
+  box-shadow:
+    0 0 0 7px #ffffff,
+    0 7px 25px rgba(98,86,199,.25);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.stat {
+  padding: 15px;
+  border-radius: 17px;
+  background: #f2f2f7;
+}
+
+.stat small {
+  color: var(--muted);
+}
+
+.num {
+  margin: 2px 0;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.event {
+  display: flex;
+  gap: 12px;
+  padding: 13px 3px;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.event:last-child {
+  border-bottom: 0;
+}
+
+.event-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background: #f1f1f6;
+  font-style: normal;
+}
+
+.event-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-title {
+  font-weight: 750;
+  word-break: break-word;
+}
+
+.event-meta {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.empty {
+  padding: 28px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.option {
+  border: 0;
+  border-radius: 18px;
+  padding: 18px;
+  background: #ffffff;
+  text-align: left;
+  font-weight: 750;
+  box-shadow: 0 6px 22px rgba(0,0,0,.06);
+  cursor: pointer;
+}
+
+.option span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 25px;
+}
+
+.form {
+  display: none;
+}
+
+.form.show {
+  display: block;
+}
+
+.field {
+  margin: 12px 0;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: #ffffff;
+  outline: none;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: var(--blue);
+}
+
+.field textarea {
+  min-height: 85px;
+  resize: vertical;
+}
+
+.btn {
+  border: 0;
+  border-radius: 15px;
+  padding: 13px 16px;
+  background: #eeeef2;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.btn-primary {
+  width: 100%;
+  background: #17171b;
+  color: #ffffff;
+}
+
+.chips {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding-bottom: 3px;
+}
+
+.chip {
+  border: 0;
+  border-radius: 14px;
+  padding: 9px 12px;
+  background: #eeeef2;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chip.selected {
+  background: #17171b;
+  color: #ffffff;
+}
+
+nav {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  max-width: 520px;
+  margin: auto;
+  padding:
+    7px
+    5px
+    calc(7px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  background: rgba(250,250,252,.95);
+  backdrop-filter: blur(18px);
+}
+
+nav button {
+  border: 0;
+  background: transparent;
+  color: #777;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+nav button.active {
+  color: var(--blue);
+}
+
+nav b {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 20px;
+}
+
+.fab {
+  position: fixed;
+  right: max(20px, calc((100vw - 520px) / 2 + 20px));
+  bottom: 88px;
+  z-index: 10;
+  width: 58px;
+  height: 58px;
+  border: 0;
+  border-radius: 50%;
+  background: #17171b;
+  color: #ffffff;
+  font-size: 28px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.22);
+  cursor: pointer;
+}
+
+.sheet,
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: none;
+  align-items: flex-end;
+  background: rgba(0,0,0,.35);
+}
+
+.sheet.show,
+.modal.show {
+  display: flex;
+}
+
+.sheet-box,
+.modal-box {
+  width: 100%;
+  max-width: 520px;
+  margin: auto;
+  padding: 20px 18px 30px;
+  border-radius: 28px 28px 0 0;
+  background: #f8f8fb;
+}
+
+.modal {
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-box {
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: 25px;
+}
+
+.toast {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  z-index: 50;
+  transform: translate(-50%, -15px);
+  opacity: 0;
+  padding: 12px 16px;
+  border-radius: 15px;
+  background: #17171b;
+  color: #ffffff;
+  font-weight: 750;
+  transition: .2s;
+  pointer-events: none;
+}
+
+.toast.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+.chart {
+  position: relative;
+  height: 210px;
+  margin: 15px 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 24%,
+      #eeeef2 25%,
+      transparent 26%
+    );
+}
+
+.target-band {
+  position: absolute;
+  top: 34%;
+  right: 0;
+  left: 0;
+  height: 30%;
+  background: rgba(52,199,89,.10);
+}
+
+.chart svg {
+  width: 100%;
+  height: 100%;
+}
+
+.insight {
+  padding-left: 14px;
+  border-left: 4px solid var(--purple);
+}
+
+.badge {
+  color: #6c52c8;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
 </style>
-</head><body>
+</head>
+<body>
+
 <div class="app">
-<header><div class="brand"><span>Diabetter</span></div><button class="icon" onclick="settings()">⚙️</button></header>
 
+<header>
+  <div class="brand">
+    <span>Diabetter</span>
+  </div>
+
+  <button
+    class="icon-button"
+    onclick="openSettings()"
+    aria-label="Settings">
+    ⚙️
+  </button>
+</header>
+
+
+<!-- TODAY -->
 <section id="today" class="screen active">
-<div class="card"><div class="betty"><div class="orb"></div><div><div class="kicker">Betty · Today</div><h1 id="greet">Good evening</h1><p id="betty">Your timeline will build as you log things.</p></div></div></div>
-<div class="grid"><div class="stat"><small>Latest glucose</small><div class="num" id="latest">—</div><small>mg/dL</small></div><div class="stat"><small>Today's events</small><div class="num" id="count">0</div><small>saved locally</small></div></div>
-<div class="card"><div class="row between"><h2>Today's timeline</h2><span class="kicker" id="date"></span></div><div id="timeline"></div></div>
+
+  <div class="card hero">
+
+    <div class="betty">
+
+      <div class="orb"></div>
+
+      <div>
+        <div class="kicker">
+          Betty · Today
+        </div>
+
+        <h1 id="greeting">
+          Good evening
+        </h1>
+
+        <p id="bettyMessage">
+          Your timeline will build as you log things.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="grid">
+
+    <div class="stat">
+      <small>Latest glucose</small>
+      <div class="num" id="latestGlucose">—</div>
+      <small>mg/dL</small>
+    </div>
+
+    <div class="stat">
+      <small>Today's events</small>
+      <div class="num" id="todayCount">0</div>
+      <small>saved locally</small>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="row between">
+
+      <h2>
+        Today's timeline
+      </h2>
+
+      <span
+        class="kicker"
+        id="todayDate">
+      </span>
+
+    </div>
+
+    <div id="timeline"></div>
+
+  </div>
+
 </section>
 
+
+
+<!-- LOG -->
 <section id="log" class="screen">
-<div class="card"><div class="kicker">Log</div><h1>Add something</h1><p>Every saved entry persists in this browser.</p></div>
-<div class="options">
-<button class="option" onclick="form('glucose')"><span>🩸</span>Glucose</button>
-<button class="option" onclick="form('food')"><span>🍽️</span>Food</button>
-<button class="option" onclick="form('exercise')"><span>🏃</span>Exercise</button>
-<button class="option" onclick="form('water')"><span>💧</span>Water</button>
-<button class="option" onclick="form('bp')"><span>❤️</span>Blood pressure</button>
-<button class="option" onclick="form('mood')"><span>😊</span>Mood</button>
-<button class="option" onclick="form('note')"><span>📝</span>Health note</button>
-</div><div id="form" class="card form"></div>
+
+  <div class="card">
+
+    <div class="kicker">
+      Log
+    </div>
+
+    <h1>
+      Add something
+    </h1>
+
+    <p>
+      Quickly capture what happened.
+      Every saved entry persists in this browser.
+    </p>
+
+  </div>
+
+
+  <div class="options">
+
+    <button
+      class="option"
+      onclick="showLogForm('glucose')">
+
+      <span>🩸</span>
+      Glucose
+
+    </button>
+
+
+    <button
+      class="option"
+      onclick="showLogForm('food')">
+
+      <span>🍽️</span>
+      Food
+
+    </button>
+
+
+    <button
+      class="option"
+      onclick="showLogForm('exercise')">
+
+      <span>🏃</span>
+      Exercise
+
+    </button>
+
+
+    <button
+      class="option"
+      onclick="showLogForm('water')">
+
+      <span>💧</span>
+      Water
+
+    </button>
+
+
+    <button
+      class="option"
+      onclick="showLogForm('bp')">
+
+      <span>❤️</span>
+      Blood pressure
+
+    </button>
+
+
+    <button
+      class="option"
+      onclick="showLogForm('mood')">
+
+      <span>😊</span>
+      Mood
+
+    </button>
+
+
+    <button
+      class="option"
+      onclick="showLogForm('note')">
+
+      <span>📝</span>
+      Health note
+
+    </button>
+
+  </div>
+
+
+  <div
+    id="logForm"
+    class="card form">
+  </div>
+
 </section>
 
+
+
+<!-- TRENDS -->
 <section id="trends" class="screen">
-<div class="card"><div class="kicker">Trends</div><h1>7-day view</h1><div class="chips"><button class="chip sel">Glucose</button><button class="chip">Food</button><button class="chip">Exercise</button><button class="chip">Mood</button></div>
-<div class="chart"><div class="target"></div><svg id="svg" viewBox="0 0 500 210" preserveAspectRatio="none"></svg></div>
-<div class="grid"><div class="stat"><small>Average</small><div class="num" id="avg">—</div><small>mg/dL</small></div><div class="stat"><small>Readings</small><div class="num" id="reads">0</div><small>last 7 days</small></div></div></div>
-<div class="card"><h2>Compare with</h2><div class="chips"><button class="chip" onclick="compare('food')">🍽️ Food</button><button class="chip" onclick="compare('exercise')">🏃 Exercise</button><button class="chip" onclick="compare('sleep')">😴 Sleep</button><button class="chip" onclick="compare('mood')">😊 Mood</button></div><p id="compare">Choose a context to explore alongside glucose.</p></div>
+
+  <div class="card">
+
+    <div class="kicker">
+      Trends
+    </div>
+
+    <h1>
+      7-day view
+    </h1>
+
+
+    <div class="chips">
+
+      <button
+        class="chip selected"
+        onclick="setTrend('glucose', this)">
+        Glucose
+      </button>
+
+      <button
+        class="chip"
+        onclick="setTrend('food', this)">
+        Food
+      </button>
+
+      <button
+        class="chip"
+        onclick="setTrend('exercise', this)">
+        Exercise
+      </button>
+
+      <button
+        class="chip"
+        onclick="setTrend('mood', this)">
+        Mood
+      </button>
+
+    </div>
+
+
+    <div class="chart">
+
+      <div class="target-band"></div>
+
+      <svg
+        id="glucoseChart"
+        viewBox="0 0 500 210"
+        preserveAspectRatio="none">
+      </svg>
+
+    </div>
+
+
+    <div class="grid">
+
+      <div class="stat">
+
+        <small>
+          Average
+        </small>
+
+        <div
+          class="num"
+          id="trendAverage">
+          —
+        </div>
+
+        <small>
+          mg/dL
+        </small>
+
+      </div>
+
+
+      <div class="stat">
+
+        <small>
+          Readings
+        </small>
+
+        <div
+          class="num"
+          id="trendReadings">
+          0
+        </div>
+
+        <small>
+          last 7 days
+        </small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>
+      Compare with
+    </h2>
+
+    <div class="chips">
+
+      <button
+        class="chip"
+        onclick="compareContext('food')">
+        🍽️ Food
+      </button>
+
+      <button
+        class="chip"
+        onclick="compareContext('exercise')">
+        🏃 Exercise
+      </button>
+
+      <button
+        class="chip"
+        onclick="compareContext('sleep')">
+        😴 Sleep
+      </button>
+
+      <button
+        class="chip"
+        onclick="compareContext('mood')">
+        😊 Mood
+      </button>
+
+    </div>
+
+    <p id="comparisonMessage">
+      Choose a context to explore alongside glucose.
+    </p>
+
+  </div>
+
 </section>
 
-<section id="insights" class="screen"><div class="card"><div class="betty"><div class="orb"></div><div><div class="kicker">Betty's intelligence</div><h1>Insights</h1><p>Evidence strength matters.</p></div></div></div><div id="insightsList"></div></section>
 
-<section id="ask" class="screen"><div class="card"><div class="betty"><div class="orb"></div><div><div class="kicker">Ask Betty</div><h1>Hi, I'm Betty.</h1><p>Ask about your logged data.</p></div></div></div><div id="chat" class="card"><b>🦋 Betty:</b> Try “What is my average glucose?”</div><div class="row"><input id="question" class="field" style="margin:0;flex:1" placeholder="Ask Betty…" onkeydown="if(event.key==='Enter')ask()"><button class="btn" onclick="ask()">Send</button></div></section>
 
-<button class="fab" onclick="quick()">＋</button>
-<nav><button class="active" onclick="go('today',this)"><b>☀️</b>Today</button><button onclick="go('log',this)"><b>＋</b>Log</button><button onclick="go('trends',this)"><b>⌁</b>Trends</button><button onclick="go('insights',this)"><b>✦</b>Insights</button><button onclick="go('ask',this)"><b>🦋</b>Ask Betty</button></nav>
+<!-- INSIGHTS -->
+<section id="insights" class="screen">
+
+  <div class="card">
+
+    <div class="betty">
+
+      <div class="orb"></div>
+
+      <div>
+
+        <div class="kicker">
+          Betty's intelligence
+        </div>
+
+        <h1>
+          Insights
+        </h1>
+
+        <p>
+          Patterns are graded by evidence.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div id="insightsList"></div>
+
+</section>
+
+
+
+<!-- ASK BETTY -->
+<section id="ask" class="screen">
+
+  <div class="card">
+
+    <div class="betty">
+
+      <div class="orb"></div>
+
+      <div>
+
+        <div class="kicker">
+          Ask Betty
+        </div>
+
+        <h1>
+          Hi, I'm Betty.
+        </h1>
+
+        <p>
+          Ask me about your logged data,
+          trends, meals, exercise, goals,
+          or routines.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="chat"
+    class="card">
+
+    <b>🦋 Betty:</b>
+
+    <p>
+      Try asking:
+      “What is my average glucose?”
+    </p>
+
+  </div>
+
+
+  <div class="row">
+
+    <div
+      class="field"
+      style="margin:0;flex:1">
+
+      <input
+        id="bettyQuestion"
+        type="text"
+        placeholder="Ask Betty..."
+        autocomplete="off"
+        onkeydown="handleBettyKey(event)">
+
+    </div>
+
+
+    <button
+      class="btn"
+      onclick="askBetty()">
+
+      Send
+
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- FLOATING LOG BUTTON -->
+<button
+  class="fab"
+  onclick="openQuickLog()"
+  aria-label="Quick log">
+
+  ＋
+
+</button>
+
+
+
+<!-- BOTTOM NAVIGATION -->
+<nav>
+
+  <button
+    class="active"
+    onclick="navigate('today', this)">
+
+    <b>☀️</b>
+    Today
+
+  </button>
+
+
+  <button
+    onclick="navigate('log', this)">
+
+    <b>＋</b>
+    Log
+
+  </button>
+
+
+  <button
+    onclick="navigate('trends', this)">
+
+    <b>⌁</b>
+    Trends
+
+  </button>
+
+
+  <button
+    onclick="navigate('insights', this)">
+
+    <b>✦</b>
+    Insights
+
+  </button>
+
+
+  <button
+    onclick="navigate('ask', this)">
+
+    <b>🦋</b>
+    Ask Betty
+
+  </button>
+
+</nav>
+
 </div>
 
-<div id="sheet" class="sheet" onclick="if(event.target===this)closeSheet()"><div class="sheetbox"><h2>Quick Log</h2><div class="options"><button class="option" onclick="closeSheet();form('glucose')"><span>🩸</span>Glucose</button><button class="option" onclick="closeSheet();form('food')"><span>🍽️</span>Food</button><button class="option" onclick="closeSheet();form('exercise')"><span>🏃</span>Exercise</button><button class="option" onclick="closeSheet();form('water')"><span>💧</span>Water</button><button class="option" onclick="closeSheet();form('bp')"><span>❤️</span>Blood pressure</button><button class="option" onclick="closeSheet();form('mood')"><span>😊</span>Mood</button></div></div></div>
 
-<div id="modal" class="modal" onclick="if(event.target===this)closeModal()"><div id="modalbox" class="modalbox"></div></div>
 
-<div id="toast" class="toast"></div>
+<!-- QUICK LOG SHEET -->
+<div
+  id="quickLogSheet"
+  class="sheet"
+  onclick="closeQuickLogIfBackground(event)">
 
-<script>const KEY='diabetter_v2_events';
-let data=JSON.parse(localStorage.getItem(KEY)||'[]');
+  <div class="sheet-box">
 
-const meta={
-  glucose:['🩸','Glucose'],
-  food:['🍽️','Food'],
-  exercise:['🏃','Exercise'],
-  water:['💧','Water'],
-  bp:['❤️','Blood pressure'],
-  mood:['😊','Mood'],
-  note:['📝','Health note']
+    <h2>
+      Quick Log
+    </h2>
+
+    <div class="options">
+
+      <button
+        class="option"
+        onclick="quickLog('glucose')">
+        <span>🩸</span>
+        Glucose
+      </button>
+
+      <button
+        class="option"
+        onclick="quickLog('food')">
+        <span>🍽️</span>
+        Food
+      </button>
+
+      <button
+        class="option"
+        onclick="quickLog('exercise')">
+        <span>🏃</span>
+        Exercise
+      </button>
+
+      <button
+        class="option"
+        onclick="quickLog('water')">
+        <span>💧</span>
+        Water
+      </button>
+
+      <button
+        class="option"
+        onclick="quickLog('bp')">
+        <span>❤️</span>
+        Blood pressure
+      </button>
+
+      <button
+        class="option"
+        onclick="quickLog('mood')">
+        <span>😊</span>
+        Mood
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- MODAL -->
+<div
+  id="modal"
+  class="modal"
+  onclick="closeModalIfBackground(event)">
+
+  <div
+    id="modalBox"
+    class="modal-box">
+  </div>
+
+</div>
+
+
+
+<!-- TOAST -->
+<div
+  id="toast"
+  class="toast">
+</div>
+
+
+
+<script>
+  const STORAGE_KEY = "diabetter_v21_events";
+
+let events = [];
+
+const TYPES = {
+  glucose: {
+    icon: "🩸",
+    name: "Glucose"
+  },
+  food: {
+    icon: "🍽️",
+    name: "Food"
+  },
+  exercise: {
+    icon: "🏃",
+    name: "Exercise"
+  },
+  water: {
+    icon: "💧",
+    name: "Water"
+  },
+  bp: {
+    icon: "❤️",
+    name: "Blood pressure"
+  },
+  mood: {
+    icon: "😊",
+    name: "Mood"
+  },
+  note: {
+    icon: "📝",
+    name: "Health note"
+  }
 };
 
-function save(){
-  localStorage.setItem(KEY,JSON.stringify(data));
+
+/* =========================
+   STORAGE
+========================= */
+
+function loadEvents() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    if (saved) {
+      events = JSON.parse(saved);
+    } else {
+      events = [];
+    }
+
+  } catch (error) {
+    console.error("Could not load events:", error);
+    events = [];
+  }
 }
 
-function id(){
-  return Date.now().toString(36)+Math.random().toString(36).slice(2);
+
+function saveEvents() {
+  try {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(events)
+    );
+
+  } catch (error) {
+    console.error("Could not save events:", error);
+    showToast("Could not save data");
+  }
 }
 
-function esc(s){
-  return String(s??'').replace(/[&<>"']/g,c=>({
-    '&':'&amp;',
-    '<':'&lt;',
-    '>':'&gt;',
-    '"':'&quot;',
-    "'":'&#39;'
-  }[c]));
+
+/* =========================
+   UTILITIES
+========================= */
+
+function createId() {
+  return Date.now().toString(36) +
+    Math.random().toString(36).substring(2);
 }
 
-function go(id,btn){
-  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
 
-  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
-  if(btn)btn.classList.add('active');
+function escapeHTML(value) {
 
-  if(id==='today')renderToday();
-  if(id==='trends')renderTrends();
-  if(id==='insights')renderInsights();
-
-  scrollTo(0,0);
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
-function toast(t){
-  let x=document.getElementById('toast');
-  x.textContent=t;
-  x.classList.add('show');
-  setTimeout(()=>x.classList.remove('show'),1800);
+
+function getTodayEvents() {
+
+  const today = new Date().toDateString();
+
+  return events
+    .filter(function(event) {
+      return new Date(event.time).toDateString() === today;
+    })
+    .sort(function(a, b) {
+      return new Date(b.time) - new Date(a.time);
+    });
 }
 
-function today(){
-  return data
-    .filter(e=>new Date(e.time).toDateString()===new Date().toDateString())
-    .sort((a,b)=>new Date(b.time)-new Date(a.time));
+
+function getGlucoseEvents(days) {
+
+  const cutoff =
+    Date.now() -
+    days * 24 * 60 * 60 * 1000;
+
+  return events
+    .filter(function(event) {
+
+      return (
+        event.type === "glucose" &&
+        event.value !== null &&
+        event.value !== undefined &&
+        new Date(event.time).getTime() >= cutoff
+      );
+
+    })
+    .sort(function(a, b) {
+      return new Date(a.time) - new Date(b.time);
+    });
 }
 
-function renderToday(){
-  let d=today();
-  let g=d.find(e=>e.type==='glucose');
 
-  document.getElementById('count').textContent=d.length;
-  document.getElementById('latest').textContent=g?.value??'—';
+function showToast(message) {
 
-  document.getElementById('date').textContent=
-    new Date().toLocaleDateString([],{month:'short',day:'numeric'});
+  const toast =
+    document.getElementById("toast");
 
-  document.getElementById('timeline').innerHTML=d.length
-    ?d.map(e=>`
-      <div class="event" onclick="details('${e.id}')">
-        <i>${meta[e.type][0]}</i>
-        <div class="eventmain">
-          <div class="eventtitle">
-            ${esc(e.title||meta[e.type][1])}
-            ${e.value!=null?' · '+esc(e.value)+' '+esc(e.unit||''):''}
+  if (!toast) return;
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  setTimeout(function() {
+    toast.classList.remove("show");
+  }, 1800);
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function navigate(screenId, button) {
+
+  const screens =
+    document.querySelectorAll(".screen");
+
+  screens.forEach(function(screen) {
+    screen.classList.remove("active");
+  });
+
+
+  const target =
+    document.getElementById(screenId);
+
+  if (target) {
+    target.classList.add("active");
+  }
+
+
+  const navButtons =
+    document.querySelectorAll("nav button");
+
+  navButtons.forEach(function(navButton) {
+    navButton.classList.remove("active");
+  });
+
+
+  if (button) {
+    button.classList.add("active");
+  }
+
+
+  if (screenId === "today") {
+    renderToday();
+  }
+
+  if (screenId === "trends") {
+    renderTrends();
+  }
+
+  if (screenId === "insights") {
+    renderInsights();
+  }
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+
+/* =========================
+   TODAY
+========================= */
+
+function renderToday() {
+
+  const todayEvents =
+    getTodayEvents();
+
+
+  const latestGlucose =
+    todayEvents.find(function(event) {
+      return event.type === "glucose";
+    });
+
+
+  const countElement =
+    document.getElementById("todayCount");
+
+  const latestElement =
+    document.getElementById("latestGlucose");
+
+  const dateElement =
+    document.getElementById("todayDate");
+
+  const timelineElement =
+    document.getElementById("timeline");
+
+  const messageElement =
+    document.getElementById("bettyMessage");
+
+
+  if (countElement) {
+    countElement.textContent =
+      todayEvents.length;
+  }
+
+
+  if (latestElement) {
+
+    latestElement.textContent =
+      latestGlucose
+        ? latestGlucose.value
+        : "—";
+  }
+
+
+  if (dateElement) {
+
+    dateElement.textContent =
+      new Date().toLocaleDateString(
+        [],
+        {
+          month: "short",
+          day: "numeric"
+        }
+      );
+  }
+
+
+  if (!timelineElement) {
+    return;
+  }
+
+
+  if (todayEvents.length === 0) {
+
+    timelineElement.innerHTML = `
+      <div class="empty">
+        Nothing logged yet today.
+        <br>
+        Tap ＋ to add your first event.
+      </div>
+    `;
+
+  } else {
+
+    timelineElement.innerHTML =
+      todayEvents.map(function(event) {
+
+        const type =
+          TYPES[event.type] || TYPES.note;
+
+
+        const time =
+          new Date(event.time)
+            .toLocaleTimeString(
+              [],
+              {
+                hour: "numeric",
+                minute: "2-digit"
+              }
+            );
+
+
+        let title =
+          event.title || type.name;
+
+
+        if (
+          event.value !== null &&
+          event.value !== undefined
+        ) {
+
+          title +=
+            " · " +
+            escapeHTML(event.value) +
+            " " +
+            escapeHTML(event.unit || "");
+        }
+
+
+        return `
+          <div
+            class="event"
+            onclick="openEventDetails('${event.id}')">
+
+            <i class="event-icon">
+              ${type.icon}
+            </i>
+
+            <div class="event-main">
+
+              <div class="event-title">
+                ${escapeHTML(title)}
+              </div>
+
+              <div class="event-meta">
+                ${time}
+                ·
+                ${escapeHTML(
+                  event.context || "Manual"
+                )}
+              </div>
+
+            </div>
+
           </div>
-          <div class="eventmeta">
-            ${new Date(e.time).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}
-            · ${esc(e.context||e.source||'Manual')}
-          </div>
-        </div>
-      </div>
-    `).join('')
-    :'<div class="empty">Nothing logged yet today.<br>Tap ＋ to add your first event.</div>';
+        `;
 
-  document.getElementById('betty').textContent=
-    g
-      ?'Your latest glucose is '+g.value+' mg/dL. I’ll keep the bigger picture in view.'
-      :'Your timeline will build as you log things.';
+      }).join("");
+  }
+
+
+  if (messageElement) {
+
+    if (latestGlucose) {
+
+      messageElement.textContent =
+        "Your latest glucose is " +
+        latestGlucose.value +
+        " mg/dL. I’ll keep the bigger picture in view.";
+
+    } else {
+
+      messageElement.textContent =
+        "Your timeline will build as you log things.";
+    }
+  }
 }
 
-function form(type){
-  go('log',document.querySelectorAll('nav button')[1]);
 
-  let f='';
+/* =========================
+   LOGGING
+========================= */
 
-  if(type==='glucose')
-    f=`
-      <div class="field">
-        <label>GLUCOSE · mg/dL</label>
-        <input id="v" type="number" inputmode="numeric" placeholder="132" autofocus>
+function showLogForm(type) {
+
+  const form =
+    document.getElementById("logForm");
+
+  if (!form) return;
+
+
+  let html = "";
+
+
+  if (type === "glucose") {
+
+    html = `
+      <div class="row between">
+        <h2>🩸 Glucose</h2>
+
+        <button
+          class="btn"
+          onclick="hideLogForm()">
+          Cancel
+        </button>
       </div>
+
       <div class="field">
-        <label>CONTEXT</label>
-        <div class="chips" id="ctx">
-          <button class="chip sel" onclick="pick(this)">Fasting</button>
-          <button class="chip" onclick="pick(this)">Before meal</button>
-          <button class="chip" onclick="pick(this)">After meal</button>
-          <button class="chip" onclick="pick(this)">Bedtime</button>
+
+        <label>
+          GLUCOSE · mg/dL
+        </label>
+
+        <input
+          id="glucoseValue"
+          type="number"
+          inputmode="numeric"
+          placeholder="132">
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          CONTEXT
+        </label>
+
+        <div
+          class="chips"
+          id="glucoseContext">
+
+          <button
+            class="chip selected"
+            onclick="selectChip(this)">
+            Fasting
+          </button>
+
+          <button
+            class="chip"
+            onclick="selectChip(this)">
+            Before meal
+          </button>
+
+          <button
+            class="chip"
+            onclick="selectChip(this)">
+            After meal
+          </button>
+
+          <button
+            class="chip"
+            onclick="selectChip(this)">
+            Bedtime
+          </button>
+
         </div>
-      </div>`;
 
-  if(type==='food')
-    f=`
-      <div class="field">
-        <label>MEAL</label>
-        <input id="t" placeholder="Chicken, rice & broccoli">
       </div>
+
+
+      <button
+        class="btn btn-primary"
+        onclick="saveGlucose()">
+
+        Save glucose
+
+      </button>
+    `;
+  }
+
+
+  if (type === "food") {
+
+    html = `
+      <div class="row between">
+        <h2>🍽️ Food</h2>
+
+        <button
+          class="btn"
+          onclick="hideLogForm()">
+          Cancel
+        </button>
+      </div>
+
+
       <div class="field">
-        <label>CONTEXT</label>
-        <select id="c">
+
+        <label>
+          MEAL
+        </label>
+
+        <input
+          id="foodName"
+          type="text"
+          placeholder="Chicken, rice & broccoli">
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          CONTEXT
+        </label>
+
+        <select id="foodContext">
+
           <option>Breakfast</option>
           <option>Lunch</option>
           <option>Dinner</option>
           <option>Snack</option>
+
         </select>
-      </div>`;
 
-  if(type==='exercise')
-    f=`
-      <div class="field">
-        <label>ACTIVITY</label>
-        <input id="t" placeholder="Walk">
       </div>
-      <div class="field">
-        <label>MINUTES</label>
-        <input id="v" type="number" inputmode="numeric" placeholder="20">
-      </div>`;
 
-  if(type==='water')
-    f=`
-      <div class="field">
-        <label>WATER · OUNCES</label>
-        <input id="v" type="number" inputmode="decimal" placeholder="16">
-      </div>`;
 
-  if(type==='bp')
-    f=`
-      <div class="field">
-        <label>BLOOD PRESSURE</label>
-        <input id="t" inputmode="numeric" placeholder="120/80">
-      </div>`;
+      <button
+        class="btn btn-primary"
+        onclick="saveFood()">
 
-  if(type==='mood')
-    f=`
+        Save food
+
+      </button>
+    `;
+  }
+
+
+  if (type === "exercise") {
+
+    html = `
+      <div class="row between">
+        <h2>🏃 Exercise</h2>
+
+        <button
+          class="btn"
+          onclick="hideLogForm()">
+          Cancel
+        </button>
+      </div>
+
+
       <div class="field">
-        <label>MOOD</label>
-        <div class="chips" id="ctx">
-          <button class="chip sel" onclick="pick(this)">Great</button>
-          <button class="chip" onclick="pick(this)">Good</button>
-          <button class="chip" onclick="pick(this)">Okay</button>
-          <button class="chip" onclick="pick(this)">Not great</button>
-          <button class="chip" onclick="pick(this)">Rough</button>
+
+        <label>
+          ACTIVITY
+        </label>
+
+        <input
+          id="exerciseName"
+          type="text"
+          placeholder="Walking">
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          MINUTES
+        </label>
+
+        <input
+          id="exerciseMinutes"
+          type="number"
+          inputmode="numeric"
+          placeholder="20">
+
+      </div>
+
+
+      <button
+        class="btn btn-primary"
+        onclick="saveExercise()">
+
+        Save exercise
+
+      </button>
+    `;
+  }
+
+
+  if (type === "water") {
+
+    html = `
+      <div class="row between">
+        <h2>💧 Water</h2>
+
+        <button
+          class="btn"
+          onclick="hideLogForm()">
+          Cancel
+        </button>
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          WATER · OUNCES
+        </label>
+
+        <input
+          id="waterAmount"
+          type="number"
+          inputmode="decimal"
+          placeholder="16">
+
+      </div>
+
+
+      <button
+        class="btn btn-primary"
+        onclick="saveWater()">
+
+        Save water
+
+      </button>
+    `;
+  }
+
+
+  if (type === "bp") {
+
+    html = `
+      <div class="row between">
+        <h2>❤️ Blood pressure</h2>
+
+        <button
+          class="btn"
+          onclick="hideLogForm()">
+          Cancel
+        </button>
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          BLOOD PRESSURE
+        </label>
+
+        <input
+          id="bloodPressure"
+          type="text"
+          inputmode="numeric"
+          placeholder="120/80">
+
+      </div>
+
+
+      <button
+        class="btn btn-primary"
+        onclick="saveBloodPressure()">
+
+        Save blood pressure
+
+      </button>
+    `;
+  }
+
+
+  if (type === "mood") {
+
+    html = `
+      <div class="row between">
+        <h2>😊 Mood</h2>
+
+        <button
+          class="btn"
+          onclick="hideLogForm()">
+          Cancel
+        </button>
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          MOOD
+        </label>
+
+        <div
+          class="chips"
+          id="moodContext">
+
+          <button
+            class="chip selected"
+            onclick="selectChip(this)">
+            Great
+          </button>
+
+          <button
+            class="chip"
+            onclick="selectChip(this)">
+            Good
+          </button>
+
+          <button
+            class="chip"
+            onclick="selectChip(this)">
+            Okay
+          </button>
+
+          <button
+            class="chip"
+            onclick="selectChip(this)">
+            Not great
+          </button>
+
+          <button
+            class="chip"
+            onclick="selectChip(this)">
+            Rough
+          </button>
+
         </div>
+
       </div>
-      <div class="field">
-        <label>OPTIONAL REFLECTION</label>
-        <textarea id="n"></textarea>
-      </div>`;
 
-  if(type==='note')
-    f=`
+
       <div class="field">
-        <label>SYMPTOMS</label>
-        <input id="t" placeholder="Optional">
+
+        <label>
+          OPTIONAL REFLECTION
+        </label>
+
+        <textarea
+          id="moodNote"
+          placeholder="How are you feeling?">
+        </textarea>
+
       </div>
-      <div class="field">
-        <label>ENERGY</label>
-        <select id="c">
-          <option>Low</option>
-          <option>Normal</option>
-          <option>High</option>
-        </select>
+
+
+      <button
+        class="btn btn-primary"
+        onclick="saveMood()">
+
+        Save mood
+
+      </button>
+    `;
+  }
+
+
+  if (type === "note") {
+
+    html = `
+      <div class="row between">
+        <h2>📝 Health note</h2>
+
+        <button
+          class="btn"
+          onclick="hideLogForm()">
+          Cancel
+        </button>
       </div>
+
+
       <div class="field">
-        <label>ANYTHING ELSE BETTY SHOULD KNOW?</label>
-        <textarea id="n"></textarea>
-      </div>`;
 
-  document.getElementById('form').innerHTML=`
-    <div class="row between">
-      <h2>${meta[type][0]} ${meta[type][1]}</h2>
-      <button class="btn" onclick="cancel()">Cancel</button>
-    </div>
-    ${f}
-    <button class="btn primary" onclick="commit('${type}')">Save</button>
-  `;
+        <label>
+          NOTE
+        </label>
 
-  document.getElementById('form').classList.add('show');
+        <textarea
+          id="healthNote"
+          placeholder="Anything Betty should know?">
+        </textarea>
 
-  document.getElementById('form').scrollIntoView({
-    behavior:'smooth'
+      </div>
+
+
+      <button
+        class="btn btn-primary"
+        onclick="saveHealthNote()">
+
+        Save note
+
+      </button>
+    `;
+  }
+
+
+  form.innerHTML = html;
+
+  form.classList.add("show");
+
+
+  form.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
   });
+
+
+  setTimeout(function() {
+
+    const firstInput =
+      form.querySelector("input");
+
+    if (firstInput) {
+      firstInput.focus();
+    }
+
+  }, 100);
 }
 
-function pick(x){
-  x.parentElement
-    .querySelectorAll('.chip')
-    .forEach(b=>b.classList.remove('sel'));
 
-  x.classList.add('sel');
+function hideLogForm() {
+
+  const form =
+    document.getElementById("logForm");
+
+  if (!form) return;
+
+  form.classList.remove("show");
+
+  form.innerHTML = "";
 }
 
-function selected(){
-  return document.querySelector('#ctx .sel')?.textContent||'';
+
+function selectChip(button) {
+
+  const parent =
+    button.parentElement;
+
+  if (!parent) return;
+
+  parent
+    .querySelectorAll(".chip")
+    .forEach(function(chip) {
+      chip.classList.remove("selected");
+    });
+
+  button.classList.add("selected");
 }
 
-function commit(type){
 
-  let e={
-    id:id(),
-    type,
-    time:new Date().toISOString(),
-    source:'Manual'
-  };
+function getSelectedChip(containerId) {
 
-  if(type==='glucose'){
-    if(!v.value){
-      return toast('Enter a glucose value');
-    }
+  const container =
+    document.getElementById(containerId);
 
-    e.value=Number(v.value);
-    e.unit='mg/dL';
-    e.context=selected()||'Fasting';
+  if (!container) return "";
+
+  const selected =
+    container.querySelector(".chip.selected");
+
+  return selected
+    ? selected.textContent.trim()
+    : "";
+}
+
+
+/* =========================
+   SAVE FUNCTIONS
+========================= */
+
+function saveGlucose() {
+
+  const input =
+    document.getElementById("glucoseValue");
+
+  if (!input || !input.value) {
+
+    showToast("Enter a glucose value");
+    return;
   }
 
-  else if(type==='food'){
-    if(!t.value.trim()){
-      return toast('Enter a meal');
-    }
 
-    e.title=t.value.trim();
-    e.context=c.value;
+  const value =
+    Number(input.value);
+
+
+  if (!Number.isFinite(value)) {
+
+    showToast("Enter a valid glucose value");
+    return;
   }
 
-  else if(type==='exercise'){
-    if(!t.value.trim()){
-      return toast('Enter an activity');
-    }
 
-    e.title=t.value.trim();
-    e.value=Number(v.value||0);
-    e.unit='min';
+  events.push({
+
+    id: createId(),
+
+    type: "glucose",
+
+    value: value,
+
+    unit: "mg/dL",
+
+    context:
+      getSelectedChip("glucoseContext") ||
+      "Fasting",
+
+    time:
+      new Date().toISOString(),
+
+    source: "Manual"
+
+  });
+
+
+  saveEvents();
+
+  hideLogForm();
+
+  showToast("Glucose saved");
+
+  renderToday();
+  renderTrends();
+  renderInsights();
+}
+
+
+function saveFood() {
+
+  const input =
+    document.getElementById("foodName");
+
+  const context =
+    document.getElementById("foodContext");
+
+
+  if (!input || !input.value.trim()) {
+
+    showToast("Enter a meal");
+    return;
   }
 
-  else if(type==='water'){
-    if(!v.value){
-      return toast('Enter water');
-    }
 
-    e.title='Water';
-    e.value=Number(v.value);
-    e.unit='oz';
+  events.push({
+
+    id: createId(),
+
+    type: "food",
+
+    title:
+      input.value.trim(),
+
+    context:
+      context
+        ? context.value
+        : "Meal",
+
+    time:
+      new Date().toISOString(),
+
+    source: "Manual"
+
+  });
+
+
+  saveEvents();
+
+  hideLogForm();
+
+  showToast("Food saved");
+
+  renderToday();
+}
+
+
+function saveExercise() {
+
+  const name =
+    document.getElementById("exerciseName");
+
+  const minutes =
+    document.getElementById("exerciseMinutes");
+
+
+  if (!name || !name.value.trim()) {
+
+    showToast("Enter an activity");
+    return;
   }
 
-  else if(type==='bp'){
-    if(!t.value.trim()){
-      return toast('Enter blood pressure');
-    }
 
-    e.title=t.value.trim();
+  events.push({
+
+    id: createId(),
+
+    type: "exercise",
+
+    title:
+      name.value.trim(),
+
+    value:
+      Number(minutes.value || 0),
+
+    unit: "min",
+
+    time:
+      new Date().toISOString(),
+
+    source: "Manual"
+
+  });
+
+
+  saveEvents();
+
+  hideLogForm();
+
+  showToast("Exercise saved");
+
+  renderToday();
+}
+
+
+function saveWater() {
+
+  const input =
+    document.getElementById("waterAmount");
+
+
+  if (!input || !input.value) {
+
+    showToast("Enter water amount");
+    return;
   }
 
-  else if(type==='mood'){
-    e.title=selected()||'Good';
-    e.note=n.value.trim();
-    e.context='Mood';
+
+  events.push({
+
+    id: createId(),
+
+    type: "water",
+
+    title: "Water",
+
+    value:
+      Number(input.value),
+
+    unit: "oz",
+
+    time:
+      new Date().toISOString(),
+
+    source: "Manual"
+
+  });
+
+
+  saveEvents();
+
+  hideLogForm();
+
+  showToast("Water saved");
+
+  renderToday();
+}
+
+
+function saveBloodPressure() {
+
+  const input =
+    document.getElementById("bloodPressure");
+
+
+  if (!input || !input.value.trim()) {
+
+    showToast("Enter blood pressure");
+    return;
   }
 
-  else{
-    e.title=t.value.trim()||'Health note';
-    e.context=c.value;
-    e.note=n.value.trim();
+
+  events.push({
+
+    id: createId(),
+
+    type: "bp",
+
+    title:
+      input.value.trim(),
+
+    time:
+      new Date().toISOString(),
+
+    source: "Manual"
+
+  });
+
+
+  saveEvents();
+
+  hideLogForm();
+
+  showToast("Blood pressure saved");
+
+  renderToday();
+}
+
+
+function saveMood() {
+
+  const note =
+    document.getElementById("moodNote");
+
+
+  events.push({
+
+    id: createId(),
+
+    type: "mood",
+
+    title:
+      getSelectedChip("moodContext") ||
+      "Good",
+
+    note:
+      note
+        ? note.value.trim()
+        : "",
+
+    context: "Mood",
+
+    time:
+      new Date().toISOString(),
+
+    source: "Manual"
+
+  });
+
+
+  saveEvents();
+
+  hideLogForm();
+
+  showToast("Mood saved");
+
+  renderToday();
+}
+
+
+function saveHealthNote() {
+
+  const note =
+    document.getElementById("healthNote");
+
+
+  if (!note || !note.value.trim()) {
+
+    showToast("Enter a note");
+    return;
   }
 
-  data.push(e);
-  save();
 
-  cancel();
+  events.push({
 
-  toast(meta[type][1]+' saved');
+    id: createId(),
 
-  go(
-    'today',
-    document.querySelector('nav button')
+    type: "note",
+
+    title: "Health note",
+
+    note:
+      note.value.trim(),
+
+    time:
+      new Date().toISOString(),
+
+    source: "Manual"
+
+  });
+
+
+  saveEvents();
+
+  hideLogForm();
+
+  showToast("Note saved");
+
+  renderToday();
+}
+
+
+/* =========================
+   QUICK LOG
+========================= */
+
+function openQuickLog() {
+
+  const sheet =
+    document.getElementById(
+      "quickLogSheet"
+    );
+
+  if (!sheet) return;
+
+  sheet.classList.add("show");
+}
+
+
+function closeQuickLog() {
+
+  const sheet =
+    document.getElementById(
+      "quickLogSheet"
+    );
+
+  if (!sheet) return;
+
+  sheet.classList.remove("show");
+}
+
+
+function closeQuickLogIfBackground(event) {
+
+  if (
+    event.target &&
+    event.target.id === "quickLogSheet"
+  ) {
+    closeQuickLog();
+  }
+}
+
+
+function quickLog(type) {
+
+  closeQuickLog();
+
+  navigate(
+    "log",
+    document.querySelectorAll("nav button")[1]
   );
 
-  setTimeout(renderToday,50);
+  showLogForm(type);
 }
 
-function cancel(){
-  document.getElementById('form').classList.remove('show');
-  document.getElementById('form').innerHTML='';
-}
 
-function quick(){
-  document.getElementById('sheet').classList.add('show');
-}
+/* =========================
+   EVENT DETAILS
+========================= */
 
-function closeSheet(){
-  document.getElementById('sheet').classList.remove('show');
-}
+function openEventDetails(id) {
 
-function details(id){
+  const event =
+    events.find(function(item) {
+      return item.id === id;
+    });
 
-  let e=data.find(x=>x.id===id);
 
-  document.getElementById('modalbox').innerHTML=`
-    <div class="kicker">${meta[e.type][1]}</div>
+  if (!event) return;
+
+
+  const type =
+    TYPES[event.type] || TYPES.note;
+
+
+  const modal =
+    document.getElementById("modal");
+
+  const box =
+    document.getElementById("modalBox");
+
+
+  if (!modal || !box) return;
+
+
+  let details = "";
+
+
+  if (event.value !== undefined) {
+
+    details += `
+      <div class="stat">
+        <small>Value</small>
+
+        <div class="num">
+          ${escapeHTML(event.value)}
+        </div>
+
+        <small>
+          ${escapeHTML(event.unit || "")}
+        </small>
+      </div>
+    `;
+  }
+
+
+  if (event.context) {
+
+    details += `
+      <div class="card">
+        <b>Context</b>
+        <p>
+          ${escapeHTML(event.context)}
+        </p>
+      </div>
+    `;
+  }
+
+
+  if (event.note) {
+
+    details += `
+      <div class="card">
+        <b>Note</b>
+        <p>
+          ${escapeHTML(event.note)}
+        </p>
+      </div>
+    `;
+  }
+
+
+  box.innerHTML = `
+
+    <div class="kicker">
+      ${escapeHTML(type.name)}
+    </div>
 
     <h2>
-      ${meta[e.type][0]}
-      ${esc(e.title||meta[e.type][1])}
-      ${e.value!=null
-        ?' · '+esc(e.value)+' '+esc(e.unit||'')
-        :''
-      }
+      ${type.icon}
+      ${escapeHTML(event.title || type.name)}
     </h2>
 
     <p>
-      ${new Date(e.time).toLocaleString()}
-      · ${esc(e.context||'Manual')}
+      ${new Date(event.time).toLocaleString()}
     </p>
 
-    ${e.note
-      ?'<div class="card">'+esc(e.note)+'</div>'
-      :''
-    }
+    ${details}
 
     <div class="row">
-      <button class="btn" onclick="edit('${e.id}')">
-        Edit
-      </button>
 
-      <button class="btn" onclick="del('${e.id}')">
+      <button
+        class="btn"
+        onclick="deleteEvent('${event.id}')">
+
         Delete
+
       </button>
 
-      <button class="btn" onclick="closeModal()">
+      <button
+        class="btn"
+        onclick="closeModal()">
+
         Close
+
       </button>
+
     </div>
+
   `;
 
-  document.getElementById('modal').classList.add('show');
+
+  modal.classList.add("show");
 }
 
-function closeModal(){
-  document.getElementById('modal').classList.remove('show');
+
+function closeModal() {
+
+  const modal =
+    document.getElementById("modal");
+
+  if (!modal) return;
+
+  modal.classList.remove("show");
 }
 
-function edit(id){
 
-  let e=data.find(x=>x.id===id);
+function closeModalIfBackground(event) {
 
-  document.getElementById('modalbox').innerHTML=`
-    <h2>Edit entry</h2>
-
-    <div class="field">
-      <label>VALUE / TITLE</label>
-      <input id="ev" value="${esc(e.value??e.title)}">
-    </div>
-
-    <div class="field">
-      <label>CONTEXT</label>
-      <input id="ec" value="${esc(e.context||'')}">
-    </div>
-
-    <div class="row">
-      <button class="btn" onclick="commitEdit('${id}')">
-        Save
-      </button>
-
-      <button class="btn" onclick="closeModal()">
-        Cancel
-      </button>
-    </div>
-  `;
+  if (
+    event.target &&
+    event.target.id === "modal"
+  ) {
+    closeModal();
+  }
 }
 
-function commitEdit(id){
 
-  let e=data.find(x=>x.id===id);
-  let x=document.getElementById('ev').value;
+function deleteEvent(id) {
 
-  if(e.value!=null){
-    e.value=Number(x);
-  }else{
-    e.title=x;
+  const confirmed =
+    window.confirm(
+      "Delete this entry?"
+    );
+
+
+  if (!confirmed) return;
+
+
+  events =
+    events.filter(function(event) {
+      return event.id !== id;
+    });
+
+
+  saveEvents();
+
+  closeModal();
+
+  renderToday();
+  renderTrends();
+  renderInsights();
+
+  showToast("Entry deleted");
+}
+
+
+/* =========================
+   TRENDS
+========================= */
+
+function renderTrends() {
+
+  const glucose =
+    getGlucoseEvents(7);
+
+
+  const values =
+    glucose.map(function(event) {
+      return Number(event.value);
+    });
+
+
+  const average =
+    values.length
+      ? Math.round(
+          values.reduce(
+            function(total, value) {
+              return total + value;
+            },
+            0
+          ) / values.length
+        )
+      : null;
+
+
+  const averageElement =
+    document.getElementById(
+      "trendAverage"
+    );
+
+  const readingsElement =
+    document.getElementById(
+      "trendReadings"
+    );
+
+
+  if (averageElement) {
+    averageElement.textContent =
+      average === null
+        ? "—"
+        : average;
   }
 
-  e.context=document.getElementById('ec').value;
 
-  save();
-  closeModal();
-  renderToday();
-  toast('Entry updated');
+  if (readingsElement) {
+    readingsElement.textContent =
+      values.length;
+  }
+
+
+  drawGlucoseChart(glucose);
 }
 
-let undo=null;
 
-function del(id){
+function drawGlucoseChart(readings) {
 
-  if(!confirm('Delete this entry?')){
+  const svg =
+    document.getElementById(
+      "glucoseChart"
+    );
+
+
+  if (!svg) return;
+
+
+  svg.innerHTML = "";
+
+
+  if (readings.length < 2) {
     return;
   }
 
-  undo=data.find(x=>x.id===id);
 
-  data=data.filter(x=>x.id!==id);
+  const values =
+    readings.map(function(event) {
+      return Number(event.value);
+    });
 
-  save();
-  closeModal();
-  renderToday();
 
-  let x=document.getElementById('toast');
+  let min =
+    Math.min.apply(null, values);
 
-  x.textContent='Entry deleted · Undo';
-  x.classList.add('show');
+  let max =
+    Math.max.apply(null, values);
 
-  x.onclick=()=>{
-    if(undo){
-      data.push(undo);
-      save();
-      undo=null;
-      renderToday();
-      toast('Entry restored');
+
+  if (min === max) {
+    min -= 10;
+    max += 10;
+  }
+
+
+  const points =
+    readings.map(function(event, index) {
+
+      const x =
+        20 +
+        (
+          index /
+          (readings.length - 1)
+        ) * 460;
+
+
+      const normalized =
+        (
+          Number(event.value) - min
+        ) /
+        (max - min);
+
+
+      const y =
+        190 -
+        normalized * 160;
+
+
+      return x + "," + y;
+
+    });
+
+
+  const polyline =
+    document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "polyline"
+    );
+
+
+  polyline.setAttribute(
+    "points",
+    points.join(" ")
+  );
+
+
+  polyline.setAttribute(
+    "fill",
+    "none"
+  );
+
+
+  polyline.setAttribute(
+    "stroke",
+    "#007aff"
+  );
+
+
+  polyline.setAttribute(
+    "stroke-width",
+    "4"
+  );
+
+
+  polyline.setAttribute(
+    "stroke-linecap",
+    "round"
+  );
+
+
+  polyline.setAttribute(
+    "stroke-linejoin",
+    "round"
+  );
+
+
+  svg.appendChild(polyline);
+}
+
+
+function setTrend(type, button) {
+
+  const buttons =
+    button
+      ? button.parentElement.querySelectorAll(".chip")
+      : [];
+
+
+  buttons.forEach(function(item) {
+    item.classList.remove("selected");
+  });
+
+
+  if (button) {
+    button.classList.add("selected");
+  }
+
+
+  if (type === "glucose") {
+    renderTrends();
+  }
+}
+
+
+function compareContext(context) {
+
+  const message =
+    document.getElementById(
+      "comparisonMessage"
+    );
+
+
+  if (!message) return;
+
+
+  message.textContent =
+    "Betty will compare your " +
+    context +
+    " entries with glucose readings as enough matching data accumulates.";
+}
+
+
+/* =========================
+   INSIGHTS
+========================= */
+
+function renderInsights() {
+
+  const list =
+    document.getElementById(
+      "insightsList"
+    );
+
+
+  if (!list) return;
+
+
+  const glucose =
+    getGlucoseEvents(30);
+
+
+  if (glucose.length < 3) {
+
+    list.innerHTML = `
+
+      <div class="card insight">
+
+        <span class="badge">
+          Early signal
+        </span>
+
+        <h2>
+          Build your data set
+        </h2>
+
+        <p>
+          I need more comparable readings
+          before calling a personal pattern.
+          I’ll avoid overstating what the data says.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  const values =
+    glucose.map(function(event) {
+      return Number(event.value);
+    });
+
+
+  const average =
+    Math.round(
+      values.reduce(
+        function(total, value) {
+          return total + value;
+        },
+        0
+      ) / values.length
+    );
+
+
+  list.innerHTML = `
+
+    <div class="card insight">
+
+      <span class="badge">
+        Personal data
+      </span>
+
+      <h2>
+        Your glucose picture
+      </h2>
+
+      <p>
+        You have
+        <b>${glucose.length}</b>
+        glucose readings recorded.
+        Your current average across those
+        readings is
+        <b>${average} mg/dL</b>.
+      </p>
+
+    </div>
+
+
+    <div class="card insight">
+
+      <span class="badge">
+        Betty
+      </span>
+
+      <h2>
+        Evidence first
+      </h2>
+
+      <p>
+        As you log meals, activity,
+        glucose and other context,
+        Betty can look for repeated
+        relationships instead of assuming
+        that one event caused another.
+      </p>
+
+    </div>
+
+  `;
+}
+
+
+/* =========================
+   ASK BETTY
+========================= */
+
+function handleBettyKey(event) {
+
+  if (event.key === "Enter") {
+    askBetty();
+  }
+}
+
+
+function askBetty() {
+
+  const input =
+    document.getElementById(
+      "bettyQuestion"
+    );
+
+
+  if (!input) return;
+
+
+  const question =
+    input.value.trim();
+
+
+  if (!question) return;
+
+
+  const chat =
+    document.getElementById("chat");
+
+
+  if (!chat) return;
+
+
+  const glucose =
+    getGlucoseEvents(3650);
+
+
+  const lowerQuestion =
+    question.toLowerCase();
+
+
+  let answer = "";
+
+
+  if (
+    lowerQuestion.includes("average") &&
+    lowerQuestion.includes("glucose")
+  ) {
+
+    if (glucose.length === 0) {
+
+      answer =
+        "I don't have any glucose readings yet. Log a few readings and I can calculate your average.";
+
+    } else {
+
+      const values =
+        glucose.map(function(event) {
+          return Number(event.value);
+        });
+
+
+      const average =
+        Math.round(
+          values.reduce(
+            function(total, value) {
+              return total + value;
+            },
+            0
+          ) / values.length
+        );
+
+
+      answer =
+        "I found " +
+        glucose.length +
+        " glucose readings. Your average is " +
+        average +
+        " mg/dL.";
     }
-  };
 
-  setTimeout(()=>{
-    x.classList.remove('show');
-    x.onclick=null;
-    undo=null;
-  },4000);
-}
+  } else if (
+    lowerQuestion.includes("how many") &&
+    lowerQuestion.includes("glucose")
+  ) {
 
-function renderTrends(){
+    answer =
+      "You currently have " +
+      glucose.length +
+      " glucose readings recorded.";
 
-  let cut=Date.now()-7*864e5;
+  } else {
 
-  let g=data
-    .filter(e=>
-      e.type==='glucose' &&
-      e.value!=null &&
-      new Date(e.time).getTime()>=cut
-    )
-    .sort((a,b)=>new Date(a.time)-new Date(b.time));
-
-  let vals=g.map(e=>e.value);
-
-  let a=vals.length
-    ?Math.round(vals.reduce((x,y)=>x+y,0)/vals.length)
-    :null;
-
-  document.getElementById('avg').textContent=a??'—';
-  document.getElementById('reads').textContent=g.length;
-
-  let s=document.getElementById('svg');
-
-  s.innerHTML='';
-
-  if(vals.length>1){
-
-    let mn=Math.min(...vals);
-    let mx=Math.max(...vals);
-    let sp=Math.max(1,mx-mn);
-
-    let p=g.map((e,i)=>[
-      20+i/(g.length-1)*460,
-      195-(e.value-mn)/sp*165
-    ]);
-
-    s.innerHTML=`
-      <polyline
-        points="${p.map(x=>x.join(',')).join(' ')}"
-        fill="none"
-        stroke="#007aff"
-        stroke-width="4"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    `;
-  }
-}
-
-function compare(x){
-
-  document.getElementById('compare').textContent=
-    'Diabetter will compare '+
-    x+
-    ' events with your glucose timeline as comparable data accumulates.';
-}
-
-function renderInsights(){
-
-  let g=data.filter(
-    e=>e.type==='glucose'&&e.value!=null
-  );
-
-  let x=document.getElementById('insightsList');
-
-  x.innerHTML=
-    g.length<3
-    ?
-    `
-      <div class="card insight">
-        <span class="badge">Early Signal</span>
-
-        <h2>Build your data set</h2>
-
-        <p>
-          I need more comparable readings before calling a pattern.
-          I’ll keep watching without overstating the evidence.
-        </p>
-      </div>
-    `
-    :
-    `
-      <div class="card insight">
-        <span class="badge">Emerging Pattern</span>
-
-        <h2>Personal glucose picture</h2>
-
-        <p>
-          You have ${g.length} glucose readings.
-          As comparable meals, activity and readings accumulate,
-          Betty can evaluate relationships with confidence levels.
-        </p>
-      </div>
-
-      <div class="card insight">
-        <span class="badge">Betty</span>
-
-        <h2>Evidence first</h2>
-
-        <p>
-          I’ll separate measured data, your notes, and my interpretations.
-          Incomplete data lowers confidence.
-        </p>
-      </div>
-    `;
-}
-
-function ask(){
-
-  let q=document.getElementById('question').value.trim();
-
-  if(!q){
-    return;
+    answer =
+      "I can analyze the information you’ve logged. Try asking me about your average glucose, your readings, meals, exercise, or a specific trend.";
   }
 
-  let g=data.filter(
-    e=>e.type==='glucose'&&e.value!=null
-  );
 
-  let a=g.length
-    ?Math.round(g.reduce((x,y)=>x+y.value,0)/g.length)
-    :null;
+  chat.innerHTML += `
 
-  document.getElementById('chat').innerHTML+=`
     <p>
-      <b>You:</b> ${esc(q)}
+      <b>You:</b>
+      ${escapeHTML(question)}
     </p>
 
     <p>
       <b>🦋 Betty:</b>
-      ${
-        a
-        ?
-        `I found ${g.length} glucose readings.
-         Your average across them is <b>${a} mg/dL</b>.
-         Ask me about a specific time period or context
-         for a deeper comparison.`
-        :
-        `I need a few glucose readings before I can
-         analyze your personal trends.`
-      }
+      ${answer}
     </p>
+
   `;
 
-  document.getElementById('question').value='';
+
+  input.value = "";
+
+
+  chat.scrollTop =
+    chat.scrollHeight;
 }
 
-function settings(){
 
-  document.getElementById('modalbox').innerHTML=`
-    <div class="kicker">Settings</div>
+/* =========================
+   SETTINGS
+========================= */
 
-    <h2>Diabetter</h2>
+function openSettings() {
 
-    <div class="card">
-      <b>❤️ Health Data Permissions</b>
-      <p>
-        Native iPhone version will request HealthKit
-        categories individually.
-      </p>
+  const modal =
+    document.getElementById("modal");
+
+  const box =
+    document.getElementById("modalBox");
+
+
+  if (!modal || !box) return;
+
+
+  box.innerHTML = `
+
+    <div class="kicker">
+      Settings
     </div>
 
-    <div class="card">
-      <b>🦋 Betty’s Memory</b>
-      <p>
-        Approved memories will appear here.
-      </p>
-    </div>
+    <h2>
+      Diabetter
+    </h2>
+
 
     <div class="card">
-      <b>🔔 Reminders</b>
+
+      <b>
+        ❤️ Health Data Permissions
+      </b>
+
+      <p>
+        HealthKit integration will be
+        handled by the native iPhone
+        version of Diabetter.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <b>
+        🦋 Betty's Memory
+      </b>
+
+      <p>
+        Approved personal memories and
+        preferences will appear here.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <b>
+        🔔 Reminders
+      </b>
+
       <p>
         Adaptive · Custom · Off
       </p>
+
     </div>
+
 
     <div class="card">
-      <b>📄 Health Reports</b>
+
+      <b>
+        📄 Health Reports
+      </b>
+
       <p>
-        PDF export is planned for the native version.
+        PDF health reports will be
+        available in a future version.
       </p>
+
     </div>
 
-    <button class="btn" onclick="closeModal()">
+
+    <button
+      class="btn"
+      onclick="closeModal()">
+
       Done
+
     </button>
+
   `;
 
-  document.getElementById('modal').classList.add('show');
+
+  modal.classList.add("show");
 }
 
-document.getElementById('greet').textContent=
-  new Date().getHours()<12
-  ?'Good morning'
-  :new Date().getHours()<18
-  ?'Good afternoon'
-  :'Good evening';
 
-renderToday();
-renderTrends();
-renderInsights();
+/* =========================
+   INITIALIZATION
+========================= */
+
+function setGreeting() {
+
+  const greeting =
+    document.getElementById(
+      "greeting"
+    );
+
+
+  if (!greeting) return;
+
+
+  const hour =
+    new Date().getHours();
+
+
+  if (hour < 12) {
+
+    greeting.textContent =
+      "Good morning";
+
+  } else if (hour < 18) {
+
+    greeting.textContent =
+      "Good afternoon";
+
+  } else {
+
+    greeting.textContent =
+      "Good evening";
+  }
+}
+
+
+function initializeApp() {
+
+  loadEvents();
+
+  setGreeting();
+
+  renderToday();
+
+  renderTrends();
+
+  renderInsights();
+}
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  initializeApp
+);
 
 </script>
+
 </body>
 </html>
