@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -10,48 +11,66 @@
 
 <meta
   name="theme-color"
-  content="#f6f6fa"
+  content="#f5f5fa"
   id="themeColorMeta">
 
-<title>Diabetter V3.1</title>
+<meta
+  name="apple-mobile-web-app-capable"
+  content="yes">
+
+<meta
+  name="apple-mobile-web-app-status-bar-style"
+  content="default">
+
+<title>Diabetter</title>
 
 
 <style>
 
 /* =========================================================
-   DIABETTER V3.1
-   GLOBAL THEME SYSTEM
+   DIABETTER V3.2
+   VISUAL DESIGN SYSTEM
 ========================================================= */
 
 :root {
 
   --bg: #f5f5fa;
   --surface: #ffffff;
-  --surface-secondary: #f1f1f6;
+  --surface-2: #f1f1f6;
+  --surface-3: #e9e9ef;
 
-  --text: #17171b;
-  --text-secondary: #73747c;
+  --text: #151519;
+  --muted: #73737c;
+  --subtle: #a0a0a8;
 
-  --border: rgba(0,0,0,.07);
+  --border: rgba(0,0,0,.065);
 
-  --accent: #007aff;
-  --accent-soft: rgba(0,122,255,.10);
-
+  --blue: #007aff;
   --purple: #7c5cff;
+  --pink: #ff2d55;
   --green: #34c759;
-  --red: #ff3b30;
   --orange: #ff9500;
+  --red: #ff3b30;
+  --teal: #00c7be;
 
-  --betty-glow: rgba(124,92,255,.18);
+  --accent: #7c5cff;
 
-  --nav-bg: rgba(250,250,252,.92);
+  --glow:
+    rgba(124,92,255,.20);
 
   --shadow:
-    0 8px 28px rgba(0,0,0,.06);
+    0 10px 35px rgba(0,0,0,.065);
 
-  --radius-large: 24px;
-  --radius-medium: 18px;
-  --radius-small: 14px;
+  --shadow-small:
+    0 5px 18px rgba(0,0,0,.055);
+
+  --radius-xl: 30px;
+  --radius-lg: 23px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+
+  --nav:
+    rgba(250,250,252,.90);
 
   --transition:
     background .3s ease,
@@ -69,25 +88,31 @@
 html[data-theme="dark"] {
 
   --bg: #000000;
+
   --surface: #171719;
-  --surface-secondary: #242426;
+  --surface-2: #242426;
+  --surface-3: #303033;
 
   --text: #ffffff;
-  --text-secondary: #a1a1a6;
+  --muted: #a1a1a6;
+  --subtle: #77777d;
 
-  --border: rgba(255,255,255,.09);
+  --border:
+    rgba(255,255,255,.085);
 
-  --accent: #0a84ff;
-  --accent-soft: rgba(10,132,255,.16);
+  --accent: #9b7cff;
 
-  --betty-glow:
-    rgba(170,120,255,.32);
-
-  --nav-bg:
-    rgba(20,20,22,.94);
+  --glow:
+    rgba(155,124,255,.30);
 
   --shadow:
-    0 10px 35px rgba(0,0,0,.45);
+    0 12px 40px rgba(0,0,0,.50);
+
+  --shadow-small:
+    0 6px 22px rgba(0,0,0,.40);
+
+  --nav:
+    rgba(20,20,22,.93);
 
 }
 
@@ -98,41 +123,45 @@ html[data-theme="dark"] {
 
 html[data-theme="betty"] {
 
-  --bg: #fff4ff;
+  --bg: #fff3ff;
 
-  --surface: rgba(255,255,255,.88);
+  --surface:
+    rgba(255,255,255,.88);
 
-  --surface-secondary:
-    rgba(255,255,255,.70);
+  --surface-2:
+    rgba(255,255,255,.72);
 
-  --text: #24132f;
+  --surface-3:
+    rgba(255,255,255,.60);
 
-  --text-secondary: #735b7d;
+  --text: #25132f;
+
+  --muted: #725d7b;
+
+  --subtle: #a88caf;
 
   --border:
-    rgba(255,80,190,.16);
+    rgba(255,80,190,.14);
 
   --accent: #9b4dff;
 
-  --accent-soft:
-    rgba(155,77,255,.12);
-
-  --purple: #9b4dff;
-
-  --betty-glow:
-    rgba(255,72,205,.35);
-
-  --nav-bg:
-    rgba(255,247,255,.90);
+  --glow:
+    rgba(255,63,211,.30);
 
   --shadow:
-    0 12px 35px rgba(210,70,220,.12);
+    0 12px 38px rgba(190,70,210,.13);
+
+  --shadow-small:
+    0 7px 23px rgba(190,70,210,.10);
+
+  --nav:
+    rgba(255,247,255,.92);
 
 }
 
 
 /* =========================================================
-   BETTY MODE BACKGROUND EFFECT
+   BETTY MODE BACKGROUND
 ========================================================= */
 
 html[data-theme="betty"] body {
@@ -140,51 +169,164 @@ html[data-theme="betty"] body {
   background:
 
     radial-gradient(
-      circle at 10% 10%,
-      rgba(255,59,48,.16),
-      transparent 27%
-    ),
-
-    radial-gradient(
-      circle at 90% 15%,
-      rgba(175,82,222,.18),
+      circle at 0% 0%,
+      rgba(255,45,85,.15),
       transparent 28%
     ),
 
     radial-gradient(
-      circle at 20% 90%,
-      rgba(0,199,190,.15),
+      circle at 100% 8%,
+      rgba(175,82,222,.18),
       transparent 30%
     ),
 
     radial-gradient(
-      circle at 85% 85%,
-      rgba(255,149,0,.16),
-      transparent 30%
+      circle at 10% 100%,
+      rgba(0,199,190,.13),
+      transparent 32%
     ),
 
-    var(--bg);
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(255,149,0,.14),
+      transparent 32%
+    ),
+
+    #fff3ff;
 
 }
 
 
 /* =========================================================
-   BETTY MODE DECORATIVE RAINBOW LINE
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+
+  min-height: 100%;
+
+  background:
+    var(--bg);
+
+}
+
+body {
+
+  min-height: 100vh;
+
+  margin: 0;
+
+  color:
+    var(--text);
+
+  background:
+    var(--bg);
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    Arial,
+    sans-serif;
+
+  -webkit-font-smoothing:
+    antialiased;
+
+  transition:
+    var(--transition);
+
+}
+
+button,
+input,
+textarea,
+select {
+
+  font:
+    inherit;
+
+}
+
+button {
+
+  border:
+    0;
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+}
+
+button:focus-visible {
+
+  outline:
+    3px solid
+    var(--accent);
+
+  outline-offset:
+    2px;
+
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+
+  position:
+    relative;
+
+  width:
+    100%;
+
+  max-width:
+    520px;
+
+  min-height:
+    100vh;
+
+  margin:
+    0 auto;
+
+  padding-bottom:
+    110px;
+
+}
+
+
+/* =========================================================
+   BETTY MODE RAINBOW EDGE
 ========================================================= */
 
 html[data-theme="betty"] .app::before {
 
-  content: "";
+  content:
+    "";
 
-  position: fixed;
+  position:
+    fixed;
 
-  top: 0;
-  left: 0;
-  right: 0;
+  top:
+    0;
 
-  height: 4px;
+  left:
+    0;
 
-  z-index: 100;
+  right:
+    0;
+
+  z-index:
+    100;
+
+  height:
+    4px;
 
   background:
 
@@ -205,201 +347,305 @@ html[data-theme="betty"] .app::before {
 
 
 /* =========================================================
-   GLOBAL RESET
-========================================================= */
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-
-  -webkit-text-size-adjust: 100%;
-
-  transition:
-    background .3s ease;
-}
-
-body {
-
-  margin: 0;
-
-  background: var(--bg);
-
-  color: var(--text);
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "SF Pro Text",
-    Arial,
-    sans-serif;
-
-  transition: var(--transition);
-
-}
-
-button,
-input,
-textarea,
-select {
-
-  font: inherit;
-
-}
-
-button {
-
-  -webkit-tap-highlight-color:
-    transparent;
-
-}
-
-
-/* =========================================================
-   APP CONTAINER
-========================================================= */
-
-.app {
-
-  width: 100%;
-
-  max-width: 520px;
-
-  min-height: 100vh;
-
-  margin: 0 auto;
-
-  padding-bottom: 105px;
-
-  position: relative;
-
-}
-
-
-/* =========================================================
    HEADER
 ========================================================= */
 
-header {
+.topbar {
 
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  justify-content: space-between;
+  justify-content:
+    space-between;
 
   padding:
-    22px
+    20px
     18px
     8px;
 
 }
 
-.brand {
+.logo {
 
-  font-size: 27px;
+  display:
+    flex;
 
-  font-weight: 800;
+  align-items:
+    center;
 
-  letter-spacing: -1px;
+  gap:
+    8px;
+
+  font-size:
+    24px;
+
+  font-weight:
+    850;
+
+  letter-spacing:
+    -1px;
 
 }
 
-.brand span {
+.logo-mark {
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  width:
+    31px;
+
+  height:
+    31px;
+
+  border-radius:
+    11px;
 
   background:
 
     linear-gradient(
-      90deg,
+      135deg,
       #ff3b30,
       #ff9500,
       #34c759,
-      #00c7be,
       #007aff,
       #af52de
     );
 
-  -webkit-background-clip: text;
+  color:
+    #ffffff;
 
-  background-clip: text;
+  font-size:
+    17px;
 
-  color: transparent;
+  box-shadow:
+    0 5px 16px
+    rgba(124,92,255,.20);
+
+}
+
+.logo-text {
+
+  color:
+    var(--text);
 
 }
 
 
 /* =========================================================
-   HEADER SETTINGS BUTTON
+   HEADER SETTINGS
 ========================================================= */
 
-.icon-button {
+.settings-button {
 
-  width: 42px;
+  display:
+    grid;
 
-  height: 42px;
+  place-items:
+    center;
 
-  border: 1px solid var(--border);
+  width:
+    43px;
 
-  border-radius: 50%;
-
-  background: var(--surface);
-
-  color: var(--text);
-
-  box-shadow: var(--shadow);
-
-  cursor: pointer;
-
-  transition: var(--transition);
-
-}
-
-.icon-button:active {
-
-  transform: scale(.94);
-
-}
-
-
-/* =========================================================
-   SCREENS
-========================================================= */
-
-.screen {
-
-  display: none;
-
-  padding:
-    12px
-    18px;
-
-}
-
-.screen.active {
-
-  display: block;
-
-}
-
-
-/* =========================================================
-   CARDS
-========================================================= */
-
-.card {
-
-  margin: 12px 0;
-
-  padding: 18px;
+  height:
+    43px;
 
   border:
     1px solid
     var(--border);
 
   border-radius:
-    var(--radius-large);
+    50%;
+
+  background:
+    var(--surface);
+
+  color:
+    var(--text);
+
+  box-shadow:
+    var(--shadow-small);
+
+  cursor:
+    pointer;
+
+  transition:
+    transform .15s ease,
+    var(--transition);
+
+}
+
+.settings-button:active {
+
+  transform:
+    scale(.92);
+
+}
+
+
+/* =========================================================
+   SCREEN SYSTEM
+========================================================= */
+
+.screen {
+
+  display:
+    none;
+
+  padding:
+    12px
+    18px
+    0;
+
+  animation:
+    screenIn .25s ease;
+
+}
+
+.screen.active {
+
+  display:
+    block;
+
+}
+
+@keyframes screenIn {
+
+  from {
+
+    opacity:
+      0;
+
+    transform:
+      translateY(5px);
+
+  }
+
+  to {
+
+    opacity:
+      1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+.eyebrow {
+
+  margin-bottom:
+    7px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    11px;
+
+  font-weight:
+    850;
+
+  letter-spacing:
+    .10em;
+
+  text-transform:
+    uppercase;
+
+}
+
+h1 {
+
+  margin:
+    0;
+
+  font-size:
+    34px;
+
+  line-height:
+    1.04;
+
+  letter-spacing:
+    -1.4px;
+
+}
+
+h2 {
+
+  margin:
+    0;
+
+  font-size:
+    21px;
+
+  line-height:
+    1.15;
+
+  letter-spacing:
+    -.5px;
+
+}
+
+h3 {
+
+  margin:
+    0;
+
+  font-size:
+    16px;
+
+}
+
+p {
+
+  margin:
+    6px 0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    14px;
+
+  line-height:
+    1.45;
+
+}
+
+
+/* =========================================================
+   GENERIC CARD
+========================================================= */
+
+.card {
+
+  position:
+    relative;
+
+  margin:
+    12px 0;
+
+  padding:
+    20px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    var(--radius-xl);
 
   background:
     var(--surface);
@@ -412,75 +658,71 @@ header {
 
 }
 
-.hero {
-
-  padding: 22px;
-
-}
-
 
 /* =========================================================
-   TYPOGRAPHY
+   TODAY HERO
 ========================================================= */
 
-h1 {
+.today-hero {
 
-  margin:
-    4px
-    0
-    8px;
+  position:
+    relative;
 
-  font-size: 31px;
+  min-height:
+    265px;
 
-  line-height: 1.05;
+  padding:
+    24px;
 
-  letter-spacing: -1.1px;
+  overflow:
+    hidden;
 
-}
+  background:
 
-h2 {
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(124,92,255,.10),
+      transparent 40%
+    ),
 
-  margin:
-    0
-    0
-    9px;
-
-  font-size: 21px;
-
-  letter-spacing: -.4px;
+    var(--surface);
 
 }
 
-p {
 
-  margin:
-    6px
-    0;
+/* Betty hero decoration */
 
-  color:
-    var(--text-secondary);
+.today-hero::after {
 
-  line-height:
-    1.45;
+  content:
+    "";
 
-}
+  position:
+    absolute;
 
-.kicker {
+  right:
+    -70px;
 
-  color:
-    var(--text-secondary);
+  bottom:
+    -95px;
 
-  font-size:
-    12px;
+  width:
+    220px;
 
-  font-weight:
-    800;
+  height:
+    220px;
 
-  letter-spacing:
-    .08em;
+  border-radius:
+    50%;
 
-  text-transform:
-    uppercase;
+  background:
+    var(--glow);
+
+  filter:
+    blur(30px);
+
+  pointer-events:
+    none;
 
 }
 
@@ -489,31 +731,1535 @@ p {
    BETTY CHARACTER
 ========================================================= */
 
-.betty {
+.betty-wrap {
 
-  display: flex;
+  position:
+    relative;
 
-  align-items: center;
+  display:
+    flex;
 
-  gap: 16px;
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  width:
+    116px;
+
+  height:
+    116px;
+
+  flex:
+    0 0 auto;
 
 }
 
 
-/*
-   This orb is intentionally larger and more luminous
-   in V3.1. The actual butterfly/infinity artwork will
-   be placed inside this character container in the
-   next design pass.
-*/
+/* Butterfly wing shapes */
 
-.orb {
+.betty-wing {
 
-  position: relative;
+  position:
+    absolute;
 
-  width: 70px;
+  width:
+    63px;
 
-  height: 70px;
+  height:
+    78px;
+
+  border-radius:
+    70% 35% 65% 35%;
+
+  opacity:
+    .94;
+
+  filter:
+    drop-shadow(
+      0 5px 12px
+      rgba(100,70,180,.15)
+    );
+
+  transition:
+    transform .4s ease,
+    filter .4s ease;
+
+}
+
+
+.betty-wing.left {
+
+  left:
+    0;
+
+  transform:
+    rotate(-27deg);
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #ff3b30 0%,
+      #ff9500 24%,
+      #ffd60a 43%,
+      #34c759 65%,
+      #00c7be 82%
+    );
+
+}
+
+
+.betty-wing.right {
+
+  right:
+    0;
+
+  transform:
+    scaleX(-1)
+    rotate(-27deg);
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #ff2d55 0%,
+      #af52de 25%,
+      #5856d6 47%,
+      #007aff 68%,
+      #00c7be 90%
+    );
+
+}
+
+
+/* Lower wing */
+
+.betty-wing.left::after,
+.betty-wing.right::after {
+
+  content:
+    "";
+
+  position:
+    absolute;
+
+  bottom:
+    -8px;
+
+  width:
+    43px;
+
+  height:
+    50px;
+
+  border-radius:
+    70% 35% 65% 35%;
+
+  background:
+    inherit;
+
+}
+
+
+.betty-wing.left::after {
+
+  left:
+    13px;
+
+  transform:
+    rotate(17deg);
+
+}
+
+
+.betty-wing.right::after {
+
+  right:
+    13px;
+
+  transform:
+    rotate(-17deg);
+
+}
+
+
+/* =========================================================
+   BETTY ORB
+========================================================= */
+
+.betty-orb {
+
+  position:
+    relative;
+
+  z-index:
+    5;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  width:
+    67px;
+
+  height:
+    67px;
+
+  border:
+    4px solid
+    var(--surface);
+
+  border-radius:
+    50%;
+
+  background:
+
+    radial-gradient(
+      circle at 35% 28%,
+      #ffffff 0%,
+      #ffffff 7%,
+      transparent 8%
+    ),
+
+    linear-gradient(
+      135deg,
+      #ffe4f6,
+      #e4d9ff 50%,
+      #ccecff
+    );
+
+  box-shadow:
+
+    0 0 0 2px
+      rgba(255,255,255,.45),
+
+    0 0 25px
+      var(--glow);
+
+  animation:
+    bettyFloat 4s ease-in-out infinite;
+
+}
+
+
+@keyframes bettyFloat {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-5px);
+
+  }
+
+}
+
+
+/* =========================================================
+   BETTY FACE
+========================================================= */
+
+.betty-face {
+
+  position:
+    relative;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+}
+
+
+/* Eyes */
+
+.betty-eye {
+
+  position:
+    absolute;
+
+  top:
+    25px;
+
+  width:
+    6px;
+
+  height:
+    8px;
+
+  border-radius:
+    50%;
+
+  background:
+    #35273d;
+
+}
+
+
+.betty-eye.left {
+
+  left:
+    20px;
+
+}
+
+
+.betty-eye.right {
+
+  right:
+    20px;
+
+}
+
+
+/* Smile */
+
+.betty-smile {
+
+  position:
+    absolute;
+
+  left:
+    50%;
+
+  bottom:
+    17px;
+
+  width:
+    23px;
+
+  height:
+    12px;
+
+  border-bottom:
+    3px solid
+    #35273d;
+
+  border-radius:
+    0 0 50% 50%;
+
+  transform:
+    translateX(-50%);
+
+}
+
+
+/* =========================================================
+   BETTY MODE CHARACTER
+========================================================= */
+
+html[data-theme="betty"] .betty-wing {
+
+  filter:
+
+    drop-shadow(
+      0 0 8px
+      rgba(255,80,200,.35)
+    )
+
+    drop-shadow(
+      0 0 18px
+      rgba(90,120,255,.20)
+    );
+
+}
+
+
+html[data-theme="betty"] .betty-orb {
+
+  box-shadow:
+
+    0 0 0 3px
+      rgba(255,255,255,.8),
+
+    0 0 30px
+      rgba(255,55,205,.45),
+
+    0 0 55px
+      rgba(95,100,255,.28);
+
+}
+
+
+/* =========================================================
+   DARK MODE CHARACTER
+========================================================= */
+
+html[data-theme="dark"] .betty-wing {
+
+  filter:
+
+    drop-shadow(
+      0 0 9px
+      rgba(150,100,255,.45)
+    )
+
+    drop-shadow(
+      0 0 20px
+      rgba(0,160,255,.20)
+    );
+
+}
+
+
+html[data-theme="dark"] .betty-orb {
+
+  border-color:
+    var(--surface);
+
+  box-shadow:
+
+    0 0 0 2px
+      rgba(255,255,255,.12),
+
+    0 0 32px
+      rgba(145,110,255,.55);
+
+}
+
+
+/* =========================================================
+   HERO LAYOUT
+========================================================= */
+
+.hero-content {
+
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    17px;
+
+}
+
+
+.hero-copy {
+
+  flex:
+    1;
+
+  min-width:
+    0;
+
+}
+
+
+.hero-copy h1 {
+
+  max-width:
+    250px;
+
+}
+
+
+.hero-copy p {
+
+  margin-top:
+    9px;
+
+}
+
+
+/* =========================================================
+   BETTY SPEECH BUBBLE
+========================================================= */
+
+.betty-bubble {
+
+  position:
+    relative;
+
+  z-index:
+    3;
+
+  margin-top:
+    18px;
+
+  padding:
+    14px
+    16px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    18px;
+
+  background:
+    var(--surface-2);
+
+  color:
+    var(--text);
+
+  font-size:
+    13px;
+
+  line-height:
+    1.4;
+
+}
+
+
+.betty-bubble::before {
+
+  content:
+    "";
+
+  position:
+    absolute;
+
+  top:
+    -6px;
+
+  left:
+    38px;
+
+  width:
+    12px;
+
+  height:
+    12px;
+
+  background:
+    var(--surface-2);
+
+  border-left:
+    1px solid
+    var(--border);
+
+  border-top:
+    1px solid
+    var(--border);
+
+  transform:
+    rotate(45deg);
+
+}
+
+
+/* =========================================================
+   QUICK STATS
+========================================================= */
+
+.stats-grid {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap:
+    10px;
+
+  margin:
+    12px 0;
+
+}
+
+
+.stat-card {
+
+  position:
+    relative;
+
+  min-height:
+    118px;
+
+  padding:
+    16px;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    22px;
+
+  background:
+    var(--surface);
+
+  box-shadow:
+    var(--shadow-small);
+
+  transition:
+    var(--transition);
+
+}
+
+
+.stat-icon {
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  width:
+    35px;
+
+  height:
+    35px;
+
+  margin-bottom:
+    12px;
+
+  border-radius:
+    12px;
+
+  background:
+    var(--surface-2);
+
+  font-size:
+    17px;
+
+}
+
+
+.stat-label {
+
+  color:
+    var(--muted);
+
+  font-size:
+    11px;
+
+  font-weight:
+    750;
+
+}
+
+
+.stat-value {
+
+  margin-top:
+    3px;
+
+  font-size:
+    24px;
+
+  font-weight:
+    850;
+
+  letter-spacing:
+    -.7px;
+
+}
+
+
+.stat-unit {
+
+  color:
+    var(--muted);
+
+  font-size:
+    10px;
+
+}
+
+
+.stat-accent {
+
+  position:
+    absolute;
+
+  right:
+    -12px;
+
+  bottom:
+    -16px;
+
+  width:
+    70px;
+
+  height:
+    70px;
+
+  border-radius:
+    50%;
+
+  opacity:
+    .09;
+
+}
+
+
+.stat-accent.blue {
+
+  background:
+    var(--blue);
+
+}
+
+
+.stat-accent.green {
+
+  background:
+    var(--green);
+
+}
+
+
+.stat-accent.orange {
+
+  background:
+    var(--orange);
+
+}
+
+
+.stat-accent.purple {
+
+  background:
+    var(--purple);
+
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-head {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  margin:
+    22px 2px 10px;
+
+}
+
+
+.section-head h2 {
+
+  font-size:
+    19px;
+
+}
+
+
+.section-action {
+
+  color:
+    var(--accent);
+
+  background:
+    transparent;
+
+  font-size:
+    12px;
+
+  font-weight:
+    750;
+
+  cursor:
+    pointer;
+
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline-card {
+
+  padding:
+    9px 17px;
+
+}
+
+
+.timeline-item {
+
+  display:
+    flex;
+
+  align-items:
+    flex-start;
+
+  gap:
+    12px;
+
+  padding:
+    14px 2px;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+}
+
+
+.timeline-item:last-child {
+
+  border-bottom:
+    0;
+
+}
+
+
+.timeline-icon {
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  width:
+    39px;
+
+  height:
+    39px;
+
+  flex:
+    0 0 auto;
+
+  border-radius:
+    13px;
+
+  background:
+    var(--surface-2);
+
+}
+
+
+.timeline-main {
+
+  flex:
+    1;
+
+  min-width:
+    0;
+
+}
+
+
+.timeline-title {
+
+  font-size:
+    14px;
+
+  font-weight:
+    750;
+
+}
+
+
+.timeline-detail {
+
+  margin-top:
+    3px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    12px;
+
+  line-height:
+    1.35;
+
+}
+
+
+.timeline-time {
+
+  color:
+    var(--subtle);
+
+  font-size:
+    10px;
+
+}
+
+
+.empty-state {
+
+  padding:
+    28px 10px;
+
+  color:
+    var(--muted);
+
+  text-align:
+    center;
+
+}
+
+
+/* =========================================================
+   LOG SCREEN
+========================================================= */
+
+.page-heading {
+
+  padding:
+    8px
+    2px
+    14px;
+
+}
+
+
+.page-heading h1 {
+
+  margin-top:
+    4px;
+
+}
+
+
+.log-grid {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:
+    11px;
+
+}
+
+
+.log-tile {
+
+  position:
+    relative;
+
+  min-height:
+    142px;
+
+  padding:
+    18px;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    24px;
+
+  background:
+    var(--surface);
+
+  color:
+    var(--text);
+
+  text-align:
+    left;
+
+  box-shadow:
+    var(--shadow-small);
+
+  cursor:
+    pointer;
+
+  transition:
+    transform .15s ease,
+    var(--transition);
+
+}
+
+
+.log-tile:active {
+
+  transform:
+    scale(.97);
+
+}
+
+
+.log-tile-icon {
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  width:
+    43px;
+
+  height:
+    43px;
+
+  margin-bottom:
+    16px;
+
+  border-radius:
+    15px;
+
+  background:
+    var(--surface-2);
+
+  font-size:
+    21px;
+
+}
+
+
+.log-tile-title {
+
+  font-size:
+    15px;
+
+  font-weight:
+    800;
+
+}
+
+
+.log-tile-subtitle {
+
+  margin-top:
+    3px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    11px;
+
+}
+
+
+.log-tile-glow {
+
+  position:
+    absolute;
+
+  right:
+    -25px;
+
+  bottom:
+    -25px;
+
+  width:
+    85px;
+
+  height:
+    85px;
+
+  border-radius:
+    50%;
+
+  opacity:
+    .10;
+
+}
+
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.form-card {
+
+  display:
+    none;
+
+  margin-top:
+    14px;
+
+  padding:
+    20px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    24px;
+
+  background:
+    var(--surface);
+
+  box-shadow:
+    var(--shadow);
+
+}
+
+
+.form-card.show {
+
+  display:
+    block;
+
+  animation:
+    screenIn .25s ease;
+
+}
+
+
+.field {
+
+  margin:
+    13px 0;
+
+}
+
+
+.field label {
+
+  display:
+    block;
+
+  margin:
+    0 0 7px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    11px;
+
+  font-weight:
+    800;
+
+}
+
+
+.field input,
+.field textarea,
+.field select {
+
+  width:
+    100%;
+
+  padding:
+    14px
+    15px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    15px;
+
+  outline:
+    none;
+
+  background:
+    var(--surface-2);
+
+  color:
+    var(--text);
+
+  transition:
+    var(--transition);
+
+}
+
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+
+  border-color:
+    var(--accent);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(124,92,255,.10);
+
+}
+
+
+.field textarea {
+
+  min-height:
+    90px;
+
+  resize:
+    vertical;
+
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.primary-button {
+
+  width:
+    100%;
+
+  padding:
+    15px
+    17px;
+
+  border-radius:
+    16px;
+
+  background:
+    var(--text);
+
+  color:
+    var(--bg);
+
+  font-size:
+    14px;
+
+  font-weight:
+    800;
+
+  cursor:
+    pointer;
+
+  transition:
+    transform .15s ease,
+    var(--transition);
+
+}
+
+
+.primary-button:active {
+
+  transform:
+    scale(.98);
+
+}
+
+
+/* =========================================================
+   TRENDS
+========================================================= */
+
+.range-selector {
+
+  display:
+    flex;
+
+  gap:
+    6px;
+
+  padding:
+    5px;
+
+  margin:
+    13px 0;
+
+  border-radius:
+    15px;
+
+  background:
+    var(--surface-2);
+
+}
+
+
+.range-button {
+
+  flex:
+    1;
+
+  padding:
+    9px 4px;
+
+  border-radius:
+    11px;
+
+  background:
+    transparent;
+
+  color:
+    var(--muted);
+
+  font-size:
+    11px;
+
+  font-weight:
+    750;
+
+  cursor:
+    pointer;
+
+}
+
+
+.range-button.active {
+
+  background:
+    var(--surface);
+
+  color:
+    var(--text);
+
+  box-shadow:
+    var(--shadow-small);
+
+}
+
+
+.metric-selector {
+
+  display:
+    flex;
+
+  gap:
+    7px;
+
+  overflow-x:
+    auto;
+
+  padding:
+    2px 0 5px;
+
+}
+
+
+.metric-chip {
+
+  flex:
+    0 0 auto;
+
+  padding:
+    9px
+    13px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    15px;
+
+  background:
+    var(--surface);
+
+  color:
+    var(--muted);
+
+  font-size:
+    11px;
+
+  font-weight:
+    750;
+
+  cursor:
+    pointer;
+
+}
+
+
+.metric-chip.active {
+
+  background:
+    var(--text);
+
+  color:
+    var(--bg);
+
+}
+
+
+.chart-card {
+
+  padding:
+    18px;
+
+}
+
+
+.chart-wrap {
+
+  position:
+    relative;
+
+  height:
+    230px;
+
+  margin-top:
+    15px;
+
+  overflow:
+    hidden;
+
+  border-radius:
+    18px;
+
+  background:
+    var(--surface-2);
+
+}
+
+
+.chart-grid {
+
+  position:
+    absolute;
+
+  inset:
+    15px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    space-between;
+
+}
+
+
+.chart-line {
+
+  width:
+    100%;
+
+  border-top:
+    1px dashed
+    var(--border);
+
+}
+
+
+.chart-wrap svg {
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+}
+
+
+.chart-summary {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  margin-top:
+    14px;
+
+}
+
+
+.chart-number {
+
+  font-size:
+    28px;
+
+  font-weight:
+    850;
+
+}
+
+
+.chart-label {
+
+  color:
+    var(--muted);
+
+  font-size:
+    11px;
+
+}
+
+
+/* =========================================================
+   INSIGHTS
+========================================================= */
+
+.insight-card {
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+}
+
+
+.insight-top {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    12px;
+
+}
+
+
+.mini-betty {
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  width:
+    48px;
+
+  height:
+    48px;
 
   flex:
     0 0 auto;
@@ -530,192 +2276,22 @@ p {
       #34c759,
       #00c7be,
       #007aff,
-      #5856d6,
       #af52de,
       #ff2d55,
       #ff3b30
     );
 
   box-shadow:
-
-    0 0 0 6px
-      var(--surface),
-
-    0 0 28px
-      var(--betty-glow);
-
-  transition:
-    box-shadow .4s ease,
-    transform .4s ease;
+    0 0 20px
+    var(--glow);
 
 }
 
 
-/* Dark mode makes Betty more luminous */
+.mini-betty::after {
 
-html[data-theme="dark"] .orb {
-
-  box-shadow:
-
-    0 0 0 5px
-      var(--surface),
-
-    0 0 34px
-      rgba(150,100,255,.48),
-
-    0 0 65px
-      rgba(0,180,255,.16);
-
-}
-
-
-/* Betty Mode makes her intentionally excessive */
-
-html[data-theme="betty"] .orb {
-
-  transform:
-    scale(1.06);
-
-  box-shadow:
-
-    0 0 0 6px
-      var(--surface),
-
-    0 0 35px
-      rgba(255,70,210,.45),
-
-    0 0 70px
-      rgba(120,70,255,.28),
-
-    0 0 100px
-      rgba(0,200,255,.16);
-
-}
-
-
-/* =========================================================
-   GRIDS & STATS
-========================================================= */
-
-.grid {
-
-  display:
-    grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:
-    10px;
-
-}
-
-.stat {
-
-  padding:
-    15px;
-
-  border-radius:
-    var(--radius-medium);
-
-  background:
-    var(--surface-secondary);
-
-  transition:
-    var(--transition);
-
-}
-
-.stat small {
-
-  color:
-    var(--text-secondary);
-
-}
-
-.num {
-
-  margin:
-    2px
-    0;
-
-  font-size:
-    26px;
-
-  font-weight:
-    800;
-
-}
-
-
-/* =========================================================
-   ROWS
-========================================================= */
-
-.row {
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  gap:
-    9px;
-
-}
-
-.between {
-
-  justify-content:
-    space-between;
-
-}
-
-
-/* =========================================================
-   TIMELINE
-========================================================= */
-
-.event {
-
-  display:
-    flex;
-
-  gap:
-    12px;
-
-  padding:
-    13px
-    3px;
-
-  border-bottom:
-    1px solid
-    var(--border);
-
-  cursor:
-    pointer;
-
-  transition:
-    background .2s ease;
-
-}
-
-.event:last-child {
-
-  border-bottom:
-    0;
-
-}
-
-.event:active {
-
-  opacity:
-    .65;
-
-}
-
-.event-icon {
+  content:
+    "☺";
 
   display:
     grid;
@@ -724,65 +2300,105 @@ html[data-theme="betty"] .orb {
     center;
 
   width:
-    38px;
+    34px;
 
   height:
-    38px;
-
-  flex:
-    0 0 auto;
+    34px;
 
   border-radius:
-    12px;
+    50%;
 
   background:
-    var(--surface-secondary);
-
-  font-style:
-    normal;
-
-}
-
-.event-main {
-
-  flex:
-    1;
-
-  min-width:
-    0;
-
-}
-
-.event-title {
-
-  font-weight:
-    750;
-
-  word-break:
-    break-word;
-
-}
-
-.event-meta {
-
-  margin-top:
-    3px;
+    #f6eaff;
 
   color:
-    var(--text-secondary);
+    #35273d;
 
   font-size:
-    12px;
+    18px;
 
 }
 
-.empty {
 
-  padding:
-    28px;
+.insight-tag {
 
   color:
-    var(--text-secondary);
+    var(--purple);
+
+  font-size:
+    10px;
+
+  font-weight:
+    850;
+
+  letter-spacing:
+    .08em;
+
+  text-transform:
+    uppercase;
+
+}
+
+
+.insight-title {
+
+  margin-top:
+    15px;
+
+  font-size:
+    19px;
+
+  font-weight:
+    820;
+
+  line-height:
+    1.2;
+
+}
+
+
+.insight-body {
+
+  margin-top:
+    7px;
+
+}
+
+
+.insight-evidence {
+
+  margin-top:
+    15px;
+
+  padding:
+    12px;
+
+  border-radius:
+    15px;
+
+  background:
+    var(--surface-2);
+
+  color:
+    var(--muted);
+
+  font-size:
+    11px;
+
+  line-height:
+    1.4;
+
+}
+
+
+/* =========================================================
+   ASK BETTY
+========================================================= */
+
+.ask-hero {
+
+  padding:
+    24px;
 
   text-align:
     center;
@@ -790,11 +2406,34 @@ html[data-theme="betty"] .orb {
 }
 
 
-/* =========================================================
-   LOG OPTIONS
-========================================================= */
+.ask-hero .betty-wrap {
 
-.options {
+  margin:
+    0 auto 8px;
+
+}
+
+
+.ask-hero h1 {
+
+  font-size:
+    30px;
+
+}
+
+
+.ask-hero p {
+
+  max-width:
+    300px;
+
+  margin:
+    8px auto 0;
+
+}
+
+
+.question-grid {
 
   display:
     grid;
@@ -803,138 +2442,18 @@ html[data-theme="betty"] .orb {
     1fr 1fr;
 
   gap:
-    10px;
+    8px;
 
-}
-
-.option {
-
-  border:
-    1px solid
-    var(--border);
-
-  border-radius:
-    var(--radius-medium);
-
-  padding:
+  margin-top:
     18px;
 
-  background:
-    var(--surface);
-
-  color:
-    var(--text);
-
-  text-align:
-    left;
-
-  font-weight:
-    750;
-
-  box-shadow:
-    var(--shadow);
-
-  cursor:
-    pointer;
-
-  transition:
-    transform .15s ease,
-    var(--transition);
-
-}
-
-.option:active {
-
-  transform:
-    scale(.97);
-
-}
-
-.option span {
-
-  display:
-    block;
-
-  margin-bottom:
-    6px;
-
-  font-size:
-    25px;
-
 }
 
 
-/* Betty Mode option flare */
-
-html[data-theme="betty"] .option {
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.94),
-      rgba(255,225,250,.86)
-    );
-
-  border-color:
-    rgba(255,80,200,.18);
-
-}
-
-
-/* =========================================================
-   FORM
-========================================================= */
-
-.form {
-
-  display:
-    none;
-
-}
-
-.form.show {
-
-  display:
-    block;
-
-}
-
-.field {
-
-  margin:
-    12px
-    0;
-
-}
-
-.field label {
-
-  display:
-    block;
-
-  margin-bottom:
-    6px;
-
-  color:
-    var(--text-secondary);
-
-  font-size:
-    12px;
-
-  font-weight:
-    800;
-
-}
-
-.field input,
-.field textarea,
-.field select {
-
-  width:
-    100%;
+.question-chip {
 
   padding:
-    14px;
+    12px;
 
   border:
     1px solid
@@ -944,157 +2463,167 @@ html[data-theme="betty"] .option {
     15px;
 
   background:
-    var(--surface);
+    var(--surface-2);
 
   color:
     var(--text);
-
-  outline:
-    none;
-
-  transition:
-    var(--transition);
-
-}
-
-.field input:focus,
-.field textarea:focus,
-.field select:focus {
-
-  border-color:
-    var(--accent);
-
-  box-shadow:
-    0 0 0 3px
-    var(--accent-soft);
-
-}
-
-.field textarea {
-
-  min-height:
-    85px;
-
-  resize:
-    vertical;
-
-}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.btn {
-
-  border:
-    0;
-
-  border-radius:
-    15px;
-
-  padding:
-    13px
-    16px;
-
-  background:
-    var(--surface-secondary);
-
-  color:
-    var(--text);
-
-  font-weight:
-    750;
-
-  cursor:
-    pointer;
-
-  transition:
-    transform .15s ease,
-    var(--transition);
-
-}
-
-.btn:active {
-
-  transform:
-    scale(.97);
-
-}
-
-.btn-primary {
-
-  width:
-    100%;
-
-  background:
-    var(--text);
-
-  color:
-    var(--bg);
-
-}
-
-
-/* =========================================================
-   CHIPS
-========================================================= */
-
-.chips {
-
-  display:
-    flex;
-
-  gap:
-    7px;
-
-  overflow-x:
-    auto;
-
-  padding-bottom:
-    3px;
-
-}
-
-.chip {
-
-  border:
-    0;
-
-  border-radius:
-    14px;
-
-  padding:
-    9px
-    12px;
-
-  background:
-    var(--surface-secondary);
-
-  color:
-    var(--text);
-
-  white-space:
-    nowrap;
 
   font-size:
-    13px;
+    11px;
 
   font-weight:
     700;
 
+  text-align:
+    left;
+
   cursor:
     pointer;
 
 }
 
-.chip.selected {
+
+.chat-card {
+
+  padding:
+    14px;
+
+}
+
+
+.chat-message {
+
+  max-width:
+    88%;
+
+  margin:
+    10px 0;
+
+  padding:
+    12px
+    14px;
+
+  border-radius:
+    17px;
+
+  font-size:
+    13px;
+
+  line-height:
+    1.45;
+
+}
+
+
+.chat-message.betty {
+
+  margin-right:
+    auto;
+
+  background:
+    var(--surface-2);
+
+  color:
+    var(--text);
+
+  border-bottom-left-radius:
+    5px;
+
+}
+
+
+.chat-message.user {
+
+  margin-left:
+    auto;
 
   background:
     var(--text);
 
   color:
     var(--bg);
+
+  border-bottom-right-radius:
+    5px;
+
+}
+
+
+.ask-input-row {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    8px;
+
+  margin-top:
+    10px;
+
+}
+
+
+.ask-input {
+
+  flex:
+    1;
+
+  min-width:
+    0;
+
+  padding:
+    14px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    17px;
+
+  outline:
+    none;
+
+  background:
+    var(--surface);
+
+  color:
+    var(--text);
+
+}
+
+
+.ask-send {
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  width:
+    48px;
+
+  height:
+    48px;
+
+  flex:
+    0 0 auto;
+
+  border-radius:
+    16px;
+
+  background:
+    var(--text);
+
+  color:
+    var(--bg);
+
+  cursor:
+    pointer;
 
 }
 
@@ -1103,7 +2632,7 @@ html[data-theme="betty"] .option {
    BOTTOM NAVIGATION
 ========================================================= */
 
-nav {
+.bottom-nav {
 
   position:
     fixed;
@@ -1118,13 +2647,13 @@ nav {
     0;
 
   z-index:
-    20;
+    40;
 
   display:
     grid;
 
   grid-template-columns:
-    repeat(5, 1fr);
+    repeat(5,1fr);
 
   width:
     100%;
@@ -1133,13 +2662,13 @@ nav {
     520px;
 
   margin:
-    auto;
+    0 auto;
 
   padding:
-    7px
+    8px
     5px
     calc(
-      7px +
+      8px +
       env(safe-area-inset-bottom)
     );
 
@@ -1148,91 +2677,138 @@ nav {
     var(--border);
 
   background:
-    var(--nav-bg);
+    var(--nav);
 
   backdrop-filter:
-    blur(18px);
+    blur(20px);
+
+  -webkit-backdrop-filter:
+    blur(20px);
 
   transition:
     var(--transition);
 
 }
 
-nav button {
 
-  border:
-    0;
+.nav-button {
+
+  position:
+    relative;
+
+  padding:
+    4px 2px;
 
   background:
     transparent;
 
   color:
-    var(--text-secondary);
+    var(--muted);
 
   font-size:
-    11px;
+    10px;
 
   font-weight:
-    700;
+    750;
 
   cursor:
     pointer;
 
 }
 
-nav button.active {
+
+.nav-icon {
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  height:
+    24px;
+
+  margin-bottom:
+    3px;
+
+  font-size:
+    19px;
+
+}
+
+
+.nav-button.active {
 
   color:
     var(--accent);
 
 }
 
-nav b {
 
-  display:
-    block;
+.nav-button.active::after {
 
-  margin-bottom:
-    2px;
+  content:
+    "";
 
-  font-size:
-    20px;
+  position:
+    absolute;
+
+  right:
+    35%;
+
+  bottom:
+    -4px;
+
+  left:
+    35%;
+
+  height:
+    3px;
+
+  border-radius:
+    3px;
+
+  background:
+    var(--accent);
 
 }
 
 
 /* =========================================================
-   FLOATING ACTION BUTTON
+   FLOATING QUICK LOG
 ========================================================= */
 
-.fab {
+.quick-log {
 
   position:
     fixed;
 
   right:
     max(
-      20px,
+      18px,
       calc(
         (100vw - 520px) / 2 +
-        20px
+        18px
       )
     );
 
   bottom:
-    88px;
+    92px;
 
   z-index:
-    10;
+    35;
+
+  display:
+    grid;
+
+  place-items:
+    center;
 
   width:
     58px;
 
   height:
     58px;
-
-  border:
-    0;
 
   border-radius:
     50%;
@@ -1244,21 +2820,30 @@ nav b {
     var(--bg);
 
   font-size:
-    28px;
+    27px;
 
   box-shadow:
-    0 10px 25px
-    rgba(0,0,0,.22);
+    0 12px 28px
+    rgba(0,0,0,.20);
 
   cursor:
     pointer;
 
+  transition:
+    transform .15s ease;
+
 }
 
 
-/* Betty Mode FAB */
+.quick-log:active {
 
-html[data-theme="betty"] .fab {
+  transform:
+    scale(.92);
+
+}
+
+
+html[data-theme="betty"] .quick-log {
 
   background:
 
@@ -1275,20 +2860,14 @@ html[data-theme="betty"] .fab {
   color:
     #ffffff;
 
-  box-shadow:
-
-    0 8px 30px
-    rgba(170,60,220,.30);
-
 }
 
 
 /* =========================================================
-   SHEET / MODAL
+   SHEETS / MODALS
 ========================================================= */
 
-.sheet,
-.modal {
+.overlay {
 
   position:
     fixed;
@@ -1297,7 +2876,7 @@ html[data-theme="betty"] .fab {
     0;
 
   z-index:
-    30;
+    60;
 
   display:
     none;
@@ -1306,20 +2885,20 @@ html[data-theme="betty"] .fab {
     flex-end;
 
   background:
-    rgba(0,0,0,.42);
+    rgba(0,0,0,.45);
 
 }
 
-.sheet.show,
-.modal.show {
+
+.overlay.show {
 
   display:
     flex;
 
 }
 
-.sheet-box,
-.modal-box {
+
+.sheet {
 
   width:
     100%;
@@ -1327,17 +2906,26 @@ html[data-theme="betty"] .fab {
   max-width:
     520px;
 
+  max-height:
+    90vh;
+
   margin:
-    auto;
+    0 auto;
 
   padding:
     20px
     18px
-    30px;
+    calc(
+      25px +
+      env(safe-area-inset-bottom)
+    );
+
+  overflow-y:
+    auto;
 
   border-radius:
-    28px
-    28px
+    30px
+    30px
     0
     0;
 
@@ -1347,204 +2935,56 @@ html[data-theme="betty"] .fab {
   color:
     var(--text);
 
-  transition:
-    var(--transition);
-
-}
-
-.modal {
-
-  align-items:
-    center;
-
-  padding:
-    20px;
-
-}
-
-.modal-box {
-
-  max-height:
-    85vh;
-
-  overflow-y:
-    auto;
-
-  border-radius:
-    25px;
+  animation:
+    sheetUp .25s ease;
 
 }
 
 
-/* =========================================================
-   TOAST
-========================================================= */
+@keyframes sheetUp {
 
-.toast {
+  from {
 
-  position:
-    fixed;
+    transform:
+      translateY(100%);
 
-  top:
-    16px;
+  }
 
-  left:
-    50%;
+  to {
 
-  z-index:
-    50;
+    transform:
+      translateY(0);
 
-  transform:
-    translate(
-      -50%,
-      -15px
-    );
-
-  opacity:
-    0;
-
-  padding:
-    12px
-    16px;
-
-  border-radius:
-    15px;
-
-  background:
-    var(--text);
-
-  color:
-    var(--bg);
-
-  font-weight:
-    750;
-
-  transition:
-    .2s;
-
-  pointer-events:
-    none;
-
-}
-
-.toast.show {
-
-  transform:
-    translate(
-      -50%,
-      0
-    );
-
-  opacity:
-    1;
+  }
 
 }
 
 
-/* =========================================================
-   CHART
-========================================================= */
-
-.chart {
-
-  position:
-    relative;
-
-  height:
-    210px;
-
-  margin:
-    15px
-    0;
-
-  overflow:
-    hidden;
-
-  border-radius:
-    18px;
-
-  background:
-
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent 24%,
-      var(--border) 25%,
-      transparent 26%
-    );
-
-}
-
-.target-band {
-
-  position:
-    absolute;
-
-  top:
-    34%;
-
-  right:
-    0;
-
-  left:
-    0;
-
-  height:
-    30%;
-
-  background:
-    rgba(52,199,89,.10);
-
-}
-
-.chart svg {
+.sheet-handle {
 
   width:
-    100%;
+    40px;
 
   height:
-    100%;
+    4px;
+
+  margin:
+    0 auto 20px;
+
+  border-radius:
+    4px;
+
+  background:
+    var(--surface-3);
 
 }
 
 
 /* =========================================================
-   INSIGHTS
+   SETTINGS
 ========================================================= */
 
-.insight {
-
-  padding-left:
-    14px;
-
-  border-left:
-    4px solid
-    var(--purple);
-
-}
-
-.badge {
-
-  color:
-    var(--purple);
-
-  font-size:
-    11px;
-
-  font-weight:
-    800;
-
-  text-transform:
-    uppercase;
-
-}
-
-
-/* =========================================================
-   SETTINGS — V3 FOUNDATION
-========================================================= */
-
-.settings-header {
+.settings-title-row {
 
   display:
     flex;
@@ -1556,11 +2996,18 @@ html[data-theme="betty"] .fab {
     14px;
 
   margin-bottom:
-    22px;
+    20px;
 
 }
 
+
 .settings-betty {
+
+  display:
+    grid;
+
+  place-items:
+    center;
 
   width:
     58px;
@@ -1583,41 +3030,72 @@ html[data-theme="betty"] .fab {
       #34c759,
       #00c7be,
       #007aff,
-      #5856d6,
       #af52de,
       #ff2d55,
       #ff3b30
     );
 
   box-shadow:
-    0 0 28px
-    var(--betty-glow);
+    0 0 25px
+    var(--glow);
 
 }
 
-.settings-section-title {
 
-  margin:
-    25px
-    4px
-    8px;
+.settings-betty::after {
+
+  content:
+    "☺";
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  width:
+    40px;
+
+  height:
+    40px;
+
+  border-radius:
+    50%;
+
+  background:
+    #f8edff;
 
   color:
-    var(--text-secondary);
+    #34233d;
 
   font-size:
-    12px;
+    20px;
+
+}
+
+
+.settings-section {
+
+  margin:
+    22px 0 8px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    10px;
 
   font-weight:
-    800;
+    850;
 
   letter-spacing:
-    .08em;
+    .10em;
 
   text-transform:
     uppercase;
 
 }
+
 
 .settings-card {
 
@@ -1629,15 +3107,16 @@ html[data-theme="betty"] .fab {
     var(--border);
 
   border-radius:
-    20px;
+    21px;
 
   background:
     var(--surface);
 
   box-shadow:
-    var(--shadow);
+    var(--shadow-small);
 
 }
+
 
 .settings-row {
 
@@ -1648,29 +3127,24 @@ html[data-theme="betty"] .fab {
     center;
 
   gap:
-    13px;
+    12px;
 
   min-height:
-    64px;
+    63px;
 
   padding:
-    12px
-    16px;
+    10px
+    15px;
 
   border-bottom:
     1px solid
     var(--border);
 
-  color:
-    var(--text);
-
   cursor:
     pointer;
 
-  transition:
-    background .2s ease;
-
 }
+
 
 .settings-row:last-child {
 
@@ -1679,12 +3153,6 @@ html[data-theme="betty"] .fab {
 
 }
 
-.settings-row:active {
-
-  background:
-    var(--surface-secondary);
-
-}
 
 .settings-icon {
 
@@ -1695,62 +3163,60 @@ html[data-theme="betty"] .fab {
     center;
 
   width:
-    36px;
+    37px;
 
   height:
-    36px;
+    37px;
 
   flex:
     0 0 auto;
 
   border-radius:
-    11px;
+    12px;
 
   background:
-    var(--surface-secondary);
-
-  font-size:
-    18px;
+    var(--surface-2);
 
 }
 
-.settings-content {
+
+.settings-copy {
 
   flex:
     1;
 
-  min-width:
-    0;
-
 }
 
-.settings-title {
+
+.settings-label {
 
   font-size:
-    15px;
+    14px;
 
   font-weight:
-    700;
+    750;
 
 }
 
-.settings-subtitle {
+
+.settings-description {
 
   margin-top:
-    3px;
+    2px;
 
   color:
-    var(--text-secondary);
+    var(--muted);
 
   font-size:
-    12px;
+    10px;
 
 }
 
-.settings-chevron {
+
+.settings-arrow {
 
   color:
-    var(--text-secondary);
+    var(--muted);
 
   font-size:
     20px;
@@ -1759,7 +3225,7 @@ html[data-theme="betty"] .fab {
 
 
 /* =========================================================
-   THEME SELECTOR
+   THEME OPTIONS
 ========================================================= */
 
 .theme-options {
@@ -1768,34 +3234,31 @@ html[data-theme="betty"] .fab {
     grid;
 
   grid-template-columns:
-    repeat(3, 1fr);
+    repeat(3,1fr);
 
   gap:
     8px;
 
-  margin-top:
+  padding:
     12px;
 
 }
 
+
 .theme-option {
 
-  position:
-    relative;
+  padding:
+    13px 6px;
 
   border:
     1px solid
     var(--border);
 
   border-radius:
-    16px;
-
-  padding:
-    12px
-    7px;
+    17px;
 
   background:
-    var(--surface-secondary);
+    var(--surface-2);
 
   color:
     var(--text);
@@ -1807,9 +3270,10 @@ html[data-theme="betty"] .fab {
     pointer;
 
   transition:
-    .2s ease;
+    transform .15s ease;
 
 }
+
 
 .theme-option:active {
 
@@ -1817,6 +3281,7 @@ html[data-theme="betty"] .fab {
     scale(.96);
 
 }
+
 
 .theme-option.selected {
 
@@ -1826,26 +3291,74 @@ html[data-theme="betty"] .fab {
 
 }
 
-.theme-option-icon {
 
-  display:
-    block;
+.theme-preview {
 
-  margin-bottom:
-    5px;
+  width:
+    38px;
 
-  font-size:
-    22px;
+  height:
+    38px;
+
+  margin:
+    0 auto 7px;
+
+  border-radius:
+    12px;
+
+  box-shadow:
+    var(--shadow-small);
 
 }
 
-.theme-option-label {
+
+.theme-preview.light {
+
+  background:
+    #f5f5fa;
+
+  border:
+    1px solid
+    #dddddf;
+
+}
+
+
+.theme-preview.dark {
+
+  background:
+    #000000;
+
+  border:
+    1px solid
+    #333333;
+
+}
+
+
+.theme-preview.betty {
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #ff3b30,
+      #ff9500,
+      #34c759,
+      #007aff,
+      #af52de
+    );
+
+}
+
+
+.theme-name {
 
   display:
     block;
 
   font-size:
-    11px;
+    10px;
 
   font-weight:
     800;
@@ -1853,35 +3366,8 @@ html[data-theme="betty"] .fab {
 }
 
 
-/* Betty Mode theme selector gets rainbow border */
-
-html[data-theme="betty"] .theme-option.selected {
-
-  border:
-    2px solid transparent;
-
-  background:
-
-    linear-gradient(
-      var(--surface),
-      var(--surface)
-    ) padding-box,
-
-    linear-gradient(
-      90deg,
-      #ff3b30,
-      #ff9500,
-      #34c759,
-      #007aff,
-      #af52de,
-      #ff2d55
-    ) border-box;
-
-}
-
-
 /* =========================================================
-   SETTINGS TOGGLE
+   TOGGLE
 ========================================================= */
 
 .toggle {
@@ -1890,24 +3376,25 @@ html[data-theme="betty"] .theme-option.selected {
     relative;
 
   width:
-    48px;
+    47px;
 
   height:
-    28px;
+    27px;
 
   flex:
     0 0 auto;
-
-  border:
-    0;
 
   border-radius:
     20px;
 
   background:
-    var(--surface-secondary);
+    var(--surface-3);
+
+  cursor:
+    pointer;
 
 }
+
 
 .toggle::after {
 
@@ -1924,10 +3411,10 @@ html[data-theme="betty"] .theme-option.selected {
     3px;
 
   width:
-    22px;
+    21px;
 
   height:
-    22px;
+    21px;
 
   border-radius:
     50%;
@@ -1944,12 +3431,14 @@ html[data-theme="betty"] .theme-option.selected {
 
 }
 
+
 .toggle.on {
 
   background:
     var(--green);
 
 }
+
 
 .toggle.on::after {
 
@@ -1960,73 +3449,84 @@ html[data-theme="betty"] .theme-option.selected {
 
 
 /* =========================================================
-   BETTY MODE EXTRA SPARKLES
+   TOAST
 ========================================================= */
 
-html[data-theme="betty"] .card.hero {
+.toast {
 
   position:
-    relative;
-
-  overflow:
-    hidden;
-
-}
-
-html[data-theme="betty"] .card.hero::after {
-
-  content:
-    "✦  ✧  ✦";
-
-  position:
-    absolute;
+    fixed;
 
   top:
-    10px;
+    18px;
 
-  right:
-    14px;
+  left:
+    50%;
+
+  z-index:
+    100;
+
+  max-width:
+    calc(
+      100% - 35px
+    );
+
+  padding:
+    12px
+    17px;
+
+  border-radius:
+    16px;
+
+  background:
+    var(--text);
 
   color:
-    #af52de;
+    var(--bg);
 
   font-size:
-    14px;
+    12px;
 
-  letter-spacing:
-    5px;
+  font-weight:
+    750;
+
+  transform:
+    translate(
+      -50%,
+      -20px
+    );
 
   opacity:
-    .7;
+    0;
+
+  pointer-events:
+    none;
+
+  transition:
+    .25s ease;
+
+}
+
+
+.toast.show {
+
+  transform:
+    translate(
+      -50%,
+      0
+    );
+
+  opacity:
+    1;
 
 }
 
 
 /* =========================================================
-   DARK MODE FORM FIXES
+   RESPONSIVE
 ========================================================= */
 
-html[data-theme="dark"] input::placeholder,
-html[data-theme="dark"] textarea::placeholder {
-
-  color:
-    #77777d;
-
-}
-
-html[data-theme="dark"] select {
-
-  color-scheme:
-    dark;
-
-}
-
-
-/* =========================================================
-   SMALL SCREENS
-========================================================= */
-
-@media (max-width: 360px) {
+@media (max-width: 370px) {
 
   .screen {
 
@@ -2038,24 +3538,34 @@ html[data-theme="dark"] select {
 
   }
 
-  .options {
+  .today-hero {
+
+    padding:
+      20px;
+
+  }
+
+  .hero-content {
 
     gap:
       8px;
 
   }
 
-  .option {
+  .betty-wrap {
 
-    padding:
-      15px;
+    transform:
+      scale(.90);
+
+    margin-left:
+      -7px;
 
   }
 
-  .theme-options {
+  .hero-copy h1 {
 
-    gap:
-      5px;
+    font-size:
+      29px;
 
   }
 
@@ -2063,7 +3573,7 @@ html[data-theme="dark"] select {
 
 
 /* =========================================================
-   REDUCED MOTION
+   ACCESSIBILITY
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -2081,9 +3591,6 @@ html[data-theme="dark"] select {
     transition-duration:
       .01ms !important;
 
-    scroll-behavior:
-      auto !important;
-
   }
 
 }
@@ -2092,23 +3599,31 @@ html[data-theme="dark"] select {
 
 </head><body>
 
-<div class="app" id="app">
-
+<div class="app">
 
   <!-- =====================================================
-       HEADER
+       TOP BAR
   ====================================================== -->
 
-  <header>
+  <header class="topbar">
 
-    <div class="brand">
-      <span>Diabetter</span>
+    <div class="logo">
+
+      <div class="logo-mark">
+        🦋
+      </div>
+
+      <div class="logo-text">
+        Diabetter
+      </div>
+
     </div>
 
+
     <button
-      class="icon-button"
+      class="settings-button"
       onclick="openSettings()"
-      aria-label="Open Settings">
+      aria-label="Settings">
 
       ⚙️
 
@@ -2117,118 +3632,270 @@ html[data-theme="dark"] select {
   </header>
 
 
-
   <!-- =====================================================
        TODAY
   ====================================================== -->
 
-  <section
+  <main
     id="today"
     class="screen active">
 
-    <div class="card hero">
 
-      <div class="betty">
+    <div class="today-hero card">
 
-        <div
-          class="orb"
-          aria-label="Betty">
+      <div class="hero-content">
+
+
+        <!-- BETTY -->
+
+        <div class="betty-wrap">
+
+          <div class="betty-wing left"></div>
+
+          <div class="betty-wing right"></div>
+
+          <div class="betty-orb">
+
+            <div class="betty-face">
+
+              <div class="betty-eye left"></div>
+
+              <div class="betty-eye right"></div>
+
+              <div class="betty-smile"></div>
+
+            </div>
+
+          </div>
+
         </div>
 
-        <div>
 
-          <div class="kicker">
-            Betty · Today
+        <!-- GREETING -->
+
+        <div class="hero-copy">
+
+          <div class="eyebrow">
+            Your day
           </div>
 
           <h1 id="greeting">
             Good morning
           </h1>
 
-          <p id="bettyMessage">
-            Your timeline will build as you log things.
+          <p>
+            Let's see what today
+            looks like.
           </p>
 
         </div>
 
       </div>
 
+
+      <div
+        class="betty-bubble"
+        id="bettyMessage">
+
+        Your timeline will build as
+        you log things.
+
+      </div>
+
     </div>
 
 
 
-    <div class="grid">
+    <!-- QUICK STATS -->
 
-      <div class="stat">
+    <div class="section-head">
 
-        <small>
-          Latest glucose
-        </small>
+      <h2>
+        Today's snapshot
+      </h2>
+
+      <button
+        class="section-action"
+        onclick="navigate('log')">
+
+        Add
+
+      </button>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+
+      <!-- GLUCOSE -->
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          🩸
+        </div>
+
+        <div class="stat-label">
+          GLUCOSE
+        </div>
 
         <div
-          class="num"
+          class="stat-value"
           id="latestGlucose">
+
           —
+
         </div>
 
-        <small>
+        <span class="stat-unit">
           mg/dL
-        </small>
-
-      </div>
-
-
-      <div class="stat">
-
-        <small>
-          Today's events
-        </small>
-
-        <div
-          class="num"
-          id="todayCount">
-          0
-        </div>
-
-        <small>
-          saved locally
-        </small>
-
-      </div>
-
-    </div>
-
-
-
-    <div class="card">
-
-      <div class="row between">
-
-        <h2>
-          Today's timeline
-        </h2>
-
-        <span
-          class="kicker"
-          id="todayDate">
         </span>
 
+        <div
+          class="stat-accent purple">
+        </div>
+
       </div>
 
 
-      <div id="timeline">
+      <!-- BLOOD PRESSURE -->
 
-        <div class="empty">
-          Nothing logged yet today.
-          <br>
-          Tap ＋ to add your first event.
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          ❤️
+        </div>
+
+        <div class="stat-label">
+          BLOOD PRESSURE
+        </div>
+
+        <div
+          class="stat-value"
+          id="latestBP">
+
+          —
+
+        </div>
+
+        <span class="stat-unit">
+          mmHg
+        </span>
+
+        <div
+          class="stat-accent red">
+        </div>
+
+      </div>
+
+
+      <!-- ACTIVITY -->
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          🏃
+        </div>
+
+        <div class="stat-label">
+          ACTIVITY
+        </div>
+
+        <div
+          class="stat-value"
+          id="todayActivity">
+
+          —
+
+        </div>
+
+        <span class="stat-unit">
+          minutes
+        </span>
+
+        <div
+          class="stat-accent green">
+        </div>
+
+      </div>
+
+
+      <!-- WATER -->
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          💧
+        </div>
+
+        <div class="stat-label">
+          WATER
+        </div>
+
+        <div
+          class="stat-value"
+          id="todayWater">
+
+          —
+
+        </div>
+
+        <span class="stat-unit">
+          oz
+        </span>
+
+        <div
+          class="stat-accent blue">
         </div>
 
       </div>
 
     </div>
 
-  </section>
+
+
+    <!-- TIMELINE -->
+
+    <div class="section-head">
+
+      <h2>
+        Today's timeline
+      </h2>
+
+      <span
+        class="section-action"
+        id="todayCount">
+
+        0
+
+      </span>
+
+    </div>
+
+
+    <div class="card timeline-card">
+
+      <div
+        id="timeline">
+
+        <div class="empty-state">
+
+          Nothing logged yet today.
+
+          <br><br>
+
+          Tap ＋ to add your first
+          event.
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </main>
 
 
 
@@ -2236,117 +3903,251 @@ html[data-theme="dark"] select {
        LOG
   ====================================================== -->
 
-  <section
+  <main
     id="log"
     class="screen">
 
-    <div class="card">
 
-      <div class="kicker">
-        Log
+    <div class="page-heading">
+
+      <div class="eyebrow">
+        Health timeline
       </div>
 
       <h1>
-        Add something
+        What would you like to log?
       </h1>
 
       <p>
-        Quickly capture what happened.
-        Every saved entry persists in this browser.
+        Every little piece of information
+        helps create a clearer picture.
       </p>
 
     </div>
 
 
 
-    <div class="options">
+    <div class="log-grid">
+
+
+      <!-- GLUCOSE -->
 
       <button
-        class="option"
+        class="log-tile"
         onclick="showLogForm('glucose')">
 
-        <span>🩸</span>
+        <div class="log-tile-icon">
+          🩸
+        </div>
 
-        Glucose
+        <div class="log-tile-title">
+          Glucose
+        </div>
+
+        <div class="log-tile-subtitle">
+          Blood sugar reading
+        </div>
+
+        <div
+          class="log-tile-glow"
+          style="background:#af52de">
+        </div>
 
       </button>
 
 
+      <!-- FOOD -->
+
       <button
-        class="option"
+        class="log-tile"
         onclick="showLogForm('food')">
 
-        <span>🍽️</span>
+        <div class="log-tile-icon">
+          🍽️
+        </div>
 
-        Food
+        <div class="log-tile-title">
+          Food
+        </div>
+
+        <div class="log-tile-subtitle">
+          Meal or snack
+        </div>
+
+        <div
+          class="log-tile-glow"
+          style="background:#ff9500">
+        </div>
 
       </button>
 
 
+      <!-- MOVEMENT -->
+
       <button
-        class="option"
+        class="log-tile"
         onclick="showLogForm('exercise')">
 
-        <span>🏃</span>
+        <div class="log-tile-icon">
+          🏃
+        </div>
 
-        Exercise
+        <div class="log-tile-title">
+          Movement
+        </div>
+
+        <div class="log-tile-subtitle">
+          Exercise or activity
+        </div>
+
+        <div
+          class="log-tile-glow"
+          style="background:#34c759">
+        </div>
 
       </button>
 
 
+      <!-- WATER -->
+
       <button
-        class="option"
+        class="log-tile"
         onclick="showLogForm('water')">
 
-        <span>💧</span>
+        <div class="log-tile-icon">
+          💧
+        </div>
 
-        Water
+        <div class="log-tile-title">
+          Hydration
+        </div>
+
+        <div class="log-tile-subtitle">
+          Water intake
+        </div>
+
+        <div
+          class="log-tile-glow"
+          style="background:#007aff">
+        </div>
 
       </button>
 
 
+      <!-- BLOOD PRESSURE -->
+
       <button
-        class="option"
+        class="log-tile"
         onclick="showLogForm('bp')">
 
-        <span>❤️</span>
+        <div class="log-tile-icon">
+          ❤️
+        </div>
 
-        Blood pressure
+        <div class="log-tile-title">
+          Blood pressure
+        </div>
+
+        <div class="log-tile-subtitle">
+          BP reading
+        </div>
+
+        <div
+          class="log-tile-glow"
+          style="background:#ff3b30">
+        </div>
 
       </button>
 
 
+      <!-- MOOD -->
+
       <button
-        class="option"
+        class="log-tile"
         onclick="showLogForm('mood')">
 
-        <span>😊</span>
+        <div class="log-tile-icon">
+          😊
+        </div>
 
-        Mood
+        <div class="log-tile-title">
+          Mood
+        </div>
+
+        <div class="log-tile-subtitle">
+          How you're feeling
+        </div>
+
+        <div
+          class="log-tile-glow"
+          style="background:#ffd60a">
+        </div>
 
       </button>
 
+
+      <!-- NOTE -->
 
       <button
-        class="option"
+        class="log-tile"
         onclick="showLogForm('note')">
 
-        <span>📝</span>
+        <div class="log-tile-icon">
+          📝
+        </div>
 
-        Health note
+        <div class="log-tile-title">
+          Note
+        </div>
+
+        <div class="log-tile-subtitle">
+          Anything else
+        </div>
+
+        <div
+          class="log-tile-glow"
+          style="background:#5856d6">
+        </div>
 
       </button>
 
-    </div>
 
+      <!-- MEDICATION -->
+
+      <button
+        class="log-tile"
+        onclick="showLogForm('medication')">
+
+        <div class="log-tile-icon">
+          💊
+        </div>
+
+        <div class="log-tile-title">
+          Medication
+        </div>
+
+        <div class="log-tile-subtitle">
+          Medication event
+        </div>
+
+        <div
+          class="log-tile-glow"
+          style="background:#00c7be">
+        </div>
+
+      </button>
+
+
+    </div>
 
 
     <div
       id="logForm"
-      class="card form">
+      class="form-card">
     </div>
 
-  </section>
+
+  </main>
 
 
 
@@ -2354,110 +4155,187 @@ html[data-theme="dark"] select {
        TRENDS
   ====================================================== -->
 
-  <section
+  <main
     id="trends"
     class="screen">
 
-    <div class="card">
 
-      <div class="kicker">
-        Trends
+    <div class="page-heading">
+
+      <div class="eyebrow">
+        Your patterns
       </div>
 
       <h1>
-        7-day view
+        Trends
       </h1>
 
+      <p>
+        See how your health information
+        changes over time.
+      </p>
 
-      <div class="chips">
+    </div>
 
-        <button
-          class="chip selected"
-          onclick="setTrend('glucose', this)">
 
+    <!-- TIME RANGE -->
+
+    <div class="range-selector">
+
+      <button
+        class="range-button active"
+        onclick="setRange(7,this)">
+
+        7 days
+
+      </button>
+
+      <button
+        class="range-button"
+        onclick="setRange(30,this)">
+
+        30 days
+
+      </button>
+
+      <button
+        class="range-button"
+        onclick="setRange(90,this)">
+
+        90 days
+
+      </button>
+
+    </div>
+
+
+    <!-- METRICS -->
+
+    <div class="metric-selector">
+
+      <button
+        class="metric-chip active"
+        onclick="setTrend('glucose',this)">
+
+        🩸 Glucose
+
+      </button>
+
+      <button
+        class="metric-chip"
+        onclick="setTrend('bp',this)">
+
+        ❤️ BP
+
+      </button>
+
+      <button
+        class="metric-chip"
+        onclick="setTrend('exercise',this)">
+
+        🏃 Activity
+
+      </button>
+
+      <button
+        class="metric-chip"
+        onclick="setTrend('water',this)">
+
+        💧 Water
+
+      </button>
+
+      <button
+        class="metric-chip"
+        onclick="setTrend('mood',this)">
+
+        😊 Mood
+
+      </button>
+
+    </div>
+
+
+
+    <!-- CHART -->
+
+    <div class="card chart-card">
+
+      <div class="section-head">
+
+        <h2 id="chartTitle">
           Glucose
+        </h2>
 
-        </button>
+        <span
+          class="section-action">
 
+          7 days
 
-        <button
-          class="chip"
-          onclick="setTrend('food', this)">
-
-          Food
-
-        </button>
-
-
-        <button
-          class="chip"
-          onclick="setTrend('exercise', this)">
-
-          Exercise
-
-        </button>
-
-
-        <button
-          class="chip"
-          onclick="setTrend('mood', this)">
-
-          Mood
-
-        </button>
+        </span>
 
       </div>
 
 
-      <div class="chart">
+      <div class="chart-wrap">
 
-        <div class="target-band"></div>
+        <div class="chart-grid">
+
+          <div class="chart-line"></div>
+
+          <div class="chart-line"></div>
+
+          <div class="chart-line"></div>
+
+          <div class="chart-line"></div>
+
+          <div class="chart-line"></div>
+
+        </div>
+
 
         <svg
           id="glucoseChart"
           viewBox="0 0 500 210"
           preserveAspectRatio="none">
+
         </svg>
 
       </div>
 
 
-      <div class="grid">
+      <div class="chart-summary">
 
-        <div class="stat">
+        <div>
 
-          <small>
+          <div class="chart-label">
             Average
-          </small>
-
-          <div
-            class="num"
-            id="trendAverage">
-            —
           </div>
 
-          <small>
-            mg/dL
-          </small>
+          <div
+            class="chart-number"
+            id="trendAverage">
+
+            —
+
+          </div>
 
         </div>
 
 
-        <div class="stat">
+        <div>
 
-          <small>
+          <div class="chart-label">
             Readings
-          </small>
-
-          <div
-            class="num"
-            id="trendReadings">
-            0
           </div>
 
-          <small>
-            last 7 days
-          </small>
+          <div
+            class="chart-number"
+            id="trendReadings">
+
+            0
+
+          </div>
 
         </div>
 
@@ -2465,64 +4343,73 @@ html[data-theme="dark"] select {
 
     </div>
 
+
+
+    <!-- COMPARISON -->
+
+    <div class="section-head">
+
+      <h2>
+        Explore connections
+      </h2>
+
+    </div>
 
 
     <div class="card">
 
-      <h2>
-        Compare with
-      </h2>
+      <p id="comparisonMessage">
 
-      <div class="chips">
+        Log different types of health data
+        and Betty can eventually explore
+        relationships between them.
+
+      </p>
+
+
+      <div class="question-grid">
 
         <button
-          class="chip"
+          class="question-chip"
           onclick="compareContext('food')">
 
-          🍽️ Food
+          🍽️ Food & glucose
 
         </button>
 
 
         <button
-          class="chip"
+          class="question-chip"
           onclick="compareContext('exercise')">
 
-          🏃 Exercise
+          🏃 Exercise & glucose
 
         </button>
 
 
         <button
-          class="chip"
-          onclick="compareContext('sleep')">
-
-          😴 Sleep
-
-        </button>
-
-
-        <button
-          class="chip"
+          class="question-chip"
           onclick="compareContext('mood')">
 
-          😊 Mood
+          😊 Mood & health
+
+        </button>
+
+
+        <button
+          class="question-chip"
+          onclick="compareContext('sleep')">
+
+          😴 Sleep & glucose
 
         </button>
 
       </div>
 
-
-      <p id="comparisonMessage">
-
-        Choose a context to explore
-        alongside glucose.
-
-      </p>
-
     </div>
 
-  </section>
+
+  </main>
 
 
 
@@ -2530,32 +4417,73 @@ html[data-theme="dark"] select {
        INSIGHTS
   ====================================================== -->
 
-  <section
+  <main
     id="insights"
     class="screen">
 
-    <div class="card">
 
-      <div class="betty">
+    <div class="page-heading">
 
-        <div
-          class="orb"
-          aria-label="Betty">
-        </div>
+      <div class="eyebrow">
+        Betty's observations
+      </div>
 
-        <div>
+      <h1>
+        Insights
+      </h1>
 
-          <div class="kicker">
-            Betty's intelligence
+      <p>
+        Small patterns can become
+        useful information.
+      </p>
+
+    </div>
+
+
+    <div id="insightsList">
+
+      <div class="card insight-card">
+
+        <div class="insight-top">
+
+          <div class="mini-betty"></div>
+
+          <div>
+
+            <div class="insight-tag">
+              BETTY NOTICED
+            </div>
+
+            <h3>
+              Your timeline is waiting.
+            </h3>
+
           </div>
 
-          <h1>
-            Insights
-          </h1>
+        </div>
 
-          <p>
-            Patterns are graded by evidence.
-          </p>
+
+        <div class="insight-title">
+
+          Start building your story.
+
+        </div>
+
+
+        <p class="insight-body">
+
+          Log glucose, meals, movement,
+          hydration, mood, or notes and
+          Betty will have more context to
+          work with.
+
+        </p>
+
+
+        <div class="insight-evidence">
+
+          More data → better context
+          → more meaningful observations.
 
         </div>
 
@@ -2564,9 +4492,40 @@ html[data-theme="dark"] select {
     </div>
 
 
-    <div id="insightsList"></div>
+    <!-- BETTY NOTE -->
 
-  </section>
+    <div class="card">
+
+      <div class="insight-top">
+
+        <div class="mini-betty"></div>
+
+        <div>
+
+          <div class="insight-tag">
+            A NOTE FROM BETTY
+          </div>
+
+          <h3>
+            Patterns take time.
+          </h3>
+
+        </div>
+
+      </div>
+
+      <p style="margin-top:15px">
+
+        I'm not here to judge a single
+        number. I'm here to help you
+        understand the bigger picture.
+
+      </p>
+
+    </div>
+
+
+  </main>
 
 
 
@@ -2574,36 +4533,88 @@ html[data-theme="dark"] select {
        ASK BETTY
   ====================================================== -->
 
-  <section
-    id="ask"
+  <main
+    id="betty"
     class="screen">
 
-    <div class="card">
 
-      <div class="betty">
+    <div class="card ask-hero">
 
-        <div
-          class="orb"
-          aria-label="Betty">
-        </div>
 
-        <div>
+      <div class="betty-wrap">
 
-          <div class="kicker">
-            Ask Betty
+        <div class="betty-wing left"></div>
+
+        <div class="betty-wing right"></div>
+
+        <div class="betty-orb">
+
+          <div class="betty-face">
+
+            <div class="betty-eye left"></div>
+
+            <div class="betty-eye right"></div>
+
+            <div class="betty-smile"></div>
+
           </div>
 
-          <h1>
-            Hi, I'm Betty.
-          </h1>
-
-          <p>
-            Ask me about your logged data,
-            trends, meals, exercise,
-            goals, or routines.
-          </p>
-
         </div>
+
+      </div>
+
+
+      <div class="eyebrow">
+        Your AI companion
+      </div>
+
+      <h1>
+        Ask Betty
+      </h1>
+
+      <p>
+        Ask questions about your
+        timeline, patterns, or anything
+        you're curious about.
+      </p>
+
+
+      <div class="question-grid">
+
+        <button
+          class="question-chip"
+          onclick="askSuggested('What is my average glucose?')">
+
+          🩸 My average glucose
+
+        </button>
+
+
+        <button
+          class="question-chip"
+          onclick="askSuggested('How am I doing?')">
+
+          💗 How am I doing?
+
+        </button>
+
+
+        <button
+          class="question-chip"
+          onclick="askSuggested('What have I logged lately?')">
+
+          📊 My recent activity
+
+        </button>
+
+
+        <button
+          class="question-chip"
+          onclick="askSuggested('What patterns do you see?')">
+
+          ✨ What patterns do you see?
+
+        </button>
 
       </div>
 
@@ -2611,208 +4622,42 @@ html[data-theme="dark"] select {
 
 
 
-    <div
-      id="chat"
-      class="card">
+    <!-- CHAT -->
 
-      <b>
-        🦋 Betty:
-      </b>
+    <div class="card chat-card">
 
-      <p>
-        Try asking:
-        “What is my average glucose?”
-      </p>
+      <div id="chat">
 
-    </div>
+        <div
+          class="chat-message betty">
+
+          Hi! 🦋 I'm Betty.
+
+          <br><br>
+
+          Start by asking me something
+          about your Diabetter timeline.
+
+        </div>
+
+      </div>
 
 
-
-    <div class="row">
-
-      <div
-        class="field"
-        style="margin:0;flex:1">
+      <div class="ask-input-row">
 
         <input
           id="bettyQuestion"
+          class="ask-input"
           type="text"
           placeholder="Ask Betty..."
-          autocomplete="off"
           onkeydown="handleBettyKey(event)">
 
-      </div>
-
-
-      <button
-        class="btn"
-        onclick="askBetty()">
-
-        Send
-
-      </button>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =====================================================
-       FLOATING QUICK LOG BUTTON
-  ====================================================== -->
-
-  <button
-    class="fab"
-    onclick="openQuickLog()"
-    aria-label="Quick Log">
-
-    ＋
-
-  </button>
-
-
-
-  <!-- =====================================================
-       BOTTOM NAVIGATION
-  ====================================================== -->
-
-  <nav>
-
-    <button
-      class="active"
-      onclick="navigate('today', this)">
-
-      <b>☀️</b>
-
-      Today
-
-    </button>
-
-
-    <button
-      onclick="navigate('log', this)">
-
-      <b>＋</b>
-
-      Log
-
-    </button>
-
-
-    <button
-      onclick="navigate('trends', this)">
-
-      <b>⌁</b>
-
-      Trends
-
-    </button>
-
-
-    <button
-      onclick="navigate('insights', this)">
-
-      <b>✦</b>
-
-      Insights
-
-    </button>
-
-
-    <button
-      onclick="navigate('ask', this)">
-
-      <b>🦋</b>
-
-      Ask Betty
-
-    </button>
-
-  </nav>
-
-
-
-  <!-- =====================================================
-       QUICK LOG SHEET
-  ====================================================== -->
-
-  <div
-    id="quickLogSheet"
-    class="sheet"
-    onclick="closeQuickLogIfBackground(event)">
-
-    <div class="sheet-box">
-
-      <h2>
-        Quick Log
-      </h2>
-
-
-      <div class="options">
 
         <button
-          class="option"
-          onclick="quickLog('glucose')">
+          class="ask-send"
+          onclick="askBetty()">
 
-          <span>🩸</span>
-
-          Glucose
-
-        </button>
-
-
-        <button
-          class="option"
-          onclick="quickLog('food')">
-
-          <span>🍽️</span>
-
-          Food
-
-        </button>
-
-
-        <button
-          class="option"
-          onclick="quickLog('exercise')">
-
-          <span>🏃</span>
-
-          Exercise
-
-        </button>
-
-
-        <button
-          class="option"
-          onclick="quickLog('water')">
-
-          <span>💧</span>
-
-          Water
-
-        </button>
-
-
-        <button
-          class="option"
-          onclick="quickLog('bp')">
-
-          <span>❤️</span>
-
-          Blood pressure
-
-        </button>
-
-
-        <button
-          class="option"
-          onclick="quickLog('mood')">
-
-          <span>😊</span>
-
-          Mood
+          ↑
 
         </button>
 
@@ -2820,7 +4665,8 @@ html[data-theme="dark"] select {
 
     </div>
 
-  </div>
+
+  </main>
 
 
 
@@ -2830,35 +4676,28 @@ html[data-theme="dark"] select {
 
   <div
     id="settingsModal"
-    class="modal"
+    class="overlay"
     onclick="closeSettingsIfBackground(event)">
 
-    <div
-      class="modal-box settings-modal-box">
+
+    <div class="sheet">
+
+      <div class="sheet-handle"></div>
 
 
-      <!-- SETTINGS HEADER -->
+      <div class="settings-title-row">
 
-      <div class="settings-header">
-
-        <div
-          class="settings-betty"
-          aria-hidden="true">
-        </div>
+        <div class="settings-betty"></div>
 
         <div>
 
-          <div class="kicker">
+          <div class="eyebrow">
             Diabetter
           </div>
 
-          <h1>
+          <h2>
             Settings
-          </h1>
-
-          <p>
-            Make Diabetter feel like yours.
-          </p>
+          </h2>
 
         </div>
 
@@ -2866,104 +4705,95 @@ html[data-theme="dark"] select {
 
 
 
-      <!-- =================================================
-           APPEARANCE
-      ================================================== -->
+      <!-- APP THEME -->
 
-      <div class="settings-section-title">
+      <div class="settings-section">
         Appearance
       </div>
 
 
       <div class="settings-card">
 
-        <div class="settings-row theme-row">
 
-          <div class="settings-icon">
-            🎨
+        <div class="settings-row"
+             style="display:block;padding:15px">
+
+          <div class="settings-label">
+            App Theme
           </div>
 
-          <div class="settings-content">
+          <div
+            class="settings-description"
+            id="themeDescription">
 
-            <div class="settings-title">
-              App Theme
-            </div>
+            Light Mode
 
-            <div
-              class="settings-subtitle"
-              id="themeDescription">
+          </div>
 
-              Light Mode
 
-            </div>
+          <div class="theme-options">
+
+
+            <button
+              id="themeLight"
+              class="theme-option selected"
+              onclick="setTheme('light')">
+
+              <div
+                class="theme-preview light">
+              </div>
+
+              <span class="theme-name">
+                Light
+              </span>
+
+            </button>
+
+
+            <button
+              id="themeDark"
+              class="theme-option"
+              onclick="setTheme('dark')">
+
+              <div
+                class="theme-preview dark">
+              </div>
+
+              <span class="theme-name">
+                Dark
+              </span>
+
+            </button>
+
+
+            <button
+              id="themeBetty"
+              class="theme-option"
+              onclick="setTheme('betty')">
+
+              <div
+                class="theme-preview betty">
+              </div>
+
+              <span class="theme-name">
+                Betty
+              </span>
+
+            </button>
+
 
           </div>
 
         </div>
 
-
-        <div
-          class="theme-options"
-          style="padding:0 12px 14px">
-
-          <button
-            class="theme-option selected"
-            id="themeLight"
-            onclick="setTheme('light')">
-
-            <span class="theme-option-icon">
-              ☀️
-            </span>
-
-            <span class="theme-option-label">
-              Light
-            </span>
-
-          </button>
-
-
-          <button
-            class="theme-option"
-            id="themeDark"
-            onclick="setTheme('dark')">
-
-            <span class="theme-option-icon">
-              🌙
-            </span>
-
-            <span class="theme-option-label">
-              Dark
-            </span>
-
-          </button>
-
-
-          <button
-            class="theme-option"
-            id="themeBetty"
-            onclick="setTheme('betty')">
-
-            <span class="theme-option-icon">
-              🌈
-            </span>
-
-            <span class="theme-option-label">
-              Betty Mode
-            </span>
-
-          </button>
-
-        </div>
 
       </div>
 
 
 
-      <!-- =================================================
-           BETTY & AI
-      ================================================== -->
+      <!-- BETTY -->
 
-      <div class="settings-section-title">
+      <div class="settings-section">
         Betty & AI
       </div>
 
@@ -2979,24 +4809,23 @@ html[data-theme="dark"] select {
             🧠
           </div>
 
-          <div class="settings-content">
+          <div class="settings-copy">
 
-            <div class="settings-title">
+            <div class="settings-label">
               Betty's Memory
             </div>
 
-            <div class="settings-subtitle">
-              What Betty remembers about you
+            <div class="settings-description">
+              What Betty remembers
             </div>
 
           </div>
 
-          <div class="settings-chevron">
+          <div class="settings-arrow">
             ›
           </div>
 
         </div>
-
 
 
         <div
@@ -3004,27 +4833,26 @@ html[data-theme="dark"] select {
           onclick="openBettyPreferences()">
 
           <div class="settings-icon">
-            💬
+            🦋
           </div>
 
-          <div class="settings-content">
+          <div class="settings-copy">
 
-            <div class="settings-title">
-              Ask Betty Preferences
+            <div class="settings-label">
+              Betty Preferences
             </div>
 
-            <div class="settings-subtitle">
-              Personality and response style
+            <div class="settings-description">
+              Personality & communication
             </div>
 
           </div>
 
-          <div class="settings-chevron">
+          <div class="settings-arrow">
             ›
           </div>
 
         </div>
-
 
 
         <div
@@ -3032,36 +4860,35 @@ html[data-theme="dark"] select {
           onclick="openInsightPreferences()">
 
           <div class="settings-icon">
-            💡
+            ✨
           </div>
 
-          <div class="settings-content">
+          <div class="settings-copy">
 
-            <div class="settings-title">
-              Insights Preferences
+            <div class="settings-label">
+              Insights
             </div>
 
-            <div class="settings-subtitle">
-              Choose what Betty highlights
+            <div class="settings-description">
+              Customize what Betty notices
             </div>
 
           </div>
 
-          <div class="settings-chevron">
+          <div class="settings-arrow">
             ›
           </div>
 
         </div>
 
+
       </div>
 
 
 
-      <!-- =================================================
-           HEALTH & DATA
-      ================================================== -->
+      <!-- HEALTH DATA -->
 
-      <div class="settings-section-title">
+      <div class="settings-section">
         Health & Data
       </div>
 
@@ -3077,24 +4904,23 @@ html[data-theme="dark"] select {
             ❤️
           </div>
 
-          <div class="settings-content">
+          <div class="settings-copy">
 
-            <div class="settings-title">
-              Health Data Permissions
+            <div class="settings-label">
+              Health Data
             </div>
 
-            <div class="settings-subtitle">
-              Manage health information access
+            <div class="settings-description">
+              Permissions & connections
             </div>
 
           </div>
 
-          <div class="settings-chevron">
+          <div class="settings-arrow">
             ›
           </div>
 
         </div>
-
 
 
         <div
@@ -3102,27 +4928,26 @@ html[data-theme="dark"] select {
           onclick="openDataSources()">
 
           <div class="settings-icon">
-            🔗
+            📱
           </div>
 
-          <div class="settings-content">
+          <div class="settings-copy">
 
-            <div class="settings-title">
+            <div class="settings-label">
               Data Sources
             </div>
 
-            <div class="settings-subtitle">
-              Devices and connected services
+            <div class="settings-description">
+              Connected health information
             </div>
 
           </div>
 
-          <div class="settings-chevron">
+          <div class="settings-arrow">
             ›
           </div>
 
         </div>
-
 
 
         <div
@@ -3130,37 +4955,63 @@ html[data-theme="dark"] select {
           onclick="openPrivacy()">
 
           <div class="settings-icon">
-            🔒
+            🔐
           </div>
 
-          <div class="settings-content">
+          <div class="settings-copy">
 
-            <div class="settings-title">
-              Data Privacy
+            <div class="settings-label">
+              Privacy
             </div>
 
-            <div class="settings-subtitle">
-              Control how your information is used
+            <div class="settings-description">
+              How your data is handled
             </div>
 
           </div>
 
-          <div class="settings-chevron">
+          <div class="settings-arrow">
             ›
           </div>
 
         </div>
 
+
+        <div
+          class="settings-row"
+          onclick="exportReport()">
+
+          <div class="settings-icon">
+            📤
+          </div>
+
+          <div class="settings-copy">
+
+            <div class="settings-label">
+              Export My Data
+            </div>
+
+            <div class="settings-description">
+              Create a health report
+            </div>
+
+          </div>
+
+          <div class="settings-arrow">
+            ›
+          </div>
+
+        </div>
+
+
       </div>
 
 
 
-      <!-- =================================================
-           REMINDERS
-      ================================================== -->
+      <!-- REMINDERS -->
 
-      <div class="settings-section-title">
-        Reminders & Notifications
+      <div class="settings-section">
+        Reminders
       </div>
 
 
@@ -3175,14 +5026,14 @@ html[data-theme="dark"] select {
             🔔
           </div>
 
-          <div class="settings-content">
+          <div class="settings-copy">
 
-            <div class="settings-title">
-              Reminders
+            <div class="settings-label">
+              Betty Reminders
             </div>
 
             <div
-              class="settings-subtitle"
+              class="settings-description"
               id="reminderStatus">
 
               Adaptive
@@ -3191,12 +5042,11 @@ html[data-theme="dark"] select {
 
           </div>
 
-          <div class="settings-chevron">
+          <div class="settings-arrow">
             ›
           </div>
 
         </div>
-
 
 
         <div
@@ -3204,40 +5054,41 @@ html[data-theme="dark"] select {
           onclick="toggleNotifications()">
 
           <div class="settings-icon">
-            💬
+            📲
           </div>
 
-          <div class="settings-content">
+          <div class="settings-copy">
 
-            <div class="settings-title">
+            <div class="settings-label">
               Notifications
             </div>
 
-            <div class="settings-subtitle">
-              Betty updates and reminders
+            <div class="settings-description">
+              App notifications
             </div>
 
           </div>
+
 
           <button
             id="notificationToggle"
             class="toggle on"
-            onclick="event.stopPropagation(); toggleNotifications()"
-            aria-label="Toggle notifications">
+            onclick="event.stopPropagation();toggleNotifications()">
+
           </button>
 
+
         </div>
+
 
       </div>
 
 
 
-      <!-- =================================================
-           ACCOUNT & MORE
-      ================================================== -->
+      <!-- ACCOUNT -->
 
-      <div class="settings-section-title">
-        Account & More
+      <div class="settings-section">
+        Account
       </div>
 
 
@@ -3252,52 +5103,23 @@ html[data-theme="dark"] select {
             👤
           </div>
 
-          <div class="settings-content">
+          <div class="settings-copy">
 
-            <div class="settings-title">
+            <div class="settings-label">
               Account
             </div>
 
-            <div class="settings-subtitle">
-              Profile and account settings
+            <div class="settings-description">
+              Profile & synchronization
             </div>
 
           </div>
 
-          <div class="settings-chevron">
+          <div class="settings-arrow">
             ›
           </div>
 
         </div>
-
-
-
-        <div
-          class="settings-row"
-          onclick="exportReport()">
-
-          <div class="settings-icon">
-            📄
-          </div>
-
-          <div class="settings-content">
-
-            <div class="settings-title">
-              Export Reports
-            </div>
-
-            <div class="settings-subtitle">
-              Create a report from your data
-            </div>
-
-          </div>
-
-          <div class="settings-chevron">
-            ›
-          </div>
-
-        </div>
-
 
 
         <div
@@ -3308,53 +5130,32 @@ html[data-theme="dark"] select {
             ℹ️
           </div>
 
-          <div class="settings-content">
+          <div class="settings-copy">
 
-            <div class="settings-title">
+            <div class="settings-label">
               About Diabetter
             </div>
 
-            <div class="settings-subtitle">
-              Version 3.1
+            <div class="settings-description">
+              Version & information
             </div>
 
           </div>
 
-          <div class="settings-chevron">
+          <div class="settings-arrow">
             ›
           </div>
 
         </div>
 
+
       </div>
 
 
 
-      <!-- LOG OUT -->
-
       <button
-        class="btn"
-        style="
-          width:100%;
-          margin-top:20px;
-          color:var(--red);
-        "
-        onclick="logout()">
-
-        Log Out
-
-      </button>
-
-
-
-      <!-- CLOSE -->
-
-      <button
-        class="btn btn-primary"
-        style="
-          width:100%;
-          margin-top:10px;
-        "
+        class="primary-button"
+        style="margin-top:20px"
         onclick="closeSettings()">
 
         Done
@@ -3374,15 +5175,251 @@ html[data-theme="dark"] select {
 
   <div
     id="modal"
-    class="modal"
+    class="overlay"
     onclick="closeModalIfBackground(event)">
+
 
     <div
       id="modalBox"
-      class="modal-box">
+      class="sheet">
+
+      <div class="sheet-handle"></div>
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- =====================================================
+       QUICK LOG SHEET
+  ====================================================== -->
+
+  <div
+    id="quickLogSheet"
+    class="overlay"
+    onclick="closeQuickLogIfBackground(event)">
+
+
+    <div class="sheet">
+
+      <div class="sheet-handle"></div>
+
+
+      <div class="page-heading">
+
+        <div class="eyebrow">
+          Quick action
+        </div>
+
+        <h2>
+          What happened?
+        </h2>
+
+      </div>
+
+
+      <div class="log-grid">
+
+
+        <button
+          class="log-tile"
+          onclick="quickLog('glucose')">
+
+          <div class="log-tile-icon">
+            🩸
+          </div>
+
+          <div class="log-tile-title">
+            Glucose
+          </div>
+
+        </button>
+
+
+        <button
+          class="log-tile"
+          onclick="quickLog('food')">
+
+          <div class="log-tile-icon">
+            🍽️
+          </div>
+
+          <div class="log-tile-title">
+            Food
+          </div>
+
+        </button>
+
+
+        <button
+          class="log-tile"
+          onclick="quickLog('exercise')">
+
+          <div class="log-tile-icon">
+            🏃
+          </div>
+
+          <div class="log-tile-title">
+            Movement
+          </div>
+
+        </button>
+
+
+        <button
+          class="log-tile"
+          onclick="quickLog('water')">
+
+          <div class="log-tile-icon">
+            💧
+          </div>
+
+          <div class="log-tile-title">
+            Water
+          </div>
+
+        </button>
+
+
+        <button
+          class="log-tile"
+          onclick="quickLog('bp')">
+
+          <div class="log-tile-icon">
+            ❤️
+          </div>
+
+          <div class="log-tile-title">
+            Blood pressure
+          </div>
+
+        </button>
+
+
+        <button
+          class="log-tile"
+          onclick="quickLog('mood')">
+
+          <div class="log-tile-icon">
+            😊
+          </div>
+
+          <div class="log-tile-title">
+            Mood
+          </div>
+
+        </button>
+
+
+      </div>
+
+
+      <button
+        class="primary-button"
+        style="margin-top:15px"
+        onclick="closeQuickLog()">
+
+        Cancel
+
+      </button>
+
+
     </div>
 
   </div>
+
+
+
+  <!-- =====================================================
+       FLOATING QUICK ADD
+  ====================================================== -->
+
+  <button
+    class="quick-log"
+    onclick="openQuickLog()"
+    aria-label="Quick log">
+
+    +
+
+  </button>
+
+
+
+  <!-- =====================================================
+       BOTTOM NAV
+  ====================================================== -->
+
+  <nav class="bottom-nav">
+
+
+    <button
+      class="nav-button active"
+      onclick="navigate('today',this)">
+
+      <div class="nav-icon">
+        🏠
+      </div>
+
+      Today
+
+    </button>
+
+
+    <button
+      class="nav-button"
+      onclick="navigate('log',this)">
+
+      <div class="nav-icon">
+        ＋
+      </div>
+
+      Log
+
+    </button>
+
+
+    <button
+      class="nav-button"
+      onclick="navigate('trends',this)">
+
+      <div class="nav-icon">
+        📈
+      </div>
+
+      Trends
+
+    </button>
+
+
+    <button
+      class="nav-button"
+      onclick="navigate('insights',this)">
+
+      <div class="nav-icon">
+        ✨
+      </div>
+
+      Insights
+
+    </button>
+
+
+    <button
+      class="nav-button"
+      onclick="navigate('betty',this)">
+
+      <div class="nav-icon">
+        🦋
+      </div>
+
+      Betty
+
+    </button>
+
+
+  </nav>
 
 
 
@@ -3393,62 +5430,127 @@ html[data-theme="dark"] select {
   <div
     id="toast"
     class="toast">
+
   </div>
 
 
+</div>
 
-  <!-- =====================================================
-       JAVASCRIPT STARTS IN PART 3
-  ====================================================== -->
 
-  <script>/* =========================================================
-   DIABETTER V3.1 — PART 3
-   FUNCTIONAL JAVASCRIPT
+<!-- =======================================================
+     PART 3 JAVASCRIPT WILL GO HERE
+==================================================== --><!-- =====================================================
+     V3.2 JAVASCRIPT
+====================================================== -->
+
+<script>
+
+/* =========================================================
+   DIABETTER V3.2
+   CORE APP LOGIC
 ========================================================= */
 
 
 /* =========================================================
-   APP DATA
+   STORAGE
 ========================================================= */
 
-const STORAGE_KEY = "diabetter_v21_data";
-const THEME_KEY = "diabetter_theme";
-const NOTIFICATION_KEY = "diabetter_notifications";
+const STORAGE_KEY = "diabetter_v32_data";
+const THEME_KEY = "diabetter_v32_theme";
+const NOTIFICATION_KEY = "diabetter_v32_notifications";
 
-let data = JSON.parse(
-  localStorage.getItem(STORAGE_KEY) || "[]"
-);
 
-let currentTrend = "glucose";
+let appData = loadData();
+
+
+function loadData() {
+
+  try {
+
+    const saved =
+      localStorage.getItem(STORAGE_KEY);
+
+    if (saved) {
+
+      return JSON.parse(saved);
+
+    }
+
+  } catch (error) {
+
+    console.error(
+      "Could not load saved data",
+      error
+    );
+
+  }
+
+
+  return {
+
+    entries: []
+
+  };
+
+}
+
+
+function saveData() {
+
+  try {
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(appData)
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Could not save data",
+      error
+    );
+
+  }
+
+}
 
 
 /* =========================================================
    THEME SYSTEM
 ========================================================= */
 
+function initializeTheme() {
+
+  const savedTheme =
+    localStorage.getItem(THEME_KEY)
+    || "light";
+
+  applyTheme(savedTheme);
+
+}
+
+
 function applyTheme(theme) {
 
-  const validThemes = [
-    "light",
-    "dark",
-    "betty"
-  ];
+  document.documentElement
+    .setAttribute(
+      "data-theme",
+      theme
+    );
 
-  if (!validThemes.includes(theme)) {
-    theme = "light";
-  }
-
-  document.documentElement.dataset.theme = theme;
 
   localStorage.setItem(
     THEME_KEY,
     theme
   );
 
-  updateThemeUI(theme);
 
   const meta =
-    document.getElementById("themeColorMeta");
+    document.getElementById(
+      "themeColorMeta"
+    );
+
 
   if (meta) {
 
@@ -3459,14 +5561,18 @@ function applyTheme(theme) {
         "#000000"
       );
 
-    } else if (theme === "betty") {
+    }
+
+    else if (theme === "betty") {
 
       meta.setAttribute(
         "content",
-        "#fff4ff"
+        "#fff3ff"
       );
 
-    } else {
+    }
+
+    else {
 
       meta.setAttribute(
         "content",
@@ -3476,6 +5582,12 @@ function applyTheme(theme) {
     }
 
   }
+
+
+  updateThemeButtons();
+
+  updateThemeDescription();
+
 }
 
 
@@ -3483,54 +5595,98 @@ function setTheme(theme) {
 
   applyTheme(theme);
 
-  const names = {
-    light: "Light Mode",
-    dark: "Dark Mode",
-    betty: "Betty Mode"
-  };
-
   showToast(
-    `${names[theme]} selected`
+    theme === "light"
+      ? "Light Mode selected ☀️"
+      : theme === "dark"
+        ? "Dark Mode selected 🌙"
+        : "Betty Mode activated 🌈🦋"
   );
 
-  updateAllScreens();
 }
 
 
-function updateThemeUI(theme) {
+function updateThemeButtons() {
+
+  const theme =
+    document.documentElement
+      .getAttribute(
+        "data-theme"
+      )
+      || "light";
+
 
   const buttons = {
+
     light:
-      document.getElementById("themeLight"),
+      document.getElementById(
+        "themeLight"
+      ),
 
     dark:
-      document.getElementById("themeDark"),
+      document.getElementById(
+        "themeDark"
+      ),
 
     betty:
-      document.getElementById("themeBetty")
+      document.getElementById(
+        "themeBetty"
+      )
+
   };
 
-  Object.values(buttons).forEach(
-    button => {
+
+  Object.values(buttons)
+    .forEach(button => {
 
       if (button) {
+
         button.classList.remove(
           "selected"
         );
+
       }
 
-    }
-  );
+    });
+
 
   if (buttons[theme]) {
 
-    buttons[theme].classList.add(
-      "selected"
-    );
+    buttons[theme]
+      .classList.add(
+        "selected"
+      );
 
   }
 
+}
+
+
+function updateThemeDescription() {
+
+  const description =
+    document.getElementById(
+      "themeDescription"
+    );
+
+
+  if (!description) {
+
+    return;
+
+  }
+
+
+  const theme =
+    document.documentElement
+      .getAttribute(
+        "data-theme"
+      )
+      || "light";
+
+
   const descriptions = {
+
     light:
       "Light Mode",
 
@@ -3538,31 +5694,13 @@ function updateThemeUI(theme) {
       "Dark Mode",
 
     betty:
-      "Betty Mode · Maximum color"
+      "Betty Mode 🌈"
+
   };
 
-  const description =
-    document.getElementById(
-      "themeDescription"
-    );
 
-  if (description) {
-
-    description.textContent =
-      descriptions[theme];
-
-  }
-}
-
-
-function initializeTheme() {
-
-  const saved =
-    localStorage.getItem(
-      THEME_KEY
-    ) || "light";
-
-  applyTheme(saved);
+  description.textContent =
+    descriptions[theme];
 
 }
 
@@ -3571,40 +5709,57 @@ function initializeTheme() {
    NAVIGATION
 ========================================================= */
 
-function navigate(screenId, button) {
+function navigate(
+  screenId,
+  button
+) {
 
-  document
-    .querySelectorAll(".screen")
-    .forEach(screen => {
-
-      screen.classList.remove(
-        "active"
-      );
-
-    });
+  const screens =
+    document.querySelectorAll(
+      ".screen"
+    );
 
 
-  const screen =
-    document.getElementById(screenId);
+  screens.forEach(screen => {
 
-  if (screen) {
-
-    screen.classList.add(
+    screen.classList.remove(
       "active"
     );
+
+  });
+
+
+  const target =
+    document.getElementById(
+      screenId
+    );
+
+
+  if (!target) {
+
+    return;
 
   }
 
 
-  document
-    .querySelectorAll("nav button")
-    .forEach(btn => {
+  target.classList.add(
+    "active"
+  );
 
-      btn.classList.remove(
-        "active"
-      );
 
-    });
+  const navButtons =
+    document.querySelectorAll(
+      ".nav-button"
+    );
+
+
+  navButtons.forEach(item => {
+
+    item.classList.remove(
+      "active"
+    );
+
+  });
 
 
   if (button) {
@@ -3615,8 +5770,64 @@ function navigate(screenId, button) {
 
   }
 
+  else {
 
-  updateAllScreens();
+    navButtons.forEach(item => {
+
+      const text =
+        item.textContent
+          .trim()
+          .toLowerCase();
+
+
+      if (
+        (screenId === "today" &&
+          text.includes("today")) ||
+
+        (screenId === "log" &&
+          text.includes("log")) ||
+
+        (screenId === "trends" &&
+          text.includes("trends")) ||
+
+        (screenId === "insights" &&
+          text.includes("insights")) ||
+
+        (screenId === "betty" &&
+          text.includes("betty"))
+      ) {
+
+        item.classList.add(
+          "active"
+        );
+
+      }
+
+    });
+
+  }
+
+
+  if (screenId === "today") {
+
+    updateDashboard();
+
+  }
+
+
+  if (screenId === "trends") {
+
+    renderTrendChart();
+
+  }
+
+
+  if (screenId === "insights") {
+
+    renderInsights();
+
+  }
+
 
   window.scrollTo({
     top: 0,
@@ -3637,21 +5848,22 @@ function openSettings() {
       "settingsModal"
     );
 
-  if (modal) {
 
-    modal.classList.add(
-      "show"
-    );
+  if (!modal) {
+
+    return;
 
   }
 
-  updateThemeUI(
-    localStorage.getItem(
-      THEME_KEY
-    ) || "light"
+
+  modal.classList.add(
+    "show"
   );
 
-  updateNotificationUI();
+
+  updateThemeButtons();
+
+  updateThemeDescription();
 
 }
 
@@ -3662,6 +5874,7 @@ function closeSettings() {
     document.getElementById(
       "settingsModal"
     );
+
 
   if (modal) {
 
@@ -3674,7 +5887,9 @@ function closeSettings() {
 }
 
 
-function closeSettingsIfBackground(event) {
+function closeSettingsIfBackground(
+  event
+) {
 
   if (
     event.target.id ===
@@ -3689,750 +5904,15 @@ function closeSettingsIfBackground(event) {
 
 
 /* =========================================================
-   SETTINGS — BETTY MEMORY
+   GENERAL MODAL
 ========================================================= */
 
-function openBettyMemory() {
-
-  openModal(`
-    
-    <div class="kicker">
-      Betty & AI
-    </div>
-
-    <h2>Betty's Memory</h2>
-
-    <p>
-      Betty's memory will eventually allow
-      her to remember information that you
-      intentionally choose to share with her.
-    </p>
-
-    <div class="card">
-
-      <b>Current prototype</b>
-
-      <p>
-        Your health entries are currently
-        stored locally on this device.
-      </p>
-
-    </div>
-
-    <button
-      class="btn btn-primary"
-      onclick="closeModal()">
-
-      Done
-
-    </button>
-
-  `);
-
-}
-
-
-/* =========================================================
-   BETTY PREFERENCES
-========================================================= */
-
-function openBettyPreferences() {
-
-  openModal(`
-
-    <div class="kicker">
-      Betty & AI
-    </div>
-
-    <h2>Ask Betty Preferences</h2>
-
-    <p>
-      Choose how Betty should communicate
-      with you.
-    </p>
-
-
-    <div class="options">
-
-      <button
-        class="option"
-        onclick="selectBettyStyle('friendly')">
-
-        <span>💗</span>
-
-        Friendly
-
-      </button>
-
-
-      <button
-        class="option"
-        onclick="selectBettyStyle('direct')">
-
-        <span>🎯</span>
-
-        Straightforward
-
-      </button>
-
-
-      <button
-        class="option"
-        onclick="selectBettyStyle('playful')">
-
-        <span>🌈</span>
-
-        Playful
-
-      </button>
-
-
-      <button
-        class="option"
-        onclick="selectBettyStyle('detailed')">
-
-        <span>🧠</span>
-
-        Detailed
-
-      </button>
-
-    </div>
-
-  `);
-
-}
-
-
-function selectBettyStyle(style) {
-
-  localStorage.setItem(
-    "diabetter_betty_style",
-    style
-  );
-
-  showToast(
-    "Betty preference saved"
-  );
-
-  closeModal();
-
-}
-
-
-/* =========================================================
-   INSIGHT PREFERENCES
-========================================================= */
-
-function openInsightPreferences() {
-
-  openModal(`
-
-    <div class="kicker">
-      Betty & AI
-    </div>
-
-    <h2>Insights Preferences</h2>
-
-    <p>
-      Choose the areas you want Betty to
-      pay attention to.
-    </p>
-
-
-    <div class="settings-card">
-
-
-      <div class="settings-row">
-
-        <div class="settings-icon">
-          🩸
-        </div>
-
-        <div class="settings-content">
-
-          <div class="settings-title">
-            Glucose patterns
-          </div>
-
-          <div class="settings-subtitle">
-            Changes and trends
-          </div>
-
-        </div>
-
-        <button
-          class="toggle on"
-          onclick="this.classList.toggle('on')">
-        </button>
-
-      </div>
-
-
-      <div class="settings-row">
-
-        <div class="settings-icon">
-          🍽️
-        </div>
-
-        <div class="settings-content">
-
-          <div class="settings-title">
-            Food patterns
-          </div>
-
-          <div class="settings-subtitle">
-            Meals and glucose relationships
-          </div>
-
-        </div>
-
-        <button
-          class="toggle on"
-          onclick="this.classList.toggle('on')">
-        </button>
-
-      </div>
-
-
-      <div class="settings-row">
-
-        <div class="settings-icon">
-          🏃
-        </div>
-
-        <div class="settings-content">
-
-          <div class="settings-title">
-            Activity
-          </div>
-
-          <div class="settings-subtitle">
-            Exercise and movement
-          </div>
-
-        </div>
-
-        <button
-          class="toggle on"
-          onclick="this.classList.toggle('on')">
-        </button>
-
-      </div>
-
-
-    </div>
-
-
-    <button
-      class="btn btn-primary"
-      style="margin-top:15px"
-      onclick="closeModal()">
-
-      Done
-
-    </button>
-
-  `);
-
-}
-
-
-/* =========================================================
-   HEALTH DATA
-========================================================= */
-
-function openHealthPermissions() {
-
-  openModal(`
-
-    <div class="kicker">
-      Health & Data
-    </div>
-
-    <h2>Health Data Permissions</h2>
-
-    <p>
-      HealthKit and connected-device
-      permissions will be configured here
-      when Diabetter moves to its native
-      iPhone application.
-    </p>
-
-    <div class="card">
-
-      <b>Prototype status</b>
-
-      <p>
-        Manual logging is currently active.
-      </p>
-
-    </div>
-
-    <button
-      class="btn btn-primary"
-      onclick="closeModal()">
-
-      Done
-
-    </button>
-
-  `);
-
-}
-
-
-function openDataSources() {
-
-  openModal(`
-
-    <div class="kicker">
-      Health & Data
-    </div>
-
-    <h2>Data Sources</h2>
-
-    <div class="settings-card">
-
-      <div class="settings-row">
-
-        <div class="settings-icon">
-          📱
-        </div>
-
-        <div class="settings-content">
-
-          <div class="settings-title">
-            This Device
-          </div>
-
-          <div class="settings-subtitle">
-            Manual Diabetter entries
-          </div>
-
-        </div>
-
-        <span>✓</span>
-
-      </div>
-
-
-      <div class="settings-row">
-
-        <div class="settings-icon">
-          ❤️
-        </div>
-
-        <div class="settings-content">
-
-          <div class="settings-title">
-            Apple Health
-          </div>
-
-          <div class="settings-subtitle">
-            Available in native app
-          </div>
-
-        </div>
-
-        <span>›</span>
-
-      </div>
-
-    </div>
-
-
-    <button
-      class="btn btn-primary"
-      style="margin-top:15px"
-      onclick="closeModal()">
-
-      Done
-
-    </button>
-
-  `);
-
-}
-
-
-function openPrivacy() {
-
-  openModal(`
-
-    <div class="kicker">
-      Health & Data
-    </div>
-
-    <h2>Data Privacy</h2>
-
-    <p>
-      Your current prototype stores
-      entries locally in your browser.
-    </p>
-
-    <div class="card">
-
-      <b>Important</b>
-
-      <p>
-        This prototype does not yet provide
-        the secure cloud infrastructure that
-        a production health application would
-        require.
-      </p>
-
-    </div>
-
-    <button
-      class="btn btn-primary"
-      onclick="closeModal()">
-
-      Done
-
-    </button>
-
-  `);
-
-}
-
-
-/* =========================================================
-   REMINDERS
-========================================================= */
-
-function openReminders() {
-
-  openModal(`
-
-    <div class="kicker">
-      Reminders
-    </div>
-
-    <h2>Betty Reminders</h2>
-
-    <p>
-      Choose how Betty should remind you
-      to keep your health timeline complete.
-    </p>
-
-
-    <div class="options">
-
-      <button
-        class="option"
-        onclick="setReminderMode('adaptive')">
-
-        <span>✨</span>
-
-        Adaptive
-
-      </button>
-
-
-      <button
-        class="option"
-        onclick="setReminderMode('custom')">
-
-        <span>🕐</span>
-
-        Custom
-
-      </button>
-
-
-      <button
-        class="option"
-        onclick="setReminderMode('off')">
-
-        <span>🔕</span>
-
-        Off
-
-      </button>
-
-    </div>
-
-  `);
-
-}
-
-
-function setReminderMode(mode) {
-
-  localStorage.setItem(
-    "diabetter_reminders",
-    mode
-  );
-
-  const labels = {
-    adaptive: "Adaptive",
-    custom: "Custom",
-    off: "Off"
-  };
-
-  const status =
-    document.getElementById(
-      "reminderStatus"
-    );
-
-  if (status) {
-
-    status.textContent =
-      labels[mode];
-
-  }
-
-  showToast(
-    `Reminders: ${labels[mode]}`
-  );
-
-  closeModal();
-
-}
-
-
-/* =========================================================
-   NOTIFICATIONS
-========================================================= */
-
-function toggleNotifications() {
-
-  const current =
-    localStorage.getItem(
-      NOTIFICATION_KEY
-    ) !== "false";
-
-  const next = !current;
-
-  localStorage.setItem(
-    NOTIFICATION_KEY,
-    next
-  );
-
-  updateNotificationUI();
-
-  showToast(
-    next
-      ? "Notifications enabled"
-      : "Notifications disabled"
-  );
-
-}
-
-
-function updateNotificationUI() {
-
-  const enabled =
-    localStorage.getItem(
-      NOTIFICATION_KEY
-    ) !== "false";
-
-  const toggle =
-    document.getElementById(
-      "notificationToggle"
-    );
-
-  if (toggle) {
-
-    toggle.classList.toggle(
-      "on",
-      enabled
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   ACCOUNT
-========================================================= */
-
-function openAccount() {
-
-  openModal(`
-
-    <div class="kicker">
-      Account
-    </div>
-
-    <h2>Your Diabetter Account</h2>
-
-    <p>
-      Account creation and secure cloud
-      synchronization will be added when
-      we move from the prototype to the
-      production architecture.
-    </p>
-
-    <div class="card">
-
-      <b>Prototype</b>
-
-      <p>
-        No account is required for the
-        current version.
-      </p>
-
-    </div>
-
-    <button
-      class="btn btn-primary"
-      onclick="closeModal()">
-
-      Done
-
-    </button>
-
-  `);
-
-}
-
-
-/* =========================================================
-   EXPORT REPORT
-========================================================= */
-
-function exportReport() {
-
-  if (!data.length) {
-
-    showToast(
-      "There is no data to export yet"
-    );
-
-    return;
-
-  }
-
-
-  let report =
-    "DIABETTER HEALTH REPORT\n";
-
-  report +=
-    "========================\n\n";
-
-
-  data
-    .slice()
-    .reverse()
-    .forEach(item => {
-
-      report +=
-        `${formatDateTime(item.date)}\n`;
-
-      report +=
-        `${item.type.toUpperCase()}: `;
-
-      report +=
-        `${item.value || item.note || ""}\n\n`;
-
-    });
-
-
-  const blob =
-    new Blob(
-      [report],
-      {
-        type: "text/plain"
-      }
-    );
-
-
-  const url =
-    URL.createObjectURL(blob);
-
-
-  const link =
-    document.createElement("a");
-
-  link.href = url;
-
-  link.download =
-    "diabetter-health-report.txt";
-
-  link.click();
-
-  URL.revokeObjectURL(url);
-
-  showToast(
-    "Report created"
-  );
-
-}
-
-
-/* =========================================================
-   ABOUT
-========================================================= */
-
-function openAbout() {
-
-  openModal(`
-
-    <div class="kicker">
-      Diabetter
-    </div>
-
-    <h2>About Diabetter</h2>
-
-    <p>
-      Diabetter is designed to turn
-      everyday health information into
-      something easier to understand,
-      explore, and act on.
-    </p>
-
-    <div class="card">
-
-      <b>Version</b>
-
-      <p>
-        V3.1 Prototype
-      </p>
-
-    </div>
-
-    <button
-      class="btn btn-primary"
-      onclick="closeModal()">
-
-      Done
-
-    </button>
-
-  `);
-
-}
-
-
-/* =========================================================
-   LOG OUT
-========================================================= */
-
-function logout() {
-
-  if (
-    confirm(
-      "The current prototype does not use accounts. Close Settings instead?"
-    )
-  ) {
-
-    closeSettings();
-
-  }
-
-}
-
-
-/* =========================================================
-   MODAL HELPERS
-========================================================= */
-
-function openModal(html) {
-
-  const modal =
+function openModal(
+  title,
+  content
+) {
+
+  const overlay =
     document.getElementById(
       "modal"
     );
@@ -4442,13 +5922,45 @@ function openModal(html) {
       "modalBox"
     );
 
-  if (!modal || !box) {
+
+  if (!overlay || !box) {
+
     return;
+
   }
 
-  box.innerHTML = html;
 
-  modal.classList.add(
+  box.innerHTML = `
+
+    <div class="sheet-handle"></div>
+
+    <div class="page-heading">
+
+      <div class="eyebrow">
+        Diabetter
+      </div>
+
+      <h2>
+        ${escapeHTML(title)}
+      </h2>
+
+    </div>
+
+    ${content}
+
+    <button
+      class="primary-button"
+      style="margin-top:20px"
+      onclick="closeModal()">
+
+      Done
+
+    </button>
+
+  `;
+
+
+  overlay.classList.add(
     "show"
   );
 
@@ -4462,6 +5974,7 @@ function closeModal() {
       "modal"
     );
 
+
   if (modal) {
 
     modal.classList.remove(
@@ -4473,7 +5986,9 @@ function closeModal() {
 }
 
 
-function closeModalIfBackground(event) {
+function closeModalIfBackground(
+  event
+) {
 
   if (
     event.target.id ===
@@ -4488,7 +6003,1296 @@ function closeModalIfBackground(event) {
 
 
 /* =========================================================
-   QUICK LOG
+   SETTINGS SUB-MENUS
+========================================================= */
+
+function openBettyMemory() {
+
+  openModal(
+
+    "Betty's Memory",
+
+    `
+
+      <div class="card">
+
+        <h3>
+          Your timeline
+        </h3>
+
+        <p>
+          Betty can use information
+          you choose to keep inside
+          your Diabetter timeline.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          What Betty uses
+        </h3>
+
+        <p>
+          Logged health information,
+          patterns, notes, meals,
+          movement and other information
+          you provide.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          Your control
+        </h3>
+
+        <p>
+          You remain in control of
+          what information you enter
+          and what features you use.
+        </p>
+
+      </div>
+
+    `
+
+  );
+
+}
+
+
+function openBettyPreferences() {
+
+  openModal(
+
+    "Betty Preferences",
+
+    `
+
+      <div class="card">
+
+        <h3>
+          Betty's personality
+        </h3>
+
+        <p>
+          Friendly, encouraging,
+          curious and never judgmental.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          Communication
+        </h3>
+
+        <p>
+          Betty is designed to make
+          health information easier
+          to understand.
+        </p>
+
+      </div>
+
+    `
+
+  );
+
+}
+
+
+function openInsightPreferences() {
+
+  openModal(
+
+    "Insight Preferences",
+
+    `
+
+      <div class="card">
+
+        <h3>
+          What Betty watches
+        </h3>
+
+        <p>
+          Glucose, meals, activity,
+          hydration, mood and other
+          information you choose to log.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          Insight philosophy
+        </h3>
+
+        <p>
+          Betty should look for
+          meaningful patterns rather
+          than overreacting to one
+          isolated number.
+        </p>
+
+      </div>
+
+    `
+
+  );
+
+}
+
+
+function openHealthPermissions() {
+
+  openModal(
+
+    "Health Data",
+
+    `
+
+      <div class="card">
+
+        <h3>
+          Health connections
+        </h3>
+
+        <p>
+          Health integrations can be
+          connected here as they become
+          available.
+        </p>
+
+      </div>
+
+    `
+
+  );
+
+}
+
+
+function openDataSources() {
+
+  openModal(
+
+    "Data Sources",
+
+    `
+
+      <div class="card">
+
+        <h3>
+          Current source
+        </h3>
+
+        <p>
+          Diabetter manual entries.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          Future connections
+        </h3>
+
+        <p>
+          Wearables, glucose devices,
+          Apple Health and other
+          supported sources can be
+          added in a future phase.
+        </p>
+
+      </div>
+
+    `
+
+  );
+
+}
+
+
+function openPrivacy() {
+
+  openModal(
+
+    "Privacy",
+
+    `
+
+      <div class="card">
+
+        <h3>
+          Your information
+        </h3>
+
+        <p>
+          This prototype stores
+          manually entered information
+          locally in your browser.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>
+          Important
+        </h3>
+
+        <p>
+          This prototype is not yet
+          a production medical-record
+          system.
+        </p>
+
+      </div>
+
+    `
+
+  );
+
+}
+
+
+function openReminders() {
+
+  openModal(
+
+    "Betty Reminders",
+
+    `
+
+      <div class="card">
+
+        <h3>
+          Adaptive reminders
+        </h3>
+
+        <p>
+          The future reminder system
+          can adapt to your routines
+          instead of simply sending
+          repetitive alerts.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          Coming next
+        </h3>
+
+        <p>
+          Glucose, hydration, movement,
+          meals and check-in reminders.
+        </p>
+
+      </div>
+
+    `
+
+  );
+
+}
+
+
+function openAccount() {
+
+  openModal(
+
+    "Account",
+
+    `
+
+      <div class="card">
+
+        <h3>
+          Prototype account
+        </h3>
+
+        <p>
+          Account synchronization will
+          be added when Diabetter moves
+          beyond the local prototype.
+        </p>
+
+      </div>
+
+    `
+
+  );
+
+}
+
+
+function openAbout() {
+
+  openModal(
+
+    "About Diabetter",
+
+    `
+
+      <div class="card">
+
+        <h3>
+          Diabetter V3.2
+        </h3>
+
+        <p>
+          A health companion designed
+          to make your information
+          easier to understand.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          Meet Betty 🦋
+        </h3>
+
+        <p>
+          Your colorful companion
+          throughout the Diabetter
+          experience.
+        </p>
+
+      </div>
+
+    `
+
+  );
+
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+function toggleNotifications() {
+
+  const toggle =
+    document.getElementById(
+      "notificationToggle"
+    );
+
+
+  if (!toggle) {
+
+    return;
+
+  }
+
+
+  const isOn =
+    toggle.classList.contains(
+      "on"
+    );
+
+
+  toggle.classList.toggle(
+    "on"
+  );
+
+
+  localStorage.setItem(
+    NOTIFICATION_KEY,
+    String(!isOn)
+  );
+
+
+  showToast(
+    !isOn
+      ? "Notifications enabled"
+      : "Notifications disabled"
+  );
+
+}
+
+
+function initializeNotifications() {
+
+  const saved =
+    localStorage.getItem(
+      NOTIFICATION_KEY
+    );
+
+
+  if (saved === null) {
+
+    return;
+
+  }
+
+
+  const toggle =
+    document.getElementById(
+      "notificationToggle"
+    );
+
+
+  if (!toggle) {
+
+    return;
+
+  }
+
+
+  toggle.classList.toggle(
+    "on",
+    saved === "true"
+  );
+
+}
+
+
+/* =========================================================
+   LOGGING
+========================================================= */
+
+function showLogForm(
+  type
+) {
+
+  const form =
+    document.getElementById(
+      "logForm"
+    );
+
+
+  if (!form) {
+
+    return;
+
+  }
+
+
+  let html = "";
+
+
+  if (type === "glucose") {
+
+    html = `
+
+      <h2>
+        Log glucose
+      </h2>
+
+      <p>
+        Enter your reading.
+      </p>
+
+      <div class="field">
+
+        <label>
+          GLUCOSE (mg/dL)
+        </label>
+
+        <input
+          id="glucoseInput"
+          type="number"
+          inputmode="numeric"
+          placeholder="Example: 128">
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          CONTEXT
+        </label>
+
+        <select id="glucoseContext">
+
+          <option>
+            General
+          </option>
+
+          <option>
+            Before meal
+          </option>
+
+          <option>
+            After meal
+          </option>
+
+          <option>
+            Morning
+          </option>
+
+          <option>
+            Bedtime
+          </option>
+
+        </select>
+
+      </div>
+
+      <button
+        class="primary-button"
+        onclick="saveLog('glucose')">
+
+        Save glucose
+
+      </button>
+
+    `;
+
+  }
+
+
+  else if (type === "food") {
+
+    html = `
+
+      <h2>
+        Log food
+      </h2>
+
+      <p>
+        Tell Betty what you ate.
+      </p>
+
+      <div class="field">
+
+        <label>
+          MEAL
+        </label>
+
+        <input
+          id="foodInput"
+          type="text"
+          placeholder="Example: Chicken salad">
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          NOTES
+        </label>
+
+        <textarea
+          id="foodNotes"
+          placeholder="Anything you want Betty to know?"></textarea>
+
+      </div>
+
+      <button
+        class="primary-button"
+        onclick="saveLog('food')">
+
+        Save meal
+
+      </button>
+
+    `;
+
+  }
+
+
+  else if (type === "exercise") {
+
+    html = `
+
+      <h2>
+        Log movement
+      </h2>
+
+      <p>
+        Record your activity.
+      </p>
+
+      <div class="field">
+
+        <label>
+          ACTIVITY
+        </label>
+
+        <input
+          id="exerciseInput"
+          type="text"
+          placeholder="Example: Walking">
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          MINUTES
+        </label>
+
+        <input
+          id="exerciseMinutes"
+          type="number"
+          inputmode="numeric"
+          placeholder="30">
+
+      </div>
+
+      <button
+        class="primary-button"
+        onclick="saveLog('exercise')">
+
+        Save movement
+
+      </button>
+
+    `;
+
+  }
+
+
+  else if (type === "water") {
+
+    html = `
+
+      <h2>
+        Log hydration
+      </h2>
+
+      <p>
+        How much water did you have?
+      </p>
+
+      <div class="field">
+
+        <label>
+          WATER (oz)
+        </label>
+
+        <input
+          id="waterInput"
+          type="number"
+          inputmode="numeric"
+          placeholder="16">
+
+      </div>
+
+      <button
+        class="primary-button"
+        onclick="saveLog('water')">
+
+        Save water
+
+      </button>
+
+    `;
+
+  }
+
+
+  else if (type === "bp") {
+
+    html = `
+
+      <h2>
+        Log blood pressure
+      </h2>
+
+      <p>
+        Enter your reading.
+      </p>
+
+      <div class="field">
+
+        <label>
+          SYSTOLIC
+        </label>
+
+        <input
+          id="systolicInput"
+          type="number"
+          inputmode="numeric"
+          placeholder="120">
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          DIASTOLIC
+        </label>
+
+        <input
+          id="diastolicInput"
+          type="number"
+          inputmode="numeric"
+          placeholder="80">
+
+      </div>
+
+      <button
+        class="primary-button"
+        onclick="saveLog('bp')">
+
+        Save blood pressure
+
+      </button>
+
+    `;
+
+  }
+
+
+  else if (type === "mood") {
+
+    html = `
+
+      <h2>
+        Log mood
+      </h2>
+
+      <p>
+        How are you feeling?
+      </p>
+
+      <div class="question-grid">
+
+        <button
+          class="question-chip"
+          onclick="selectMood('Great')">
+
+          😄 Great
+
+        </button>
+
+        <button
+          class="question-chip"
+          onclick="selectMood('Good')">
+
+          🙂 Good
+
+        </button>
+
+        <button
+          class="question-chip"
+          onclick="selectMood('Okay')">
+
+          😐 Okay
+
+        </button>
+
+        <button
+          class="question-chip"
+          onclick="selectMood('Low')">
+
+          😕 Low
+
+        </button>
+
+        <button
+          class="question-chip"
+          onclick="selectMood('Stressed')">
+
+          😣 Stressed
+
+        </button>
+
+        <button
+          class="question-chip"
+          onclick="selectMood('Happy')">
+
+          🥳 Happy
+
+        </button>
+
+      </div>
+
+      <input
+        id="moodInput"
+        type="hidden">
+
+    `;
+
+  }
+
+
+  else if (type === "note") {
+
+    html = `
+
+      <h2>
+        Add a note
+      </h2>
+
+      <p>
+        Anything worth remembering?
+      </p>
+
+      <div class="field">
+
+        <textarea
+          id="noteInput"
+          placeholder="Write something..."></textarea>
+
+      </div>
+
+      <button
+        class="primary-button"
+        onclick="saveLog('note')">
+
+        Save note
+
+      </button>
+
+    `;
+
+  }
+
+
+  else if (type === "medication") {
+
+    html = `
+
+      <h2>
+        Log medication
+      </h2>
+
+      <p>
+        Record a medication event.
+      </p>
+
+      <div class="field">
+
+        <label>
+          MEDICATION
+        </label>
+
+        <input
+          id="medicationInput"
+          type="text"
+          placeholder="Medication name">
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          NOTE
+        </label>
+
+        <input
+          id="medicationNote"
+          type="text"
+          placeholder="Optional note">
+
+      </div>
+
+      <button
+        class="primary-button"
+        onclick="saveLog('medication')">
+
+        Save medication
+
+      </button>
+
+    `;
+
+  }
+
+
+  form.innerHTML =
+    html;
+
+
+  form.classList.add(
+    "show"
+  );
+
+
+  form.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
+
+}
+
+
+function selectMood(
+  mood
+) {
+
+  const input =
+    document.getElementById(
+      "moodInput"
+    );
+
+
+  if (input) {
+
+    input.value =
+      mood;
+
+  }
+
+
+  saveLog("mood");
+
+}
+
+
+function saveLog(
+  type
+) {
+
+  const now =
+    new Date();
+
+
+  let entry = {
+
+    id:
+      Date.now(),
+
+    type:
+      type,
+
+    date:
+      now.toISOString(),
+
+    timestamp:
+      now.getTime(),
+
+    value:
+      null,
+
+    detail:
+      ""
+
+  };
+
+
+  if (type === "glucose") {
+
+    const value =
+      document.getElementById(
+        "glucoseInput"
+      )?.value;
+
+
+    if (!value) {
+
+      showToast(
+        "Please enter a glucose reading."
+      );
+
+      return;
+
+    }
+
+
+    entry.value =
+      Number(value);
+
+
+    entry.detail =
+      document.getElementById(
+        "glucoseContext"
+      )?.value
+      || "General";
+
+  }
+
+
+  else if (type === "food") {
+
+    const value =
+      document.getElementById(
+        "foodInput"
+      )?.value.trim();
+
+
+    if (!value) {
+
+      showToast(
+        "Please enter your meal."
+      );
+
+      return;
+
+    }
+
+
+    entry.value =
+      value;
+
+
+    entry.detail =
+      document.getElementById(
+        "foodNotes"
+      )?.value.trim()
+      || "";
+
+  }
+
+
+  else if (type === "exercise") {
+
+    const activity =
+      document.getElementById(
+        "exerciseInput"
+      )?.value.trim();
+
+
+    const minutes =
+      document.getElementById(
+        "exerciseMinutes"
+      )?.value;
+
+
+    if (!activity || !minutes) {
+
+      showToast(
+        "Please enter the activity and minutes."
+      );
+
+      return;
+
+    }
+
+
+    entry.value =
+      Number(minutes);
+
+
+    entry.detail =
+      activity;
+
+  }
+
+
+  else if (type === "water") {
+
+    const value =
+      document.getElementById(
+        "waterInput"
+      )?.value;
+
+
+    if (!value) {
+
+      showToast(
+        "Please enter water amount."
+      );
+
+      return;
+
+    }
+
+
+    entry.value =
+      Number(value);
+
+  }
+
+
+  else if (type === "bp") {
+
+    const systolic =
+      document.getElementById(
+        "systolicInput"
+      )?.value;
+
+
+    const diastolic =
+      document.getElementById(
+        "diastolicInput"
+      )?.value;
+
+
+    if (!systolic || !diastolic) {
+
+      showToast(
+        "Please enter both numbers."
+      );
+
+      return;
+
+    }
+
+
+    entry.value = {
+
+      systolic:
+        Number(systolic),
+
+      diastolic:
+        Number(diastolic)
+
+    };
+
+  }
+
+
+  else if (type === "mood") {
+
+    const mood =
+      document.getElementById(
+        "moodInput"
+      )?.value;
+
+
+    if (!mood) {
+
+      showToast(
+        "Choose a mood first."
+      );
+
+      return;
+
+    }
+
+
+    entry.value =
+      mood;
+
+  }
+
+
+  else if (type === "note") {
+
+    const note =
+      document.getElementById(
+        "noteInput"
+      )?.value.trim();
+
+
+    if (!note) {
+
+      showToast(
+        "Please enter a note."
+      );
+
+      return;
+
+    }
+
+
+    entry.value =
+      note;
+
+  }
+
+
+  else if (type === "medication") {
+
+    const medication =
+      document.getElementById(
+        "medicationInput"
+      )?.value.trim();
+
+
+    if (!medication) {
+
+      showToast(
+        "Please enter the medication."
+      );
+
+      return;
+
+    }
+
+
+    entry.value =
+      medication;
+
+
+    entry.detail =
+      document.getElementById(
+        "medicationNote"
+      )?.value.trim()
+      || "";
+
+  }
+
+
+  appData.entries.push(
+    entry
+  );
+
+
+  saveData();
+
+
+  const form =
+    document.getElementById(
+      "logForm"
+    );
+
+
+  if (form) {
+
+    form.classList.remove(
+      "show"
+    );
+
+    form.innerHTML =
+      "";
+
+  }
+
+
+  showToast(
+    "Saved to your timeline ✓"
+  );
+
+
+  updateDashboard();
+
+  renderInsights();
+
+  renderTrendChart();
+
+}
+
+
+function quickLog(
+  type
+) {
+
+  closeQuickLog();
+
+  navigate(
+    "log"
+  );
+
+
+  setTimeout(
+    () => {
+
+      showLogForm(type);
+
+    },
+    150
+  );
+
+}
+
+
+/* =========================================================
+   QUICK LOG SHEET
 ========================================================= */
 
 function openQuickLog() {
@@ -4497,6 +7301,7 @@ function openQuickLog() {
     document.getElementById(
       "quickLogSheet"
     );
+
 
   if (sheet) {
 
@@ -4516,6 +7321,7 @@ function closeQuickLog() {
       "quickLogSheet"
     );
 
+
   if (sheet) {
 
     sheet.classList.remove(
@@ -4527,7 +7333,9 @@ function closeQuickLog() {
 }
 
 
-function closeQuickLogIfBackground(event) {
+function closeQuickLogIfBackground(
+  event
+) {
 
   if (
     event.target.id ===
@@ -4541,716 +7349,215 @@ function closeQuickLogIfBackground(event) {
 }
 
 
-function quickLog(type) {
-
-  closeQuickLog();
-
-  navigate(
-    "log",
-    document.querySelector(
-      'nav button:nth-child(2)'
-    )
-  );
-
-  showLogForm(type);
-
-}
-
-
 /* =========================================================
-   LOG FORMS
+   DASHBOARD
 ========================================================= */
 
-function showLogForm(type) {
+function updateDashboard() {
 
-  const container =
-    document.getElementById(
-      "logForm"
+  const today =
+    new Date();
+
+
+  const todayStart =
+    new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate()
+    ).getTime();
+
+
+  const todayEntries =
+    appData.entries.filter(
+      entry =>
+        entry.timestamp >=
+        todayStart
     );
 
-  if (!container) {
-    return;
-  }
 
-
-  const forms = {
-
-    glucose: `
-
-      <div class="kicker">
-        Glucose
-      </div>
-
-      <h2>Log glucose</h2>
-
-      <div class="field">
-
-        <label>
-          Blood glucose · mg/dL
-        </label>
-
-        <input
-          id="logValue"
-          type="number"
-          inputmode="numeric"
-          placeholder="e.g. 125">
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          Context
-        </label>
-
-        <select id="logContext">
-
-          <option>
-            Fasting
-          </option>
-
-          <option>
-            Before meal
-          </option>
-
-          <option>
-            After meal
-          </option>
-
-          <option>
-            Bedtime
-          </option>
-
-          <option>
-            Other
-          </option>
-
-        </select>
-
-      </div>
-
-      <button
-        class="btn btn-primary"
-        onclick="saveLog('glucose')">
-
-        Save glucose
-
-      </button>
-
-    `,
-
-
-    food: `
-
-      <div class="kicker">
-        Food
-      </div>
-
-      <h2>Log food</h2>
-
-      <div class="field">
-
-        <label>
-          Meal
-        </label>
-
-        <input
-          id="logValue"
-          type="text"
-          placeholder="e.g. Chicken, rice & vegetables">
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          Carbs · grams · optional
-        </label>
-
-        <input
-          id="logCarbs"
-          type="number"
-          inputmode="numeric"
-          placeholder="e.g. 45">
-
-      </div>
-
-      <button
-        class="btn btn-primary"
-        onclick="saveLog('food')">
-
-        Save meal
-
-      </button>
-
-    `,
-
-
-    exercise: `
-
-      <div class="kicker">
-        Exercise
-      </div>
-
-      <h2>Log exercise</h2>
-
-      <div class="field">
-
-        <label>
-          Activity
-        </label>
-
-        <input
-          id="logValue"
-          type="text"
-          placeholder="e.g. Walking">
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          Duration · minutes
-        </label>
-
-        <input
-          id="logDuration"
-          type="number"
-          inputmode="numeric"
-          placeholder="30">
-
-      </div>
-
-      <button
-        class="btn btn-primary"
-        onclick="saveLog('exercise')">
-
-        Save exercise
-
-      </button>
-
-    `,
-
-
-    water: `
-
-      <div class="kicker">
-        Water
-      </div>
-
-      <h2>Log water</h2>
-
-      <div class="field">
-
-        <label>
-          Amount · oz
-        </label>
-
-        <input
-          id="logValue"
-          type="number"
-          inputmode="numeric"
-          placeholder="20">
-
-      </div>
-
-      <button
-        class="btn btn-primary"
-        onclick="saveLog('water')">
-
-        Save water
-
-      </button>
-
-    `,
-
-
-    bp: `
-
-      <div class="kicker">
-        Blood pressure
-      </div>
-
-      <h2>Log blood pressure</h2>
-
-      <div class="field">
-
-        <label>
-          Systolic
-        </label>
-
-        <input
-          id="logSystolic"
-          type="number"
-          inputmode="numeric"
-          placeholder="120">
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          Diastolic
-        </label>
-
-        <input
-          id="logDiastolic"
-          type="number"
-          inputmode="numeric"
-          placeholder="80">
-
-      </div>
-
-      <button
-        class="btn btn-primary"
-        onclick="saveLog('bp')">
-
-        Save blood pressure
-
-      </button>
-
-    `,
-
-
-    mood: `
-
-      <div class="kicker">
-        Mood
-      </div>
-
-      <h2>How are you feeling?</h2>
-
-      <div class="chips">
-
-        <button
-          class="chip"
-          onclick="selectMood(this,'Great')">
-          😄 Great
-        </button>
-
-        <button
-          class="chip"
-          onclick="selectMood(this,'Good')">
-          🙂 Good
-        </button>
-
-        <button
-          class="chip"
-          onclick="selectMood(this,'Okay')">
-          😐 Okay
-        </button>
-
-        <button
-          class="chip"
-          onclick="selectMood(this,'Low')">
-          😔 Low
-        </button>
-
-        <button
-          class="chip"
-          onclick="selectMood(this,'Stressed')">
-          😣 Stressed
-        </button>
-
-      </div>
-
-      <input
-        type="hidden"
-        id="logMood">
-
-      <button
-        class="btn btn-primary"
-        style="margin-top:15px"
-        onclick="saveLog('mood')">
-
-        Save mood
-
-      </button>
-
-    `,
-
-
-    note: `
-
-      <div class="kicker">
-        Health note
-      </div>
-
-      <h2>Add a note</h2>
-
-      <div class="field">
-
-        <label>
-          What happened?
-        </label>
-
-        <textarea
-          id="logNote"
-          placeholder="Anything you want Betty to know...">
-        </textarea>
-
-      </div>
-
-      <button
-        class="btn btn-primary"
-        onclick="saveLog('note')">
-
-        Save note
-
-      </button>
-
-    `
-
-  };
-
-
-  container.innerHTML =
-    forms[type] || "";
-
-  container.classList.add(
-    "show"
-  );
-
-
-  container.scrollIntoView({
-    behavior: "smooth",
-    block: "nearest"
-  });
-
-}
-
-
-/* =========================================================
-   MOOD
-========================================================= */
-
-function selectMood(button, mood) {
-
-  document
-    .querySelectorAll(
-      "#logForm .chip"
-    )
-    .forEach(chip => {
-
-      chip.classList.remove(
-        "selected"
-      );
-
-    });
-
-
-  button.classList.add(
-    "selected"
-  );
-
-
-  const input =
-    document.getElementById(
-      "logMood"
+  const glucoseEntries =
+    todayEntries.filter(
+      entry =>
+        entry.type ===
+        "glucose"
     );
 
-  if (input) {
 
-    input.value = mood;
+  const bpEntries =
+    todayEntries.filter(
+      entry =>
+        entry.type ===
+        "bp"
+    );
+
+
+  const exerciseEntries =
+    todayEntries.filter(
+      entry =>
+        entry.type ===
+        "exercise"
+    );
+
+
+  const waterEntries =
+    todayEntries.filter(
+      entry =>
+        entry.type ===
+        "water"
+    );
+
+
+  const latestGlucose =
+    glucoseEntries[
+      glucoseEntries.length - 1
+    ];
+
+
+  const latestBP =
+    bpEntries[
+      bpEntries.length - 1
+    ];
+
+
+  const glucoseElement =
+    document.getElementById(
+      "latestGlucose"
+    );
+
+
+  if (glucoseElement) {
+
+    glucoseElement.textContent =
+      latestGlucose
+        ? latestGlucose.value
+        : "—";
 
   }
 
-}
+
+  const bpElement =
+    document.getElementById(
+      "latestBP"
+    );
 
 
-/* =========================================================
-   SAVE LOG
-========================================================= */
+  if (bpElement) {
 
-function saveLog(type) {
+    bpElement.textContent =
+      latestBP
+        ? `${latestBP.value.systolic}/${latestBP.value.diastolic}`
+        : "—";
 
-  const now =
-    new Date().toISOString();
-
-
-  let entry = {
-
-    id:
-      Date.now(),
-
-    type,
-
-    date:
-      now
-
-  };
+  }
 
 
-  if (type === "glucose") {
+  const activityElement =
+    document.getElementById(
+      "todayActivity"
+    );
 
-    const value =
-      document.getElementById(
-        "logValue"
-      )?.value;
 
-    if (!value) {
+  if (activityElement) {
 
-      showToast(
-        "Enter a glucose value"
+    const total =
+      exerciseEntries.reduce(
+        (
+          sum,
+          item
+        ) =>
+          sum +
+          Number(item.value || 0),
+        0
       );
 
-      return;
 
-    }
-
-    entry.value =
-      Number(value);
-
-    entry.context =
-      document.getElementById(
-        "logContext"
-      )?.value || "";
+    activityElement.textContent =
+      total || "—";
 
   }
 
 
-  else if (type === "food") {
+  const waterElement =
+    document.getElementById(
+      "todayWater"
+    );
 
-    const value =
-      document.getElementById(
-        "logValue"
-      )?.value;
 
-    if (!value) {
+  if (waterElement) {
 
-      showToast(
-        "Enter a meal"
+    const total =
+      waterEntries.reduce(
+        (
+          sum,
+          item
+        ) =>
+          sum +
+          Number(item.value || 0),
+        0
       );
 
-      return;
 
-    }
-
-    entry.value =
-      value;
-
-    entry.carbs =
-      document.getElementById(
-        "logCarbs"
-      )?.value || "";
+    waterElement.textContent =
+      total || "—";
 
   }
 
 
-  else if (type === "exercise") {
+  const count =
+    document.getElementById(
+      "todayCount"
+    );
 
-    const value =
-      document.getElementById(
-        "logValue"
-      )?.value;
 
-    if (!value) {
+  if (count) {
 
-      showToast(
-        "Enter an activity"
-      );
-
-      return;
-
-    }
-
-    entry.value =
-      value;
-
-    entry.duration =
-      document.getElementById(
-        "logDuration"
-      )?.value || "";
+    count.textContent =
+      todayEntries.length;
 
   }
 
 
-  else if (type === "water") {
-
-    const value =
-      document.getElementById(
-        "logValue"
-      )?.value;
-
-    if (!value) {
-
-      showToast(
-        "Enter an amount"
-      );
-
-      return;
-
-    }
-
-    entry.value =
-      Number(value);
-
-  }
-
-
-  else if (type === "bp") {
-
-    const systolic =
-      document.getElementById(
-        "logSystolic"
-      )?.value;
-
-    const diastolic =
-      document.getElementById(
-        "logDiastolic"
-      )?.value;
-
-    if (!systolic || !diastolic) {
-
-      showToast(
-        "Enter both blood pressure values"
-      );
-
-      return;
-
-    }
-
-    entry.systolic =
-      Number(systolic);
-
-    entry.diastolic =
-      Number(diastolic);
-
-    entry.value =
-      `${systolic}/${diastolic}`;
-
-  }
-
-
-  else if (type === "mood") {
-
-    const mood =
-      document.getElementById(
-        "logMood"
-      )?.value;
-
-    if (!mood) {
-
-      showToast(
-        "Choose a mood"
-      );
-
-      return;
-
-    }
-
-    entry.value =
-      mood;
-
-  }
-
-
-  else if (type === "note") {
-
-    const note =
-      document.getElementById(
-        "logNote"
-      )?.value
-      .trim();
-
-    if (!note) {
-
-      showToast(
-        "Enter a note"
-      );
-
-      return;
-
-    }
-
-    entry.note =
-      note;
-
-  }
-
-
-  data.push(entry);
-
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(data)
+  renderTimeline(
+    todayEntries
   );
 
 
-  showToast(
-    "Saved to your timeline"
-  );
-
-
-  document.getElementById(
-    "logForm"
-  ).classList.remove(
-    "show"
-  );
-
-
-  document.getElementById(
-    "logForm"
-  ).innerHTML = "";
-
-
-  updateAllScreens();
-
-  navigate(
-    "today",
-    document.querySelector(
-      "nav button"
-    )
+  updateBettyMessage(
+    todayEntries
   );
 
 }
 
 
-/* =========================================================
-   TIMELINE
-========================================================= */
+function renderTimeline(
+  entries
+) {
 
-function renderTimeline() {
-
-  const container =
+  const timeline =
     document.getElementById(
       "timeline"
     );
 
-  if (!container) {
+
+  if (!timeline) {
+
     return;
+
   }
 
 
-  const today =
-    new Date()
-      .toDateString();
+  if (!entries.length) {
 
+    timeline.innerHTML = `
 
-  const todayEvents =
-    data
-      .filter(item =>
-        new Date(item.date)
-          .toDateString() === today
-      )
-      .sort(
-        (a,b) =>
-          new Date(b.date) -
-          new Date(a.date)
-      );
-
-
-  if (!todayEvents.length) {
-
-    container.innerHTML = `
-
-      <div class="empty">
+      <div class="empty-state">
 
         Nothing logged yet today.
 
-        <br>
+        <br><br>
 
-        Tap ＋ to add your first event.
+        Tap ＋ to add your first
+        event.
 
       </div>
 
@@ -5261,116 +7568,184 @@ function renderTimeline() {
   }
 
 
-  container.innerHTML =
-    todayEvents
-      .map(renderEvent)
-      .join("");
+  const sorted =
+    [...entries]
+      .sort(
+        (
+          a,
+          b
+        ) =>
+          b.timestamp -
+          a.timestamp
+      );
+
+
+  timeline.innerHTML =
+    sorted.map(
+      entry =>
+        timelineHTML(entry)
+    ).join("");
 
 }
 
 
-function renderEvent(item) {
+function timelineHTML(
+  entry
+) {
 
   const icons = {
 
-    glucose: "🩸",
+    glucose:
+      "🩸",
 
-    food: "🍽️",
+    food:
+      "🍽️",
 
-    exercise: "🏃",
+    exercise:
+      "🏃",
 
-    water: "💧",
+    water:
+      "💧",
 
-    bp: "❤️",
+    bp:
+      "❤️",
 
-    mood: "😊",
+    mood:
+      "😊",
 
-    note: "📝"
+    note:
+      "📝",
 
-  };
-
-
-  const titles = {
-
-    glucose: "Glucose",
-
-    food: "Food",
-
-    exercise: "Exercise",
-
-    water: "Water",
-
-    bp: "Blood pressure",
-
-    mood: "Mood",
-
-    note: "Health note"
+    medication:
+      "💊"
 
   };
 
 
-  let detail =
-    item.value ||
-    item.note ||
-    "";
+  const names = {
+
+    glucose:
+      "Glucose",
+
+    food:
+      "Meal",
+
+    exercise:
+      "Movement",
+
+    water:
+      "Water",
+
+    bp:
+      "Blood pressure",
+
+    mood:
+      "Mood",
+
+    note:
+      "Note",
+
+    medication:
+      "Medication"
+
+  };
 
 
-  if (
-    item.type === "glucose" &&
-    item.context
-  ) {
+  let detail = "";
 
-    detail +=
-      ` · ${item.context}`;
+
+  if (entry.type === "glucose") {
+
+    detail =
+      `${entry.value} mg/dL`;
+
+    if (entry.detail) {
+
+      detail +=
+        ` · ${escapeHTML(entry.detail)}`;
+
+    }
 
   }
 
 
-  if (
-    item.type === "food" &&
-    item.carbs
-  ) {
+  else if (entry.type === "bp") {
 
-    detail +=
-      ` · ${item.carbs}g carbs`;
+    detail =
+      `${entry.value.systolic}/${entry.value.diastolic} mmHg`;
 
   }
 
 
-  if (
-    item.type === "exercise" &&
-    item.duration
+  else if (entry.type === "exercise") {
+
+    detail =
+      `${escapeHTML(entry.detail)} · ${entry.value} min`;
+
+  }
+
+
+  else if (entry.type === "water") {
+
+    detail =
+      `${entry.value} oz`;
+
+  }
+
+
+  else if (
+    entry.type === "food"
+    ||
+    entry.type === "note"
+    ||
+    entry.type === "medication"
   ) {
 
-    detail +=
-      ` · ${item.duration} min`;
+    detail =
+      escapeHTML(
+        String(
+          entry.value
+        )
+      );
+
+  }
+
+
+  else if (entry.type === "mood") {
+
+    detail =
+      escapeHTML(
+        String(
+          entry.value
+        )
+      );
 
   }
 
 
   return `
 
-    <div
-      class="event"
-      onclick="deleteEntry(${item.id})">
+    <div class="timeline-item">
 
-      <div class="event-icon">
-        ${icons[item.type]}
+      <div class="timeline-icon">
+        ${icons[entry.type] || "•"}
       </div>
 
-      <div class="event-main">
+      <div class="timeline-main">
 
-        <div class="event-title">
-          ${titles[item.type]}
+        <div class="timeline-title">
+          ${names[entry.type] || "Entry"}
         </div>
 
-        <div class="event-meta">
-
-          ${escapeHTML(detail)}
-          ·
-          ${formatTime(item.date)}
-
+        <div class="timeline-detail">
+          ${detail}
         </div>
+
+      </div>
+
+      <div class="timeline-time">
+
+        ${formatTime(entry.timestamp)}
 
       </div>
 
@@ -5382,41 +7757,103 @@ function renderEvent(item) {
 
 
 /* =========================================================
-   DELETE
+   BETTY MESSAGES
 ========================================================= */
 
-function deleteEntry(id) {
+function updateBettyMessage(
+  entries
+) {
 
-  if (
-    !confirm(
-      "Delete this entry?"
-    )
-  ) {
+  const message =
+    document.getElementById(
+      "bettyMessage"
+    );
+
+
+  if (!message) {
 
     return;
 
   }
 
 
-  data =
-    data.filter(
-      item =>
-        item.id !== id
+  if (!entries.length) {
+
+    message.textContent =
+      "Your timeline will build as you log things.";
+
+    return;
+
+  }
+
+
+  const glucose =
+    entries.filter(
+      e =>
+        e.type ===
+        "glucose"
     );
 
 
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(data)
-  );
+  const exercise =
+    entries.filter(
+      e =>
+        e.type ===
+        "exercise"
+    );
 
 
-  showToast(
-    "Entry deleted"
-  );
+  const water =
+    entries.filter(
+      e =>
+        e.type ===
+        "water"
+    );
 
 
-  updateAllScreens();
+  if (
+    glucose.length &&
+    exercise.length
+  ) {
+
+    message.textContent =
+      "Nice — you've logged both glucose and movement today. Keep building the picture.";
+
+  }
+
+  else if (
+    glucose.length
+  ) {
+
+    message.textContent =
+      "I've got your glucose reading. Adding meals or movement can give it more context.";
+
+  }
+
+  else if (
+    exercise.length
+  ) {
+
+    message.textContent =
+      "Movement logged! You can add glucose or meals later to build more context.";
+
+  }
+
+  else if (
+    water.length
+  ) {
+
+    message.textContent =
+      "Hydration logged. Little actions like this help build your daily picture.";
+
+  }
+
+  else {
+
+    message.textContent =
+      "Thanks for checking in. Keep adding what matters to you today.";
+
+  }
 
 }
 
@@ -5425,277 +7862,534 @@ function deleteEntry(id) {
    TRENDS
 ========================================================= */
 
-function setTrend(type, button) {
+let currentRange =
+  7;
 
-  currentTrend =
-    type;
+
+let currentTrend =
+  "glucose";
+
+
+function setRange(
+  days,
+  button
+) {
+
+  currentRange =
+    days;
 
 
   document
     .querySelectorAll(
-      "#trends .chip"
+      ".range-button"
     )
-    .forEach(chip => {
-
-      chip.classList.remove(
-        "selected"
-      );
-
-    });
+    .forEach(
+      item =>
+        item.classList.remove(
+          "active"
+        )
+    );
 
 
   if (button) {
 
     button.classList.add(
-      "selected"
+      "active"
     );
 
   }
 
 
-  renderTrend();
+  renderTrendChart();
 
 }
 
 
-function renderTrend() {
+function setTrend(
+  trend,
+  button
+) {
+
+  currentTrend =
+    trend;
+
+
+  document
+    .querySelectorAll(
+      ".metric-chip"
+    )
+    .forEach(
+      item =>
+        item.classList.remove(
+          "active"
+        )
+    );
+
+
+  if (button) {
+
+    button.classList.add(
+      "active"
+    );
+
+  }
+
+
+  renderTrendChart();
+
+}
+
+
+function renderTrendChart() {
 
   const chart =
     document.getElementById(
       "glucoseChart"
     );
 
+
   if (!chart) {
+
     return;
+
   }
+
+
+  const now =
+    Date.now();
 
 
   const cutoff =
-    Date.now() -
-    7 * 24 * 60 * 60 * 1000;
+    now -
+    currentRange *
+    24 *
+    60 *
+    60 *
+    1000;
 
 
-  let values =
-    data
-      .filter(item =>
-        new Date(item.date)
-          .getTime() >= cutoff
-      );
+  const entries =
+    appData.entries.filter(
+      entry =>
+        entry.timestamp >=
+        cutoff
+    );
 
 
-  if (
-    currentTrend ===
-    "glucose"
-  ) {
+  const title =
+    document.getElementById(
+      "chartTitle"
+    );
 
-    values =
-      values
+
+  const average =
+    document.getElementById(
+      "trendAverage"
+    );
+
+
+  const readings =
+    document.getElementById(
+      "trendReadings"
+    );
+
+
+  let points = [];
+
+
+  if (currentTrend === "glucose") {
+
+    title.textContent =
+      "Glucose";
+
+
+    const values =
+      entries
         .filter(
-          item =>
-            item.type ===
+          e =>
+            e.type ===
             "glucose"
         )
         .map(
-          item =>
-            Number(item.value)
+          e =>
+            Number(e.value)
         );
+
+
+    points =
+      values;
+
+
+    average.textContent =
+      values.length
+        ? Math.round(
+            values.reduce(
+              (
+                a,
+                b
+              ) =>
+                a + b,
+              0
+            ) /
+            values.length
+          )
+        : "—";
+
+    readings.textContent =
+      values.length;
 
   }
 
-  else {
 
-    values =
-      values
+  else if (currentTrend === "bp") {
+
+    title.textContent =
+      "Blood pressure";
+
+
+    const values =
+      entries
         .filter(
-          item =>
-            item.type ===
-            currentTrend
+          e =>
+            e.type ===
+            "bp"
         )
         .map(
-          item => 1
+          e =>
+            Number(
+              e.value.systolic
+            )
         );
 
-  }
+
+    points =
+      values;
 
 
-  chart.innerHTML = "";
+    average.textContent =
+      values.length
+        ? Math.round(
+            values.reduce(
+              (
+                a,
+                b
+              ) =>
+                a + b,
+              0
+            ) /
+            values.length
+          )
+        : "—";
 
-
-  if (
-    currentTrend ===
-    "glucose" &&
-    values.length
-  ) {
-
-    const min =
-      Math.min(...values) - 10;
-
-    const max =
-      Math.max(...values) + 10;
-
-
-    const width =
-      500;
-
-    const height =
-      210;
-
-
-    const points =
-      values.map(
-        (value, index) => {
-
-          const x =
-            values.length === 1
-              ? 250
-              : (
-                index /
-                (values.length - 1)
-              ) *
-              width;
-
-          const y =
-            height -
-            (
-              (value - min) /
-              (max - min)
-            ) *
-            height;
-
-          return `${x},${y}`;
-
-        }
-      )
-      .join(" ");
-
-
-    chart.innerHTML = `
-
-      <polyline
-        points="${points}"
-        fill="none"
-        stroke="var(--accent)"
-        stroke-width="5"
-        stroke-linecap="round"
-        stroke-linejoin="round">
-      </polyline>
-
-    `;
-
-
-    const average =
-      values.reduce(
-        (sum, value) =>
-          sum + value,
-        0
-      ) /
-      values.length;
-
-
-    document.getElementById(
-      "trendAverage"
-    ).textContent =
-      Math.round(
-        average
-      );
-
-
-    document.getElementById(
-      "trendReadings"
-    ).textContent =
+    readings.textContent =
       values.length;
 
   }
 
-  else {
 
-    document.getElementById(
-      "trendAverage"
-    ).textContent =
-      "—";
+  else if (currentTrend === "exercise") {
+
+    title.textContent =
+      "Activity";
 
 
-    document.getElementById(
-      "trendReadings"
-    ).textContent =
+    const values =
+      entries
+        .filter(
+          e =>
+            e.type ===
+            "exercise"
+        )
+        .map(
+          e =>
+            Number(e.value)
+        );
+
+
+    points =
+      values;
+
+
+    average.textContent =
+      values.length
+        ? Math.round(
+            values.reduce(
+              (
+                a,
+                b
+              ) =>
+                a + b,
+              0
+            ) /
+            values.length
+          )
+        : "—";
+
+    readings.textContent =
       values.length;
 
+  }
 
-    chart.innerHTML = `
+
+  else if (currentTrend === "water") {
+
+    title.textContent =
+      "Water";
+
+
+    const values =
+      entries
+        .filter(
+          e =>
+            e.type ===
+            "water"
+        )
+        .map(
+          e =>
+            Number(e.value)
+        );
+
+
+    points =
+      values;
+
+
+    average.textContent =
+      values.length
+        ? Math.round(
+            values.reduce(
+              (
+                a,
+                b
+              ) =>
+                a + b,
+              0
+            ) /
+            values.length
+          )
+        : "—";
+
+    readings.textContent =
+      values.length;
+
+  }
+
+
+  else if (currentTrend === "mood") {
+
+    title.textContent =
+      "Mood";
+
+
+    const moodValues = {
+
+      Great: 5,
+      Happy: 5,
+      Good: 4,
+      Okay: 3,
+      Low: 2,
+      Stressed: 1
+
+    };
+
+
+    const values =
+      entries
+        .filter(
+          e =>
+            e.type ===
+            "mood"
+        )
+        .map(
+          e =>
+            moodValues[
+              e.value
+            ] || 3
+        );
+
+
+    points =
+      values;
+
+
+    average.textContent =
+      values.length
+        ? (
+            values.reduce(
+              (
+                a,
+                b
+              ) =>
+                a + b,
+              0
+            ) /
+            values.length
+          ).toFixed(1)
+        : "—";
+
+    readings.textContent =
+      values.length;
+
+  }
+
+
+  drawChart(
+    chart,
+    points
+  );
+
+}
+
+
+function drawChart(
+  svg,
+  values
+) {
+
+  svg.innerHTML =
+    "";
+
+
+  if (!values.length) {
+
+    svg.innerHTML = `
 
       <text
         x="250"
         y="110"
         text-anchor="middle"
-        fill="var(--text-secondary)"
-        font-size="14">
+        fill="currentColor"
+        opacity=".45"
+        font-size="13">
 
-        Not enough data yet
+        No data yet
 
       </text>
 
     `;
 
-  }
-
-}
-
-
-/* =========================================================
-   TREND COMPARISONS
-========================================================= */
-
-function compareContext(context) {
-
-  const labels = {
-
-    food:
-      "food",
-
-    exercise:
-      "exercise",
-
-    sleep:
-      "sleep",
-
-    mood:
-      "mood"
-
-  };
-
-
-  const available =
-    data.some(
-      item =>
-        item.type ===
-        context
-    );
-
-
-  const message =
-    document.getElementById(
-      "comparisonMessage"
-    );
-
-
-  if (!message) {
     return;
-  }
-
-
-  if (available) {
-
-    message.textContent =
-      `You have ${context} data available. Betty will be able to compare these patterns more intelligently as the data grows.`;
 
   }
 
-  else {
 
-    message.textContent =
-      `Start logging ${labels[context]} and Betty will have more information to compare with your glucose.`;
+  const width =
+    500;
 
-  }
+
+  const height =
+    210;
+
+
+  const padding =
+    22;
+
+
+  const min =
+    Math.min(
+      ...values
+    );
+
+
+  const max =
+    Math.max(
+      ...values
+    );
+
+
+  const range =
+    max === min
+      ? 1
+      : max - min;
+
+
+  const coordinates =
+    values.map(
+      (
+        value,
+        index
+      ) => {
+
+        const x =
+          values.length === 1
+            ? width / 2
+            : padding +
+              (
+                index /
+                (
+                  values.length -
+                  1
+                )
+              ) *
+              (
+                width -
+                padding * 2
+              );
+
+
+        const y =
+          height -
+          padding -
+          (
+            (
+              value -
+              min
+            ) /
+            range
+          ) *
+          (
+            height -
+            padding * 2
+          );
+
+
+        return {
+          x,
+          y
+        };
+
+      }
+    );
+
+
+  const path =
+    coordinates
+      .map(
+        (
+          point,
+          index
+        ) =>
+          `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`
+      )
+      .join(" ");
+
+
+  svg.innerHTML = `
+
+    <path
+      d="${path}"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      opacity=".85">
+    </path>
+
+    ${coordinates.map(
+      point => `
+
+        <circle
+          cx="${point.x}"
+          cy="${point.y}"
+          r="5"
+          fill="currentColor">
+        </circle>
+
+      `
+    ).join("")}
+
+  `;
 
 }
 
@@ -5711,180 +8405,282 @@ function renderInsights() {
       "insightsList"
     );
 
+
   if (!container) {
+
     return;
+
   }
 
 
+  const entries =
+    appData.entries;
+
+
+  const insights = [];
+
+
   const glucose =
-    data.filter(
-      item =>
-        item.type ===
+    entries.filter(
+      e =>
+        e.type ===
         "glucose"
     );
 
 
-  const food =
-    data.filter(
-      item =>
-        item.type ===
-        "food"
-    );
-
-
   const exercise =
-    data.filter(
-      item =>
-        item.type ===
+    entries.filter(
+      e =>
+        e.type ===
         "exercise"
     );
 
 
-  let html = "";
+  const water =
+    entries.filter(
+      e =>
+        e.type ===
+        "water"
+    );
 
 
-  if (!data.length) {
+  const food =
+    entries.filter(
+      e =>
+        e.type ===
+        "food"
+    );
 
-    html = `
 
-      <div class="card insight">
+  if (glucose.length >= 2) {
 
-        <div class="badge">
-          Betty noticed
+    const values =
+      glucose.map(
+        e =>
+          Number(e.value)
+      );
+
+
+    const average =
+      Math.round(
+        values.reduce(
+          (
+            a,
+            b
+          ) =>
+            a + b,
+          0
+        ) /
+        values.length
+      );
+
+
+    insights.push({
+
+      title:
+        `You've logged ${glucose.length} glucose readings.`,
+
+      body:
+        `Your current average across those readings is ${average} mg/dL.`,
+
+      evidence:
+        "More readings over different situations will make this trend more useful."
+
+    });
+
+  }
+
+
+  if (exercise.length) {
+
+    const minutes =
+      exercise.reduce(
+        (
+          total,
+          item
+        ) =>
+          total +
+          Number(item.value || 0),
+        0
+      );
+
+
+    insights.push({
+
+      title:
+        `You've logged ${minutes} minutes of movement.`,
+
+      body:
+        "That's part of the bigger picture Betty can track for you.",
+
+      evidence:
+        "Movement data can eventually be compared with other logged information."
+
+    });
+
+  }
+
+
+  if (water.length) {
+
+    const ounces =
+      water.reduce(
+        (
+          total,
+          item
+        ) =>
+          total +
+          Number(item.value || 0),
+        0
+      );
+
+
+    insights.push({
+
+      title:
+        `You've logged ${ounces} oz of water.`,
+
+      body:
+        "Hydration is now part of today's timeline.",
+
+      evidence:
+        "Keep logging throughout the day to create a more complete picture."
+
+    });
+
+  }
+
+
+  if (food.length) {
+
+    insights.push({
+
+      title:
+        `You've logged ${food.length} meal${food.length === 1 ? "" : "s"}.`,
+
+      body:
+        "Meal information can become useful context alongside glucose readings.",
+
+      evidence:
+        "Betty can eventually help explore meal and glucose relationships."
+
+    });
+
+  }
+
+
+  if (!insights.length) {
+
+    container.innerHTML = `
+
+      <div class="card insight-card">
+
+        <div class="insight-top">
+
+          <div class="mini-betty"></div>
+
+          <div>
+
+            <div class="insight-tag">
+              BETTY NOTICED
+            </div>
+
+            <h3>
+              Your timeline is waiting.
+            </h3>
+
+          </div>
+
         </div>
 
-        <h2>
-          Your timeline is waiting.
-        </h2>
 
-        <p>
-          Start logging your glucose,
-          meals, movement, water, mood,
-          or notes. As your timeline grows,
-          Betty will have more context to
-          identify useful patterns.
+        <div class="insight-title">
+
+          Start building your story.
+
+        </div>
+
+
+        <p class="insight-body">
+
+          Log glucose, meals, movement,
+          hydration, mood, or notes and
+          Betty will have more context.
+
         </p>
+
+
+        <div class="insight-evidence">
+
+          More data → better context
+          → more meaningful observations.
+
+        </div>
 
       </div>
 
     `;
 
-  }
-
-
-  else {
-
-    if (glucose.length >= 2) {
-
-      const numbers =
-        glucose.map(
-          item =>
-            Number(item.value)
-        );
-
-
-      const average =
-        numbers.reduce(
-          (a,b) =>
-            a + b,
-          0
-        ) /
-        numbers.length;
-
-
-      html += `
-
-        <div class="card insight">
-
-          <div class="badge">
-            Betty noticed
-          </div>
-
-          <h2>
-            Your average glucose is
-            ${Math.round(average)} mg/dL.
-          </h2>
-
-          <p>
-            That's based on
-            ${numbers.length}
-            logged readings.
-            Keep logging so Betty can
-            identify more meaningful
-            patterns over time.
-          </p>
-
-        </div>
-
-      `;
-
-    }
-
-
-    if (food.length) {
-
-      html += `
-
-        <div class="card insight">
-
-          <div class="badge">
-            Emerging pattern
-          </div>
-
-          <h2>
-            You're building a food timeline.
-          </h2>
-
-          <p>
-            You've logged
-            ${food.length}
-            meal${food.length === 1 ? "" : "s"}.
-            More comparable meals and
-            glucose readings will help Betty
-            look for relationships.
-          </p>
-
-        </div>
-
-      `;
-
-    }
-
-
-    if (exercise.length) {
-
-      html += `
-
-        <div class="card insight">
-
-          <div class="badge">
-            Positive signal
-          </div>
-
-          <h2>
-            Movement is part of your story.
-          </h2>
-
-          <p>
-            You've logged
-            ${exercise.length}
-            exercise event${exercise.length === 1 ? "" : "s"}.
-            Keep recording it so Betty can
-            eventually compare activity with
-            other health information.
-          </p>
-
-        </div>
-
-      `;
-
-    }
+    return;
 
   }
 
 
   container.innerHTML =
-    html;
+    insights.map(
+      insight => `
+
+        <div class="card insight-card">
+
+          <div class="insight-top">
+
+            <div class="mini-betty"></div>
+
+            <div>
+
+              <div class="insight-tag">
+                BETTY NOTICED
+              </div>
+
+              <h3>
+                A pattern is forming
+              </h3>
+
+            </div>
+
+          </div>
+
+
+          <div class="insight-title">
+
+            ${escapeHTML(
+              insight.title
+            )}
+
+          </div>
+
+
+          <p class="insight-body">
+
+            ${escapeHTML(
+              insight.body
+            )}
+
+          </p>
+
+
+          <div class="insight-evidence">
+
+            ${escapeHTML(
+              insight.evidence
+            )}
+
+          </div>
+
+        </div>
+
+      `
+    ).join("");
 
 }
 
@@ -5893,7 +8689,9 @@ function renderInsights() {
    ASK BETTY
 ========================================================= */
 
-function handleBettyKey(event) {
+function handleBettyKey(
+  event
+) {
 
   if (
     event.key ===
@@ -5907,6 +8705,29 @@ function handleBettyKey(event) {
 }
 
 
+function askSuggested(
+  question
+) {
+
+  const input =
+    document.getElementById(
+      "bettyQuestion"
+    );
+
+
+  if (input) {
+
+    input.value =
+      question;
+
+  }
+
+
+  askBetty();
+
+}
+
+
 function askBetty() {
 
   const input =
@@ -5915,25 +8736,52 @@ function askBetty() {
     );
 
 
-  if (!input) {
-    return;
-  }
-
-
   const question =
-    input.value.trim();
+    input?.value.trim();
 
 
   if (!question) {
 
-    showToast(
-      "Ask Betty something first"
-    );
-
     return;
 
   }
 
+
+  addChatMessage(
+    question,
+    "user"
+  );
+
+
+  input.value =
+    "";
+
+
+  setTimeout(
+    () => {
+
+      const answer =
+        generateBettyResponse(
+          question
+        );
+
+
+      addChatMessage(
+        answer,
+        "betty"
+      );
+
+    },
+    350
+  );
+
+}
+
+
+function addChatMessage(
+  text,
+  sender
+) {
 
   const chat =
     document.getElementById(
@@ -5941,324 +8789,288 @@ function askBetty() {
     );
 
 
-  const response =
-    generateBettyResponse(
-      question
+  if (!chat) {
+
+    return;
+
+  }
+
+
+  const message =
+    document.createElement(
+      "div"
     );
 
 
-  chat.innerHTML = `
-
-    <div>
-
-      <b>
-        You:
-      </b>
-
-      <p>
-        ${escapeHTML(question)}
-      </p>
-
-    </div>
+  message.className =
+    `chat-message ${sender}`;
 
 
-    <div
-      style="
-        margin-top:15px;
-        padding-top:15px;
-        border-top:1px solid var(--border);
-      ">
-
-      <b>
-        🦋 Betty:
-      </b>
-
-      <p>
-        ${response}
-      </p>
-
-    </div>
-
-  `;
+  message.textContent =
+    text;
 
 
-  input.value = "";
+  chat.appendChild(
+    message
+  );
+
+
+  message.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
 
 }
 
 
-function generateBettyResponse(question) {
+function generateBettyResponse(
+  question
+) {
 
-  const q =
+  const lower =
     question.toLowerCase();
 
 
   const glucose =
-    data.filter(
-      item =>
-        item.type ===
+    appData.entries.filter(
+      e =>
+        e.type ===
         "glucose"
     );
 
 
   if (
-    q.includes("average") &&
-    (
-      q.includes("glucose") ||
-      q.includes("sugar")
+    lower.includes(
+      "average glucose"
+    )
+    ||
+    lower.includes(
+      "average blood sugar"
     )
   ) {
 
     if (!glucose.length) {
 
-      return `
-        I don't have any glucose readings
-        yet. Log a few readings and I'll
-        calculate your average.
-      `;
+      return "I don't have any glucose readings yet. Add one in Log and I'll have something to work with.";
 
     }
 
 
     const average =
-      glucose.reduce(
-        (sum, item) =>
-          sum +
-          Number(item.value),
-        0
-      ) /
-      glucose.length;
-
-
-    return `
-      Your current logged average is
-      <b>${Math.round(average)} mg/dL</b>,
-      based on ${glucose.length}
-      reading${glucose.length === 1 ? "" : "s"}.
-      As you add more readings, I can
-      help you understand the pattern
-      across different times and contexts.
-    `;
-
-  }
-
-
-  if (
-    q.includes("how am i doing") ||
-    q.includes("how am i")
-  ) {
-
-    if (!data.length) {
-
-      return `
-        We're just getting started.
-        Add some health entries and I'll
-        have more context to work with.
-      `;
-
-    }
-
-
-    return `
-      You've logged <b>${data.length}</b>
-      health event${data.length === 1 ? "" : "s"}.
-      That's a good start. The more
-      consistent your timeline becomes,
-      the more useful my observations can be.
-    `;
-
-  }
-
-
-  if (
-    q.includes("hello") ||
-    q.includes("hi") ||
-    q.includes("hey")
-  ) {
-
-    return `
-      Hi! 🦋 I'm Betty.
-      I'm here and ready to explore your
-      Diabetter timeline with you.
-    `;
-
-  }
-
-
-  if (
-    q.includes("food") ||
-    q.includes("meal") ||
-    q.includes("eat")
-  ) {
-
-    const food =
-      data.filter(
-        item =>
-          item.type ===
-          "food"
+      Math.round(
+        glucose.reduce(
+          (
+            total,
+            item
+          ) =>
+            total +
+            Number(item.value),
+          0
+        ) /
+        glucose.length
       );
 
 
-    return `
-      You've logged
-      <b>${food.length}</b>
-      meal${food.length === 1 ? "" : "s"} so far.
-      Keep recording meals alongside
-      glucose readings and we'll have more
-      context to explore.
-    `;
+    return `You've logged ${glucose.length} glucose reading${glucose.length === 1 ? "" : "s"}, with an average of ${average} mg/dL.`;
 
   }
 
 
-  return `
-    I'm still learning how to answer that
-    question in this prototype. 🦋
-    Right now I can summarize your logged
-    glucose, meals, exercise, and timeline.
-    The full AI Betty comes in a later phase.
-  `;
+  if (
+    lower.includes(
+      "how am i doing"
+    )
+    ||
+    lower.includes(
+      "how am i"
+    )
+  ) {
 
-}
+    if (!appData.entries.length) {
 
+      return "We're just getting started. Log a few things today and I'll have more context to work with.";
 
-/* =========================================================
-   TODAY SCREEN
-========================================================= */
-
-function updateToday() {
-
-  const latest =
-    data
-      .filter(
-        item =>
-          item.type ===
-          "glucose"
-      )
-      .sort(
-        (a,b) =>
-          new Date(b.date) -
-          new Date(a.date)
-      )[0];
+    }
 
 
-  const glucoseElement =
-    document.getElementById(
-      "latestGlucose"
-    );
-
-
-  if (glucoseElement) {
-
-    glucoseElement.textContent =
-      latest
-        ? latest.value
-        : "—";
+    return `You've logged ${appData.entries.length} item${appData.entries.length === 1 ? "" : "s"} so far. Keep building your timeline and I'll be able to give you a more useful picture.`;
 
   }
 
 
-  const today =
-    new Date()
-      .toDateString();
+  if (
+    lower.includes(
+      "recent"
+    )
+    ||
+    lower.includes(
+      "logged lately"
+    )
+  ) {
+
+    if (!appData.entries.length) {
+
+      return "Nothing has been logged yet.";
+
+    }
 
 
-  const count =
-    data.filter(
-      item =>
-        new Date(item.date)
-          .toDateString() ===
-        today
-    ).length;
-
-
-  const countElement =
-    document.getElementById(
-      "todayCount"
-    );
-
-
-  if (countElement) {
-
-    countElement.textContent =
-      count;
-
-  }
-
-
-  const dateElement =
-    document.getElementById(
-      "todayDate"
-    );
-
-
-  if (dateElement) {
-
-    dateElement.textContent =
-      new Date()
-        .toLocaleDateString(
-          undefined,
-          {
-            month: "short",
-            day: "numeric"
-          }
+    const recent =
+      [...appData.entries]
+        .sort(
+          (
+            a,
+            b
+          ) =>
+            b.timestamp -
+            a.timestamp
+        )
+        .slice(
+          0,
+          3
         );
 
+
+    const names = {
+
+      glucose:
+        "glucose",
+
+      food:
+        "meal",
+
+      exercise:
+        "movement",
+
+      water:
+        "water",
+
+      bp:
+        "blood pressure",
+
+      mood:
+        "mood",
+
+      note:
+        "note",
+
+      medication:
+        "medication"
+
+    };
+
+
+    return `Your most recent entries include ${recent.map(e => names[e.type] || "an entry").join(", ")}.`;
+
   }
 
 
-  const hour =
-    new Date()
-      .getHours();
+  if (
+    lower.includes(
+      "pattern"
+    )
+  ) {
+
+    if (
+      appData.entries.length <
+      3
+    ) {
+
+      return "I need a little more information before I can identify a meaningful pattern. Keep logging and check back with me.";
+
+    }
 
 
-  let greeting =
-    "Good morning";
-
-
-  if (hour >= 12 && hour < 18) {
-
-    greeting =
-      "Good afternoon";
-
-  }
-
-
-  else if (hour >= 18) {
-
-    greeting =
-      "Good evening";
+    return "I can see that you're building a useful timeline. Once you have more readings across meals, movement and different times of day, pattern detection will become much more meaningful.";
 
   }
 
 
-  document.getElementById(
-    "greeting"
-  ).textContent =
-    greeting;
+  if (
+    lower.includes(
+      "water"
+    )
+    ||
+    lower.includes(
+      "hydration"
+    )
+  ) {
+
+    const water =
+      appData.entries
+        .filter(
+          e =>
+            e.type ===
+            "water"
+        );
 
 
-  const message =
+    const total =
+      water.reduce(
+        (
+          sum,
+          e
+        ) =>
+          sum +
+          Number(e.value || 0),
+        0
+      );
+
+
+    if (!total) {
+
+      return "I don't see any water logged yet today. You can add it from the Log screen.";
+
+    }
+
+
+    return `You've logged ${total} oz of water in your current timeline.`;
+
+  }
+
+
+  return "I'm here! 🦋 In this prototype I can answer questions using the information you've logged. Try asking about your average glucose, recent entries, water, or patterns.";
+
+}
+
+
+/* =========================================================
+   COMPARISONS
+========================================================= */
+
+function compareContext(
+  context
+) {
+
+  const messages = {
+
+    food:
+      "Keep logging meals and glucose readings around them. Once there is enough information, Betty can help explore possible relationships.",
+
+    exercise:
+      "Keep logging movement alongside glucose readings. That gives Betty more context for exploring patterns.",
+
+    mood:
+      "Mood is now part of your timeline. More entries will give Betty more context to explore relationships.",
+
+    sleep:
+      "Sleep tracking isn't connected yet, but it is planned as a future data source."
+
+  };
+
+
+  const element =
     document.getElementById(
-      "bettyMessage"
+      "comparisonMessage"
     );
 
 
-  if (message) {
+  if (element) {
 
-    if (latest) {
-
-      message.innerHTML =
-        `Your latest glucose is <b>${latest.value} mg/dL</b>. Keep logging so I can help you spot patterns.`;
-
-    }
-
-    else {
-
-      message.textContent =
-        "Your timeline will build as you log things.";
-
-    }
+    element.textContent =
+      messages[context]
+      ||
+      "Keep logging information and Betty will have more context.";
 
   }
 
@@ -6266,63 +9078,109 @@ function updateToday() {
 
 
 /* =========================================================
-   GLOBAL UPDATE
+   EXPORT
 ========================================================= */
 
-function updateAllScreens() {
+function exportReport() {
 
-  updateToday();
+  const report = {
 
-  renderTimeline();
+    generated:
+      new Date()
+        .toLocaleString(),
 
-  renderTrend();
+    entries:
+      appData.entries
 
-  renderInsights();
+  };
 
-  updateNotificationUI();
+
+  const blob =
+    new Blob(
+      [
+        JSON.stringify(
+          report,
+          null,
+          2
+        )
+      ],
+      {
+        type:
+          "application/json"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(
+      blob
+    );
+
+
+  const link =
+    document.createElement(
+      "a"
+    );
+
+
+  link.href =
+    url;
+
+
+  link.download =
+    "diabetter-data.json";
+
+
+  document.body.appendChild(
+    link
+  );
+
+
+  link.click();
+
+
+  link.remove();
+
+
+  URL.revokeObjectURL(
+    url
+  );
+
+
+  showToast(
+    "Your data export is ready."
+  );
 
 }
 
 
 /* =========================================================
-   UTILITIES
+   HELPERS
 ========================================================= */
 
-function formatTime(date) {
+function formatTime(
+  timestamp
+) {
 
-  return new Date(date)
-    .toLocaleTimeString(
-      undefined,
-      {
-        hour:
-          "numeric",
+  return new Date(
+    timestamp
+  ).toLocaleTimeString(
+    [],
+    {
+      hour:
+        "numeric",
 
-        minute:
-          "2-digit"
-      }
-    );
-
-}
-
-
-function formatDateTime(date) {
-
-  return new Date(date)
-    .toLocaleString(
-      undefined,
-      {
-        dateStyle:
-          "medium",
-
-        timeStyle:
-          "short"
-      }
-    );
+      minute:
+        "2-digit"
+    }
+  );
 
 }
 
 
-function escapeHTML(value) {
+function escapeHTML(
+  value
+) {
 
   return String(value)
     .replace(
@@ -6356,7 +9214,9 @@ function escapeHTML(value) {
 let toastTimer;
 
 
-function showToast(message) {
+function showToast(
+  message
+) {
 
   const toast =
     document.getElementById(
@@ -6365,7 +9225,9 @@ function showToast(message) {
 
 
   if (!toast) {
+
     return;
+
   }
 
 
@@ -6399,53 +9261,35 @@ function showToast(message) {
 
 
 /* =========================================================
-   STARTUP
+   INITIALIZATION
+========================================================= */
+
+function initializeApp() {
+
+  initializeTheme();
+
+  initializeNotifications();
+
+  updateDashboard();
+
+  renderTrendChart();
+
+  renderInsights();
+
+}
+
+
+/* =========================================================
+   START
 ========================================================= */
 
 document.addEventListener(
   "DOMContentLoaded",
-  () => {
-
-    initializeTheme();
-
-    updateAllScreens();
-
-    updateNotificationUI();
-
-  }
+  initializeApp
 );
 
+</script>
 
-/* =========================================================
-   CLOSE MODALS WITH ESCAPE
-========================================================= */
-
-document.addEventListener(
-  "keydown",
-  event => {
-
-    if (
-      event.key ===
-      "Escape"
-    ) {
-
-      closeModal();
-
-      closeSettings();
-
-      closeQuickLog();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   END DIABETTER JAVASCRIPT
-========================================================= */
-
-  </script>
 
 </body>
 
