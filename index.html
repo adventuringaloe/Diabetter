@@ -20,8 +20,7 @@ nav{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;display:g
 .chart{height:210px;background:repeating-linear-gradient(to bottom,transparent 0,transparent 24%,#eeeef2 25%,transparent 26%);border-radius:18px;position:relative;overflow:hidden}.target{position:absolute;left:0;right:0;top:34%;height:30%;background:#34c75918}.chart svg{width:100%;height:100%}.insight{border-left:4px solid var(--purple);padding-left:14px}.badge{font-size:11px;font-weight:800;text-transform:uppercase;color:#6c52c8}
 .empty{text-align:center;padding:28px;color:var(--muted)}
 </style>
-</head>
-<body>
+</head><body>
 <div class="app">
 <header><div class="brand"><span>Diabetter</span></div><button class="icon" onclick="settings()">⚙️</button></header>
 
@@ -65,7 +64,656 @@ nav{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;display:g
 
 <div id="toast" class="toast"></div>
 
-<script>
- </script>
+<script>const KEY='diabetter_v2_events';
+let data=JSON.parse(localStorage.getItem(KEY)||'[]');
+
+const meta={
+  glucose:['🩸','Glucose'],
+  food:['🍽️','Food'],
+  exercise:['🏃','Exercise'],
+  water:['💧','Water'],
+  bp:['❤️','Blood pressure'],
+  mood:['😊','Mood'],
+  note:['📝','Health note']
+};
+
+function save(){
+  localStorage.setItem(KEY,JSON.stringify(data));
+}
+
+function id(){
+  return Date.now().toString(36)+Math.random().toString(36).slice(2);
+}
+
+function esc(s){
+  return String(s??'').replace(/[&<>"']/g,c=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[c]));
+}
+
+function go(id,btn){
+  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+
+  if(id==='today')renderToday();
+  if(id==='trends')renderTrends();
+  if(id==='insights')renderInsights();
+
+  scrollTo(0,0);
+}
+
+function toast(t){
+  let x=document.getElementById('toast');
+  x.textContent=t;
+  x.classList.add('show');
+  setTimeout(()=>x.classList.remove('show'),1800);
+}
+
+function today(){
+  return data
+    .filter(e=>new Date(e.time).toDateString()===new Date().toDateString())
+    .sort((a,b)=>new Date(b.time)-new Date(a.time));
+}
+
+function renderToday(){
+  let d=today();
+  let g=d.find(e=>e.type==='glucose');
+
+  document.getElementById('count').textContent=d.length;
+  document.getElementById('latest').textContent=g?.value??'—';
+
+  document.getElementById('date').textContent=
+    new Date().toLocaleDateString([],{month:'short',day:'numeric'});
+
+  document.getElementById('timeline').innerHTML=d.length
+    ?d.map(e=>`
+      <div class="event" onclick="details('${e.id}')">
+        <i>${meta[e.type][0]}</i>
+        <div class="eventmain">
+          <div class="eventtitle">
+            ${esc(e.title||meta[e.type][1])}
+            ${e.value!=null?' · '+esc(e.value)+' '+esc(e.unit||''):''}
+          </div>
+          <div class="eventmeta">
+            ${new Date(e.time).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}
+            · ${esc(e.context||e.source||'Manual')}
+          </div>
+        </div>
+      </div>
+    `).join('')
+    :'<div class="empty">Nothing logged yet today.<br>Tap ＋ to add your first event.</div>';
+
+  document.getElementById('betty').textContent=
+    g
+      ?'Your latest glucose is '+g.value+' mg/dL. I’ll keep the bigger picture in view.'
+      :'Your timeline will build as you log things.';
+}
+
+function form(type){
+  go('log',document.querySelectorAll('nav button')[1]);
+
+  let f='';
+
+  if(type==='glucose')
+    f=`
+      <div class="field">
+        <label>GLUCOSE · mg/dL</label>
+        <input id="v" type="number" inputmode="numeric" placeholder="132" autofocus>
+      </div>
+      <div class="field">
+        <label>CONTEXT</label>
+        <div class="chips" id="ctx">
+          <button class="chip sel" onclick="pick(this)">Fasting</button>
+          <button class="chip" onclick="pick(this)">Before meal</button>
+          <button class="chip" onclick="pick(this)">After meal</button>
+          <button class="chip" onclick="pick(this)">Bedtime</button>
+        </div>
+      </div>`;
+
+  if(type==='food')
+    f=`
+      <div class="field">
+        <label>MEAL</label>
+        <input id="t" placeholder="Chicken, rice & broccoli">
+      </div>
+      <div class="field">
+        <label>CONTEXT</label>
+        <select id="c">
+          <option>Breakfast</option>
+          <option>Lunch</option>
+          <option>Dinner</option>
+          <option>Snack</option>
+        </select>
+      </div>`;
+
+  if(type==='exercise')
+    f=`
+      <div class="field">
+        <label>ACTIVITY</label>
+        <input id="t" placeholder="Walk">
+      </div>
+      <div class="field">
+        <label>MINUTES</label>
+        <input id="v" type="number" inputmode="numeric" placeholder="20">
+      </div>`;
+
+  if(type==='water')
+    f=`
+      <div class="field">
+        <label>WATER · OUNCES</label>
+        <input id="v" type="number" inputmode="decimal" placeholder="16">
+      </div>`;
+
+  if(type==='bp')
+    f=`
+      <div class="field">
+        <label>BLOOD PRESSURE</label>
+        <input id="t" inputmode="numeric" placeholder="120/80">
+      </div>`;
+
+  if(type==='mood')
+    f=`
+      <div class="field">
+        <label>MOOD</label>
+        <div class="chips" id="ctx">
+          <button class="chip sel" onclick="pick(this)">Great</button>
+          <button class="chip" onclick="pick(this)">Good</button>
+          <button class="chip" onclick="pick(this)">Okay</button>
+          <button class="chip" onclick="pick(this)">Not great</button>
+          <button class="chip" onclick="pick(this)">Rough</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>OPTIONAL REFLECTION</label>
+        <textarea id="n"></textarea>
+      </div>`;
+
+  if(type==='note')
+    f=`
+      <div class="field">
+        <label>SYMPTOMS</label>
+        <input id="t" placeholder="Optional">
+      </div>
+      <div class="field">
+        <label>ENERGY</label>
+        <select id="c">
+          <option>Low</option>
+          <option>Normal</option>
+          <option>High</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>ANYTHING ELSE BETTY SHOULD KNOW?</label>
+        <textarea id="n"></textarea>
+      </div>`;
+
+  document.getElementById('form').innerHTML=`
+    <div class="row between">
+      <h2>${meta[type][0]} ${meta[type][1]}</h2>
+      <button class="btn" onclick="cancel()">Cancel</button>
+    </div>
+    ${f}
+    <button class="btn primary" onclick="commit('${type}')">Save</button>
+  `;
+
+  document.getElementById('form').classList.add('show');
+
+  document.getElementById('form').scrollIntoView({
+    behavior:'smooth'
+  });
+}
+
+function pick(x){
+  x.parentElement
+    .querySelectorAll('.chip')
+    .forEach(b=>b.classList.remove('sel'));
+
+  x.classList.add('sel');
+}
+
+function selected(){
+  return document.querySelector('#ctx .sel')?.textContent||'';
+}
+
+function commit(type){
+
+  let e={
+    id:id(),
+    type,
+    time:new Date().toISOString(),
+    source:'Manual'
+  };
+
+  if(type==='glucose'){
+    if(!v.value){
+      return toast('Enter a glucose value');
+    }
+
+    e.value=Number(v.value);
+    e.unit='mg/dL';
+    e.context=selected()||'Fasting';
+  }
+
+  else if(type==='food'){
+    if(!t.value.trim()){
+      return toast('Enter a meal');
+    }
+
+    e.title=t.value.trim();
+    e.context=c.value;
+  }
+
+  else if(type==='exercise'){
+    if(!t.value.trim()){
+      return toast('Enter an activity');
+    }
+
+    e.title=t.value.trim();
+    e.value=Number(v.value||0);
+    e.unit='min';
+  }
+
+  else if(type==='water'){
+    if(!v.value){
+      return toast('Enter water');
+    }
+
+    e.title='Water';
+    e.value=Number(v.value);
+    e.unit='oz';
+  }
+
+  else if(type==='bp'){
+    if(!t.value.trim()){
+      return toast('Enter blood pressure');
+    }
+
+    e.title=t.value.trim();
+  }
+
+  else if(type==='mood'){
+    e.title=selected()||'Good';
+    e.note=n.value.trim();
+    e.context='Mood';
+  }
+
+  else{
+    e.title=t.value.trim()||'Health note';
+    e.context=c.value;
+    e.note=n.value.trim();
+  }
+
+  data.push(e);
+  save();
+
+  cancel();
+
+  toast(meta[type][1]+' saved');
+
+  go(
+    'today',
+    document.querySelector('nav button')
+  );
+
+  setTimeout(renderToday,50);
+}
+
+function cancel(){
+  document.getElementById('form').classList.remove('show');
+  document.getElementById('form').innerHTML='';
+}
+
+function quick(){
+  document.getElementById('sheet').classList.add('show');
+}
+
+function closeSheet(){
+  document.getElementById('sheet').classList.remove('show');
+}
+
+function details(id){
+
+  let e=data.find(x=>x.id===id);
+
+  document.getElementById('modalbox').innerHTML=`
+    <div class="kicker">${meta[e.type][1]}</div>
+
+    <h2>
+      ${meta[e.type][0]}
+      ${esc(e.title||meta[e.type][1])}
+      ${e.value!=null
+        ?' · '+esc(e.value)+' '+esc(e.unit||'')
+        :''
+      }
+    </h2>
+
+    <p>
+      ${new Date(e.time).toLocaleString()}
+      · ${esc(e.context||'Manual')}
+    </p>
+
+    ${e.note
+      ?'<div class="card">'+esc(e.note)+'</div>'
+      :''
+    }
+
+    <div class="row">
+      <button class="btn" onclick="edit('${e.id}')">
+        Edit
+      </button>
+
+      <button class="btn" onclick="del('${e.id}')">
+        Delete
+      </button>
+
+      <button class="btn" onclick="closeModal()">
+        Close
+      </button>
+    </div>
+  `;
+
+  document.getElementById('modal').classList.add('show');
+}
+
+function closeModal(){
+  document.getElementById('modal').classList.remove('show');
+}
+
+function edit(id){
+
+  let e=data.find(x=>x.id===id);
+
+  document.getElementById('modalbox').innerHTML=`
+    <h2>Edit entry</h2>
+
+    <div class="field">
+      <label>VALUE / TITLE</label>
+      <input id="ev" value="${esc(e.value??e.title)}">
+    </div>
+
+    <div class="field">
+      <label>CONTEXT</label>
+      <input id="ec" value="${esc(e.context||'')}">
+    </div>
+
+    <div class="row">
+      <button class="btn" onclick="commitEdit('${id}')">
+        Save
+      </button>
+
+      <button class="btn" onclick="closeModal()">
+        Cancel
+      </button>
+    </div>
+  `;
+}
+
+function commitEdit(id){
+
+  let e=data.find(x=>x.id===id);
+  let x=document.getElementById('ev').value;
+
+  if(e.value!=null){
+    e.value=Number(x);
+  }else{
+    e.title=x;
+  }
+
+  e.context=document.getElementById('ec').value;
+
+  save();
+  closeModal();
+  renderToday();
+  toast('Entry updated');
+}
+
+let undo=null;
+
+function del(id){
+
+  if(!confirm('Delete this entry?')){
+    return;
+  }
+
+  undo=data.find(x=>x.id===id);
+
+  data=data.filter(x=>x.id!==id);
+
+  save();
+  closeModal();
+  renderToday();
+
+  let x=document.getElementById('toast');
+
+  x.textContent='Entry deleted · Undo';
+  x.classList.add('show');
+
+  x.onclick=()=>{
+    if(undo){
+      data.push(undo);
+      save();
+      undo=null;
+      renderToday();
+      toast('Entry restored');
+    }
+  };
+
+  setTimeout(()=>{
+    x.classList.remove('show');
+    x.onclick=null;
+    undo=null;
+  },4000);
+}
+
+function renderTrends(){
+
+  let cut=Date.now()-7*864e5;
+
+  let g=data
+    .filter(e=>
+      e.type==='glucose' &&
+      e.value!=null &&
+      new Date(e.time).getTime()>=cut
+    )
+    .sort((a,b)=>new Date(a.time)-new Date(b.time));
+
+  let vals=g.map(e=>e.value);
+
+  let a=vals.length
+    ?Math.round(vals.reduce((x,y)=>x+y,0)/vals.length)
+    :null;
+
+  document.getElementById('avg').textContent=a??'—';
+  document.getElementById('reads').textContent=g.length;
+
+  let s=document.getElementById('svg');
+
+  s.innerHTML='';
+
+  if(vals.length>1){
+
+    let mn=Math.min(...vals);
+    let mx=Math.max(...vals);
+    let sp=Math.max(1,mx-mn);
+
+    let p=g.map((e,i)=>[
+      20+i/(g.length-1)*460,
+      195-(e.value-mn)/sp*165
+    ]);
+
+    s.innerHTML=`
+      <polyline
+        points="${p.map(x=>x.join(',')).join(' ')}"
+        fill="none"
+        stroke="#007aff"
+        stroke-width="4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    `;
+  }
+}
+
+function compare(x){
+
+  document.getElementById('compare').textContent=
+    'Diabetter will compare '+
+    x+
+    ' events with your glucose timeline as comparable data accumulates.';
+}
+
+function renderInsights(){
+
+  let g=data.filter(
+    e=>e.type==='glucose'&&e.value!=null
+  );
+
+  let x=document.getElementById('insightsList');
+
+  x.innerHTML=
+    g.length<3
+    ?
+    `
+      <div class="card insight">
+        <span class="badge">Early Signal</span>
+
+        <h2>Build your data set</h2>
+
+        <p>
+          I need more comparable readings before calling a pattern.
+          I’ll keep watching without overstating the evidence.
+        </p>
+      </div>
+    `
+    :
+    `
+      <div class="card insight">
+        <span class="badge">Emerging Pattern</span>
+
+        <h2>Personal glucose picture</h2>
+
+        <p>
+          You have ${g.length} glucose readings.
+          As comparable meals, activity and readings accumulate,
+          Betty can evaluate relationships with confidence levels.
+        </p>
+      </div>
+
+      <div class="card insight">
+        <span class="badge">Betty</span>
+
+        <h2>Evidence first</h2>
+
+        <p>
+          I’ll separate measured data, your notes, and my interpretations.
+          Incomplete data lowers confidence.
+        </p>
+      </div>
+    `;
+}
+
+function ask(){
+
+  let q=document.getElementById('question').value.trim();
+
+  if(!q){
+    return;
+  }
+
+  let g=data.filter(
+    e=>e.type==='glucose'&&e.value!=null
+  );
+
+  let a=g.length
+    ?Math.round(g.reduce((x,y)=>x+y.value,0)/g.length)
+    :null;
+
+  document.getElementById('chat').innerHTML+=`
+    <p>
+      <b>You:</b> ${esc(q)}
+    </p>
+
+    <p>
+      <b>🦋 Betty:</b>
+      ${
+        a
+        ?
+        `I found ${g.length} glucose readings.
+         Your average across them is <b>${a} mg/dL</b>.
+         Ask me about a specific time period or context
+         for a deeper comparison.`
+        :
+        `I need a few glucose readings before I can
+         analyze your personal trends.`
+      }
+    </p>
+  `;
+
+  document.getElementById('question').value='';
+}
+
+function settings(){
+
+  document.getElementById('modalbox').innerHTML=`
+    <div class="kicker">Settings</div>
+
+    <h2>Diabetter</h2>
+
+    <div class="card">
+      <b>❤️ Health Data Permissions</b>
+      <p>
+        Native iPhone version will request HealthKit
+        categories individually.
+      </p>
+    </div>
+
+    <div class="card">
+      <b>🦋 Betty’s Memory</b>
+      <p>
+        Approved memories will appear here.
+      </p>
+    </div>
+
+    <div class="card">
+      <b>🔔 Reminders</b>
+      <p>
+        Adaptive · Custom · Off
+      </p>
+    </div>
+
+    <div class="card">
+      <b>📄 Health Reports</b>
+      <p>
+        PDF export is planned for the native version.
+      </p>
+    </div>
+
+    <button class="btn" onclick="closeModal()">
+      Done
+    </button>
+  `;
+
+  document.getElementById('modal').classList.add('show');
+}
+
+document.getElementById('greet').textContent=
+  new Date().getHours()<12
+  ?'Good morning'
+  :new Date().getHours()<18
+  ?'Good afternoon'
+  :'Good evening';
+
+renderToday();
+renderTrends();
+renderInsights();
+
+</script>
 </body>
 </html>
