@@ -1,0 +1,33 @@
+/* Diabetter Betty — animation helpers */
+.betty-character {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transform-origin: 50% 60%;
+}
+
+.betty-float {
+  animation: bettyFloat 4s ease-in-out infinite;
+}
+
+.betty-pulse {
+  animation: bettyPulse 3s ease-in-out infinite;
+}
+
+@keyframes bettyFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(-1deg); }
+}
+
+@keyframes bettyPulse {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(150,80,255,0)); }
+  50% { filter: drop-shadow(0 0 18px rgba(150,80,255,.42)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .betty-float,
+  .betty-pulse {
+    animation: none;
+  }
+}
