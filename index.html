@@ -1,111 +1,1736 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f7f6fc">
-<title>Diabetter — V3.4.1</title>
-<link rel="stylesheet" href="assets/betty/betty-animations.css">
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, viewport-fit=cover"
+/>
+
+<meta name="theme-color" content="#f8f7ff">
+
+<title>Diabetter</title>
+
 <style>
-:root{--bg:#f7f6fc;--surface:#fff;--surface2:#f0eff7;--ink:#111116;--muted:#777680;--line:#e4e2ea;--purple:#7758f4;--purple2:#9a7cff;--nav:rgba(255,255,255,.94);--shadow:0 12px 34px rgba(36,28,72,.07)}
-*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,Arial,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}body{min-height:100dvh}button,input,textarea,select{font:inherit}button{-webkit-tap-highlight-color:transparent}
-.app{width:100%;max-width:430px;margin:auto;min-height:100dvh;background:var(--bg);padding-bottom:calc(82px + env(safe-area-inset-bottom));}
-.header{height:96px;display:flex;align-items:center;justify-content:space-between;padding:14px 20px 10px}.brand{display:flex;align-items:center;gap:12px}.brandmark{width:58px;height:58px;border-radius:19px;background:linear-gradient(135deg,#ffb400,#79d52f 28%,#16cbb5 48%,#2f86ff 70%,#a94cff);display:grid;place-items:center;overflow:hidden;box-shadow:0 9px 25px rgba(98,75,220,.16)}.brandmark img{width:53px;height:53px;object-fit:contain}.brandname{font-size:30px;font-weight:900;letter-spacing:-.06em}.settingsBtn{width:58px;height:58px;border-radius:50%;border:1px solid var(--line);background:var(--surface);font-size:26px;box-shadow:var(--shadow);cursor:pointer}
-main{padding:0 18px}.screen{display:none;min-height:calc(100dvh - 96px - 82px - env(safe-area-inset-bottom));padding-top:8px;animation:screenIn .22s ease}.screen.active{display:block}@keyframes screenIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-.eyebrow{margin:12px 2px 8px;color:#74727b;font-size:14px;font-weight:900;letter-spacing:.19em;line-height:1.25}.pageTitle{font-size:54px;line-height:.92;letter-spacing:-.068em;margin:0 0 12px;font-weight:900}.pageSub{font-size:19px;line-height:1.3;color:var(--muted);margin:0 0 17px}.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#fff 0%,#fff 56%,#eee9ff 100%);border:1px solid var(--line);border-radius:32px;padding:22px 22px 17px;box-shadow:var(--shadow);height:300px}.heroTop{height:190px;display:grid;grid-template-columns:1fr 43%;gap:4px;align-items:center}.hero .eyebrow{margin:0 0 7px}.heroTitle{font-size:49px;line-height:.9;letter-spacing:-.065em;margin:0 0 10px;font-weight:900}.sub{font-size:18px;line-height:1.25;color:var(--muted);margin:0;max-width:225px}.heroBetty{width:100%;max-width:155px;justify-self:end;filter:drop-shadow(0 13px 18px rgba(107,72,220,.18))}.bettyBubble{position:absolute;left:22px;right:22px;bottom:15px;background:#f0f1f8;border:1px solid #dfdee7;border-radius:21px;padding:12px 15px;font-size:15px;line-height:1.28}.bettyBubble:before{content:"";position:absolute;top:-11px;left:82px;border-left:12px solid transparent;border-right:12px solid transparent;border-bottom:12px solid #dfdee7}.bettyBubble:after{content:"";position:absolute;top:-9px;left:83px;border-left:11px solid transparent;border-right:11px solid transparent;border-bottom:11px solid #f0f1f8}.bettyBubble strong{font-size:17px;display:block;margin-bottom:2px}
-.sectionHead{height:43px;display:flex;align-items:end;justify-content:space-between;margin:14px 3px 9px}.sectionHead h2{margin:0;font-size:29px;letter-spacing:-.055em}.addLink{border:0;background:none;color:var(--purple);font-weight:850;font-size:17px;cursor:pointer;padding:0 0 2px}.snapshot{display:grid;grid-template-columns:1fr 1fr;gap:11px}.metric{position:relative;height:137px;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:14px 16px;overflow:hidden;box-shadow:0 7px 20px rgba(35,30,55,.035)}.metric:after{content:"";position:absolute;width:82px;height:82px;border-radius:50%;right:-24px;bottom:-30px;background:#efebff}.metricIcon{width:45px;height:45px;border-radius:15px;background:#f1f0f6;display:grid;place-items:center;font-size:24px;margin-bottom:12px}.metricLabel{font-size:11px;color:#777680;font-weight:900;letter-spacing:.11em}.metricValue{font-size:25px;font-weight:900;margin-top:4px;letter-spacing:-.04em}.metricUnit{color:var(--muted);font-size:12px;margin-top:1px}.miniCard{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:13px 15px;margin-top:11px;box-shadow:0 7px 20px rgba(35,30,55,.035)}.miniCard .cardTitle{font-size:16px;font-weight:850}.timeline{display:flex;gap:7px;overflow:hidden;margin-top:8px}.timeline .event{min-width:145px;border:1px solid var(--line);border-radius:14px;padding:8px 9px;background:var(--surface2)}.time{font-size:10px;color:var(--muted);margin-bottom:2px}.timeline b{font-size:12px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.timeline .muted{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.logGrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.logCard{height:171px;background:var(--surface);border:1px solid var(--line);border-radius:25px;padding:17px;text-align:left;box-shadow:0 7px 20px rgba(35,30,55,.035);cursor:pointer}.logCard .bigIcon{font-size:34px;margin-bottom:27px}.logCard strong{font-size:20px;display:block}.logCard small{font-size:14px;color:var(--muted);display:block;margin-top:5px}.form{display:none}.form.open{display:block}.card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:17px;margin:11px 0;box-shadow:0 7px 20px rgba(35,30,55,.035)}.cardTitle{font-size:19px;font-weight:850;margin:0 0 5px}.muted{color:var(--muted);line-height:1.32}.form input,.form textarea,.form select{width:100%;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;padding:11px;margin:5px 0}.primary{width:100%;border:0;border-radius:14px;background:var(--purple);color:#fff;font-weight:800;padding:12px;cursor:pointer;margin-top:6px}.secondary{border:0;border-radius:13px;background:var(--surface2);padding:10px 13px;font-weight:750;cursor:pointer}
-.chips{display:flex;gap:7px;overflow:hidden}.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 11px;white-space:nowrap;color:var(--muted);cursor:pointer;font-size:13px}.chart{height:125px;display:flex;align-items:end;gap:7px;border-bottom:1px solid var(--line);padding:10px 3px 5px}.bar{flex:1;border-radius:8px 8px 2px 2px;background:linear-gradient(180deg,#8d73ff,#5e8dfd);min-height:12px}.trendCard{height:211px}.watchCard{min-height:104px}.insightHero{height:225px;display:grid;grid-template-columns:39% 61%;align-items:center;overflow:hidden;padding:14px}.insightHero img{width:135%;max-width:none;margin-left:-20%;filter:drop-shadow(0 13px 18px rgba(112,77,230,.18))}.insightHero .eyebrow{font-size:10px;margin:0 0 7px}.insightHero .bigInsight{font-size:24px;font-weight:900;line-height:1.02}.insightHero p{font-size:14px;margin:7px 0 0}.signalCard{height:118px}.signalCard .eyebrow{font-size:10px;margin:0 0 6px}.signalCard .cardTitle{font-size:18px}.signalCard p{font-size:13px;margin:5px 0}
-.askCard{height:455px;padding:16px}.askHeader{height:63px;display:flex;align-items:center;gap:11px;padding-bottom:10px;border-bottom:1px solid var(--line)}.askAvatar{width:62px;height:62px;object-fit:contain}.bubble{padding:12px 14px;border-radius:18px;margin:9px 0;font-size:15px;line-height:1.32;max-width:88%}.bubble.bettyMsg{background:#f0f1f8}.bubble.userMsg{background:#eee9ff;margin-left:auto}.askPrompts{position:absolute;bottom:18px;left:16px;right:16px}.askCard{position:relative}.chat{max-height:245px;overflow:auto}
-.fab{position:fixed;right:max(calc((100vw - 430px)/2 + 16px),16px);bottom:calc(92px + env(safe-area-inset-bottom));width:70px;height:70px;border:0;border-radius:50%;background:#151519;color:#fff;font-size:39px;line-height:1;box-shadow:0 15px 30px rgba(0,0,0,.2);z-index:30;cursor:pointer}.nav{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--nav);backdrop-filter:blur(20px);border-top:1px solid var(--line)}.navInner{max-width:430px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}.navBtn{border:0;background:transparent;color:#777680;font-size:12px;font-weight:750;padding:4px 2px 5px;cursor:pointer;position:relative}.navBtn span{display:block;font-size:22px;line-height:1;margin-bottom:5px}.navBtn.active{color:var(--purple)}.navBtn.active:after{content:"";position:absolute;left:17%;right:17%;height:4px;bottom:0;border-radius:10px;background:var(--purple)}
-.settingsOverlay{display:none;position:fixed;inset:0;background:rgba(22,20,30,.42);backdrop-filter:blur(8px);z-index:60;align-items:end}.settingsOverlay.open{display:flex}.settingsPanel{width:100%;max-width:430px;margin:auto;background:var(--surface);color:var(--ink);border-radius:32px 32px 0 0;padding:22px 20px calc(20px + env(safe-area-inset-bottom));max-height:92dvh;overflow:auto}.settingsTop{display:flex;justify-content:space-between;align-items:start}.close{width:46px;height:46px;border:0;border-radius:50%;background:#faeffa;font-size:29px;color:#7b6d83;cursor:pointer}.settingRow{padding:14px 3px;border-bottom:1px solid var(--line)}.settingLabel{font-size:18px;font-weight:850}.settingDesc{color:var(--muted);margin-top:3px;font-size:14px}.themeChoices{display:grid;gap:8px;margin-top:11px}.themeChoice{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:17px;padding:10px;cursor:pointer;text-align:left}.themeSwatch{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;font-size:22px;flex:none}.themeChoice.selected{border:2px solid var(--purple);padding:9px}.toggle{width:54px;height:30px;border-radius:99px;background:#d5d5dc;border:0;position:relative;cursor:pointer;flex:none}.toggle:after{content:"";position:absolute;width:24px;height:24px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}.toggle.on{background:#27c85b}.toggle.on:after{left:27px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom));transform:translate(-50%,12px);background:#17171b;color:#fff;padding:10px 15px;border-radius:999px;z-index:90;opacity:0;pointer-events:none;transition:.2s;font-size:12px;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
-body.dark{--bg:#07070a;--surface:#17171c;--surface2:#24242b;--ink:#f7f7fa;--muted:#aaa8b3;--line:#303039;--nav:rgba(13,13,16,.95);--shadow:0 14px 36px rgba(0,0,0,.35)}body.dark .hero{background:linear-gradient(135deg,#17171c,#18151f)}body.dark .bettyBubble{background:#25252d;border-color:#373741}body.dark .bettyBubble:before{border-bottom-color:#373741}body.dark .bettyBubble:after{border-bottom-color:#25252d}body.dark .metricIcon,body.dark .secondary,body.dark .chip{background:#23232a}body.dark .metric:after{background:#252139}body.dark .settingsBtn{background:#19191f}body.dark .themeChoice{background:#17171c}
-body.bettyMode{--bg:#fff4ff;--surface:#fff;--surface2:#fff0fb;--purple:#8a45ff;--line:#efd9ef;--nav:rgba(255,250,255,.95)}body.bettyMode .hero{background:linear-gradient(135deg,#fff 0%,#fff4fb 40%,#e8f7ff 70%,#eee5ff 100%)}body.bettyMode .lineRainbow{display:block}.lineRainbow{display:none;height:5px;border-radius:99px;background:linear-gradient(90deg,#ff4e8a,#ffb000,#6bd63c,#27cdd1,#557dff,#a84cff,#f04cff);margin:7px 0}
-@media(max-height:720px){.header{height:86px}.screen{min-height:calc(100dvh - 86px - 78px - env(safe-area-inset-bottom))}.hero{height:278px}.heroTop{height:174px}.heroBetty{max-width:140px}.metric{height:126px}.logCard{height:154px}.askCard{height:425px}.insightHero{height:205px}.signalCard{height:105px}.fab{bottom:calc(87px + env(safe-area-inset-bottom))}}
-@media(max-width:360px){.brandname{font-size:27px}.pageTitle{font-size:49px}.heroTitle{font-size:45px}.hero{padding-left:18px;padding-right:18px}.heroBetty{max-width:132px}.bettyBubble{left:18px;right:18px}.metric{padding:12px}.metricIcon{margin-bottom:9px}.logCard{padding:14px}.logCard .bigIcon{margin-bottom:23px}}
+:root {
+  --bg: #f8f7ff;
+  --surface: #ffffff;
+  --surface-soft: #f1eff8;
+  --text: #111116;
+  --muted: #777681;
+  --border: #dedce5;
+  --purple: #7655f6;
+  --purple-light: #ece7ff;
+  --shadow: 0 10px 35px rgba(31, 25, 55, 0.08);
+
+  --nav-height: 78px;
+  --header-height: 78px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body.dark {
+  --bg: #101015;
+  --surface: #19191f;
+  --surface-soft: #24232c;
+  --text: #f7f6fb;
+  --muted: #aaa8b4;
+  --border: #34333d;
+  --purple: #9a7cff;
+  --purple-light: #2c2548;
+  --shadow: 0 10px 35px rgba(0,0,0,.35);
+}
+
+/* --------------------------------------------------
+   APP SHELL
+-------------------------------------------------- */
+
+.app {
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* --------------------------------------------------
+   HEADER
+-------------------------------------------------- */
+
+.header {
+  height: var(--header-height);
+  min-height: var(--header-height);
+  padding:
+    max(10px, env(safe-area-inset-top))
+    20px
+    8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brand-icon {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-size: 31px;
+  line-height: 1;
+  font-weight: 850;
+  letter-spacing: -1.6px;
+}
+
+.settings-button {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------
+   MAIN CONTENT
+-------------------------------------------------- */
+
+.main {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: none;
+  padding: 12px 20px 16px;
+  overflow: hidden;
+}
+
+.screen.active {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------
+   TYPOGRAPHY
+-------------------------------------------------- */
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--muted);
+}
+
+.page-title {
+  margin: 0;
+  font-size: clamp(48px, 13vw, 72px);
+  line-height: .88;
+  font-weight: 900;
+  letter-spacing: -4px;
+}
+
+.page-description {
+  margin: 12px 0 0;
+  font-size: 18px;
+  line-height: 1.25;
+  color: var(--muted);
+  max-width: 650px;
+}
+
+/* --------------------------------------------------
+   TODAY
+-------------------------------------------------- */
+
+.hero {
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: 18px;
+  height: min(36vh, 310px);
+  min-height: 235px;
+
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  background:
+    radial-gradient(
+      circle at 85% 50%,
+      rgba(137, 105, 255, .12),
+      transparent 35%
+    ),
+    var(--surface);
+
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 28px;
+  width: 58%;
+}
+
+.hero-title {
+  margin: 10px 0 0;
+  font-size: clamp(42px, 11vw, 65px);
+  line-height: .9;
+  letter-spacing: -3px;
+  font-weight: 900;
+}
+
+.hero-betty {
+  position: absolute;
+  right: -8px;
+  bottom: -3px;
+  width: 49%;
+  max-width: 315px;
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.betty-message {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 18px;
+  z-index: 3;
+
+  padding: 14px 18px;
+
+  border-radius: 20px;
+  background: rgba(244,243,250,.96);
+  border: 1px solid var(--border);
+
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.dark .betty-message {
+  background: rgba(37,36,45,.96);
+}
+
+.betty-message strong {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+/* snapshot */
+
+.snapshot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 14px;
+}
+
+.section-title {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: -1.5px;
+  font-weight: 850;
+}
+
+.add-button {
+  border: 0;
+  background: none;
+  color: var(--purple);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.snapshot-grid {
+  flex: 1;
+  min-height: 0;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.metric-card {
+  min-height: 0;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: var(--surface);
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(30,25,60,.04);
+}
+
+.metric-icon {
+  font-size: 28px;
+}
+
+.metric-label {
+  position: absolute;
+  left: 16px;
+  bottom: 27px;
+
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.metric-value {
+  position: absolute;
+  left: 16px;
+  bottom: 8px;
+
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 850;
+}
+
+/* --------------------------------------------------
+   LOG
+-------------------------------------------------- */
+
+.log-grid {
+  flex: 1;
+  min-height: 0;
+  margin-top: 20px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+}
+
+.log-card {
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  background: var(--surface);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.log-card:active {
+  transform: scale(.98);
+}
+
+.log-icon {
+  font-size: 38px;
+}
+
+.log-name {
+  margin: auto 0 4px;
+  color: #2875e8;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.log-description {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+/* --------------------------------------------------
+   TRENDS
+-------------------------------------------------- */
+
+.range-row {
+  display: flex;
+  gap: 8px;
+  margin: 20px 0 12px;
+}
+
+.range {
+  padding: 8px 16px;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.range.active {
+  background: var(--purple);
+  color: white;
+  border-color: var(--purple);
+}
+
+.chart-card {
+  flex: 1;
+  min-height: 0;
+
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: var(--surface);
+  padding: 22px;
+  box-shadow: var(--shadow);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.chart-title {
+  font-size: 25px;
+  font-weight: 850;
+}
+
+.chart-subtitle {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.chart {
+  flex: 1;
+  min-height: 130px;
+
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 20px 4px 0;
+}
+
+.bar {
+  flex: 1;
+  min-width: 8px;
+  max-width: 48px;
+  border-radius: 10px 10px 4px 4px;
+  background: linear-gradient(
+    to top,
+    #5d86f6,
+    #896af7
+  );
+}
+
+.watch-card {
+  margin-top: 12px;
+  flex: 0 0 auto;
+
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface);
+  padding: 18px;
+}
+
+.watch-title {
+  font-size: 21px;
+  font-weight: 850;
+}
+
+.watch-text {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+/* --------------------------------------------------
+   INSIGHTS
+-------------------------------------------------- */
+
+.insight-card {
+  margin-top: 20px;
+  height: 230px;
+  flex-shrink: 0;
+
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.insight-content {
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  width: 56%;
+  z-index: 2;
+}
+
+.insight-betty {
+  position: absolute;
+  left: -15px;
+  bottom: -15px;
+  width: 50%;
+  max-width: 270px;
+  z-index: 1;
+}
+
+.insight-label {
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 3px;
+  color: var(--muted);
+}
+
+.insight-title {
+  margin-top: 12px;
+  font-size: 25px;
+  line-height: 1;
+  font-weight: 850;
+}
+
+.insight-text {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.signal-card {
+  flex: 1;
+  min-height: 0;
+  margin-top: 12px;
+
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  background: var(--surface);
+  padding: 20px;
+}
+
+.signal-label {
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 3px;
+  color: var(--muted);
+}
+
+.signal-title {
+  margin-top: 10px;
+  font-size: 23px;
+  font-weight: 850;
+}
+
+.signal-text {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+/* --------------------------------------------------
+   BETTY
+-------------------------------------------------- */
+
+.chat-card {
+  flex: 1;
+  min-height: 0;
+  margin-top: 20px;
+
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: var(--surface);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+.chat-avatar {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.chat-name {
+  font-size: 23px;
+  font-weight: 850;
+}
+
+.chat-subtitle {
+  color: var(--muted);
+  font-size: 15px;
+  margin-top: 2px;
+}
+
+.chat-bubble {
+  margin-top: 18px;
+  max-width: 92%;
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: var(--surface-soft);
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.chat-bubble strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+/* --------------------------------------------------
+   FLOATING ADD
+-------------------------------------------------- */
+
+.floating-add {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+
+  width: 60px;
+  height: 60px;
+  border: 0;
+  border-radius: 50%;
+
+  background: #17171c;
+  color: white;
+
+  font-size: 35px;
+  font-weight: 300;
+
+  box-shadow: 0 14px 35px rgba(0,0,0,.22);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 50;
+}
+
+.dark .floating-add {
+  background: white;
+  color: #111116;
+}
+
+/* --------------------------------------------------
+   BOTTOM NAV
+-------------------------------------------------- */
+
+.bottom-nav {
+  height: calc(var(--nav-height) + env(safe-area-inset-bottom));
+  min-height: calc(var(--nav-height) + env(safe-area-inset-bottom));
+
+  padding:
+    5px
+    8px
+    max(5px, env(safe-area-inset-bottom));
+
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  z-index: 100;
+}
+
+.nav-button {
+  border: 0;
+  background: none;
+  color: var(--muted);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  position: relative;
+}
+
+.nav-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.nav-button.active {
+  color: var(--purple);
+}
+
+.nav-button.active::after {
+  content: "";
+  position: absolute;
+
+  width: 55px;
+  height: 5px;
+
+  border-radius: 10px;
+  background: var(--purple);
+
+  bottom: 1px;
+}
+
+/* --------------------------------------------------
+   MODAL
+-------------------------------------------------- */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+
+  display: none;
+  align-items: flex-end;
+
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(8px);
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-panel {
+  width: 100%;
+  max-height: 75dvh;
+  padding: 24px;
+
+  border-radius: 30px 30px 0 0;
+
+  background: var(--surface);
+  color: var(--text);
+
+  box-shadow: 0 -20px 60px rgba(0,0,0,.2);
+}
+
+.modal-title {
+  font-size: 28px;
+  font-weight: 850;
+  margin-bottom: 20px;
+}
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+}
+
+.setting-name {
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.setting-description {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.toggle {
+  width: 52px;
+  height: 31px;
+
+  border: 0;
+  border-radius: 30px;
+
+  background: #d4d3da;
+  position: relative;
+}
+
+.toggle::after {
+  content: "";
+  position: absolute;
+
+  width: 25px;
+  height: 25px;
+
+  top: 3px;
+  left: 3px;
+
+  border-radius: 50%;
+  background: white;
+
+  transition: .2s;
+}
+
+.toggle.on {
+  background: var(--purple);
+}
+
+.toggle.on::after {
+  left: 24px;
+}
+
+.close-button {
+  margin-top: 20px;
+  width: 100%;
+  height: 48px;
+
+  border: 0;
+  border-radius: 15px;
+
+  background: var(--surface-soft);
+  color: var(--text);
+
+  font-size: 16px;
+  font-weight: 750;
+}
+
+/* --------------------------------------------------
+   SMALL PHONES
+-------------------------------------------------- */
+
+@media (max-height: 700px) {
+
+  .header {
+    --header-height: 68px;
+  }
+
+  .brand-icon,
+  .settings-button {
+    width: 45px;
+    height: 45px;
+  }
+
+  .brand-name {
+    font-size: 27px;
+  }
+
+  .screen {
+    padding-top: 6px;
+  }
+
+  .page-title {
+    font-size: 48px;
+  }
+
+  .page-description {
+    font-size: 16px;
+    margin-top: 8px;
+  }
+
+  .hero {
+    margin-top: 12px;
+    height: 225px;
+    min-height: 225px;
+  }
+
+  .hero-content {
+    padding: 22px;
+  }
+
+  .hero-title {
+    font-size: 43px;
+  }
+
+  .betty-message {
+    left: 16px;
+    right: 16px;
+    bottom: 12px;
+    padding: 10px 13px;
+  }
+
+  .metric-card {
+    padding: 13px;
+  }
+
+  .metric-label {
+    left: 13px;
+    bottom: 23px;
+  }
+
+  .metric-value {
+    left: 13px;
+    bottom: 7px;
+  }
+
+  .log-card {
+    padding: 16px;
+  }
+
+  .log-name {
+    font-size: 22px;
+  }
+
+  .insight-card {
+    height: 200px;
+  }
+}
+
+/* --------------------------------------------------
+   TABLET / DESKTOP
+-------------------------------------------------- */
+
+@media (min-width: 700px) {
+
+  .screen {
+    max-width: 850px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .header {
+    max-width: 850px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .bottom-nav {
+    max-width: 850px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <div class="app">
-<header class="header">
-  <div class="brand"><div class="brandmark"><img src="assets/betty/betty-icon.png" alt="Diabetter"></div><div class="brandname">Diabetter</div></div>
-  <button class="settingsBtn" id="settingsOpen" aria-label="Settings">⚙️</button>
-</header>
-<main>
-<section class="screen active" id="today">
-  <div class="hero">
-    <div class="heroTop"><div><div class="eyebrow">YOUR DAILY<br>SNAPSHOT</div><h1 class="heroTitle">Good<br>morning.</h1><p class="sub">Let's make today a little better than yesterday.</p></div><img class="heroBetty betty-float" src="assets/betty/betty-medium.png" alt="Betty"></div>
-    <div class="bettyBubble"><strong>Hi! I'm Betty. 🦋</strong>I'm here to help you understand your numbers without making them complicated.</div>
+
+  <!-- HEADER -->
+  <header class="header">
+
+    <div class="brand">
+      <img
+        class="brand-icon"
+        src="assets/betty-icon.png"
+        alt="Betty"
+      >
+
+      <div class="brand-name">
+        Diabetter
+      </div>
+    </div>
+
+    <button
+      class="settings-button"
+      id="settingsButton"
+      aria-label="Settings"
+    >
+      ⚙️
+    </button>
+
+  </header>
+
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- ================= TODAY ================= -->
+
+    <section
+      class="screen active"
+      id="today"
+    >
+
+      <div class="eyebrow">
+        YOUR DAILY SNAPSHOT
+      </div>
+
+      <div class="hero">
+
+        <div class="hero-content">
+
+          <div class="eyebrow">
+            TODAY
+          </div>
+
+          <h1 class="hero-title">
+            Good<br>
+            morning.
+          </h1>
+
+        </div>
+
+        <img
+          class="hero-betty"
+          src="assets/betty-transparent.png"
+          alt="Betty"
+        >
+
+        <div class="betty-message">
+
+          <strong>
+            Hi! I'm Betty. 🦋
+          </strong>
+
+          I'm here to help you understand your numbers without making them complicated.
+
+        </div>
+
+      </div>
+
+
+      <div class="snapshot-header">
+
+        <h2 class="section-title">
+          Today's snapshot
+        </h2>
+
+        <button
+          class="add-button"
+          onclick="openLog()"
+        >
+          Add
+        </button>
+
+      </div>
+
+
+      <div class="snapshot-grid">
+
+        <div class="metric-card">
+          <div class="metric-icon">🩸</div>
+          <div class="metric-label">Glucose</div>
+          <div class="metric-value" id="todayGlucose">—</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon">❤️</div>
+          <div class="metric-label">Blood pressure</div>
+          <div class="metric-value" id="todayBP">—</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon">🏃</div>
+          <div class="metric-label">Activity</div>
+          <div class="metric-value" id="todayActivity">—</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon">💧</div>
+          <div class="metric-label">Water</div>
+          <div class="metric-value" id="todayWater">—</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= LOG ================= -->
+
+    <section
+      class="screen"
+      id="log"
+    >
+
+      <div class="eyebrow">
+        KEEP TRACK
+      </div>
+
+      <h1 class="page-title">
+        Log it.
+      </h1>
+
+      <p class="page-description">
+        A few seconds today can help you understand your patterns later.
+      </p>
+
+
+      <div class="log-grid">
+
+        <button
+          class="log-card"
+          onclick="recordGlucose()"
+        >
+
+          <div class="log-icon">
+            🩸
+          </div>
+
+          <div class="log-name">
+            Glucose
+          </div>
+
+          <div class="log-description">
+            Record a reading
+          </div>
+
+        </button>
+
+
+        <button
+          class="log-card"
+          onclick="recordBP()"
+        >
+
+          <div class="log-icon">
+            ❤️
+          </div>
+
+          <div class="log-name">
+            Blood pressure
+          </div>
+
+          <div class="log-description">
+            Record BP
+          </div>
+
+        </button>
+
+
+        <button
+          class="log-card"
+          onclick="recordFood()"
+        >
+
+          <div class="log-icon">
+            🥗
+          </div>
+
+          <div class="log-name">
+            Food
+          </div>
+
+          <div class="log-description">
+            Log a meal
+          </div>
+
+        </button>
+
+
+        <button
+          class="log-card"
+          onclick="recordWater()"
+        >
+
+          <div class="log-icon">
+            💧
+          </div>
+
+          <div class="log-name">
+            Water
+          </div>
+
+          <div class="log-description">
+            Track hydration
+          </div>
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= TRENDS ================= -->
+
+    <section
+      class="screen"
+      id="trends"
+    >
+
+      <div class="eyebrow">
+        YOUR PATTERNS
+      </div>
+
+      <h1 class="page-title">
+        Trends.
+      </h1>
+
+      <p class="page-description">
+        See the evidence behind the story.
+      </p>
+
+
+      <div class="range-row">
+
+        <button class="range active">
+          7D
+        </button>
+
+        <button class="range">
+          30D
+        </button>
+
+        <button class="range">
+          3M
+        </button>
+
+      </div>
+
+
+      <div class="chart-card">
+
+        <div class="chart-heading">
+
+          <div>
+
+            <div class="chart-title">
+              Glucose
+            </div>
+
+            <div class="chart-subtitle">
+              Your recent readings
+            </div>
+
+          </div>
+
+          <strong>
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="chart">
+
+          <div class="bar" style="height:42%"></div>
+          <div class="bar" style="height:58%"></div>
+          <div class="bar" style="height:36%"></div>
+          <div class="bar" style="height:68%"></div>
+          <div class="bar" style="height:52%"></div>
+          <div class="bar" style="height:78%"></div>
+          <div class="bar" style="height:55%"></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="watch-card">
+
+        <div class="watch-title">
+          What to watch
+        </div>
+
+        <div class="watch-text">
+          As you log consistently, Betty can compare readings with meals, activity and other events instead of looking at one number in isolation.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= INSIGHTS ================= -->
+
+    <section
+      class="screen"
+      id="insights"
+    >
+
+      <div class="eyebrow">
+        A LITTLE PERSPECTIVE
+      </div>
+
+      <h1 class="page-title">
+        Insights.
+      </h1>
+
+      <p class="page-description">
+        Betty helps turn your logs into simple observations.
+      </p>
+
+
+      <div class="insight-card">
+
+        <img
+          class="insight-betty"
+          src="assets/betty-transparent.png"
+          alt="Betty"
+        >
+
+        <div class="insight-content">
+
+          <div class="insight-label">
+            BETTY'S THOUGHT
+          </div>
+
+          <div class="insight-title">
+            Your data tells a story.
+          </div>
+
+          <div class="insight-text">
+            Keep logging consistently and I'll help you notice patterns without overwhelming you.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="signal-card">
+
+        <div class="signal-label">
+          EARLY SIGNAL
+        </div>
+
+        <div class="signal-title">
+          There's not enough data yet.
+        </div>
+
+        <div class="signal-text">
+          That's okay. Betty should earn confidence from repeated observations before calling something a pattern.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= BETTY ================= -->
+
+    <section
+      class="screen"
+      id="betty"
+    >
+
+      <div class="eyebrow">
+        YOUR COMPANION
+      </div>
+
+      <h1 class="page-title">
+        Ask Betty.
+      </h1>
+
+      <p class="page-description">
+        Ask questions about your habits, numbers, and patterns.
+      </p>
+
+
+      <div class="chat-card">
+
+        <div class="chat-header">
+
+          <img
+            class="chat-avatar"
+            src="assets/betty-transparent.png"
+            alt="Betty"
+          >
+
+          <div>
+
+            <div class="chat-name">
+              Betty
+            </div>
+
+            <div class="chat-subtitle">
+              Your Diabetter companion
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="chat-bubble">
+
+          <strong>
+            Hi! I'm Betty. 🦋
+          </strong>
+
+          Ask me something about your day and we'll figure it out together.
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FLOATING ACTION -->
+    <button
+      class="floating-add"
+      onclick="openLog()"
+      aria-label="Add log"
+    >
+      +
+    </button>
+
+  </main>
+
+
+  <!-- NAVIGATION -->
+  <nav class="bottom-nav">
+
+    <button
+      class="nav-button active"
+      data-screen="today"
+    >
+      <span class="nav-icon">🏠</span>
+      <span>Today</span>
+    </button>
+
+    <button
+      class="nav-button"
+      data-screen="log"
+    >
+      <span class="nav-icon">＋</span>
+      <span>Log</span>
+    </button>
+
+    <button
+      class="nav-button"
+      data-screen="trends"
+    >
+      <span class="nav-icon">📈</span>
+      <span>Trends</span>
+    </button>
+
+    <button
+      class="nav-button"
+      data-screen="insights"
+    >
+      <span class="nav-icon">✨</span>
+      <span>Insights</span>
+    </button>
+
+    <button
+      class="nav-button"
+      data-screen="betty"
+    >
+      <span class="nav-icon">🦋</span>
+      <span>Betty</span>
+    </button>
+
+  </nav>
+
+</div>
+
+
+<!-- SETTINGS MODAL -->
+
+<div
+  class="modal"
+  id="settingsModal"
+>
+
+  <div class="modal-panel">
+
+    <div class="modal-title">
+      Settings
+    </div>
+
+
+    <div class="setting-row">
+
+      <div>
+
+        <div class="setting-name">
+          App Theme
+        </div>
+
+        <div class="setting-description">
+          Switch between light and dark mode.
+        </div>
+
+      </div>
+
+      <button
+        class="toggle"
+        id="themeToggle"
+        aria-label="Toggle theme"
+      ></button>
+
+    </div>
+
+
+    <button
+      class="close-button"
+      onclick="closeSettings()"
+    >
+      Done
+    </button>
+
   </div>
-  <div class="sectionHead"><h2>Today's snapshot</h2><button class="addLink" id="quickAdd">Add</button></div>
-  <div class="snapshot">
-    <div class="metric"><div class="metricIcon">🩸</div><div class="metricLabel">GLUCOSE</div><div class="metricValue" id="glucoseMetric">—</div><div class="metricUnit">mg/dL</div></div>
-    <div class="metric"><div class="metricIcon">❤️</div><div class="metricLabel">BLOOD PRESSURE</div><div class="metricValue" id="bpMetric">—</div><div class="metricUnit">mmHg</div></div>
-    <div class="metric"><div class="metricIcon">🏃</div><div class="metricLabel">ACTIVITY</div><div class="metricValue">—</div><div class="metricUnit">minutes</div></div>
-    <div class="metric"><div class="metricIcon">💧</div><div class="metricLabel">WATER</div><div class="metricValue" id="waterMetric">—</div><div class="metricUnit">oz</div></div>
-  </div>
-  <div class="miniCard"><div class="cardTitle">Today's timeline</div><div class="timeline" id="timeline"></div></div>
-</section>
-<section class="screen" id="log">
-  <div class="eyebrow">KEEP TRACK</div><h1 class="pageTitle">Log it.</h1><p class="pageSub">A few seconds today can help you understand your patterns later.</p>
-  <div class="logGrid">
-    <button class="logCard" data-form="glucoseForm"><div class="bigIcon">🩸</div><strong>Glucose</strong><small>Record a reading</small></button>
-    <button class="logCard" data-form="bpForm"><div class="bigIcon">❤️</div><strong>Blood pressure</strong><small>Record BP</small></button>
-    <button class="logCard" data-form="foodForm"><div class="bigIcon">🥗</div><strong>Food</strong><small>Log a meal</small></button>
-    <button class="logCard" data-form="waterForm"><div class="bigIcon">💧</div><strong>Water</strong><small>Track hydration</small></button>
-  </div>
-  <div class="card form" id="glucoseForm"><div class="cardTitle">🩸 Glucose</div><input id="glucoseInput" type="number" placeholder="Glucose value (mg/dL)"><select id="glucoseContext"><option>Fasting</option><option>Before meal</option><option>1 hour after meal</option><option>2 hours after meal</option><option>Bedtime</option></select><button class="primary" id="saveGlucose">Save glucose</button></div>
-  <div class="card form" id="bpForm"><div class="cardTitle">❤️ Blood pressure</div><input id="sysInput" type="number" placeholder="Systolic"><input id="diaInput" type="number" placeholder="Diastolic"><button class="primary" id="saveBP">Save blood pressure</button></div>
-  <div class="card form" id="foodForm"><div class="cardTitle">🥗 Food</div><textarea id="foodInput" rows="2" placeholder="Example: chicken, vegetables and rice"></textarea><button class="primary" id="saveFood">Save meal</button></div>
-  <div class="card form" id="waterForm"><div class="cardTitle">💧 Water</div><input id="waterInput" type="number" placeholder="Amount in oz"><button class="primary" id="saveWater">Save water</button></div>
-  <div class="miniCard"><div class="cardTitle">Saved events</div><div class="muted" id="savedCount">0 events</div></div>
-</section>
-<section class="screen" id="trends">
-  <div class="eyebrow">YOUR PATTERNS</div><h1 class="pageTitle">Trends.</h1><p class="pageSub">See the evidence behind the story.</p>
-  <div class="chips"><button class="chip">7D</button><button class="chip">30D</button><button class="chip">3M</button></div>
-  <div class="card trendCard"><div class="row"><div><div class="cardTitle">Glucose</div><div class="muted">Your recent readings</div></div><strong id="trendLatest">—</strong></div><div class="chart"><div class="bar" style="height:48%"></div><div class="bar" style="height:64%"></div><div class="bar" style="height:43%"></div><div class="bar" style="height:73%"></div><div class="bar" style="height:58%"></div><div class="bar" style="height:84%"></div><div class="bar" style="height:61%"></div></div></div>
-  <div class="card watchCard"><div class="cardTitle">What to watch</div><p class="muted" style="font-size:13px;margin:5px 0 0">As you log consistently, Betty can compare readings with meals, activity and other events instead of looking at one number in isolation.</p></div>
-</section>
-<section class="screen" id="insights">
-  <div class="eyebrow">A LITTLE PERSPECTIVE</div><h1 class="pageTitle">Insights.</h1><p class="pageSub">Betty helps turn your logs into simple observations.</p>
-  <div class="card insightHero"><img src="assets/betty/betty-medium.png" class="betty-pulse" alt="Betty"><div><div class="eyebrow">BETTY'S THOUGHT</div><div class="bigInsight">Your data tells a story.</div><p class="muted">Keep logging consistently and I'll help you notice patterns without overwhelming you.</p></div></div>
-  <div class="card signalCard"><div class="eyebrow">EARLY SIGNAL</div><div class="cardTitle">There's not enough data yet.</div><p class="muted">That's okay. Betty should earn confidence from repeated observations before calling something a pattern.</p></div>
-</section>
-<section class="screen" id="betty">
-  <div class="eyebrow">YOUR COMPANION</div><h1 class="pageTitle">Ask Betty.</h1><p class="pageSub">Ask questions about your habits, numbers, and patterns.</p>
-  <div class="card askCard"><div class="askHeader"><img src="assets/betty/betty-avatar.png" class="askAvatar betty-float" alt="Betty"><div><div class="cardTitle">Betty</div><div class="muted">Your Diabetter companion</div></div></div><div class="chat" id="chat"><div class="bubble bettyMsg"><strong>Hi! I'm Betty. 🦋</strong><br>Ask me something about your day and we'll figure it out together.</div></div><div class="chips askPrompts"><button class="chip prompt">How am I doing?</button><button class="chip prompt">What changed this week?</button><button class="chip prompt">What should I focus on?</button></div></div>
-</section>
-</main>
-<button class="fab" id="fab" aria-label="Add log">+</button>
-<nav class="nav"><div class="navInner"><button class="navBtn active" data-screen="today"><span>🏠</span>Today</button><button class="navBtn" data-screen="log"><span>＋</span>Log</button><button class="navBtn" data-screen="trends"><span>📈</span>Trends</button><button class="navBtn" data-screen="insights"><span>✨</span>Insights</button><button class="navBtn" data-screen="betty"><span>🦋</span>Betty</button></div></nav>
-<div class="settingsOverlay" id="settingsOverlay"><div class="settingsPanel"><div class="settingsTop"><div><div class="eyebrow" style="margin:0 0 7px">DIABETTER</div><div class="pageTitle" style="font-size:44px;margin:0">Settings</div></div><button class="close" id="settingsClose">×</button></div><div class="lineRainbow"></div>
-<div class="settingRow"><div class="row"><div><div class="settingLabel">App theme</div><div class="settingDesc" id="themeName">Light ☀️</div></div><div>›</div></div><div class="themeChoices"><button class="themeChoice selected" data-theme="light"><div class="themeSwatch" style="background:#f1f0f6">☀️</div><div><b>Light</b><div class="settingDesc">Clean and bright</div></div></button><button class="themeChoice" data-theme="dark"><div class="themeSwatch" style="background:#17171c">🌙</div><div><b>Dark</b><div class="settingDesc">Easy on the eyes</div></div></button><button class="themeChoice" data-theme="betty"><div class="themeSwatch" style="background:linear-gradient(135deg,#ffbf00,#35d0a2,#4e7cff,#b34dff)">🌈</div><div><b>Betty Mode</b><div class="settingDesc">Maximum color & flare</div></div></button></div></div>
-<div class="settingRow"><div class="row"><div><div class="settingLabel">Betty animations</div><div class="settingDesc">Bring Betty to life</div></div><button class="toggle on" id="animationToggle" aria-label="Toggle Betty animations"></button></div></div>
-<div class="settingRow"><div class="row"><div><div class="settingLabel">Daily reminders</div><div class="settingDesc">Gentle reminders to log</div></div><button class="toggle" id="reminderToggle" aria-label="Toggle reminders"></button></div></div>
-<div class="card" style="margin-bottom:0"><div class="row"><img src="assets/betty/betty-icon.png" style="width:48px;height:48px;object-fit:contain" alt="Betty"><div style="flex:1"><div class="cardTitle">Diabetter</div><div class="muted" style="font-size:13px">A simpler way to understand your everyday health patterns.</div></div></div></div>
-</div></div><div class="toast" id="toast"></div>
+
+</div>
+
+
 <script>
-(function(){
-const $=id=>document.getElementById(id), screens=[...document.querySelectorAll('.screen')], nav=[...document.querySelectorAll('.navBtn')];
-const KEY='diabetter_v341_events';let events=[];try{events=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(events))events=[]}catch(e){events=[]}
-function persist(){try{localStorage.setItem(KEY,JSON.stringify(events))}catch(e){}}
-function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),1500)}
-function show(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));nav.forEach(b=>b.classList.toggle('active',b.dataset.screen===id));window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0}
-nav.forEach(b=>b.addEventListener('click',()=>show(b.dataset.screen)));
-$('settingsOpen').addEventListener('click',()=>$('settingsOverlay').classList.add('open'));$('settingsClose').addEventListener('click',()=>$('settingsOverlay').classList.remove('open'));$('settingsOverlay').addEventListener('click',e=>{if(e.target===$('settingsOverlay'))$('settingsOverlay').classList.remove('open')});
-$('fab').addEventListener('click',()=>show('log'));$('quickAdd').addEventListener('click',()=>show('log'));
-document.querySelectorAll('.logCard').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.form').forEach(f=>f.classList.remove('open'));const f=$(btn.dataset.form);if(f){f.classList.add('open');setTimeout(()=>f.scrollIntoView({behavior:'smooth',block:'nearest'}),50)}}));
-function add(type,title,sub,extra={}){events.push({type,title,sub,...extra,at:Date.now()});persist();render();toast(title.split(' · ')[0]+' saved ✓');show('today')}
-$('saveGlucose').addEventListener('click',()=>{const v=$('glucoseInput').value.trim();if(!v){toast('Enter a glucose value');return}add('glucose','🩸 Glucose · '+v+' mg/dL',$('glucoseContext').value,{value:Number(v)});$('glucoseInput').value=''});
-$('saveBP').addEventListener('click',()=>{const s=$('sysInput').value.trim(),d=$('diaInput').value.trim();if(!s||!d){toast('Enter both BP numbers');return}add('bp','❤️ Blood pressure · '+s+'/'+d,'Manual entry',{s:Number(s),d:Number(d)});$('sysInput').value='';$('diaInput').value=''});
-$('saveFood').addEventListener('click',()=>{const v=$('foodInput').value.trim();if(!v){toast('Enter your meal');return}add('food','🥗 Food · '+v,'Manual entry');$('foodInput').value=''});
-$('saveWater').addEventListener('click',()=>{const v=$('waterInput').value.trim();if(!v){toast('Enter water amount');return}add('water','💧 Water · '+v+' oz','Quick log',{value:Number(v)});$('waterInput').value=''});
-function render(){const gm=events.filter(e=>e.type==='glucose').at(-1),bp=events.filter(e=>e.type==='bp').at(-1),water=events.filter(e=>e.type==='water').at(-1);$('glucoseMetric').textContent=gm?gm.value:'—';$('bpMetric').textContent=bp?bp.s+'/'+bp.d:'—';$('waterMetric').textContent=water?water.value:'—';$('trendLatest').textContent=gm?gm.value:'—';$('savedCount').textContent=events.length+' saved event'+(events.length===1?'':'s');const t=$('timeline');t.innerHTML='';if(!events.length){t.innerHTML='<div class="event"><div class="muted">Start logging to build your timeline.</div></div>';return}events.slice(-3).reverse().forEach(e=>{const d=document.createElement('div');d.className='event';const when=new Date(e.at).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});d.innerHTML='<div class="time">'+when+'</div><b></b><div class="muted"></div>';d.querySelector('b').textContent=e.title;d.querySelector('.muted').textContent=e.sub||'';t.appendChild(d)})}
-document.querySelectorAll('.prompt').forEach(btn=>btn.addEventListener('click',()=>{const chat=$('chat'),q=btn.textContent;const u=document.createElement('div');u.className='bubble userMsg';u.textContent=q;chat.appendChild(u);setTimeout(()=>{const a=document.createElement('div');a.className='bubble bettyMsg';a.textContent=events.length?'I can see the things you’ve logged. Keep building your history and I can help compare readings with meals, activity and other events. 🦋':'Start by logging a few things today. Once you have some history, I can help connect your numbers with meals, activity and other events. 🦋';chat.appendChild(a);chat.scrollTop=chat.scrollHeight},300)}));
-const themeButtons=[...document.querySelectorAll('.themeChoice')];function setTheme(theme){document.body.classList.remove('dark','bettyMode');themeButtons.forEach(b=>b.classList.toggle('selected',b.dataset.theme===theme));if(theme==='dark')document.body.classList.add('dark');if(theme==='betty')document.body.classList.add('bettyMode');$('themeName').textContent={light:'Light ☀️',dark:'Dark 🌙',betty:'Betty 🌈'}[theme];localStorage.setItem('diabetter_v341_theme',theme);document.querySelector('meta[name="theme-color"]').setAttribute('content',theme==='dark'?'#07070a':theme==='betty'?'#fff4ff':'#f7f6fc')}
-themeButtons.forEach(b=>b.addEventListener('click',()=>setTheme(b.dataset.theme)));setTheme(localStorage.getItem('diabetter_v341_theme')||'light');
-let animations=localStorage.getItem('diabetter_v341_anim')!=='off';$('animationToggle').classList.toggle('on',animations);function applyAnimation(){document.querySelectorAll('.betty-float,.betty-pulse').forEach(el=>el.style.animation=animations?'':'none')}$('animationToggle').addEventListener('click',()=>{animations=!animations;localStorage.setItem('diabetter_v341_anim',animations?'on':'off');$('animationToggle').classList.toggle('on',animations);applyAnimation()});$('reminderToggle').addEventListener('click',()=>{$('reminderToggle').classList.toggle('on');toast($('reminderToggle').classList.contains('on')?'Reminders enabled':'Reminders disabled')});
-render();applyAnimation();
-})();
+
+/* ==================================================
+   NAVIGATION
+================================================== */
+
+const screens = document.querySelectorAll(".screen");
+const navButtons = document.querySelectorAll(".nav-button");
+
+navButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const target = button.dataset.screen;
+
+    screens.forEach(screen => {
+      screen.classList.toggle(
+        "active",
+        screen.id === target
+      );
+    });
+
+    navButtons.forEach(btn => {
+      btn.classList.toggle(
+        "active",
+        btn === button
+      );
+    });
+
+  });
+
+});
+
+
+/* ==================================================
+   SETTINGS
+================================================== */
+
+const settingsModal =
+  document.getElementById("settingsModal");
+
+const themeToggle =
+  document.getElementById("themeToggle");
+
+const settingsButton =
+  document.getElementById("settingsButton");
+
+
+settingsButton.addEventListener(
+  "click",
+  () => {
+
+    settingsModal.classList.add("open");
+
+  }
+);
+
+
+function closeSettings() {
+
+  settingsModal.classList.remove("open");
+
+}
+
+
+settingsModal.addEventListener(
+  "click",
+  event => {
+
+    if (event.target === settingsModal) {
+      closeSettings();
+    }
+
+  }
+);
+
+
+/* ==================================================
+   THEME
+================================================== */
+
+function applyTheme() {
+
+  const dark =
+    localStorage.getItem("diabetter-theme") === "dark";
+
+  document.body.classList.toggle("dark", dark);
+
+  themeToggle.classList.toggle("on", dark);
+
+  document
+    .querySelector('meta[name="theme-color"]')
+    .setAttribute(
+      "content",
+      dark ? "#101015" : "#f8f7ff"
+    );
+
+}
+
+
+themeToggle.addEventListener(
+  "click",
+  () => {
+
+    const dark =
+      document.body.classList.contains("dark");
+
+    localStorage.setItem(
+      "diabetter-theme",
+      dark ? "light" : "dark"
+    );
+
+    applyTheme();
+
+  }
+);
+
+
+applyTheme();
+
+
+/* ==================================================
+   LOG ACTIONS
+================================================== */
+
+function openLog() {
+
+  document
+    .querySelector('[data-screen="log"]')
+    .click();
+
+}
+
+
+function recordGlucose() {
+
+  const value =
+    prompt("Enter your glucose reading:");
+
+  if (!value) return;
+
+  localStorage.setItem(
+    "today-glucose",
+    value
+  );
+
+  updateDashboard();
+
+}
+
+
+function recordBP() {
+
+  const value =
+    prompt("Enter your blood pressure (example: 120/80):");
+
+  if (!value) return;
+
+  localStorage.setItem(
+    "today-bp",
+    value
+  );
+
+  updateDashboard();
+
+}
+
+
+function recordFood() {
+
+  alert(
+    "Food logging is ready for the next data-entry upgrade."
+  );
+
+}
+
+
+function recordWater() {
+
+  const value =
+    prompt("How many glasses of water today?");
+
+  if (!value) return;
+
+  localStorage.setItem(
+    "today-water",
+    value
+  );
+
+  updateDashboard();
+
+}
+
+
+function updateDashboard() {
+
+  document.getElementById("todayGlucose").textContent =
+    localStorage.getItem("today-glucose") || "—";
+
+  document.getElementById("todayBP").textContent =
+    localStorage.getItem("today-bp") || "—";
+
+  document.getElementById("todayWater").textContent =
+    localStorage.getItem("today-water")
+      ? localStorage.getItem("today-water") + " 💧"
+      : "—";
+
+}
+
+
+updateDashboard();
+
+
+/* ==================================================
+   RANGE BUTTONS
+================================================== */
+
+document.querySelectorAll(".range").forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      document
+        .querySelectorAll(".range")
+        .forEach(btn =>
+          btn.classList.remove("active")
+        );
+
+      button.classList.add("active");
+
+    }
+  );
+
+});
+
+
 </script>
-</body></html>
+
+</body>
+</html>
