@@ -4,142 +4,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f7f6fc">
-<title>Diabetter — V3.4</title>
+<title>Diabetter — V3.4.1</title>
 <link rel="stylesheet" href="assets/betty/betty-animations.css">
 <style>
-:root{
-  --bg:#f7f6fc;--surface:#fff;--surface2:#f0eff7;--ink:#111116;--muted:#777680;
-  --line:#e5e3eb;--purple:#7758f4;--purple2:#9a7cff;--shadow:0 18px 50px rgba(36,28,72,.08);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,Arial,sans-serif}
-button,input,textarea,select{font:inherit}
-button,a{ -webkit-tap-highlight-color:transparent}
-.app{width:100%;max-width:430px;min-height:100vh;margin:auto;background:var(--bg);padding-bottom:96px}
-.header{display:flex;align-items:center;justify-content:space-between;padding:22px 22px 14px}
-.brand{display:flex;align-items:center;gap:13px}
-.brandmark{width:62px;height:62px;border-radius:20px;background:linear-gradient(135deg,#ffb400 0%,#77d52f 28%,#15cbb5 48%,#2e86ff 70%,#a94cff 100%);display:grid;place-items:center;box-shadow:0 10px 28px rgba(98,75,220,.18);overflow:hidden}
-.brandmark img{width:55px;height:55px;object-fit:contain}
-.brandname{font-size:31px;font-weight:900;letter-spacing:-.055em}
-.settingsBtn{width:58px;height:58px;border-radius:50%;border:1px solid var(--line);background:var(--surface);font-size:27px;box-shadow:var(--shadow);cursor:pointer}
-main{padding:0 20px}
-.screen{display:none;animation:screenIn .28s ease}
-.screen.active{display:block}
-@keyframes screenIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.eyebrow{margin:30px 2px 12px;color:#74727b;font-size:15px;font-weight:850;letter-spacing:.19em}
-.heroTitle{font-size:56px;line-height:.96;letter-spacing:-.065em;margin:0 0 18px;font-weight:900}
-.sub{font-size:21px;line-height:1.38;color:var(--muted);margin:0}
-.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#fff 0%,#fff 55%,#eee9ff 100%);border:1px solid var(--line);border-radius:34px;padding:42px 26px 25px;margin-top:24px;box-shadow:var(--shadow)}
-.heroTop{display:grid;grid-template-columns:1fr 1.02fr;gap:4px;align-items:center}
-.heroBetty{width:100%;max-width:195px;justify-self:end;filter:drop-shadow(0 18px 22px rgba(107,72,220,.18))}
-.bettyBubble{position:relative;margin-top:22px;background:#f0f1f8;border:1px solid #dfdee7;border-radius:25px;padding:19px 20px;font-size:18px;line-height:1.4}
-.bettyBubble:before{content:"";position:absolute;top:-13px;left:92px;border-left:14px solid transparent;border-right:14px solid transparent;border-bottom:14px solid #dfdee7}
-.bettyBubble:after{content:"";position:absolute;top:-11px;left:93px;border-left:13px solid transparent;border-right:13px solid transparent;border-bottom:13px solid #f0f1f8}
-.bettyBubble strong{display:block;font-size:20px;margin-bottom:4px}
-.sectionHead{display:flex;align-items:end;justify-content:space-between;margin:29px 3px 15px}
-.sectionHead h2{margin:0;font-size:31px;letter-spacing:-.055em}
-.addLink{color:var(--purple);font-weight:800;font-size:18px;cursor:pointer}
-.snapshot{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.metric{position:relative;min-height:188px;background:var(--surface);border:1px solid var(--line);border-radius:27px;padding:20px;overflow:hidden;box-shadow:0 8px 25px rgba(35,30,55,.035)}
-.metric:after{content:"";position:absolute;width:105px;height:105px;border-radius:50%;right:-25px;bottom:-35px;background:#efebff}
-.metricIcon{width:58px;height:58px;border-radius:18px;background:#f1f0f6;display:grid;place-items:center;font-size:30px;margin-bottom:24px}
-.metricLabel{font-size:14px;color:#777680;font-weight:850;letter-spacing:.12em}
-.metricValue{font-size:32px;font-weight:900;margin-top:8px;letter-spacing:-.04em}
-.metricUnit{color:var(--muted);font-size:15px;margin-top:2px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:22px;margin:15px 0;box-shadow:0 8px 25px rgba(35,30,55,.035)}
-.cardTitle{font-size:20px;font-weight:850;margin:0 0 6px}
-.muted{color:var(--muted);line-height:1.45}
-.timeline .event{padding:15px 0;border-bottom:1px solid var(--line)}
-.timeline .event:last-child{border-bottom:0}
-.time{font-size:12px;color:var(--muted);margin-bottom:4px}
-.fab{position:fixed;right:max(calc((100vw - 430px)/2 + 18px),18px);bottom:106px;width:76px;height:76px;border:0;border-radius:50%;background:#151519;color:white;font-size:42px;line-height:1;box-shadow:0 16px 35px rgba(0,0,0,.2);z-index:30;cursor:pointer}
-.nav{position:fixed;left:0;right:0;bottom:0;z-index:25;background:rgba(255,255,255,.94);backdrop-filter:blur(20px);border-top:1px solid var(--line)}
-.navInner{max-width:430px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 4px env(safe-area-inset-bottom,8px)}
-.navBtn{border:0;background:transparent;color:#777680;font-size:12px;font-weight:700;padding:5px 2px;cursor:pointer;position:relative}
-.navBtn span{display:block;font-size:24px;line-height:1;margin-bottom:7px}
-.navBtn.active{color:var(--purple)}
-.navBtn.active:after{content:"";position:absolute;left:17%;right:17%;height:5px;bottom:0;border-radius:10px;background:var(--purple)}
-.pageTitle{font-size:58px;line-height:.95;letter-spacing:-.065em;margin:0 0 18px;font-weight:900}
-.pageSub{font-size:21px;line-height:1.42;color:var(--muted);margin:0 0 27px}
-.logGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.logCard{min-height:180px;background:var(--surface);border:1px solid var(--line);border-radius:27px;padding:22px;cursor:pointer;text-align:left;box-shadow:0 8px 25px rgba(35,30,55,.035)}
-.logCard .bigIcon{font-size:42px;margin-bottom:36px}
-.logCard strong{font-size:22px;display:block}
-.logCard small{font-size:16px;color:var(--muted);display:block;margin-top:7px}
-.form{display:none}
-.form.open{display:block}
-.form input,.form textarea,.form select{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:14px;margin:7px 0}
-.primary{width:100%;border:0;border-radius:16px;background:var(--purple);color:white;font-weight:800;padding:15px;cursor:pointer;margin-top:8px}
-.secondary{border:0;border-radius:15px;background:var(--surface2);padding:13px 16px;font-weight:750;cursor:pointer}
-.chips{display:flex;gap:8px;overflow:auto;padding-bottom:2px}
-.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:10px 13px;white-space:nowrap;color:var(--muted);cursor:pointer}
-.chart{height:190px;display:flex;align-items:end;gap:9px;border-bottom:1px solid var(--line);padding:15px 4px 7px}
-.bar{flex:1;border-radius:10px 10px 3px 3px;background:linear-gradient(180deg,#8d73ff,#5e8dfd);min-height:20px}
-.insightHero{display:grid;grid-template-columns:38% 62%;align-items:center;overflow:hidden}
-.insightHero img{width:150%;margin-left:-25%;filter:drop-shadow(0 15px 20px rgba(112,77,230,.18))}
-.askCard{min-height:480px}
-.askHeader{display:flex;align-items:center;gap:15px;padding-bottom:18px;border-bottom:1px solid var(--line)}
-.askAvatar{width:72px;height:72px;object-fit:contain}
-.bubble{padding:15px 17px;border-radius:20px;margin:12px 0;font-size:17px;line-height:1.4;max-width:88%}
-.bubble.bettyMsg{background:#f0f1f8}
-.bubble.userMsg{background:#eee9ff;margin-left:auto}
-.settingsOverlay{display:none;position:fixed;inset:0;background:rgba(22,20,30,.42);backdrop-filter:blur(8px);z-index:60;align-items:end}
-.settingsOverlay.open{display:flex}
-.settingsPanel{width:100%;max-width:430px;margin:auto;background:var(--surface);border-radius:34px 34px 0 0;padding:25px 22px calc(25px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto}
-.settingsTop{display:flex;justify-content:space-between;align-items:start}
-.close{width:48px;height:48px;border:0;border-radius:50%;background:#faeffa;font-size:30px;color:#7b6d83;cursor:pointer}
-.settingRow{padding:18px 4px;border-bottom:1px solid var(--line)}
-.settingLabel{font-size:20px;font-weight:850}
-.settingDesc{color:var(--muted);margin-top:4px}
-.themeChoices{display:grid;gap:10px;margin-top:13px}
-.themeChoice{display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:var(--surface);border-radius:20px;padding:13px;cursor:pointer;text-align:left}
-.themeSwatch{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:25px}
-.themeChoice.selected{border:2px solid var(--purple);padding:12px}
-.toggle{width:56px;height:32px;border-radius:99px;background:#d5d5dc;border:0;position:relative;cursor:pointer}
-.toggle:after{content:"";position:absolute;width:26px;height:26px;left:3px;top:3px;background:white;border-radius:50%;transition:.2s}
-.toggle.on{background:#27c85b}
-.toggle.on:after{left:27px}
-.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.toast{position:fixed;left:50%;bottom:108px;transform:translate(-50%,12px);background:#17171b;color:#fff;padding:12px 17px;border-radius:999px;z-index:90;opacity:0;pointer-events:none;transition:.2s;font-size:13px}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-/* Theme modes */
-body.dark{--bg:#07070a;--surface:#17171c;--surface2:#24242b;--ink:#f7f7fa;--muted:#aaa8b3;--line:#303039;--shadow:0 18px 50px rgba(0,0,0,.35)}
-body.dark .hero{background:linear-gradient(135deg,#17171c,#18151f)}
-body.dark .bettyBubble{background:#25252d;border-color:#373741}
-body.dark .bettyBubble:before{border-bottom-color:#373741}
-body.dark .bettyBubble:after{border-bottom-color:#25252d}
-body.dark .nav{background:rgba(13,13,16,.95)}
-body.dark .metricIcon,body.dark .secondary,body.dark .chip{background:#23232a}
-body.dark .metric:after{background:#252139}
-body.bettyMode{--bg:#fff4ff;--surface:#fff;--surface2:#fff0fb;--purple:#8a45ff;--line:#efd9ef}
-body.bettyMode .hero{background:linear-gradient(135deg,#fff 0%,#fff4fb 40%,#e8f7ff 70%,#eee5ff 100%)}
-body.bettyMode .lineRainbow{display:block}
-.lineRainbow{display:none;height:7px;border-radius:99px;background:linear-gradient(90deg,#ff4e8a,#ffb000,#6bd63c,#27cdd1,#557dff,#a84cff,#f04cff);margin:12px 0}
-@media(max-width:360px){.heroTitle,.pageTitle{font-size:49px}.brandname{font-size:28px}.hero{padding:34px 20px 22px}.heroBetty{max-width:165px}}
+:root{--bg:#f7f6fc;--surface:#fff;--surface2:#f0eff7;--ink:#111116;--muted:#777680;--line:#e4e2ea;--purple:#7758f4;--purple2:#9a7cff;--nav:rgba(255,255,255,.94);--shadow:0 12px 34px rgba(36,28,72,.07)}
+*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,Arial,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}body{min-height:100dvh}button,input,textarea,select{font:inherit}button{-webkit-tap-highlight-color:transparent}
+.app{width:100%;max-width:430px;margin:auto;min-height:100dvh;background:var(--bg);padding-bottom:calc(82px + env(safe-area-inset-bottom));}
+.header{height:96px;display:flex;align-items:center;justify-content:space-between;padding:14px 20px 10px}.brand{display:flex;align-items:center;gap:12px}.brandmark{width:58px;height:58px;border-radius:19px;background:linear-gradient(135deg,#ffb400,#79d52f 28%,#16cbb5 48%,#2f86ff 70%,#a94cff);display:grid;place-items:center;overflow:hidden;box-shadow:0 9px 25px rgba(98,75,220,.16)}.brandmark img{width:53px;height:53px;object-fit:contain}.brandname{font-size:30px;font-weight:900;letter-spacing:-.06em}.settingsBtn{width:58px;height:58px;border-radius:50%;border:1px solid var(--line);background:var(--surface);font-size:26px;box-shadow:var(--shadow);cursor:pointer}
+main{padding:0 18px}.screen{display:none;min-height:calc(100dvh - 96px - 82px - env(safe-area-inset-bottom));padding-top:8px;animation:screenIn .22s ease}.screen.active{display:block}@keyframes screenIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.eyebrow{margin:12px 2px 8px;color:#74727b;font-size:14px;font-weight:900;letter-spacing:.19em;line-height:1.25}.pageTitle{font-size:54px;line-height:.92;letter-spacing:-.068em;margin:0 0 12px;font-weight:900}.pageSub{font-size:19px;line-height:1.3;color:var(--muted);margin:0 0 17px}.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#fff 0%,#fff 56%,#eee9ff 100%);border:1px solid var(--line);border-radius:32px;padding:22px 22px 17px;box-shadow:var(--shadow);height:300px}.heroTop{height:190px;display:grid;grid-template-columns:1fr 43%;gap:4px;align-items:center}.hero .eyebrow{margin:0 0 7px}.heroTitle{font-size:49px;line-height:.9;letter-spacing:-.065em;margin:0 0 10px;font-weight:900}.sub{font-size:18px;line-height:1.25;color:var(--muted);margin:0;max-width:225px}.heroBetty{width:100%;max-width:155px;justify-self:end;filter:drop-shadow(0 13px 18px rgba(107,72,220,.18))}.bettyBubble{position:absolute;left:22px;right:22px;bottom:15px;background:#f0f1f8;border:1px solid #dfdee7;border-radius:21px;padding:12px 15px;font-size:15px;line-height:1.28}.bettyBubble:before{content:"";position:absolute;top:-11px;left:82px;border-left:12px solid transparent;border-right:12px solid transparent;border-bottom:12px solid #dfdee7}.bettyBubble:after{content:"";position:absolute;top:-9px;left:83px;border-left:11px solid transparent;border-right:11px solid transparent;border-bottom:11px solid #f0f1f8}.bettyBubble strong{font-size:17px;display:block;margin-bottom:2px}
+.sectionHead{height:43px;display:flex;align-items:end;justify-content:space-between;margin:14px 3px 9px}.sectionHead h2{margin:0;font-size:29px;letter-spacing:-.055em}.addLink{border:0;background:none;color:var(--purple);font-weight:850;font-size:17px;cursor:pointer;padding:0 0 2px}.snapshot{display:grid;grid-template-columns:1fr 1fr;gap:11px}.metric{position:relative;height:137px;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:14px 16px;overflow:hidden;box-shadow:0 7px 20px rgba(35,30,55,.035)}.metric:after{content:"";position:absolute;width:82px;height:82px;border-radius:50%;right:-24px;bottom:-30px;background:#efebff}.metricIcon{width:45px;height:45px;border-radius:15px;background:#f1f0f6;display:grid;place-items:center;font-size:24px;margin-bottom:12px}.metricLabel{font-size:11px;color:#777680;font-weight:900;letter-spacing:.11em}.metricValue{font-size:25px;font-weight:900;margin-top:4px;letter-spacing:-.04em}.metricUnit{color:var(--muted);font-size:12px;margin-top:1px}.miniCard{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:13px 15px;margin-top:11px;box-shadow:0 7px 20px rgba(35,30,55,.035)}.miniCard .cardTitle{font-size:16px;font-weight:850}.timeline{display:flex;gap:7px;overflow:hidden;margin-top:8px}.timeline .event{min-width:145px;border:1px solid var(--line);border-radius:14px;padding:8px 9px;background:var(--surface2)}.time{font-size:10px;color:var(--muted);margin-bottom:2px}.timeline b{font-size:12px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.timeline .muted{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logGrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.logCard{height:171px;background:var(--surface);border:1px solid var(--line);border-radius:25px;padding:17px;text-align:left;box-shadow:0 7px 20px rgba(35,30,55,.035);cursor:pointer}.logCard .bigIcon{font-size:34px;margin-bottom:27px}.logCard strong{font-size:20px;display:block}.logCard small{font-size:14px;color:var(--muted);display:block;margin-top:5px}.form{display:none}.form.open{display:block}.card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:17px;margin:11px 0;box-shadow:0 7px 20px rgba(35,30,55,.035)}.cardTitle{font-size:19px;font-weight:850;margin:0 0 5px}.muted{color:var(--muted);line-height:1.32}.form input,.form textarea,.form select{width:100%;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;padding:11px;margin:5px 0}.primary{width:100%;border:0;border-radius:14px;background:var(--purple);color:#fff;font-weight:800;padding:12px;cursor:pointer;margin-top:6px}.secondary{border:0;border-radius:13px;background:var(--surface2);padding:10px 13px;font-weight:750;cursor:pointer}
+.chips{display:flex;gap:7px;overflow:hidden}.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 11px;white-space:nowrap;color:var(--muted);cursor:pointer;font-size:13px}.chart{height:125px;display:flex;align-items:end;gap:7px;border-bottom:1px solid var(--line);padding:10px 3px 5px}.bar{flex:1;border-radius:8px 8px 2px 2px;background:linear-gradient(180deg,#8d73ff,#5e8dfd);min-height:12px}.trendCard{height:211px}.watchCard{min-height:104px}.insightHero{height:225px;display:grid;grid-template-columns:39% 61%;align-items:center;overflow:hidden;padding:14px}.insightHero img{width:135%;max-width:none;margin-left:-20%;filter:drop-shadow(0 13px 18px rgba(112,77,230,.18))}.insightHero .eyebrow{font-size:10px;margin:0 0 7px}.insightHero .bigInsight{font-size:24px;font-weight:900;line-height:1.02}.insightHero p{font-size:14px;margin:7px 0 0}.signalCard{height:118px}.signalCard .eyebrow{font-size:10px;margin:0 0 6px}.signalCard .cardTitle{font-size:18px}.signalCard p{font-size:13px;margin:5px 0}
+.askCard{height:455px;padding:16px}.askHeader{height:63px;display:flex;align-items:center;gap:11px;padding-bottom:10px;border-bottom:1px solid var(--line)}.askAvatar{width:62px;height:62px;object-fit:contain}.bubble{padding:12px 14px;border-radius:18px;margin:9px 0;font-size:15px;line-height:1.32;max-width:88%}.bubble.bettyMsg{background:#f0f1f8}.bubble.userMsg{background:#eee9ff;margin-left:auto}.askPrompts{position:absolute;bottom:18px;left:16px;right:16px}.askCard{position:relative}.chat{max-height:245px;overflow:auto}
+.fab{position:fixed;right:max(calc((100vw - 430px)/2 + 16px),16px);bottom:calc(92px + env(safe-area-inset-bottom));width:70px;height:70px;border:0;border-radius:50%;background:#151519;color:#fff;font-size:39px;line-height:1;box-shadow:0 15px 30px rgba(0,0,0,.2);z-index:30;cursor:pointer}.nav{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--nav);backdrop-filter:blur(20px);border-top:1px solid var(--line)}.navInner{max-width:430px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}.navBtn{border:0;background:transparent;color:#777680;font-size:12px;font-weight:750;padding:4px 2px 5px;cursor:pointer;position:relative}.navBtn span{display:block;font-size:22px;line-height:1;margin-bottom:5px}.navBtn.active{color:var(--purple)}.navBtn.active:after{content:"";position:absolute;left:17%;right:17%;height:4px;bottom:0;border-radius:10px;background:var(--purple)}
+.settingsOverlay{display:none;position:fixed;inset:0;background:rgba(22,20,30,.42);backdrop-filter:blur(8px);z-index:60;align-items:end}.settingsOverlay.open{display:flex}.settingsPanel{width:100%;max-width:430px;margin:auto;background:var(--surface);color:var(--ink);border-radius:32px 32px 0 0;padding:22px 20px calc(20px + env(safe-area-inset-bottom));max-height:92dvh;overflow:auto}.settingsTop{display:flex;justify-content:space-between;align-items:start}.close{width:46px;height:46px;border:0;border-radius:50%;background:#faeffa;font-size:29px;color:#7b6d83;cursor:pointer}.settingRow{padding:14px 3px;border-bottom:1px solid var(--line)}.settingLabel{font-size:18px;font-weight:850}.settingDesc{color:var(--muted);margin-top:3px;font-size:14px}.themeChoices{display:grid;gap:8px;margin-top:11px}.themeChoice{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:17px;padding:10px;cursor:pointer;text-align:left}.themeSwatch{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;font-size:22px;flex:none}.themeChoice.selected{border:2px solid var(--purple);padding:9px}.toggle{width:54px;height:30px;border-radius:99px;background:#d5d5dc;border:0;position:relative;cursor:pointer;flex:none}.toggle:after{content:"";position:absolute;width:24px;height:24px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}.toggle.on{background:#27c85b}.toggle.on:after{left:27px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom));transform:translate(-50%,12px);background:#17171b;color:#fff;padding:10px 15px;border-radius:999px;z-index:90;opacity:0;pointer-events:none;transition:.2s;font-size:12px;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+body.dark{--bg:#07070a;--surface:#17171c;--surface2:#24242b;--ink:#f7f7fa;--muted:#aaa8b3;--line:#303039;--nav:rgba(13,13,16,.95);--shadow:0 14px 36px rgba(0,0,0,.35)}body.dark .hero{background:linear-gradient(135deg,#17171c,#18151f)}body.dark .bettyBubble{background:#25252d;border-color:#373741}body.dark .bettyBubble:before{border-bottom-color:#373741}body.dark .bettyBubble:after{border-bottom-color:#25252d}body.dark .metricIcon,body.dark .secondary,body.dark .chip{background:#23232a}body.dark .metric:after{background:#252139}body.dark .settingsBtn{background:#19191f}body.dark .themeChoice{background:#17171c}
+body.bettyMode{--bg:#fff4ff;--surface:#fff;--surface2:#fff0fb;--purple:#8a45ff;--line:#efd9ef;--nav:rgba(255,250,255,.95)}body.bettyMode .hero{background:linear-gradient(135deg,#fff 0%,#fff4fb 40%,#e8f7ff 70%,#eee5ff 100%)}body.bettyMode .lineRainbow{display:block}.lineRainbow{display:none;height:5px;border-radius:99px;background:linear-gradient(90deg,#ff4e8a,#ffb000,#6bd63c,#27cdd1,#557dff,#a84cff,#f04cff);margin:7px 0}
+@media(max-height:720px){.header{height:86px}.screen{min-height:calc(100dvh - 86px - 78px - env(safe-area-inset-bottom))}.hero{height:278px}.heroTop{height:174px}.heroBetty{max-width:140px}.metric{height:126px}.logCard{height:154px}.askCard{height:425px}.insightHero{height:205px}.signalCard{height:105px}.fab{bottom:calc(87px + env(safe-area-inset-bottom))}}
+@media(max-width:360px){.brandname{font-size:27px}.pageTitle{font-size:49px}.heroTitle{font-size:45px}.hero{padding-left:18px;padding-right:18px}.heroBetty{max-width:132px}.bettyBubble{left:18px;right:18px}.metric{padding:12px}.metricIcon{margin-bottom:9px}.logCard{padding:14px}.logCard .bigIcon{margin-bottom:23px}}
 </style>
 </head>
 <body>
 <div class="app">
 <header class="header">
-  <div class="brand">
-    <div class="brandmark"><img src="assets/betty/betty-icon.png" alt="Betty"></div>
-    <div class="brandname">Diabetter</div>
-  </div>
+  <div class="brand"><div class="brandmark"><img src="assets/betty/betty-icon.png" alt="Diabetter"></div><div class="brandname">Diabetter</div></div>
   <button class="settingsBtn" id="settingsOpen" aria-label="Settings">⚙️</button>
 </header>
 <main>
-
 <section class="screen active" id="today">
   <div class="hero">
-    <div class="heroTop">
-      <div>
-        <div class="eyebrow" style="margin-top:0">YOUR DAILY<br>SNAPSHOT</div>
-        <h1 class="heroTitle">Good<br>morning.</h1>
-        <p class="sub">Let's make today a little better than yesterday.</p>
-      </div>
-      <img class="heroBetty betty-character betty-float" src="assets/betty/betty-medium.png" alt="Betty">
-    </div>
+    <div class="heroTop"><div><div class="eyebrow">YOUR DAILY<br>SNAPSHOT</div><h1 class="heroTitle">Good<br>morning.</h1><p class="sub">Let's make today a little better than yesterday.</p></div><img class="heroBetty betty-float" src="assets/betty/betty-medium.png" alt="Betty"></div>
     <div class="bettyBubble"><strong>Hi! I'm Betty. 🦋</strong>I'm here to help you understand your numbers without making them complicated.</div>
   </div>
   <div class="sectionHead"><h2>Today's snapshot</h2><button class="addLink" id="quickAdd">Add</button></div>
@@ -147,18 +42,12 @@ body.bettyMode .lineRainbow{display:block}
     <div class="metric"><div class="metricIcon">🩸</div><div class="metricLabel">GLUCOSE</div><div class="metricValue" id="glucoseMetric">—</div><div class="metricUnit">mg/dL</div></div>
     <div class="metric"><div class="metricIcon">❤️</div><div class="metricLabel">BLOOD PRESSURE</div><div class="metricValue" id="bpMetric">—</div><div class="metricUnit">mmHg</div></div>
     <div class="metric"><div class="metricIcon">🏃</div><div class="metricLabel">ACTIVITY</div><div class="metricValue">—</div><div class="metricUnit">minutes</div></div>
-    <div class="metric"><div class="metricIcon">💧</div><div class="metricLabel">WATER</div><div class="metricValue">—</div><div class="metricUnit">oz</div></div>
+    <div class="metric"><div class="metricIcon">💧</div><div class="metricLabel">WATER</div><div class="metricValue" id="waterMetric">—</div><div class="metricUnit">oz</div></div>
   </div>
-  <div class="card">
-    <div class="cardTitle">Today's timeline</div>
-    <div class="muted">Your day builds as you log things.</div>
-    <div class="timeline" id="timeline"></div>
-  </div>
+  <div class="miniCard"><div class="cardTitle">Today's timeline</div><div class="timeline" id="timeline"></div></div>
 </section>
-
 <section class="screen" id="log">
-  <div class="eyebrow">KEEP TRACK</div><h1 class="pageTitle">Log it.</h1>
-  <p class="pageSub">A few seconds today can help you understand your patterns later.</p>
+  <div class="eyebrow">KEEP TRACK</div><h1 class="pageTitle">Log it.</h1><p class="pageSub">A few seconds today can help you understand your patterns later.</p>
   <div class="logGrid">
     <button class="logCard" data-form="glucoseForm"><div class="bigIcon">🩸</div><strong>Glucose</strong><small>Record a reading</small></button>
     <button class="logCard" data-form="bpForm"><div class="bigIcon">❤️</div><strong>Blood pressure</strong><small>Record BP</small></button>
@@ -167,176 +56,56 @@ body.bettyMode .lineRainbow{display:block}
   </div>
   <div class="card form" id="glucoseForm"><div class="cardTitle">🩸 Glucose</div><input id="glucoseInput" type="number" placeholder="Glucose value (mg/dL)"><select id="glucoseContext"><option>Fasting</option><option>Before meal</option><option>1 hour after meal</option><option>2 hours after meal</option><option>Bedtime</option></select><button class="primary" id="saveGlucose">Save glucose</button></div>
   <div class="card form" id="bpForm"><div class="cardTitle">❤️ Blood pressure</div><input id="sysInput" type="number" placeholder="Systolic"><input id="diaInput" type="number" placeholder="Diastolic"><button class="primary" id="saveBP">Save blood pressure</button></div>
-  <div class="card form" id="foodForm"><div class="cardTitle">🥗 Food</div><textarea id="foodInput" rows="3" placeholder="Example: chicken, vegetables and rice"></textarea><button class="primary" id="saveFood">Save meal</button></div>
+  <div class="card form" id="foodForm"><div class="cardTitle">🥗 Food</div><textarea id="foodInput" rows="2" placeholder="Example: chicken, vegetables and rice"></textarea><button class="primary" id="saveFood">Save meal</button></div>
   <div class="card form" id="waterForm"><div class="cardTitle">💧 Water</div><input id="waterInput" type="number" placeholder="Amount in oz"><button class="primary" id="saveWater">Save water</button></div>
-  <div class="card"><div class="cardTitle">Saved events</div><div class="muted" id="savedCount">0 events</div></div>
+  <div class="miniCard"><div class="cardTitle">Saved events</div><div class="muted" id="savedCount">0 events</div></div>
 </section>
-
 <section class="screen" id="trends">
-  <div class="eyebrow">YOUR PATTERNS</div><h1 class="pageTitle">Trends.</h1>
-  <p class="pageSub">See the evidence behind the story.</p>
+  <div class="eyebrow">YOUR PATTERNS</div><h1 class="pageTitle">Trends.</h1><p class="pageSub">See the evidence behind the story.</p>
   <div class="chips"><button class="chip">7D</button><button class="chip">30D</button><button class="chip">3M</button></div>
-  <div class="card"><div class="row"><div><div class="cardTitle">Glucose</div><div class="muted">Your recent readings</div></div><strong id="trendLatest">—</strong></div><div class="chart"><div class="bar" style="height:48%"></div><div class="bar" style="height:64%"></div><div class="bar" style="height:43%"></div><div class="bar" style="height:73%"></div><div class="bar" style="height:58%"></div><div class="bar" style="height:84%"></div><div class="bar" style="height:61%"></div></div></div>
-  <div class="card"><div class="cardTitle">What to watch</div><p class="muted">As you log consistently, Betty can compare readings with meals, activity, sleep and other events instead of looking at one number in isolation.</p></div>
+  <div class="card trendCard"><div class="row"><div><div class="cardTitle">Glucose</div><div class="muted">Your recent readings</div></div><strong id="trendLatest">—</strong></div><div class="chart"><div class="bar" style="height:48%"></div><div class="bar" style="height:64%"></div><div class="bar" style="height:43%"></div><div class="bar" style="height:73%"></div><div class="bar" style="height:58%"></div><div class="bar" style="height:84%"></div><div class="bar" style="height:61%"></div></div></div>
+  <div class="card watchCard"><div class="cardTitle">What to watch</div><p class="muted" style="font-size:13px;margin:5px 0 0">As you log consistently, Betty can compare readings with meals, activity and other events instead of looking at one number in isolation.</p></div>
 </section>
-
 <section class="screen" id="insights">
-  <div class="eyebrow">A LITTLE PERSPECTIVE</div><h1 class="pageTitle">Insights.</h1>
-  <p class="pageSub">Betty helps turn your logs into simple observations.</p>
-  <div class="card insightHero"><img src="assets/betty/betty-medium.png" class="betty-pulse" alt="Betty"><div><div class="eyebrow" style="margin:0 0 9px;font-size:12px">BETTY'S THOUGHT</div><div style="font-size:26px;font-weight:900;line-height:1.05">Your data tells a story.</div><p class="muted">Keep logging consistently and I'll help you notice patterns without overwhelming you.</p></div></div>
-  <div class="card"><div class="eyebrow" style="margin:0 0 8px;font-size:12px">EARLY SIGNAL</div><div class="cardTitle">There's not enough data yet.</div><p class="muted">That's okay. Betty should earn confidence from repeated observations before calling something a pattern.</p></div>
+  <div class="eyebrow">A LITTLE PERSPECTIVE</div><h1 class="pageTitle">Insights.</h1><p class="pageSub">Betty helps turn your logs into simple observations.</p>
+  <div class="card insightHero"><img src="assets/betty/betty-medium.png" class="betty-pulse" alt="Betty"><div><div class="eyebrow">BETTY'S THOUGHT</div><div class="bigInsight">Your data tells a story.</div><p class="muted">Keep logging consistently and I'll help you notice patterns without overwhelming you.</p></div></div>
+  <div class="card signalCard"><div class="eyebrow">EARLY SIGNAL</div><div class="cardTitle">There's not enough data yet.</div><p class="muted">That's okay. Betty should earn confidence from repeated observations before calling something a pattern.</p></div>
 </section>
-
 <section class="screen" id="betty">
-  <div class="eyebrow">YOUR COMPANION</div><h1 class="pageTitle">Ask Betty.</h1>
-  <p class="pageSub">Ask questions about your habits, numbers, and patterns.</p>
-  <div class="card askCard">
-    <div class="askHeader"><img src="assets/betty/betty-avatar.png" class="askAvatar betty-float" alt="Betty"><div><div class="cardTitle">Betty</div><div class="muted">Your Diabetter companion</div></div></div>
-    <div id="chat">
-      <div class="bubble bettyMsg"><strong>Hi! I'm Betty. 🦋</strong><br>Ask me something about your day and we'll figure it out together.</div>
-    </div>
-    <div class="chips" style="margin-top:22px">
-      <button class="chip prompt">How am I doing?</button>
-      <button class="chip prompt">What changed this week?</button>
-      <button class="chip prompt">What should I focus on?</button>
-    </div>
-  </div>
+  <div class="eyebrow">YOUR COMPANION</div><h1 class="pageTitle">Ask Betty.</h1><p class="pageSub">Ask questions about your habits, numbers, and patterns.</p>
+  <div class="card askCard"><div class="askHeader"><img src="assets/betty/betty-avatar.png" class="askAvatar betty-float" alt="Betty"><div><div class="cardTitle">Betty</div><div class="muted">Your Diabetter companion</div></div></div><div class="chat" id="chat"><div class="bubble bettyMsg"><strong>Hi! I'm Betty. 🦋</strong><br>Ask me something about your day and we'll figure it out together.</div></div><div class="chips askPrompts"><button class="chip prompt">How am I doing?</button><button class="chip prompt">What changed this week?</button><button class="chip prompt">What should I focus on?</button></div></div>
 </section>
-
 </main>
-
-<button class="fab" id="fab">+</button>
-
-<nav class="nav"><div class="navInner">
-  <button class="navBtn active" data-screen="today"><span>🏠</span>Today</button>
-  <button class="navBtn" data-screen="log"><span>＋</span>Log</button>
-  <button class="navBtn" data-screen="trends"><span>📈</span>Trends</button>
-  <button class="navBtn" data-screen="insights"><span>✨</span>Insights</button>
-  <button class="navBtn" data-screen="betty"><span>🦋</span>Betty</button>
-</div></nav>
-
-<div class="settingsOverlay" id="settingsOverlay">
-  <div class="settingsPanel">
-    <div class="settingsTop"><div><div class="eyebrow" style="margin:0 0 10px">DIABETTER</div><div class="pageTitle" style="font-size:48px;margin:0">Settings</div></div><button class="close" id="settingsClose">×</button></div>
-    <div class="lineRainbow"></div>
-    <div class="settingRow">
-      <div class="row"><div><div class="settingLabel">App theme</div><div class="settingDesc" id="themeName">Light ☀️</div></div><div>›</div></div>
-      <div class="themeChoices">
-        <button class="themeChoice selected" data-theme="light"><div class="themeSwatch" style="background:#f1f0f6">☀️</div><div><b>Light</b><div class="settingDesc">Clean and bright</div></div></button>
-        <button class="themeChoice" data-theme="dark"><div class="themeSwatch" style="background:#17171c">🌙</div><div><b>Dark</b><div class="settingDesc">Easy on the eyes</div></div></button>
-        <button class="themeChoice" data-theme="betty"><div class="themeSwatch" style="background:linear-gradient(135deg,#ffbf00,#35d0a2,#4e7cff,#b34dff)">🌈</div><div><b>Betty Mode</b><div class="settingDesc">Maximum color & flare</div></div></button>
-      </div>
-    </div>
-    <div class="settingRow"><div class="row"><div><div class="settingLabel">Betty animations</div><div class="settingDesc">Bring Betty to life</div></div><button class="toggle on" id="animationToggle"></button></div></div>
-    <div class="settingRow"><div class="row"><div><div class="settingLabel">Daily reminders</div><div class="settingDesc">Gentle reminders to log</div></div><button class="toggle" id="reminderToggle"></button></div></div>
-    <div class="card" style="margin-bottom:0"><div class="row"><img src="assets/betty/betty-icon.png" style="width:54px;height:54px;object-fit:contain" alt=""><div style="flex:1"><div class="cardTitle">Diabetter</div><div class="muted">A simpler way to understand your everyday health patterns.</div></div></div></div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
+<button class="fab" id="fab" aria-label="Add log">+</button>
+<nav class="nav"><div class="navInner"><button class="navBtn active" data-screen="today"><span>🏠</span>Today</button><button class="navBtn" data-screen="log"><span>＋</span>Log</button><button class="navBtn" data-screen="trends"><span>📈</span>Trends</button><button class="navBtn" data-screen="insights"><span>✨</span>Insights</button><button class="navBtn" data-screen="betty"><span>🦋</span>Betty</button></div></nav>
+<div class="settingsOverlay" id="settingsOverlay"><div class="settingsPanel"><div class="settingsTop"><div><div class="eyebrow" style="margin:0 0 7px">DIABETTER</div><div class="pageTitle" style="font-size:44px;margin:0">Settings</div></div><button class="close" id="settingsClose">×</button></div><div class="lineRainbow"></div>
+<div class="settingRow"><div class="row"><div><div class="settingLabel">App theme</div><div class="settingDesc" id="themeName">Light ☀️</div></div><div>›</div></div><div class="themeChoices"><button class="themeChoice selected" data-theme="light"><div class="themeSwatch" style="background:#f1f0f6">☀️</div><div><b>Light</b><div class="settingDesc">Clean and bright</div></div></button><button class="themeChoice" data-theme="dark"><div class="themeSwatch" style="background:#17171c">🌙</div><div><b>Dark</b><div class="settingDesc">Easy on the eyes</div></div></button><button class="themeChoice" data-theme="betty"><div class="themeSwatch" style="background:linear-gradient(135deg,#ffbf00,#35d0a2,#4e7cff,#b34dff)">🌈</div><div><b>Betty Mode</b><div class="settingDesc">Maximum color & flare</div></div></button></div></div>
+<div class="settingRow"><div class="row"><div><div class="settingLabel">Betty animations</div><div class="settingDesc">Bring Betty to life</div></div><button class="toggle on" id="animationToggle" aria-label="Toggle Betty animations"></button></div></div>
+<div class="settingRow"><div class="row"><div><div class="settingLabel">Daily reminders</div><div class="settingDesc">Gentle reminders to log</div></div><button class="toggle" id="reminderToggle" aria-label="Toggle reminders"></button></div></div>
+<div class="card" style="margin-bottom:0"><div class="row"><img src="assets/betty/betty-icon.png" style="width:48px;height:48px;object-fit:contain" alt="Betty"><div style="flex:1"><div class="cardTitle">Diabetter</div><div class="muted" style="font-size:13px">A simpler way to understand your everyday health patterns.</div></div></div></div>
+</div></div><div class="toast" id="toast"></div>
 <script>
 (function(){
-  const $=id=>document.getElementById(id);
-  const screens=[...document.querySelectorAll('.screen')];
-  const nav=[...document.querySelectorAll('.navBtn')];
-  const KEY='diabetter_v34_events';
-  let events=[];
-  try{events=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(events))events=[]}catch(e){events=[]}
-
-  function persist(){try{localStorage.setItem(KEY,JSON.stringify(events))}catch(e){}}
-  function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600)}
-  function show(id){
-    screens.forEach(s=>s.classList.toggle('active',s.id===id));
-    nav.forEach(b=>b.classList.toggle('active',b.dataset.screen===id));
-    window.scrollTo({top:0,behavior:'smooth'});
-  }
-  nav.forEach(b=>b.addEventListener('click',()=>show(b.dataset.screen)));
-  $('settingsOpen').addEventListener('click',()=>$('settingsOverlay').classList.add('open'));
-  $('settingsClose').addEventListener('click',()=>$('settingsOverlay').classList.remove('open'));
-  $('settingsOverlay').addEventListener('click',e=>{if(e.target===$('settingsOverlay'))$('settingsOverlay').classList.remove('open')});
-  $('fab').addEventListener('click',()=>{show('log');setTimeout(()=>document.querySelector('.logCard')?.scrollIntoView({behavior:'smooth',block:'center'}),100)});
-  $('quickAdd').addEventListener('click',()=>show('log'));
-
-  document.querySelectorAll('.logCard').forEach(btn=>btn.addEventListener('click',()=>{
-    document.querySelectorAll('.form').forEach(f=>f.classList.remove('open'));
-    const f=$(btn.dataset.form);if(f){f.classList.add('open');f.scrollIntoView({behavior:'smooth',block:'center'})}
-  }));
-
-  function add(type,title,sub,extra={}){
-    events.push({type,title,sub,...extra,at:Date.now()});persist();render();toast(title+' saved ✓');show('today');
-  }
-  $('saveGlucose').addEventListener('click',()=>{
-    const v=$('glucoseInput').value.trim();if(!v){toast('Enter a glucose value');return}
-    add('glucose','🩸 Glucose · '+v+' mg/dL',$('glucoseContext').value,{value:Number(v)});
-    $('glucoseInput').value='';
-  });
-  $('saveBP').addEventListener('click',()=>{
-    const s=$('sysInput').value.trim(),d=$('diaInput').value.trim();if(!s||!d){toast('Enter both BP numbers');return}
-    add('bp','❤️ Blood pressure · '+s+'/'+d,'Manual entry',{s:Number(s),d:Number(d)});
-    $('sysInput').value='';$('diaInput').value='';
-  });
-  $('saveFood').addEventListener('click',()=>{
-    const v=$('foodInput').value.trim();if(!v){toast('Enter your meal');return}
-    add('food','🥗 Food · '+v,'Manual entry');$('foodInput').value='';
-  });
-  $('saveWater').addEventListener('click',()=>{
-    const v=$('waterInput').value.trim();if(!v){toast('Enter water amount');return}
-    add('water','💧 Water · '+v+' oz','Quick log',{value:Number(v)});$('waterInput').value='';
-  });
-
-  function render(){
-    const gm=events.filter(e=>e.type==='glucose').at(-1);
-    const bp=events.filter(e=>e.type==='bp').at(-1);
-    $('glucoseMetric').textContent=gm?gm.value:'—';
-    $('bpMetric').textContent=bp?(bp.s+'/'+bp.d):'—';
-    $('trendLatest').textContent=gm?gm.value:'—';
-    $('savedCount').textContent=events.length+' saved event'+(events.length===1?'':'s');
-    const t=$('timeline');t.innerHTML='';
-    if(!events.length){t.innerHTML='<div class="event" style="padding-top:18px"><div class="muted">No events yet. Start with a glucose, food, water or blood-pressure log.</div></div>';return}
-    events.slice(-6).reverse().forEach(e=>{
-      const d=document.createElement('div');d.className='event';
-      const when=new Date(e.at).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
-      d.innerHTML='<div class="time">'+when+'</div><b></b><div class="muted"></div>';
-      d.querySelector('b').textContent=e.title;d.querySelector('.muted').textContent=e.sub||'';t.appendChild(d);
-    });
-  }
-
-  document.querySelectorAll('.prompt').forEach(btn=>btn.addEventListener('click',()=>{
-    const chat=$('chat'),q=btn.textContent;
-    const u=document.createElement('div');u.className='bubble userMsg';u.textContent=q;chat.appendChild(u);
-    setTimeout(()=>{
-      const a=document.createElement('div');a.className='bubble bettyMsg';
-      const hasData=events.length>0;
-      a.textContent=hasData
-        ? 'I can see the things you’ve logged. As you build more history, I can compare your readings with nearby meals, activity and other events to help you spot patterns. 🦋'
-        : 'Start by logging a few things today. Once you have some history, I can help you connect your numbers with meals, activity and other events. 🦋';
-      chat.appendChild(a);a.scrollIntoView({behavior:'smooth',block:'nearest'});
-    },350);
-  }));
-
-  const themeButtons=[...document.querySelectorAll('.themeChoice')];
-  function setTheme(theme){
-    document.body.classList.remove('dark','bettyMode');
-    themeButtons.forEach(b=>b.classList.toggle('selected',b.dataset.theme===theme));
-    if(theme==='dark')document.body.classList.add('dark');
-    if(theme==='betty')document.body.classList.add('bettyMode');
-    const names={light:'Light ☀️',dark:'Dark 🌙',betty:'Betty 🌈'};
-    $('themeName').textContent=names[theme];
-    localStorage.setItem('diabetter_v34_theme',theme);
-    document.querySelector('meta[name="theme-color"]').setAttribute('content',theme==='dark'?'#07070a':theme==='betty'?'#fff4ff':'#f7f6fc');
-  }
-  themeButtons.forEach(b=>b.addEventListener('click',()=>setTheme(b.dataset.theme)));
-  const savedTheme=localStorage.getItem('diabetter_v34_theme')||'light';setTheme(savedTheme);
-
-  let animations=true;
-  $('animationToggle').addEventListener('click',()=>{
-    animations=!animations;$('animationToggle').classList.toggle('on',animations);
-    document.querySelectorAll('.betty-float,.betty-pulse').forEach(el=>el.style.animation=animations?'':'none');
-  });
-  $('reminderToggle').addEventListener('click',()=>{$('reminderToggle').classList.toggle('on');toast($('reminderToggle').classList.contains('on')?'Reminders enabled':'Reminders disabled')});
-  render();
+const $=id=>document.getElementById(id), screens=[...document.querySelectorAll('.screen')], nav=[...document.querySelectorAll('.navBtn')];
+const KEY='diabetter_v341_events';let events=[];try{events=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(events))events=[]}catch(e){events=[]}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(events))}catch(e){}}
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),1500)}
+function show(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));nav.forEach(b=>b.classList.toggle('active',b.dataset.screen===id));window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0}
+nav.forEach(b=>b.addEventListener('click',()=>show(b.dataset.screen)));
+$('settingsOpen').addEventListener('click',()=>$('settingsOverlay').classList.add('open'));$('settingsClose').addEventListener('click',()=>$('settingsOverlay').classList.remove('open'));$('settingsOverlay').addEventListener('click',e=>{if(e.target===$('settingsOverlay'))$('settingsOverlay').classList.remove('open')});
+$('fab').addEventListener('click',()=>show('log'));$('quickAdd').addEventListener('click',()=>show('log'));
+document.querySelectorAll('.logCard').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.form').forEach(f=>f.classList.remove('open'));const f=$(btn.dataset.form);if(f){f.classList.add('open');setTimeout(()=>f.scrollIntoView({behavior:'smooth',block:'nearest'}),50)}}));
+function add(type,title,sub,extra={}){events.push({type,title,sub,...extra,at:Date.now()});persist();render();toast(title.split(' · ')[0]+' saved ✓');show('today')}
+$('saveGlucose').addEventListener('click',()=>{const v=$('glucoseInput').value.trim();if(!v){toast('Enter a glucose value');return}add('glucose','🩸 Glucose · '+v+' mg/dL',$('glucoseContext').value,{value:Number(v)});$('glucoseInput').value=''});
+$('saveBP').addEventListener('click',()=>{const s=$('sysInput').value.trim(),d=$('diaInput').value.trim();if(!s||!d){toast('Enter both BP numbers');return}add('bp','❤️ Blood pressure · '+s+'/'+d,'Manual entry',{s:Number(s),d:Number(d)});$('sysInput').value='';$('diaInput').value=''});
+$('saveFood').addEventListener('click',()=>{const v=$('foodInput').value.trim();if(!v){toast('Enter your meal');return}add('food','🥗 Food · '+v,'Manual entry');$('foodInput').value=''});
+$('saveWater').addEventListener('click',()=>{const v=$('waterInput').value.trim();if(!v){toast('Enter water amount');return}add('water','💧 Water · '+v+' oz','Quick log',{value:Number(v)});$('waterInput').value=''});
+function render(){const gm=events.filter(e=>e.type==='glucose').at(-1),bp=events.filter(e=>e.type==='bp').at(-1),water=events.filter(e=>e.type==='water').at(-1);$('glucoseMetric').textContent=gm?gm.value:'—';$('bpMetric').textContent=bp?bp.s+'/'+bp.d:'—';$('waterMetric').textContent=water?water.value:'—';$('trendLatest').textContent=gm?gm.value:'—';$('savedCount').textContent=events.length+' saved event'+(events.length===1?'':'s');const t=$('timeline');t.innerHTML='';if(!events.length){t.innerHTML='<div class="event"><div class="muted">Start logging to build your timeline.</div></div>';return}events.slice(-3).reverse().forEach(e=>{const d=document.createElement('div');d.className='event';const when=new Date(e.at).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});d.innerHTML='<div class="time">'+when+'</div><b></b><div class="muted"></div>';d.querySelector('b').textContent=e.title;d.querySelector('.muted').textContent=e.sub||'';t.appendChild(d)})}
+document.querySelectorAll('.prompt').forEach(btn=>btn.addEventListener('click',()=>{const chat=$('chat'),q=btn.textContent;const u=document.createElement('div');u.className='bubble userMsg';u.textContent=q;chat.appendChild(u);setTimeout(()=>{const a=document.createElement('div');a.className='bubble bettyMsg';a.textContent=events.length?'I can see the things you’ve logged. Keep building your history and I can help compare readings with meals, activity and other events. 🦋':'Start by logging a few things today. Once you have some history, I can help connect your numbers with meals, activity and other events. 🦋';chat.appendChild(a);chat.scrollTop=chat.scrollHeight},300)}));
+const themeButtons=[...document.querySelectorAll('.themeChoice')];function setTheme(theme){document.body.classList.remove('dark','bettyMode');themeButtons.forEach(b=>b.classList.toggle('selected',b.dataset.theme===theme));if(theme==='dark')document.body.classList.add('dark');if(theme==='betty')document.body.classList.add('bettyMode');$('themeName').textContent={light:'Light ☀️',dark:'Dark 🌙',betty:'Betty 🌈'}[theme];localStorage.setItem('diabetter_v341_theme',theme);document.querySelector('meta[name="theme-color"]').setAttribute('content',theme==='dark'?'#07070a':theme==='betty'?'#fff4ff':'#f7f6fc')}
+themeButtons.forEach(b=>b.addEventListener('click',()=>setTheme(b.dataset.theme)));setTheme(localStorage.getItem('diabetter_v341_theme')||'light');
+let animations=localStorage.getItem('diabetter_v341_anim')!=='off';$('animationToggle').classList.toggle('on',animations);function applyAnimation(){document.querySelectorAll('.betty-float,.betty-pulse').forEach(el=>el.style.animation=animations?'':'none')}$('animationToggle').addEventListener('click',()=>{animations=!animations;localStorage.setItem('diabetter_v341_anim',animations?'on':'off');$('animationToggle').classList.toggle('on',animations);applyAnimation()});$('reminderToggle').addEventListener('click',()=>{$('reminderToggle').classList.toggle('on');toast($('reminderToggle').classList.contains('on')?'Reminders enabled':'Reminders disabled')});
+render();applyAnimation();
 })();
 </script>
-</body>
-</html>
+</body></html>
